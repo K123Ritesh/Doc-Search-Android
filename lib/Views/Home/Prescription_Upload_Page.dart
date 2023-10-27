@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:doc_search/Views/Home/Order_Done_Page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:file_picker/file_picker.dart';
@@ -75,11 +76,13 @@ class _Prescription_Upload_PageState extends State<Prescription_Upload_Page> {
     if (selectedFile != null) {
       final downloadURL = await uploadFileToFirebaseStorage(selectedFile);
       if (downloadURL != null) {
-        // You now have the download URL for the uploaded file.
         print('File uploaded. Download URL: $downloadURL');
         createOrderDocument(
             'ritKumar@gmail.com', 'Shop id will come here', downloadURL);
         addToMedicineShop('rit11@gmail.com', downloadURL, 'ritKumar@gmail.com');
+        files_list.clear();
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => Order_Done_Page()));
       } else {
         print('File upload failed.');
       }

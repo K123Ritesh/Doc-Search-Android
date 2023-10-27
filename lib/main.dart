@@ -1,3 +1,4 @@
+import 'package:doc_search/Splash_Screen.dart';
 import 'package:doc_search/Views/Authentication/Login_Page.dart';
 import 'package:doc_search/Views/Home/Consultancy_Page.dart';
 import 'package:doc_search/Views/Home/Hospitals_Page.dart';
@@ -29,6 +30,6 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Color.fromARGB(255, 3, 110, 198)));
     return GetMaterialApp(
-        debugShowCheckedModeBanner: false, home: Login_Page());
+        debugShowCheckedModeBanner: false, home: SplashScreen());
   }
 }

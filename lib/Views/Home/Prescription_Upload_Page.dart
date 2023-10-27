@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:path/path.dart' as path;
 
 class Prescription_Upload_Page extends StatefulWidget {
@@ -15,6 +16,7 @@ class Prescription_Upload_Page extends StatefulWidget {
 
 class _Prescription_Upload_PageState extends State<Prescription_Upload_Page> {
   String fileName = '';
+  late File selectedFile;
   List<String> files_list = [];
   void _openFilePicker() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
@@ -28,6 +30,7 @@ class _Prescription_Upload_PageState extends State<Prescription_Upload_Page> {
 
       // You can now use the selected file(s) as needed.
       for (File file in files) {
+        selectedFile = file;
         print("Selected file: ${file.path}");
         fileName = path.basename(file.path).toString();
         setState(() {
@@ -35,6 +38,98 @@ class _Prescription_Upload_PageState extends State<Prescription_Upload_Page> {
         });
         print(fileName);
       }
+    }
+  }
+
+  Future<String?> uploadFileToFirebaseStorage(File file) async {
+    try {
+      // final currentUser = FirebaseAuth.instance.currentUser;
+      // if (currentUser == null) {
+      //   // User not signed in.
+      //   return null;
+      // }
+
+      final userId = 'ritKumar@gmail.com';
+      final folderPath = 'Users/$userId/orders';
+      final fileName = DateTime.now().millisecondsSinceEpoch.toString();
+      final storageReference =
+          FirebaseStorage.instance.ref('$folderPath/$fileName');
+
+      UploadTask uploadTask = storageReference.putFile(file);
+
+      TaskSnapshot taskSnapshot = await uploadTask.whenComplete(() => {});
+
+      if (taskSnapshot.state == TaskState.success) {
+        final downloadURL = await storageReference.getDownloadURL();
+        return downloadURL;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print('Error uploading file: $e');
+      return null;
+    }
+  }
+
+  void onButtonTap() async {
+    if (selectedFile != null) {
+      final downloadURL = await uploadFileToFirebaseStorage(selectedFile);
+      if (downloadURL != null) {
+        // You now have the download URL for the uploaded file.
+        print('File uploaded. Download URL: $downloadURL');
+        createOrderDocument(
+            'ritKumar@gmail.com', 'Shop id will come here', downloadURL);
+        addToMedicineShop('rit11@gmail.com', downloadURL, 'ritKumar@gmail.com');
+      } else {
+        print('File upload failed.');
+      }
+    } else {
+      print('No file selected.');
+    }
+  }
+
+  Future<void> createOrderDocument(
+      String userId, String shopId, String prescriptionUrl) async {
+    try {
+      final firestore = FirebaseFirestore.instance;
+
+      final orderRef = firestore.collection('Orders').doc();
+
+      await orderRef.set({
+        'prescription_url': prescriptionUrl,
+        'shop_id': shopId,
+        'user_id': userId,
+        'timestamp':
+            FieldValue.serverTimestamp(), // Add a server-generated timestamp.
+      });
+
+      print('Order document created successfully.');
+    } catch (e) {
+      print('Error creating order document: $e');
+    }
+  }
+
+  Future<void> addToMedicineShop(
+      String shopId, String prescriptionUrl, String userId) async {
+    try {
+      final firestore = FirebaseFirestore.instance;
+      final shopRef = firestore.collection('Medicine_Shops').doc(shopId);
+
+      final shopData = await shopRef.get();
+
+      if (shopData.exists) {
+        final currentPrescriptions =
+            List<String>.from(shopData.data()!['prescriptions'] ?? []);
+        currentPrescriptions.add("$userId: $prescriptionUrl");
+
+        await shopRef.update({'prescriptions': currentPrescriptions});
+
+        print('Prescription URL added to Medicine Shop successfully.');
+      } else {
+        print('Shop document does not exist.');
+      }
+    } catch (e) {
+      print('Error adding prescription URL to Medicine Shop: $e');
     }
   }
 
@@ -235,6 +330,7 @@ class _Prescription_Upload_PageState extends State<Prescription_Upload_Page> {
                           InkWell(
                             onTap: () {
                               print('Save tapped');
+                              onButtonTap();
                             },
                             child: Container(
                               decoration: BoxDecoration(

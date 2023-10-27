@@ -1,6 +1,7 @@
 import 'package:doc_search/Bottom_Bar.dart';
 import 'package:doc_search/Views/Home/Medical_Labs_Page.dart';
 import 'package:doc_search/Views/Home/Medicine_Page.dart';
+import 'package:doc_search/Views/Home/Wallet_Page.dart';
 import 'package:doc_search/Views/Profile/Profile_Page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -58,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                       child: Icon(Icons.person, color: Colors.blue, size: 39),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
-                        color: Colors.blue[100],
+                        color: const Color.fromARGB(255, 111, 170, 219),
                       ),
                       // child: Image.asset('assets/your_image.png'),
                     ),
@@ -66,16 +67,37 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     width: 200,
                   ),
-                  Icon(
-                    Icons.account_balance_wallet,
-                    color: Color(0xFF5793A8),
-                    size: 30,
-                  ),
-                  SizedBox(width: 8),
-                  Text(
-                    '100',
-                    style: TextStyle(fontSize: 18, color: Colors.black),
-                  ),
+                  InkWell(
+                    onTap: () {
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(builder: (context) => Wallet()),
+                      // );
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 83, 130, 211),
+                          borderRadius: BorderRadius.circular(15)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(3.0),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.account_balance_wallet,
+                              color: Colors.white,
+                              size: 30,
+                            ),
+                            SizedBox(width: 8),
+                            Text(
+                              '100',
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.black),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  )
                 ],
               ),
               SizedBox(

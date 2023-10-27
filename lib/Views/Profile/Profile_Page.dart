@@ -1,13 +1,14 @@
 import 'dart:ffi';
 
 import 'package:doc_search/Views/Profile/Appointments_Page.dart';
-import 'package:doc_search/Views/Profile/Edit_Profile_Page.dart';
 import 'package:doc_search/Views/Profile/Refer_And_Earn_Page.dart';
 import 'package:doc_search/Views/Profile/Settings_Page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/instance_manager.dart';
+
+import 'Edit_User_Profile.dart';
 
 class Profile_Page_Doc_Search extends StatelessWidget {
   @override
@@ -43,7 +44,7 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                       InkWell(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => EditProfile()));
+                                builder: (context) => EditUserProfile()));
                           },
                           child: Stack(
                             children: <Widget>[

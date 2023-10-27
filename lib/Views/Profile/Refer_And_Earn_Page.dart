@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:clipboard/clipboard.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Refer_And_Earn_Page extends StatefulWidget {
   const Refer_And_Earn_Page({super.key});
@@ -132,30 +133,45 @@ class _Refer_And_Earn_PageState extends State<Refer_And_Earn_Page> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10)),
-                      height: 33,
-                      width: 230,
-                      child: Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Image.network(
-                              height: 24,
-                              width: 30,
-                              'https://s3-alpha-sig.figma.com/img/ee6b/3f48/b89ad3b69027b4448422cdfd225c0901?Expires=1699228800&Signature=figvoE9HfxYgq8ZV4WeXdw8yYThj2vFISwHnUm3ygv7pCOrcNgG3qQxi41jf7duyAjKpQ4qmqTXbw7gRy674qLf1kleOWiCZ7Ci8TVHqd0-yHto80ZKgof6snUOJRYvwO1GHemfSkco7Z7be-deVKazxUJlgfGmg0FK9Eu1puQfaIIuaCWNBXHopU4-dmglnLn04hLr17dLmIDRqpeo2lP9XEo1W39-WM9IxrguCHnFBR9XeF-7URLTLFqVYfZhZSArtvbaIjo8ay2e1J4shUqTRv8YzFZs~ZtHrY4IxZ2YYh8PVx0Ng5RYK7ig9IsDqLmUTjo-yTmA-XVj~ft6b~Q__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
-                            ),
-                            Text(
-                              'Refer via Facebook',
-                              style: TextStyle(
-                                  color:
-                                      const Color.fromARGB(255, 29, 107, 171),
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                          ],
+                    InkWell(
+                      onTap: () async {
+                        final content =
+                            "Check out this amazing video: https://example.com/video"; // Replace with your video or link content
+
+                        final url =
+                            "https://wa.me/?text=${Uri.encodeComponent(content)}";
+                        if (await canLaunch(url)) {
+                          await launch(url);
+                        } else {
+                          // Handle errors if WhatsApp couldn't be launched
+                          print("Could not launch WhatsApp");
+                        }
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10)),
+                        height: 33,
+                        width: 230,
+                        child: Center(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Image.network(
+                                height: 24,
+                                width: 30,
+                                'https://s3-alpha-sig.figma.com/img/ee6b/3f48/b89ad3b69027b4448422cdfd225c0901?Expires=1699228800&Signature=figvoE9HfxYgq8ZV4WeXdw8yYThj2vFISwHnUm3ygv7pCOrcNgG3qQxi41jf7duyAjKpQ4qmqTXbw7gRy674qLf1kleOWiCZ7Ci8TVHqd0-yHto80ZKgof6snUOJRYvwO1GHemfSkco7Z7be-deVKazxUJlgfGmg0FK9Eu1puQfaIIuaCWNBXHopU4-dmglnLn04hLr17dLmIDRqpeo2lP9XEo1W39-WM9IxrguCHnFBR9XeF-7URLTLFqVYfZhZSArtvbaIjo8ay2e1J4shUqTRv8YzFZs~ZtHrY4IxZ2YYh8PVx0Ng5RYK7ig9IsDqLmUTjo-yTmA-XVj~ft6b~Q__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                              ),
+                              Text(
+                                'Refer via Facebook',
+                                style: TextStyle(
+                                    color:
+                                        const Color.fromARGB(255, 29, 107, 171),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     )

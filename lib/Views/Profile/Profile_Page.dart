@@ -1,15 +1,19 @@
 import 'dart:ffi';
 
-import 'package:doc_search/Appointments_Page.dart';
-import 'package:doc_search/Refer_And_Earn_Page.dart';
-import 'package:doc_search/Settings_Page.dart';
+import 'package:doc_search/Views/Profile/Appointments_Page.dart';
+import 'package:doc_search/Views/Profile/Edit_Profile_Page.dart';
+import 'package:doc_search/Views/Profile/Refer_And_Earn_Page.dart';
+import 'package:doc_search/Views/Profile/Settings_Page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/instance_manager.dart';
 
 class Profile_Page_Doc_Search extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: Color.fromARGB(255, 3, 110, 198)));
     return Scaffold(
       body: Container(
           decoration: BoxDecoration(color: Color.fromARGB(255, 3, 110, 198)),
@@ -17,6 +21,18 @@ class Profile_Page_Doc_Search extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: ListView(
               children: [
+                Row(
+                  children: [
+                    SizedBox(width: 20),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Icon(Icons.arrow_back_ios_new,
+                          color: Colors.white, size: 26),
+                    ),
+                  ],
+                ),
                 SizedBox(height: 23),
                 Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                   SizedBox(
@@ -24,11 +40,35 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                   ),
                   Column(
                     children: [
-                      CircleAvatar(
-                        child: Icon(Icons.person, size: 90),
-                        maxRadius: 50,
-                        backgroundColor: Colors.white,
-                      ),
+                      InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => EditProfile()));
+                          },
+                          child: Stack(
+                            children: <Widget>[
+                              CircleAvatar(
+                                child: Icon(Icons.person, size: 90),
+                                maxRadius: 50,
+                                backgroundColor: Colors.white,
+                              ),
+                              Positioned(
+                                bottom: 0,
+                                right: 0,
+                                child: Container(
+                                  padding: EdgeInsets.all(4),
+                                  decoration: BoxDecoration(
+                                    color: Colors.blue,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Icon(
+                                    Icons.edit,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )),
                       SizedBox(
                         height: 10,
                       ),

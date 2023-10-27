@@ -17,7 +17,7 @@ class _Change_PhoneNumber_PageState extends State<Change_PhoneNumber_Page> {
           decoration: BoxDecoration(color: Color.fromARGB(255, 3, 110, 198)),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Column(children: [
+            child: ListView(children: [
               SizedBox(
                 height: 20,
               ),
@@ -250,6 +250,7 @@ class _OTPInputState extends State<OTPInput> {
             textAlign: TextAlign.center,
             keyboardType: TextInputType.number,
             decoration: InputDecoration(
+              fillColor: Colors.white,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10.0),
               ),

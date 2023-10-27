@@ -1,6 +1,6 @@
-import 'package:doc_search/Change_PhoneNumber_Page.dart';
-import 'package:doc_search/Feedback_Page.dart';
-import 'package:doc_search/Privacy_Policy_Page.dart';
+import 'package:doc_search/Views/Profile/Change_PhoneNumber_Page.dart';
+import 'package:doc_search/Views/Profile/Feedback_Page.dart';
+import 'package:doc_search/Views/Profile/Privacy_Policy_Page.dart';
 import 'package:flutter/material.dart';
 
 class Settings_Page extends StatefulWidget {

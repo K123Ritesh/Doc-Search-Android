@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:doc_search/Models/Medicine_Shop.dart';
 import 'package:doc_search/Views/Home/Order_Done_Page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,8 +9,9 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:path/path.dart' as path;
 
 class Prescription_Upload_Page extends StatefulWidget {
-  const Prescription_Upload_Page({super.key});
+  const Prescription_Upload_Page({super.key, required this.shopId});
 
+  final String shopId;
   @override
   State<Prescription_Upload_Page> createState() =>
       _Prescription_Upload_PageState();
@@ -26,10 +28,7 @@ class _Prescription_Upload_PageState extends State<Prescription_Upload_Page> {
     );
 
     if (result != null) {
-      // Process the selected file(s)
       List<File> files = result.paths.map((path) => File(path!)).toList();
-
-      // You can now use the selected file(s) as needed.
       for (File file in files) {
         selectedFile = file;
         print("Selected file: ${file.path}");
@@ -77,8 +76,7 @@ class _Prescription_Upload_PageState extends State<Prescription_Upload_Page> {
       final downloadURL = await uploadFileToFirebaseStorage(selectedFile);
       if (downloadURL != null) {
         print('File uploaded. Download URL: $downloadURL');
-        createOrderDocument(
-            'ritKumar@gmail.com', 'Shop id will come here', downloadURL);
+        createOrderDocument('ritKumar@gmail.com', widget.shopId, downloadURL);
         addToMedicineShop('rit11@gmail.com', downloadURL, 'ritKumar@gmail.com');
         files_list.clear();
         Navigator.of(context)

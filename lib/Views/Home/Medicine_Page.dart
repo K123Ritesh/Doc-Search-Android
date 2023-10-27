@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doc_search/Models/Medicine_Shop.dart';
 import 'package:doc_search/Views/Home/Prescription_Upload_Page.dart';
+import 'package:doc_search/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -19,17 +20,18 @@ class Medicine_Page extends StatefulWidget {
 class _Medicine_PageState extends State<Medicine_Page> {
   List<MedicineShop> acc_to_search = [];
 
-  Future<void> getMedicineShopsByPincode(String pincode) async {
+  Future<void> getMedicineShopsByPincode(String city) async {
     try {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection('Medicine_Shops')
-          .where('pin_code', isEqualTo: pincode)
+          .where('city', isEqualTo: city.toLowerCase())
           .get();
 
       if (querySnapshot.docs.isNotEmpty) {
         acc_to_search.assignAll(
           querySnapshot.docs
               .map((shop) => MedicineShop(
+                    email: shop['email'],
                     name: shop['name'],
                     pincode: shop['pin_code'],
                     address: shop['address'],
@@ -44,7 +46,7 @@ class _Medicine_PageState extends State<Medicine_Page> {
           print(acc_to_search[i].pincode);
         }
       } else {
-        print('No medicine shops found for pincode $pincode');
+        print('No medicine shops found for pincode $city');
         acc_to_search.clear();
       }
     } catch (e) {
@@ -146,7 +148,7 @@ class _Medicine_PageState extends State<Medicine_Page> {
                         getMedicineShopsByPincode(value);
                       },
                       decoration: InputDecoration(
-                        hintText: 'Search Location',
+                        hintText: 'Search your city',
                         hintStyle: TextStyle(
                             color: const Color.fromARGB(255, 82, 78, 78)),
                         prefixIcon: Icon(Icons.search,
@@ -178,7 +180,7 @@ class _Medicine_PageState extends State<Medicine_Page> {
                     ? acc_to_search_widget(acc_to_search: acc_to_search)
                     : Center(
                         child: Text(
-                          'No Medical Shops for the given Pincode',
+                          'Enter the city to search',
                           style: TextStyle(
                               fontSize: 20, fontWeight: FontWeight.w400),
                         ),
@@ -192,10 +194,14 @@ class _Medicine_PageState extends State<Medicine_Page> {
 
 class Container_For_Medicine_Store extends StatelessWidget {
   Container_For_Medicine_Store(
-      {super.key, required this.name, required this.address});
+      {super.key,
+      required this.name,
+      required this.address,
+      required this.shopid});
 
   final String name;
   final String address;
+  final String shopid;
 
   @override
   Widget build(BuildContext context) {
@@ -278,8 +284,9 @@ class Container_For_Medicine_Store extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  Prescription_Upload_Page()));
+                              builder: (context) => Prescription_Upload_Page(
+                                    shopId: '',
+                                  )));
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -322,15 +329,19 @@ class acc_to_search_widget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int n = acc_to_search.length;
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      child: Column(
-        children: [
-          for (int i = 0; i < n; i++)
-            Container_For_Medicine_Store(
-                name: acc_to_search[i].name, address: acc_to_search[i].address)
-        ],
-      ),
-    );
+    return n == 0
+        ? Center(child: Text('No Results Found'))
+        : SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              children: [
+                for (int i = 0; i < n; i++)
+                  Container_For_Medicine_Store(
+                      shopid: acc_to_search[i].email,
+                      name: acc_to_search[i].name,
+                      address: acc_to_search[i].address)
+              ],
+            ),
+          );
   }
 }

@@ -8,7 +8,7 @@ class Medicine_Shop_Provider with ChangeNotifier {
   List<MedicineShop>? acc_to_Search;
 
   List<MedicineShop>? famousShops;
-  bool isLoading = false;
+  bool isLoading = true;
 
   Medicine_Shop_Services service = Medicine_Shop_Services();
 
@@ -17,7 +17,6 @@ class Medicine_Shop_Provider with ChangeNotifier {
   }
 
   getAccToSearch(String city, context) async {
-    isLoading = true;
     acc_to_Search = await service.getMedicineShopsByPincode(city, context);
     isLoading = false;
     notifyListeners();

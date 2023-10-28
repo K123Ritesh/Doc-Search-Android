@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../Appointment/Appointment.dart';
+import '../Appointment/doctor1.dart';
 
 class Appointments_Page extends StatefulWidget {
   const Appointments_Page({super.key});
@@ -72,19 +74,30 @@ class _Appointments_PageState extends State<Appointments_Page> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Appointment1()),
+                          );
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
                           color: Colors.black,
-                          borderRadius: BorderRadius.circular(10)),
-                      height: 40,
-                      width: 230,
-                      child: Center(
-                        child: Text(
-                          'Book Now',
-                          style: TextStyle(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        height: 40,
+                        width: 230,
+                        child: Center(
+                          child: Text(
+                            'Book Now',
+                            style: TextStyle(
                               color: Colors.white,
                               fontSize: 22,
-                              fontWeight: FontWeight.w400),
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
                         ),
                       ),
                     )

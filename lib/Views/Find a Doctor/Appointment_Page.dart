@@ -38,6 +38,7 @@ class Testing_Page extends StatelessWidget {
                         doctorId: 'doctorId',
                         slot: '9:00 -11:00',
                         userId: 'userId'));
+                        
               },
               child: Text(
                 'Book a Appointment',

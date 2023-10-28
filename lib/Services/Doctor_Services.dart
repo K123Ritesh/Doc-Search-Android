@@ -50,12 +50,17 @@ class Doctor_Services {
     return null;
   }
 
+/*
+when the appointment is booked it should send notification to the respective
+ doctor with doctorId and that slot of that date should be marked as booked*/
+
   Future<void> BookAppointment(context, Appointment_Model appointment) async {
     try {
       final firestore = FirebaseFirestore.instance;
 
       final appointmentRef = firestore.collection('Appointments').doc();
 
+      // Store the appointment details in the 'Appointments' collection
       await appointmentRef.set({
         'date_for_booking': appointment.date_for_booking,
         'doctorId': appointment.doctorId,
@@ -68,7 +73,56 @@ class Doctor_Services {
         'timestamp': FieldValue.serverTimestamp(),
       });
 
-      print('Appointment Booked successfully.');
+      // Get the appointment ID from the newly created document
+      final appointmentId = appointmentRef.id;
+
+      // Check availability in the 'Dentists' Collection
+      final dentistRef =
+          firestore.collection('Dentist').doc(appointment.doctorId);
+      final dentistDoc = await dentistRef.get();
+
+      if (dentistDoc.exists) {
+        final dentistData = dentistDoc.data();
+
+        if (dentistData!['Bookings'] != null) {
+          final bookingMap = dentistData['Bookings'];
+
+          if (bookingMap[appointment.date_for_booking] != null) {
+            final slot =
+                bookingMap[appointment.date_for_booking][appointment.slot];
+
+            if (slot != null) {
+              // Slot already booked, delete the appointment document
+              await appointmentRef.delete();
+              print(
+                  'Slot already booked by someone. Appointment document deleted.');
+            } else {
+              // Slot is available, add the appointment
+              bookingMap[appointment.date_for_booking][appointment.slot] =
+                  appointmentId;
+              await dentistRef.update({'Bookings': bookingMap});
+              print('Appointment booked successfully.');
+            }
+          } else {
+            // Slot not found for the given date, create a new slot
+            bookingMap[appointment.date_for_booking] = {
+              appointment.slot: appointmentId
+            };
+            await dentistRef.update({'Bookings': bookingMap});
+            print('Appointment booked successfully.');
+          }
+        } else {
+          // 'Booking' field not found, create it and add the appointment
+          final newBooking = {
+            appointment.date_for_booking: {appointment.slot: appointmentId},
+          };
+          await dentistRef
+              .set({'Bookings': newBooking}, SetOptions(merge: true));
+          print('Appointment booked successfully.');
+        }
+      } else {
+        print('Dentist not found.');
+      }
     } catch (e) {
       print('Error in Appointment Booking: $e');
     }

@@ -30,14 +30,14 @@ class Testing_Page extends StatelessWidget {
                 docProvider.bookAppointment(
                     context,
                     Appointment_Model(
-                        date_for_booking: '29/10/2023',
+                        date_for_booking: '13/10/2023',
                         mode_of_payment: 'online',
                         self: true,
                         reg_fee: '800',
                         paid: true,
-                        doctorId: 'doctorId',
-                        slot: '9:00 -11:00',
-                        userId: 'userId'));
+                        doctorId: 'khn@gmail.com',
+                        slot: '9:20 - 9:40',
+                        userId: 'rit11@gmail.com'));
               },
               child: Text(
                 'Book a Appointment',

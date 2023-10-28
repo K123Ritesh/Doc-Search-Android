@@ -1,18 +1,12 @@
 import 'package:doc_search/Models/Doctor.dart';
+import 'package:doc_search/Providers/Medicine_Shop_Provider.dart';
 import 'package:doc_search/Splash_Screen.dart';
 import 'package:doc_search/Views/Authentication/Login_Page.dart';
-import 'package:doc_search/Views/Home/Consultancy_Page.dart';
-import 'package:doc_search/Views/Home/Hospitals_Page.dart';
-import 'package:doc_search/Views/Home/Medical_Labs_Page.dart';
-import 'package:doc_search/Views/Home/Medicine_Page.dart';
-import 'package:doc_search/Views/Profile/Demo_Page.dart';
-import 'package:doc_search/Views/Home/Home_Page.dart';
-import 'package:doc_search/Views/Profile/Profile_Page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -67,8 +61,16 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  doctorsByCity('kolkata');
-  runApp(const MyApp());
+  // doctorsByCity('kolkata');
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<Medicine_Shop_Provider>(
+            create: (_) => Medicine_Shop_Provider())
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -77,7 +79,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Color.fromARGB(255, 3, 110, 198)));
-    return GetMaterialApp(
-        debugShowCheckedModeBanner: false, home: SplashScreen());
+    return MaterialApp(debugShowCheckedModeBanner: false, home: Login_Page());
   }
 }

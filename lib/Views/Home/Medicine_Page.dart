@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doc_search/Models/Medicine_Shop.dart';
+import 'package:doc_search/Providers/Medicine_Shop_Provider.dart';
 import 'package:doc_search/Views/Home/Prescription_Upload_Page.dart';
 import 'package:doc_search/main.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
-
-import '../../Controllers/Medicine_Shop_Controller.dart';
+import 'package:provider/provider.dart';
 
 class Medicine_Page extends StatefulWidget {
   Medicine_Page({super.key});
@@ -18,46 +18,53 @@ class Medicine_Page extends StatefulWidget {
 }
 
 class _Medicine_PageState extends State<Medicine_Page> {
-  List<MedicineShop> acc_to_search = [];
+  // List<MedicineShop> acc_to_search = [];
 
-  Future<void> getMedicineShopsByPincode(String city) async {
-    try {
-      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-          .collection('Medicine_Shops')
-          .where('city', isEqualTo: city.toLowerCase())
-          .get();
+  // Future<void> getMedicineShopsByPincode(String city) async {
+  //   try {
+  //     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+  //         .collection('Medicine_Shops')
+  //         .where('city', isEqualTo: city.toLowerCase())
+  //         .get();
 
-      if (querySnapshot.docs.isNotEmpty) {
-        acc_to_search.assignAll(
-          querySnapshot.docs
-              .map((shop) => MedicineShop(
-                    email: shop['email'],
-                    name: shop['name'],
-                    pincode: shop['pin_code'],
-                    address: shop['address'],
-                  ))
-              .toList(),
-        );
-        print(acc_to_search);
-        for (int i = 0; i < acc_to_search.length; i++) {
-          print('${i + 1} th MEDICINE SHOP');
-          print(acc_to_search[i].address);
-          print(acc_to_search[i].name);
-          print(acc_to_search[i].pincode);
-        }
-      } else {
-        print('No medicine shops found for pincode $city');
-        acc_to_search.clear();
-      }
-    } catch (e) {
-      print('Error retrieving medicine shops: $e');
-    }
+  //     if (querySnapshot.docs.isNotEmpty) {
+  //       acc_to_search.assignAll(
+  //         querySnapshot.docs
+  //             .map((shop) => MedicineShop(
+  //                   email: shop['email'],
+  //                   name: shop['name'],
+  //                   pincode: shop['pin_code'],
+  //                   address: shop['address'],
+  //                 ))
+  //             .toList(),
+  //       );
+  //       print(acc_to_search);
+  //       for (int i = 0; i < acc_to_search.length; i++) {
+  //         print('${i + 1} th MEDICINE SHOP');
+  //         print(acc_to_search[i].address);
+  //         print(acc_to_search[i].name);
+  //         print(acc_to_search[i].pincode);
+  //       }
+  //     } else {
+  //       print('No medicine shops found for pincode $city');
+  //       acc_to_search.clear();
+  //     }
+  //   } catch (e) {
+  //     print('Error retrieving medicine shops: $e');
+  //   }
+  // }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Provider.of<Medicine_Shop_Provider>(context, listen: false);
   }
 
   int ans = 0;
 
   @override
   Widget build(BuildContext context) {
+    final MedicineShopProvider = Provider.of<Medicine_Shop_Provider>(context);
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.white));
     return SafeArea(
@@ -139,13 +146,13 @@ class _Medicine_PageState extends State<Medicine_Page> {
                         });
                       },
                       onChanged: (value) {
-                        getMedicineShopsByPincode(value);
+                        MedicineShopProvider.getAccToSearch(value, context);
                       },
                       onSubmitted: (value) {
                         setState(() {
                           ans = 1;
                         });
-                        getMedicineShopsByPincode(value);
+                        MedicineShopProvider.getAccToSearch(value, context);
                       },
                       decoration: InputDecoration(
                         hintText: 'Search your city',
@@ -177,7 +184,8 @@ class _Medicine_PageState extends State<Medicine_Page> {
                   height: 10,
                 ),
                 ans == 1
-                    ? acc_to_search_widget(acc_to_search: acc_to_search)
+                    ? acc_to_search_widget(
+                        acc_to_search: MedicineShopProvider.acc_to_Search)
                     : Center(
                         child: Text(
                           'Enter the city to search',
@@ -324,22 +332,21 @@ class Container_For_Medicine_Store extends StatelessWidget {
 class acc_to_search_widget extends StatelessWidget {
   const acc_to_search_widget({super.key, required this.acc_to_search});
 
-  final List<MedicineShop> acc_to_search;
+  final List<MedicineShop>? acc_to_search;
 
   @override
   Widget build(BuildContext context) {
-    int n = acc_to_search.length;
-    return n == 0
+    return acc_to_search == null
         ? Center(child: Text('No Results Found'))
         : SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
               children: [
-                for (int i = 0; i < n; i++)
+                for (int i = 0; i < acc_to_search!.length; i++)
                   Container_For_Medicine_Store(
-                      shopid: acc_to_search[i].email,
-                      name: acc_to_search[i].name,
-                      address: acc_to_search[i].address)
+                      shopid: acc_to_search![i].email,
+                      name: acc_to_search![i].name,
+                      address: acc_to_search![i].address)
               ],
             ),
           );

@@ -7,6 +7,9 @@ import 'package:flutter/services.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:path/path.dart' as path;
+import 'package:provider/provider.dart';
+
+import '../../Providers/Medicine_Shop_Provider.dart';
 
 class Prescription_Upload_Page extends StatefulWidget {
   const Prescription_Upload_Page({super.key, required this.shopId});
@@ -41,101 +44,9 @@ class _Prescription_Upload_PageState extends State<Prescription_Upload_Page> {
     }
   }
 
-  Future<String?> uploadFileToFirebaseStorage(File file) async {
-    try {
-      // final currentUser = FirebaseAuth.instance.currentUser;
-      // if (currentUser == null) {
-      //   // User not signed in.
-      //   return null;
-      // }
-
-      final userId = 'ritKumar@gmail.com';
-      final folderPath = 'Users/$userId/orders';
-      final fileName = DateTime.now().millisecondsSinceEpoch.toString();
-      final storageReference =
-          FirebaseStorage.instance.ref('$folderPath/$fileName');
-
-      UploadTask uploadTask = storageReference.putFile(file);
-
-      TaskSnapshot taskSnapshot = await uploadTask.whenComplete(() => {});
-
-      if (taskSnapshot.state == TaskState.success) {
-        final downloadURL = await storageReference.getDownloadURL();
-        return downloadURL;
-      } else {
-        return null;
-      }
-    } catch (e) {
-      print('Error uploading file: $e');
-      return null;
-    }
-  }
-
-  void onButtonTap() async {
-    if (selectedFile != null) {
-      final downloadURL = await uploadFileToFirebaseStorage(selectedFile);
-      if (downloadURL != null) {
-        print('File uploaded. Download URL: $downloadURL');
-        createOrderDocument('ritKumar@gmail.com', widget.shopId, downloadURL);
-        addToMedicineShop('rit11@gmail.com', downloadURL, 'ritKumar@gmail.com');
-        files_list.clear();
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => Order_Done_Page()));
-      } else {
-        print('File upload failed.');
-      }
-    } else {
-      print('No file selected.');
-    }
-  }
-
-  Future<void> createOrderDocument(
-      String userId, String shopId, String prescriptionUrl) async {
-    try {
-      final firestore = FirebaseFirestore.instance;
-
-      final orderRef = firestore.collection('Orders').doc();
-
-      await orderRef.set({
-        'prescription_url': prescriptionUrl,
-        'shop_id': shopId,
-        'user_id': userId,
-        'timestamp':
-            FieldValue.serverTimestamp(), // Add a server-generated timestamp.
-      });
-
-      print('Order document created successfully.');
-    } catch (e) {
-      print('Error creating order document: $e');
-    }
-  }
-
-  Future<void> addToMedicineShop(
-      String shopId, String prescriptionUrl, String userId) async {
-    try {
-      final firestore = FirebaseFirestore.instance;
-      final shopRef = firestore.collection('Medicine_Shops').doc(shopId);
-
-      final shopData = await shopRef.get();
-
-      if (shopData.exists) {
-        final currentPrescriptions =
-            List<String>.from(shopData.data()!['prescriptions'] ?? []);
-        currentPrescriptions.add("$userId: $prescriptionUrl");
-
-        await shopRef.update({'prescriptions': currentPrescriptions});
-
-        print('Prescription URL added to Medicine Shop successfully.');
-      } else {
-        print('Shop document does not exist.');
-      }
-    } catch (e) {
-      print('Error adding prescription URL to Medicine Shop: $e');
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
+    final MedicineShopProvider = Provider.of<Medicine_Shop_Provider>(context);
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.white));
     return SafeArea(
@@ -331,7 +242,28 @@ class _Prescription_Upload_PageState extends State<Prescription_Upload_Page> {
                           InkWell(
                             onTap: () {
                               print('Save tapped');
-                              onButtonTap();
+                              if (selectedFile != null) {
+                                MedicineShopProvider.uploadPrescription(
+                                    context, selectedFile, "userId");
+                                String? downloadURL =
+                                    MedicineShopProvider.downloadURL;
+                                if (downloadURL != null) {
+                                  print(
+                                      'File uploaded. Download URL: $downloadURL');
+                                  MedicineShopProvider.createOrderDocument(
+                                      context, 'userId', 'shopId', downloadURL);
+                                  MedicineShopProvider.addToMedicineShop(
+                                      context, "shopId", downloadURL, "userId");
+                                  files_list.clear();
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) =>
+                                          const Order_Done_Page()));
+                                } else {
+                                  print('File upload failed.');
+                                }
+                              } else {
+                                print('No file selected.');
+                              }
                             },
                             child: Container(
                               decoration: BoxDecoration(

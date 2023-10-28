@@ -105,12 +105,11 @@ class _Medicine_PageState extends State<Medicine_Page> {
                           BorderRadius.circular(25.0), // Rounded corners
                     ),
                     child: TextField(
-                      onTap: () {
-                        setState(() {
-                          ans = 0;
-                        });
-                      },
+                      onTap: () {},
                       onChanged: (value) {
+                        // setState(() {
+                        //   ans = 0;
+                        // });
                         MedicineShopProvider.getAccToSearch(value, context);
                       },
                       onSubmitted: (value) {
@@ -133,7 +132,12 @@ class _Medicine_PageState extends State<Medicine_Page> {
                 const SizedBox(
                   height: 20,
                 ),
-                const Row(
+
+                acc_to_search_widget(
+                  acc_to_search: MedicineShopProvider.acc_to_Search,
+                ),
+
+                Row(
                   children: [
                     SizedBox(
                       width: 10,
@@ -148,11 +152,9 @@ class _Medicine_PageState extends State<Medicine_Page> {
                 const SizedBox(
                   height: 10,
                 ),
-                ans == 1
-                    ? famous_shops(
-                        acc_to_search: MedicineShopProvider.famousShops)
-                    : acc_to_search_widget(
-                        acc_to_search: MedicineShopProvider.acc_to_Search)
+                // MedicineShopProvider.isLoading == true
+                //     ?
+                famous_shops(acc_to_search: MedicineShopProvider.famousShops),
               ]),
             ),
           )),

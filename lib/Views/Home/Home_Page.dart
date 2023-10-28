@@ -1,7 +1,9 @@
 import 'package:doc_search/Bottom_Bar.dart';
+import 'package:doc_search/Views/Find%20a%20Doctor/Appointment_Page.dart';
 import 'package:doc_search/Views/Home/Medical_Labs_Page.dart';
 import 'package:doc_search/Views/Home/Medicine_Page.dart';
 import 'package:doc_search/Views/Home/Wallet_Page.dart';
+import 'package:doc_search/Views/Profile/Appointments_Page.dart';
 import 'package:doc_search/Views/Profile/Profile_Page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -125,22 +127,28 @@ class _HomePageState extends State<HomePage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
-                      children: [
-                        Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Color(0xFF5793A8)),
-                              borderRadius: BorderRadius.circular(3),
-                            ),
-                            child: Image.asset(
-                                'assets/DocSearch Android/Group.png')),
-                        const SizedBox(
-                          height: 12,
-                        ),
-                        const Text("Doctor"),
-                      ],
+                    InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const Testing_Page()));
+                      },
+                      child: Column(
+                        children: [
+                          Container(
+                              width: 40,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Color(0xFF5793A8)),
+                                borderRadius: BorderRadius.circular(3),
+                              ),
+                              child: Image.asset(
+                                  'assets/DocSearch Android/Group.png')),
+                          const SizedBox(
+                            height: 12,
+                          ),
+                          const Text("Doctor"),
+                        ],
+                      ),
                     ),
                     Column(
                       children: [

@@ -5,10 +5,16 @@ import 'package:doc_search/Services/Medicine_Shop_Services.dart';
 import 'package:flutter/material.dart';
 
 class Medicine_Shop_Provider with ChangeNotifier {
-  late List<MedicineShop>? acc_to_Search;
+  List<MedicineShop>? acc_to_Search;
+
+  List<MedicineShop>? famousShops;
   bool isLoading = false;
 
   Medicine_Shop_Services service = Medicine_Shop_Services();
+
+  getFamousShops(context) async {
+    famousShops = await service.famousMedicalShops(context);
+  }
 
   getAccToSearch(String city, context) async {
     isLoading = true;

@@ -18,49 +18,14 @@ class Medicine_Page extends StatefulWidget {
 }
 
 class _Medicine_PageState extends State<Medicine_Page> {
-  // List<MedicineShop> acc_to_search = [];
-
-  // Future<void> getMedicineShopsByPincode(String city) async {
-  //   try {
-  //     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-  //         .collection('Medicine_Shops')
-  //         .where('city', isEqualTo: city.toLowerCase())
-  //         .get();
-
-  //     if (querySnapshot.docs.isNotEmpty) {
-  //       acc_to_search.assignAll(
-  //         querySnapshot.docs
-  //             .map((shop) => MedicineShop(
-  //                   email: shop['email'],
-  //                   name: shop['name'],
-  //                   pincode: shop['pin_code'],
-  //                   address: shop['address'],
-  //                 ))
-  //             .toList(),
-  //       );
-  //       print(acc_to_search);
-  //       for (int i = 0; i < acc_to_search.length; i++) {
-  //         print('${i + 1} th MEDICINE SHOP');
-  //         print(acc_to_search[i].address);
-  //         print(acc_to_search[i].name);
-  //         print(acc_to_search[i].pincode);
-  //       }
-  //     } else {
-  //       print('No medicine shops found for pincode $city');
-  //       acc_to_search.clear();
-  //     }
-  //   } catch (e) {
-  //     print('Error retrieving medicine shops: $e');
-  //   }
-  // }
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    Provider.of<Medicine_Shop_Provider>(context, listen: false);
+    Provider.of<Medicine_Shop_Provider>(context, listen: false)
+        .getFamousShops(context);
   }
 
-  int ans = 0;
+  int ans = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +59,7 @@ class _Medicine_PageState extends State<Medicine_Page> {
                     SizedBox(
                       width: 60,
                     ),
-                    Text(
+                    const Text(
                       'Medicine',
                       style: TextStyle(
                           color: Colors.black,
@@ -103,13 +68,13 @@ class _Medicine_PageState extends State<Medicine_Page> {
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
-                Center(
+                const Center(
                   child: Text(
                     'Find a Medical Store near by',
                     style: TextStyle(
@@ -118,17 +83,17 @@ class _Medicine_PageState extends State<Medicine_Page> {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Center(
+                const Center(
                   child: Text('Your area/Pincode',
                       style: TextStyle(
-                          color: const Color.fromARGB(255, 9, 76, 132),
+                          color: Color.fromARGB(255, 9, 76, 132),
                           fontSize: 18,
                           fontWeight: FontWeight.bold)),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Center(
@@ -165,10 +130,10 @@ class _Medicine_PageState extends State<Medicine_Page> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Row(
+                const Row(
                   children: [
                     SizedBox(
                       width: 10,
@@ -180,19 +145,14 @@ class _Medicine_PageState extends State<Medicine_Page> {
                             fontWeight: FontWeight.bold)),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 ans == 1
-                    ? acc_to_search_widget(
+                    ? famous_shops(
+                        acc_to_search: MedicineShopProvider.famousShops)
+                    : acc_to_search_widget(
                         acc_to_search: MedicineShopProvider.acc_to_Search)
-                    : Center(
-                        child: Text(
-                          'Enter the city to search',
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.w400),
-                        ),
-                      )
               ]),
             ),
           )),
@@ -226,7 +186,7 @@ class Container_For_Medicine_Store extends StatelessWidget {
               width: 150,
               height: 150,
               child: ClipRRect(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(15),
                     bottomLeft: Radius.circular(15)),
                 child: Image.network(
@@ -237,13 +197,13 @@ class Container_For_Medicine_Store extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
+            SizedBox(
               width: 190,
               height: 150,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   Row(
@@ -270,8 +230,8 @@ class Container_For_Medicine_Store extends StatelessWidget {
                     ],
                   ),
                   Text(
-                    '$name',
-                    style: TextStyle(
+                    name,
+                    style: const TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
                         color: Colors.black),
@@ -279,8 +239,8 @@ class Container_For_Medicine_Store extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 12.0),
                     child: Text(
-                      '$address',
-                      style: TextStyle(
+                      address,
+                      style: const TextStyle(
                           fontSize: 17,
                           fontWeight: FontWeight.w400,
                           color: Colors.black),
@@ -292,18 +252,19 @@ class Container_For_Medicine_Store extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => Prescription_Upload_Page(
+                              builder: (context) =>
+                                  const Prescription_Upload_Page(
                                     shopId: '',
                                   )));
                         },
                         child: Container(
                           decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 69, 13, 222),
+                              color: const Color.fromARGB(255, 69, 13, 222),
                               borderRadius: BorderRadius.circular(10)),
                           // height: 40,
                           // width: 230,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(
                                 horizontal: 8.0, vertical: 4),
                             child: Center(
                               child: Text(
@@ -337,7 +298,18 @@ class acc_to_search_widget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return acc_to_search == null
-        ? Center(child: Text('No Results Found'))
+        ? SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Center(
+                    child: Text(
+                  'No Results Found for your City',
+                  style: TextStyle(fontSize: 20, color: Colors.black),
+                )),
+              ],
+            ))
         : SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
@@ -350,5 +322,27 @@ class acc_to_search_widget extends StatelessWidget {
               ],
             ),
           );
+  }
+}
+
+class famous_shops extends StatelessWidget {
+  const famous_shops({super.key, required this.acc_to_search});
+
+  final List<MedicineShop>? acc_to_search;
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      child: Column(
+        children: [
+          for (int i = 0; i < acc_to_search!.length; i++)
+            Container_For_Medicine_Store(
+                shopid: acc_to_search![i].email,
+                name: acc_to_search![i].name,
+                address: acc_to_search![i].address)
+        ],
+      ),
+    );
   }
 }

@@ -44,6 +44,36 @@ class Medicine_Shop_Services {
     return null;
   }
 
+  Future<List<MedicineShop>?> famousMedicalShops(context) async {
+    List<MedicineShop> famousShops = [];
+    try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('Medicine_Shops')
+          .where('famous', isEqualTo: true)
+          .get();
+
+      if (querySnapshot.docs.isNotEmpty) {
+        famousShops.assignAll(
+          querySnapshot.docs
+              .map((shop) => MedicineShop(
+                    email: shop['email'],
+                    name: shop['name'],
+                    pincode: shop['pin_code'],
+                    address: shop['address'],
+                  ))
+              .toList(),
+        );
+
+        return famousShops;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print('Error retrieving medicine shops: $e');
+    }
+    return null;
+  }
+
   Future<String?> uploadPrescriptionToFirebaseStorage(
       context, File file, String userId) async {
     try {

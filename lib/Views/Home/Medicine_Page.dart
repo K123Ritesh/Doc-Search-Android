@@ -115,7 +115,7 @@ class _Medicine_PageState extends State<Medicine_Page> {
                       },
                       onSubmitted: (value) {
                         setState(() {
-                          ans = 1;
+                          ans = 0;
                         });
                         MedicineShopProvider.getAccToSearch(value, context);
                       },

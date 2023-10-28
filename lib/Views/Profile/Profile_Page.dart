@@ -1,12 +1,9 @@
-import 'dart:ffi';
-
 import 'package:doc_search/Views/Profile/Appointments_Page.dart';
 import 'package:doc_search/Views/Profile/Refer_And_Earn_Page.dart';
 import 'package:doc_search/Views/Profile/Settings_Page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
-import 'package:get/instance_manager.dart';
+
 
 import 'Edit_User_Profile.dart';
 

@@ -1,6 +1,7 @@
 import 'package:doc_search/Views/Profile/Edit_Profile_LifeStyle.dart';
 import 'package:doc_search/Views/Profile/Edit_User_Profile.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'doctor1.dart';
 
@@ -17,6 +18,9 @@ class _Appointment1State extends State<Appointment1> {
   List<String> options = ['Morning', 'Evening', 'Night'];
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Color(0xFF1A6A83),
+    ));
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF1A6A83),
@@ -29,7 +33,8 @@ class _Appointment1State extends State<Appointment1> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const EditProfileLifestyle()),
+              MaterialPageRoute(
+                  builder: (context) => const EditProfileLifestyle()),
             );
           },
         ),
@@ -417,7 +422,9 @@ class _Appointment1State extends State<Appointment1> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const Doctors()),
+                                builder: (context) => const Doctors(
+                                      doc_Category: 'Doctors',
+                                    )),
                           );
                         },
                         style: ElevatedButton.styleFrom(

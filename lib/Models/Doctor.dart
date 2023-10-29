@@ -7,7 +7,6 @@ class Doctor {
   final String rating;
   final String reg_fee;
   final List<dynamic> sitting_days;
-  final Map<String, dynamic> bookings_for_today;
 
   Doctor(
       {required this.rating,
@@ -15,7 +14,6 @@ class Doctor {
       required this.sitting_days,
       required this.city,
       required this.experience,
-      required this.bookings_for_today,
       required this.name,
       required this.pincode,
       required this.address});

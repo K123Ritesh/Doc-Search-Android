@@ -1,10 +1,14 @@
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../Providers/Doctor_Provider.dart';
 import 'Appointment.dart';
 import 'doctor2.dart';
 
 class Doctors extends StatefulWidget {
-  const Doctors({super.key});
+  const Doctors({super.key, required this.doc_Category});
+
+  final String doc_Category;
 
   @override
   State<Doctors> createState() => _DoctorsState();
@@ -31,8 +35,8 @@ class _DoctorsState extends State<Doctors> {
         ),
         title: Container(
           margin: const EdgeInsets.only(left: 80),
-          child: const Text(
-            'Doctors',
+          child: Text(
+            widget.doc_Category,
             style: TextStyle(
               color: Colors.black,
               fontSize: 18,
@@ -42,7 +46,7 @@ class _DoctorsState extends State<Doctors> {
         ),
       ),
       body: ListView.builder(
-        // itemCount: doctors.length,
+        // itemCount: DoctorProvider.acc_to_search!.length,
         itemBuilder: (context, index) {
           // final doctor = doctors[index];
           return Container(
@@ -214,7 +218,9 @@ class _DoctorsState extends State<Doctors> {
                                     color: Colors.black)),
                           ],
                         ),
-                        SizedBox(height: 5,),
+                        SizedBox(
+                          height: 5,
+                        ),
                         ElevatedButton(
                           onPressed: () {
                             Navigator.push(
@@ -232,7 +238,6 @@ class _DoctorsState extends State<Doctors> {
                           child: Container(
                             height: 42,
                             width: 302,
-                            
                             child: Center(
                               child: Text(
                                 'Book an appointment',
@@ -242,7 +247,9 @@ class _DoctorsState extends State<Doctors> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 5,),
+                        SizedBox(
+                          height: 5,
+                        ),
                       ],
                     ),
                   ),

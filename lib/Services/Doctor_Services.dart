@@ -22,7 +22,6 @@ class Doctor_Services {
                   sitting_days: doctor['sitting_days'],
                   city: doctor['city'],
                   experience: doctor['experience'],
-                  bookings_for_today: doctor['Bookings_for_today'],
                   name: doctor['name'],
                   pincode: doctor['pin_code'],
                   address: doctor['address']))
@@ -33,7 +32,7 @@ class Doctor_Services {
           print(accToSearch[i].address);
           print(accToSearch[i].name);
           print(accToSearch[i].pincode);
-          print(accToSearch[i].bookings_for_today);
+
           print(accToSearch[i].city);
           print(accToSearch[i]);
         }

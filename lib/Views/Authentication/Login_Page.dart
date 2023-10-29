@@ -5,6 +5,7 @@ import 'package:doc_search/Views/Home/Home_Page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 
 class Login_Page extends StatefulWidget {
   const Login_Page({super.key});
@@ -471,8 +472,7 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
                 children: [
                   InkWell(
                     onTap: () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => HomePage()));
+                      context.go('/home');
                     },
                     child: Container(
                       decoration: BoxDecoration(

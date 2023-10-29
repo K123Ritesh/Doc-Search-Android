@@ -1,5 +1,9 @@
 import 'package:doc_search/Bottom_Bar.dart';
-import 'package:doc_search/Views/Find%20a%20Doctor/Appointment_Page.dart';
+import 'package:doc_search/Providers/Doctor_Provider.dart';
+import 'package:doc_search/Testing_page.dart';
+import 'package:doc_search/Views/Appointment/Appointment.dart';
+import 'package:doc_search/Views/Appointment/doctor1.dart';
+import 'package:doc_search/Views/Doctors/Doctors_Category_Wise.dart';
 import 'package:doc_search/Views/Home/Medical_Labs_Page.dart';
 import 'package:doc_search/Views/Home/Medicine_Page.dart';
 import 'package:doc_search/Views/Home/Wallet_Page.dart';
@@ -7,6 +11,7 @@ import 'package:doc_search/Views/Profile/Appointments_Page.dart';
 import 'package:doc_search/Views/Profile/Profile_Page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -130,7 +135,7 @@ class _HomePageState extends State<HomePage> {
                     InkWell(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const Testing_Page()));
+                            builder: (context) => const Testing_Widget()));
                       },
                       child: Column(
                         children: [
@@ -355,29 +360,38 @@ class _HomePageState extends State<HomePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                      width: 74,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xFF5793A8)),
-                        borderRadius: BorderRadius.circular(3),
-                      ),
-                      child: Column(
-                        children: [
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Image.asset(
-                              'assets/DocSearch Android (1)/image 48.png'),
-                          const SizedBox(
-                            height: 2,
-                          ),
-                          const Text(
-                            'Dentist',
-                            style: TextStyle(fontSize: 11),
-                          )
-                        ],
-                      )),
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => Doctors_Category_Wise(
+                                doc_Category: 'Dentist',
+                                default_city: 'Kolkata',
+                              )));
+                    },
+                    child: Container(
+                        width: 74,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Color(0xFF5793A8)),
+                          borderRadius: BorderRadius.circular(3),
+                        ),
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Image.asset(
+                                'assets/DocSearch Android (1)/image 48.png'),
+                            const SizedBox(
+                              height: 2,
+                            ),
+                            const Text(
+                              'Dentist',
+                              style: TextStyle(fontSize: 11),
+                            )
+                          ],
+                        )),
+                  ),
                   Container(
                       width: 74,
                       height: 60,

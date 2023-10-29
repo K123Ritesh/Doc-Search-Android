@@ -136,7 +136,7 @@ class _Medicine_PageState extends State<Medicine_Page> {
                 acc_to_search_widget(
                   acc_to_search: MedicineShopProvider.acc_to_Search,
                 ),
-
+  
                 Row(
                   children: [
                     SizedBox(

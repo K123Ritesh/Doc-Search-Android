@@ -1,16 +1,19 @@
+import 'package:doc_search/Models/Doctor.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'doctor1.dart';
-import 'doctor3.dart';
 
-class DoctorsDetails extends StatefulWidget {
-  const DoctorsDetails({super.key});
+class Doctors_Category_WiseDetails extends StatefulWidget {
+  const Doctors_Category_WiseDetails({super.key, required this.doctor});
+
+  final Doctor doctor;
 
   @override
-  State<DoctorsDetails> createState() => _DoctorsDetailsState();
+  State<Doctors_Category_WiseDetails> createState() =>
+      _Doctors_Category_WiseDetailsState();
 }
 
-class _DoctorsDetailsState extends State<DoctorsDetails> {
+class _Doctors_Category_WiseDetailsState
+    extends State<Doctors_Category_WiseDetails> {
   int selectedOption2 = -1;
   void toggleSelection(int index) {
     setState(() {
@@ -66,13 +69,7 @@ class _DoctorsDetailsState extends State<DoctorsDetails> {
             color: Colors.black,
           ),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const Doctors(
-                        doc_Category: 'Doctors',
-                      )),
-            );
+            Navigator.pop(context);
           },
         ),
         title: Container(
@@ -95,8 +92,8 @@ class _DoctorsDetailsState extends State<DoctorsDetails> {
                   // backgroundImage: NetworkImage(''),
                   ),
             ),
-            title: const Text(
-              "Dr. Priya Sharma",
+            title: Text(
+              widget.doctor.name,
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
             ),
             subtitle: Column(
@@ -236,9 +233,9 @@ class _DoctorsDetailsState extends State<DoctorsDetails> {
                   color: const Color(0xFF1A6A83),
                   borderRadius: BorderRadius.circular(5),
                 ),
-                child: const Center(
+                child: Center(
                     child: Text(
-                  'Clinic Appointment Fee ₹450',
+                  'Clinic Appointment Fee ${widget.doctor.reg_fee}rs',
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
@@ -476,11 +473,16 @@ class _DoctorsDetailsState extends State<DoctorsDetails> {
                   // margin: EdgeInsets.only(top: 8),
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const DoctorDetails2()),
-                      );
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //       builder: (context) => const DoctorDetails2()),
+                      // );
+                      print('SElECTED Date ${selectedOption + 1}/10/2023');
+                      print(
+                          'SElECTED Afernoon Slot ${options2[selectedOption2]}');
+                      print(
+                          'SElECTED Evening Slot ${options3[selectedOption3]}');
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Color(0xFF1A6A83),

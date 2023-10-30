@@ -1,7 +1,11 @@
+import 'package:doc_search/Bottom_Bar.dart';
+import 'package:doc_search/Providers/Doctor_Provider.dart';
+import 'package:doc_search/Views/Doctors/Doctors_Category_Wise.dart';
 import 'package:doc_search/Views/Profile/Edit_Profile_LifeStyle.dart';
 import 'package:doc_search/Views/Profile/Edit_User_Profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 import 'doctor1.dart';
 
@@ -13,15 +17,19 @@ class Appointment1 extends StatefulWidget {
 }
 
 class _Appointment1State extends State<Appointment1> {
+  TextEditingController city = TextEditingController(text: 'Kolkata');
+  TextEditingController specialization = TextEditingController(text: 'Dentist');
   int selectedOption = -1;
 
   List<String> options = ['Morning', 'Evening', 'Night'];
   @override
   Widget build(BuildContext context) {
+    final DoctorProvider = Provider.of<Doctor_Provider>(context);
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Color(0xFF1A6A83),
     ));
     return Scaffold(
+      bottomNavigationBar: Bottombar(),
       appBar: AppBar(
         backgroundColor: const Color(0xFF1A6A83),
         elevation: 0,
@@ -31,11 +39,7 @@ class _Appointment1State extends State<Appointment1> {
             color: Colors.white,
           ),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const EditProfileLifestyle()),
-            );
+            Navigator.pop(context);
           },
         ),
         title: Container(
@@ -73,11 +77,11 @@ class _Appointment1State extends State<Appointment1> {
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    // border: Border.all(color: Color(0xFF5793A8), width: 1.0),
                     borderRadius: BorderRadius.circular(50)),
-                child: const TextField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none, // Remove the default border
+                child: TextField(
+                  controller: city,
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
                     prefixIcon: Icon(
                       Icons.location_on,
                       size: 35,
@@ -95,8 +99,9 @@ class _Appointment1State extends State<Appointment1> {
                     color: Colors.white,
                     // border: Border.all(color: Color(0xFF5793A8), width: 1.0),
                     borderRadius: BorderRadius.circular(50)),
-                child: const TextField(
-                  decoration: InputDecoration(
+                child: TextField(
+                  controller: specialization,
+                  decoration: const InputDecoration(
                     border: InputBorder.none, // Remove the default border
                     prefixIcon: Icon(
                       Icons.search,
@@ -251,7 +256,22 @@ class _Appointment1State extends State<Appointment1> {
                       width: 76,
                       height: 17,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          if (city.toString() != '' &&
+                              specialization.toString() != '') {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Doctors_Category_Wise(
+                                      title:
+                                          '${specialization.text}s in ${city.text}',
+                                      doc_Category: specialization.text,
+                                      default_city: city.text)),
+                            );
+                          } else {
+                            print('Please enter city ');
+                          }
+                        },
                         style: ElevatedButton.styleFrom(
                           primary: const Color(0xFF155467),
                           padding: EdgeInsets.zero,
@@ -418,15 +438,7 @@ class _Appointment1State extends State<Appointment1> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10)),
                       child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Doctors(
-                                      doc_Category: 'Doctors',
-                                    )),
-                          );
-                        },
+                        onPressed: () {},
                         style: ElevatedButton.styleFrom(
                           primary: const Color(0xFF155467),
                           padding: EdgeInsets.zero,

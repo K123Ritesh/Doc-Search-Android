@@ -14,12 +14,15 @@ class Signup_Page extends StatefulWidget {
 class _Signup_PageState extends State<Signup_Page> {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: Color.fromARGB(255, 3, 110, 198)));
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: const Color(0xFF155467),
+    ));
     return SafeArea(
         child: Scaffold(
       body: Container(
-          decoration: BoxDecoration(color: Color.fromARGB(255, 3, 110, 198)),
+          decoration: BoxDecoration(
+            color: const Color(0xFF155467),
+          ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListView(children: [
@@ -470,7 +473,9 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
     return SafeArea(
         child: Scaffold(
       body: Container(
-          decoration: BoxDecoration(color: Color.fromARGB(255, 3, 110, 198)),
+          decoration: BoxDecoration(
+            color: const Color(0xFF155467),
+          ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListView(children: [

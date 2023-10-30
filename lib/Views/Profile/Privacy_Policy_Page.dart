@@ -1,3 +1,4 @@
+import 'package:doc_search/Bottom_Bar.dart';
 import 'package:flutter/material.dart';
 
 class Privacy_Policy_Page extends StatefulWidget {
@@ -12,11 +13,14 @@ class _Privacy_Policy_PageState extends State<Privacy_Policy_Page> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        bottomNavigationBar: Bottombar(),
         body: Container(
-            decoration: BoxDecoration(color: Color.fromARGB(255, 3, 110, 198)),
+            decoration: BoxDecoration(
+              color: const Color(0xFF155467),
+            ),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Column(children: [
+              child: ListView(children: [
                 SizedBox(
                   height: 20,
                 ),

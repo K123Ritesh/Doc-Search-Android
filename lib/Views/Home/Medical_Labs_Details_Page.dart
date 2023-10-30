@@ -1,3 +1,4 @@
+import 'package:doc_search/Bottom_Bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -29,6 +30,7 @@ class _Medical_Labs_Details_PageState extends State<Medical_Labs_Details_Page> {
         SystemUiOverlayStyle(statusBarColor: Colors.white));
     return SafeArea(
         child: Scaffold(
+      bottomNavigationBar: Bottombar(),
       body: Container(
           decoration: BoxDecoration(color: Colors.white),
           child: Padding(

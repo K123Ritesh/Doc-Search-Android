@@ -1,3 +1,4 @@
+import 'package:doc_search/Bottom_Bar.dart';
 import 'package:flutter/material.dart';
 
 class EditProfileLifestyle extends StatefulWidget {
@@ -11,6 +12,7 @@ class _EditProfileLifestyleState extends State<EditProfileLifestyle> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: Bottombar(),
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(

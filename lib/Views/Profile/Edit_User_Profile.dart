@@ -1,3 +1,4 @@
+import 'package:doc_search/Bottom_Bar.dart';
 import 'package:flutter/material.dart';
 
 class EditUserProfile extends StatefulWidget {
@@ -27,6 +28,7 @@ class _EditUserProfileState extends State<EditUserProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: Bottombar(),
       body: SingleChildScrollView(
         child: Container(
           decoration: BoxDecoration(

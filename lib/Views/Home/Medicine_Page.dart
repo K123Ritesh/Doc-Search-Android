@@ -10,6 +10,8 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:provider/provider.dart';
 
+import '../../Bottom_Bar.dart';
+
 class Medicine_Page extends StatefulWidget {
   Medicine_Page({super.key});
 
@@ -26,6 +28,7 @@ class _Medicine_PageState extends State<Medicine_Page> {
   }
 
   int ans = 1;
+  TextEditingController searchedCity = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +37,7 @@ class _Medicine_PageState extends State<Medicine_Page> {
         SystemUiOverlayStyle(statusBarColor: Colors.white));
     return SafeArea(
         child: Scaffold(
+      bottomNavigationBar: Bottombar(),
       body: Container(
           decoration: BoxDecoration(color: Colors.white),
           child: Padding(
@@ -105,18 +109,22 @@ class _Medicine_PageState extends State<Medicine_Page> {
                           BorderRadius.circular(25.0), // Rounded corners
                     ),
                     child: TextField(
-                      onTap: () {},
+                      controller: searchedCity,
                       onChanged: (value) {
-                        // setState(() {
-                        //   ans = 0;
-                        // });
-                        MedicineShopProvider.getAccToSearch(value, context);
+                        if (searchedCity.toString() != '') {
+                          setState(() {
+                            ans = 0;
+                          });
+                          MedicineShopProvider.getAccToSearch(value, context);
+                        }
                       },
                       onSubmitted: (value) {
-                        setState(() {
-                          ans = 0;
-                        });
-                        MedicineShopProvider.getAccToSearch(value, context);
+                        if (searchedCity.toString() != '') {
+                          setState(() {
+                            ans = 0;
+                          });
+                          MedicineShopProvider.getAccToSearch(value, context);
+                        }
                       },
                       decoration: InputDecoration(
                         hintText: 'Search your city',
@@ -130,31 +138,33 @@ class _Medicine_PageState extends State<Medicine_Page> {
                   ),
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 10,
                 ),
-
-                acc_to_search_widget(
-                  acc_to_search: MedicineShopProvider.acc_to_Search,
-                ),
-  
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text('Famous Medical Stores',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold)),
-                  ],
-                ),
+                // Row(
+                //   children: [
+                //     SizedBox(
+                //       width: 10,
+                //     ),
+                //     Text('Famous Medical Stores',
+                //         style: TextStyle(
+                //             color: Colors.black,
+                //             fontSize: 20,
+                //             fontWeight: FontWeight.bold)),
+                //   ],
+                // ),
                 const SizedBox(
                   height: 10,
                 ),
-                // MedicineShopProvider.isLoading == true
-                //     ?
-                famous_shops(acc_to_search: MedicineShopProvider.famousShops),
+                ans == 1 || searchedCity.toString() == ''
+                    ? MedicineShopProvider.isLoading_famous == true
+                        ? Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : famous_shops(
+                            acc_to_search: MedicineShopProvider.famousShops)
+                    : acc_to_search_widget(
+                        acc_to_search: MedicineShopProvider.acc_to_Search,
+                      ),
               ]),
             ),
           )),
@@ -299,31 +309,61 @@ class acc_to_search_widget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return acc_to_search == null
-        ? SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Center(
-                    child: Text(
-                  'No Results Found for your City',
-                  style: TextStyle(fontSize: 20, color: Colors.black),
-                )),
-              ],
-            ))
-        : SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(
-              children: [
-                for (int i = 0; i < acc_to_search!.length; i++)
-                  Container_For_Medicine_Store(
-                      shopid: acc_to_search![i].email,
-                      name: acc_to_search![i].name,
-                      address: acc_to_search![i].address)
-              ],
-            ),
-          );
+    final MedicineShopProvider = Provider.of<Medicine_Shop_Provider>(context);
+    return MedicineShopProvider.isLoading_Search == true
+        ? Center(
+            child: CircularProgressIndicator(),
+          )
+        : acc_to_search == null
+            ? SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(
+                        child: Text(
+                      'No Results Found for your City',
+                      style: TextStyle(fontSize: 20, color: Colors.black),
+                    )),
+                  ],
+                ))
+            : SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text('Found ',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold)),
+                        Text('${acc_to_search!.length}',
+                            style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold)),
+                        Text(' Medical Stores near you',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold)),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    for (int i = 0; i < acc_to_search!.length; i++)
+                      Container_For_Medicine_Store(
+                          shopid: acc_to_search![i].email,
+                          name: acc_to_search![i].name,
+                          address: acc_to_search![i].address)
+                  ],
+                ),
+              );
   }
 }
 
@@ -338,6 +378,21 @@ class famous_shops extends StatelessWidget {
       scrollDirection: Axis.vertical,
       child: Column(
         children: [
+          Row(
+            children: [
+              SizedBox(
+                width: 10,
+              ),
+              Text('Famous Medical Stores',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold)),
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
           for (int i = 0; i < acc_to_search!.length; i++)
             Container_For_Medicine_Store(
                 shopid: acc_to_search![i].email,

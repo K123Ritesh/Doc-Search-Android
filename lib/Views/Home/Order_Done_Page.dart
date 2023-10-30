@@ -1,3 +1,4 @@
+import 'package:doc_search/Bottom_Bar.dart';
 import 'package:flutter/material.dart';
 
 class Order_Done_Page extends StatefulWidget {
@@ -12,6 +13,7 @@ class _Order_Done_PageState extends State<Order_Done_Page> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+            bottomNavigationBar: Bottombar(),
             body: Container(
                 decoration: BoxDecoration(color: Colors.white),
                 child: Padding(

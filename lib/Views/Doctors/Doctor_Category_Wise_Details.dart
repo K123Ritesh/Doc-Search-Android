@@ -1,6 +1,8 @@
 import 'package:doc_search/Models/Doctor.dart';
+import 'package:doc_search/Providers/Doctor_Provider.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class Doctors_Category_WiseDetails extends StatefulWidget {
   const Doctors_Category_WiseDetails({super.key, required this.doctor});
@@ -46,6 +48,7 @@ class _Doctors_Category_WiseDetailsState
     return dayFormat.format(date);
   }
 
+  DateTime now = DateTime.now();
   List<String> options2 = ['04:00 PM', '05:20 PM', '05:40 PM'];
   List<String> options3 = [
     '06:00 PM',
@@ -59,6 +62,7 @@ class _Doctors_Category_WiseDetailsState
 
   @override
   Widget build(BuildContext context) {
+    final DoctorProvider = Provider.of<Doctor_Provider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -478,7 +482,8 @@ class _Doctors_Category_WiseDetailsState
                       //   MaterialPageRoute(
                       //       builder: (context) => const DoctorDetails2()),
                       // );
-                      print('SElECTED Date ${selectedOption + 1}/10/2023');
+                      print(
+                          'SElECTED Date ${selectedOption + 1}/${now.month}/2023');
                       print(
                           'SElECTED Afernoon Slot ${options2[selectedOption2]}');
                       print(

@@ -6,6 +6,7 @@ import 'package:doc_search/Views/Appointment/doctor1.dart';
 import 'package:doc_search/Views/Doctors/Doctors_Category_Wise.dart';
 import 'package:doc_search/Views/Home/Medical_Labs_Page.dart';
 import 'package:doc_search/Views/Home/Medicine_Page.dart';
+import 'package:doc_search/Views/Home/Search_Tapped_Page.dart';
 import 'package:doc_search/Views/Home/Wallet_Page.dart';
 import 'package:doc_search/Views/Profile/Appointments_Page.dart';
 import 'package:doc_search/Views/Profile/Profile_Page.dart';
@@ -116,7 +117,11 @@ class _HomePageState extends State<HomePage> {
                 decoration: BoxDecoration(
                     border: Border.all(color: Color(0xFF5793A8), width: 1.0),
                     borderRadius: BorderRadius.circular(50)),
-                child: const TextField(
+                child: TextField(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => Search_Tapped_Page()));
+                  },
                   decoration: InputDecoration(
                     border: InputBorder.none, // Remove the default border
                     prefixIcon: Icon(Icons.search),

@@ -4,7 +4,7 @@ import 'package:doc_search/Views/Profile/Settings_Page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-
+import '../../Bottom_Bar.dart';
 import 'Edit_User_Profile.dart';
 
 class Profile_Page_Doc_Search extends StatelessWidget {
@@ -13,6 +13,7 @@ class Profile_Page_Doc_Search extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Color.fromARGB(255, 3, 110, 198)));
     return Scaffold(
+      bottomNavigationBar: Bottombar(),
       body: Container(
           decoration: BoxDecoration(color: Color.fromARGB(255, 3, 110, 198)),
           child: Padding(

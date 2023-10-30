@@ -15,7 +15,9 @@ class _Appointments_PageState extends State<Appointments_Page> {
     return SafeArea(
       child: Scaffold(
         body: Container(
-            decoration: BoxDecoration(color: Color.fromARGB(255, 3, 110, 198)),
+            decoration: BoxDecoration(
+              color: const Color(0xFF155467),
+            ),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(children: [
@@ -77,10 +79,10 @@ class _Appointments_PageState extends State<Appointments_Page> {
                     InkWell(
                       onTap: () {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Appointment1()),
-                          );
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Appointment1()),
+                        );
                       },
                       child: Container(
                         decoration: BoxDecoration(

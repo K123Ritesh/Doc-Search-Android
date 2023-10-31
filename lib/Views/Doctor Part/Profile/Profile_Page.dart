@@ -1,14 +1,13 @@
-import 'package:doc_search/Views/Home/Home_Page.dart';
-import 'package:doc_search/Views/Profile/Appointments_Page.dart';
-import 'package:doc_search/Views/Profile/Refer_And_Earn_Page.dart';
-import 'package:doc_search/Views/Profile/Settings_Page.dart';
+import 'package:doc_search/Views/Doctor%20Part/Profile/Online_Consultations_Page.dart';
+import 'package:doc_search/Views/Doctor%20Part/Profile/Settings_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Profile/Refer_And_Earn_Page.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../Bottom_Bar.dart';
-import 'Edit_User_Profile.dart';
+import '../../../Bottom_Bar.dart';
 
-class Profile_Page_Doc_Search extends StatelessWidget {
+class Doctor_Profile_Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -29,8 +28,7 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                     SizedBox(width: 20),
                     InkWell(
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => HomePage()));
+                        Navigator.pop(context);
                       },
                       child: Icon(Icons.arrow_back_ios_new,
                           color: Colors.white, size: 26),
@@ -45,39 +43,39 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                   Column(
                     children: [
                       InkWell(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => EditUserProfile()));
-                          },
+                          // onTap: () {
+                          //   Navigator.of(context).push(MaterialPageRoute(
+                          //       builder: (context) => EditUserProfile()));
+                          // },
                           child: Stack(
-                            children: <Widget>[
-                              CircleAvatar(
-                                child: Icon(Icons.person, size: 90),
-                                maxRadius: 50,
-                                backgroundColor: Colors.white,
+                        children: <Widget>[
+                          CircleAvatar(
+                            child: Icon(Icons.person, size: 90),
+                            maxRadius: 50,
+                            backgroundColor: Colors.white,
+                          ),
+                          Positioned(
+                            bottom: 0,
+                            right: 0,
+                            child: Container(
+                              padding: EdgeInsets.all(4),
+                              decoration: BoxDecoration(
+                                color: Colors.blue,
+                                shape: BoxShape.circle,
                               ),
-                              Positioned(
-                                bottom: 0,
-                                right: 0,
-                                child: Container(
-                                  padding: EdgeInsets.all(4),
-                                  decoration: BoxDecoration(
-                                    color: Colors.blue,
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Icon(
-                                    Icons.edit,
-                                    color: Colors.white,
-                                  ),
-                                ),
+                              child: Icon(
+                                Icons.edit,
+                                color: Colors.white,
                               ),
-                            ],
-                          )),
+                            ),
+                          ),
+                        ],
+                      )),
                       SizedBox(
                         height: 10,
                       ),
                       Text(
-                        "Ritesh Kumar",
+                        "Dr. Ritesh Kumar",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 23,
@@ -101,10 +99,10 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                   child: Column(
                     children: [
                       InkWell(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => Appointments_Page()));
-                        },
+                        // onTap: () {
+                        //   Navigator.of(context).push(MaterialPageRoute(
+                        //       builder: (context) => Appointments_Page()));
+                        // },
                         child: ListTile(
                           title: Text(
                             "Appointments",
@@ -114,18 +112,36 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                                 fontWeight: FontWeight.w400),
                           ),
                           trailing: InkWell(
-                            onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => Appointments_Page()));
-                            },
+                            // onTap: () {
+                            //   Navigator.of(context).push(MaterialPageRoute(
+                            //       builder: (context) => Appointments_Page()));
+                            // },
                             child: Icon(Icons.arrow_forward_ios,
                                 size: 20, color: Colors.white),
                           ),
                         ),
                       ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  Online_Consultations_Page()));
+                        },
+                        child: ListTile(
+                          title: Text(
+                            "Online Consultations",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w400),
+                          ),
+                          trailing: Icon(Icons.arrow_forward_ios,
+                              size: 20, color: Colors.white),
+                        ),
+                      ),
                       ListTile(
                         title: Text(
-                          "Online Consultations",
+                          "Set Time & Day",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 20,
@@ -136,7 +152,7 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                       ),
                       ListTile(
                         title: Text(
-                          "My Test",
+                          "Payments",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 20,
@@ -147,7 +163,7 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                       ),
                       ListTile(
                         title: Text(
-                          "Medical Order",
+                          "Community",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 20,
@@ -156,38 +172,18 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                         trailing: Icon(Icons.arrow_forward_ios,
                             size: 20, color: Colors.white),
                       ),
-                      ListTile(
-                        title: Text(
-                          "Order History",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w400),
+                      InkWell(
+                        child: ListTile(
+                          title: Text(
+                            "Medical Order",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w400),
+                          ),
+                          trailing: Icon(Icons.arrow_forward_ios,
+                              size: 20, color: Colors.white),
                         ),
-                        trailing: Icon(Icons.arrow_forward_ios,
-                            size: 20, color: Colors.white),
-                      ),
-                      ListTile(
-                        title: Text(
-                          "Subscriptions",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w400),
-                        ),
-                        trailing: Icon(Icons.arrow_forward_ios,
-                            size: 20, color: Colors.white),
-                      ),
-                      ListTile(
-                        title: Text(
-                          "Family Tree",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w400),
-                        ),
-                        trailing: Icon(Icons.arrow_forward_ios,
-                            size: 20, color: Colors.white),
                       ),
                       InkWell(
                         onTap: () {
@@ -212,22 +208,11 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                           ),
                         ),
                       ),
-                      ListTile(
-                        title: Text(
-                          "Transactions",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w400),
-                        ),
-                        trailing: Icon(Icons.arrow_forward_ios,
-                            size: 20, color: Colors.white),
-                      ),
                       InkWell(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => Settings_Page()));
-                        },
+                        // onTap: () {
+                        //   Navigator.of(context).push(MaterialPageRoute(
+                        //       builder: (context) => Settings_Page()));
+                        // },
                         child: ListTile(
                           title: Text(
                             "Settings",
@@ -239,7 +224,8 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                           trailing: InkWell(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => Settings_Page()));
+                                  builder: (context) =>
+                                      Doctors_Setting_Page()));
                             },
                             child: Icon(Icons.arrow_forward_ios,
                                 size: 20, color: Colors.white),

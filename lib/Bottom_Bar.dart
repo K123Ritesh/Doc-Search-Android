@@ -1,4 +1,5 @@
-import 'package:doc_search/Views/Home/Home_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Home/Home_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Profile/Profile_Page.dart';
 import 'package:flutter/material.dart';
 
 class Bottombar extends StatefulWidget {
@@ -33,6 +34,12 @@ class _BottombarState extends State<Bottombar> {
         //   MaterialPageRoute(builder: (context) => NotificationsPage()),
         // );
         break;
+      case 3:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Profile_Page_Doc_Search()),
+        );
+        break;
       // Add more cases for additional pages if needed
     }
   }
@@ -43,12 +50,12 @@ class _BottombarState extends State<Bottombar> {
       height: 68,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20.0),
-          topRight: Radius.circular(20.0),
+          topLeft: Radius.circular(33.0),
+          topRight: Radius.circular(33.0),
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey,
+            color: const Color.fromARGB(255, 234, 165, 165),
             blurRadius: 10.0,
             offset: Offset(0, -3),
           ),
@@ -56,7 +63,7 @@ class _BottombarState extends State<Bottombar> {
       ),
       child: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        elevation: 0,
+        elevation: 3,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -68,7 +75,7 @@ class _BottombarState extends State<Bottombar> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.chat),
-            label: 'Notifications',
+            label: 'Chats',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
@@ -79,38 +86,6 @@ class _BottombarState extends State<Bottombar> {
         onTap: onTabTapped,
         unselectedItemColor: Colors.black,
         selectedItemColor: Colors.blue,
-      ),
-    );
-  }
-}
-
-class SearchPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: CircularProgressIndicator(),
-      ),
-    );
-  }
-}
-
-class NotificationsPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: CircularProgressIndicator()));
-  }
-}
-
-class ProfilePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Profile Page'),
-      ),
-      body: Center(
-        child: Text('This is the Profile page content'),
       ),
     );
   }

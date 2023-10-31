@@ -128,4 +128,33 @@ when the appointment is booked it should send notification to the respective
       print('Error in Appointment Booking: $e');
     }
   }
+
+  //Slots Service
+
+  Future<List<String>?> checkAvailableSlots(context, String docId,
+      String targetDate, List<String> possibleSlots) async {
+    try {
+      DocumentSnapshot dentistDoc = await FirebaseFirestore.instance
+          .collection('Dentist')
+          .doc(docId)
+          .get();
+      Map<String, dynamic> bookingsData =
+          dentistDoc.data() as Map<String, dynamic>;
+
+      if (bookingsData.containsKey('Bookings')) {
+        if (bookingsData['Bookings'][targetDate] != null) {
+          Map<String, dynamic> bookings = bookingsData['Bookings'][targetDate];
+          List<String> allSlots = bookings.keys.toList();
+          List<String> availableSlots =
+              possibleSlots.where((slot) => !allSlots.contains(slot)).toList();
+          return availableSlots;
+        }
+      } else {
+        return possibleSlots;
+      }
+    } catch (e) {
+      print('Error is   This Ritesh  $e');
+    }
+    return null;
+  }
 }

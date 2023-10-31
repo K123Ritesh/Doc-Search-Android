@@ -3,7 +3,7 @@ import 'package:doc_search/Config/sizeConfig.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../Providers/Doctor_Provider.dart';
+import '../../../Providers/Doctor_Provider.dart';
 import 'Appointment.dart';
 import 'doctor2.dart';
 

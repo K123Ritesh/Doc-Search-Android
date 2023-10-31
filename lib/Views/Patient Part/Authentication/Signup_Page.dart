@@ -1,9 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:doc_search/Views/Authentication/Login_Page.dart';
-import 'package:doc_search/Views/Home/Home_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Authentication/Login_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Home/Home_Page.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import '../../Doctor Part/Authentication/Signin_Page.dart';
 
 class Signup_Page extends StatefulWidget {
   const Signup_Page({super.key});
@@ -127,7 +130,7 @@ class _Signup_PageState extends State<Signup_Page> {
               const SizedBox(
                 height: 15,
               ),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(
@@ -146,12 +149,19 @@ class _Signup_PageState extends State<Signup_Page> {
                             fontSize: 17,
                             fontWeight: FontWeight.w400),
                       ),
-                      Text(
-                        'Register here ',
-                        style: TextStyle(
-                            color: Colors.red,
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => Doctor_Signup_Page()));
+                        },
+                        child: Text(
+                          'Register here ',
+                          style: TextStyle(
+                              color: Colors.red,
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ],
                   )
@@ -537,7 +547,7 @@ class _OTPInputState extends State<OTPInput> {
       }),
     );
   }
-  
+
   Future<void> verifyOTPAndSignIn(String code) async {
     try {
       PhoneAuthCredential credential = PhoneAuthProvider.credential(
@@ -545,7 +555,8 @@ class _OTPInputState extends State<OTPInput> {
         smsCode: code,
       );
 
-      UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
       User? user = userCredential.user;
 
       // Now, you have access to the authenticated user
@@ -560,7 +571,6 @@ class _OTPInputState extends State<OTPInput> {
       print('Error verifying OTP: $e');
     }
   }
-
 }
 
 class OTP_Entering_Page extends StatefulWidget {

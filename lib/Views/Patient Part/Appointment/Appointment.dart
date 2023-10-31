@@ -1,8 +1,8 @@
 import 'package:doc_search/Bottom_Bar.dart';
 import 'package:doc_search/Providers/Doctor_Provider.dart';
-import 'package:doc_search/Views/Doctors/Doctors_Category_Wise.dart';
-import 'package:doc_search/Views/Profile/Edit_Profile_LifeStyle.dart';
-import 'package:doc_search/Views/Profile/Edit_User_Profile.dart';
+import 'package:doc_search/Views/Patient%20Part/Doctors/Doctors_Category_Wise.dart';
+import 'package:doc_search/Views/Patient%20Part/Profile/Edit_Profile_LifeStyle.dart';
+import 'package:doc_search/Views/Patient%20Part/Profile/Edit_User_Profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';

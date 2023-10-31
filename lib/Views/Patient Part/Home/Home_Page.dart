@@ -1,19 +1,16 @@
 import 'package:doc_search/Bottom_Bar.dart';
-import 'package:doc_search/Providers/Doctor_Provider.dart';
-import 'package:doc_search/Testing_page.dart';
-import 'package:doc_search/Views/Appointment/Appointment.dart';
-import 'package:doc_search/Views/Appointment/doctor1.dart';
-import 'package:doc_search/Views/Doctors/Doctors_Category_Wise.dart';
-import 'package:doc_search/Views/Home/Medical_Labs_Page.dart';
-import 'package:doc_search/Views/Home/Medicine_Page.dart';
-import 'package:doc_search/Views/Home/Search_Tapped_Page.dart';
-import 'package:doc_search/Views/Home/Wallet_Page.dart';
-import 'package:doc_search/Views/Profile/Appointments_Page.dart';
-import 'package:doc_search/Views/Profile/Profile_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Appointment/Appointment.dart';
+import 'package:doc_search/Views/Patient%20Part/Home/Medical_Labs_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Home/Medicine_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Home/Search_Tapped_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Home/Wallet_Page.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
+
+import '../Doctors/Doctors_Category_Wise.dart';
+import '../Profile/Profile_Page.dart';
 
 import '../../Config/sizeConfig.dart';
 
@@ -120,6 +117,7 @@ class _HomePageState extends State<HomePage> {
                 decoration: BoxDecoration(
                     border: Border.all(color: Color(0xFF5793A8), width: 1.0),
                     borderRadius: BorderRadius.circular(50)),
+<<<<<<< HEAD:lib/Views/Home/Home_Page.dart
                 child: Center(
                   child: TextField(
                     onTap: () {
@@ -131,6 +129,17 @@ class _HomePageState extends State<HomePage> {
                       prefixIcon: Icon(Icons.search),
                       hintText: 'Search doctors, hospitals...',
                     ),
+=======
+                child: TextField(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => Search_Tapped_Page()));
+                  },
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    prefixIcon: Icon(Icons.search),
+                    hintText: 'Search doctors, hospitals...',
+>>>>>>> 2e760eac8dce9152dc1b1d4bdcbff5705784abbb:lib/Views/Patient Part/Home/Home_Page.dart
                   ),
                 ),
               ),
@@ -167,15 +176,21 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Column(
                       children: [
-                        Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Color(0xFF5793A8)),
-                              borderRadius: BorderRadius.circular(3),
-                            ),
-                            child: Image.asset(
-                                'assets/DocSearch Android/Group 2412.png')),
+                        InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => const Appointment1()));
+                          },
+                          child: Container(
+                              width: 40,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Color(0xFF5793A8)),
+                                borderRadius: BorderRadius.circular(3),
+                              ),
+                              child: Image.asset(
+                                  'assets/DocSearch Android/Group 2412.png')),
+                        ),
                         const SizedBox(
                           height: 12,
                         ),

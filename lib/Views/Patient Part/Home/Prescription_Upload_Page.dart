@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doc_search/Bottom_Bar.dart';
 import 'package:doc_search/Models/Medicine_Shop.dart';
-import 'package:doc_search/Views/Home/Order_Done_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Home/Order_Done_Page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:file_picker/file_picker.dart';
@@ -10,7 +10,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:path/path.dart' as path;
 import 'package:provider/provider.dart';
 
-import '../../Providers/Medicine_Shop_Provider.dart';
+import '../../../Providers/Medicine_Shop_Provider.dart';
 
 class Prescription_Upload_Page extends StatefulWidget {
   const Prescription_Upload_Page({super.key, required this.shopId});

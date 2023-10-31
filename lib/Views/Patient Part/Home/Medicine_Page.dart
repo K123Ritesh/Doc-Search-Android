@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doc_search/Models/Medicine_Shop.dart';
 import 'package:doc_search/Providers/Medicine_Shop_Provider.dart';
-import 'package:doc_search/Views/Home/Prescription_Upload_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Home/Prescription_Upload_Page.dart';
 import 'package:doc_search/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,7 +10,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:provider/provider.dart';
 
-import '../../Bottom_Bar.dart';
+import '../../../Bottom_Bar.dart';
 
 class Medicine_Page extends StatefulWidget {
   Medicine_Page({super.key});

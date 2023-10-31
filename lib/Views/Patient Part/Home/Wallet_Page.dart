@@ -1,7 +1,11 @@
+<<<<<<< HEAD:lib/Views/Home/Wallet_Page.dart
 import 'package:doc_search/Config/sizeConfig.dart';
+=======
+import 'package:doc_search/Views/Patient%20Part/Home/Home_Page.dart';
+>>>>>>> 2e760eac8dce9152dc1b1d4bdcbff5705784abbb:lib/Views/Patient Part/Home/Wallet_Page.dart
 import 'package:flutter/material.dart';
-import '../../Bottom_Bar.dart';
-import 'Home_Page.dart';
+
+import '../../../Bottom_Bar.dart';
 
 class Wallet extends StatefulWidget {
   const Wallet({Key? key}) : super(key: key);
@@ -49,12 +53,14 @@ class _WalletState extends State<Wallet> with SingleTickerProviderStateMixin {
                               color: Colors.black,
                             ),
                             onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const HomePage(),
-                                ),
-                              );
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) => const HomePage(),
+                              //   ),
+                              // );
+
+                              Navigator.pop(context);
                             },
                           ),
                           Container(

@@ -1,7 +1,7 @@
 import 'package:doc_search/Bottom_Bar.dart';
 import 'package:doc_search/Models/Doctor.dart';
 import 'package:doc_search/Providers/Doctor_Provider.dart';
-import 'package:doc_search/Views/Doctors/Doctor_Category_Wise_Final.dart';
+import 'package:doc_search/Views/Patient%20Part/Doctors/Doctor_Category_Wise_Final.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -302,6 +302,23 @@ class _Doctors_Category_WiseDetailsState
                     onTap: () {
                       setState(() {
                         selectedOption = index;
+                        // DoctorProvider.knowAvailableSlots(
+                        //     context,
+                        //     'khn@gmail.com',
+                        //     '${selectedOption + 1}/${now.month}/${now.year}',
+                        //     options2);
+                        // options2 = DoctorProvider.availableSlots == null
+                        //     ? options2
+                        //     : DoctorProvider.availableSlots!;
+                        // DoctorProvider.availableSlots!.clear();
+                        // DoctorProvider.knowAvailableSlots(
+                        //     context,
+                        //     'khn@gmail.com',
+                        //     '${selectedOption + 1}/${now.month}/${now.year}',
+                        //     options3);
+                        // options3 = DoctorProvider.availableSlots == null
+                        //     ? options3
+                        //     : DoctorProvider.availableSlots!;
                       });
                     },
                     child: Container(

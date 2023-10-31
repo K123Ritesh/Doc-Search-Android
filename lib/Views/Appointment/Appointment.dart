@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+import '../Profile/Profile_Page.dart';
 import 'doctor1.dart';
 
 class Appointment1 extends StatefulWidget {
@@ -39,11 +40,14 @@ class _Appointment1State extends State<Appointment1> {
             color: Colors.white,
           ),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Profile_Page_Doc_Search()),
+            );
           },
         ),
         title: Container(
-            margin: const EdgeInsets.only(left: 80),
+            margin: const EdgeInsets.only(left: 60),
             child: const Text(
               'Find Doctor',
               style: TextStyle(
@@ -438,7 +442,13 @@ class _Appointment1State extends State<Appointment1> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10)),
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Doctors(doc_Category: '',)),
+                          );
+                        },
                         style: ElevatedButton.styleFrom(
                           primary: const Color(0xFF155467),
                           padding: EdgeInsets.zero,

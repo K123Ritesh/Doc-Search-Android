@@ -1,4 +1,5 @@
 import 'package:doc_search/Bottom_Bar.dart';
+import 'package:doc_search/Config/sizeConfig.dart';
 import 'package:flutter/material.dart';
 
 class EditUserProfile extends StatefulWidget {
@@ -27,6 +28,7 @@ class _EditUserProfileState extends State<EditUserProfile> {
   String derodownValue = 'one';
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       bottomNavigationBar: Bottombar(),
       body: SingleChildScrollView(
@@ -188,6 +190,7 @@ class _EditUserProfileState extends State<EditUserProfile> {
                         alignment: Alignment.topRight,
                         child: Center(
                           child: DropdownButton<String>(
+                            elevation: 0,
                             value: derodownValue,
                             icon: Icon(Icons.arrow_drop_down),
                             onChanged: (String? newValue) {
@@ -237,7 +240,7 @@ class _EditUserProfileState extends State<EditUserProfile> {
                           ),
                         ),
                         SizedBox(
-                          width: 160,
+                          width: 140.fw,
                         ),
                         Text(_dateTime.year.toString()),
                       ],

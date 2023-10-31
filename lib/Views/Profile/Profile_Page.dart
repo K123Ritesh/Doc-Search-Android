@@ -1,3 +1,4 @@
+import 'package:doc_search/Views/Home/Home_Page.dart';
 import 'package:doc_search/Views/Profile/Appointments_Page.dart';
 import 'package:doc_search/Views/Profile/Refer_And_Earn_Page.dart';
 import 'package:doc_search/Views/Profile/Settings_Page.dart';
@@ -28,7 +29,8 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                     SizedBox(width: 20),
                     InkWell(
                       onTap: () {
-                        Navigator.pop(context);
+                        Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => HomePage()));
                       },
                       child: Icon(Icons.arrow_back_ios_new,
                           color: Colors.white, size: 26),

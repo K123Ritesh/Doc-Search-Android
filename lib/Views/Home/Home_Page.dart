@@ -15,6 +15,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+import '../../Config/sizeConfig.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key, User? user});
 
@@ -37,16 +39,16 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.white));
-
+    SizeConfig().init(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
-          margin: const EdgeInsets.only(left: 20, right: 20, top: 30),
+          margin: EdgeInsets.only(left: 20.fw, right: 20.fw, top: 30.fh),
           child: Column(
             children: [
               SizedBox(
-                height: 30,
+                height: 10.fh,
               ),
               Row(
                 children: [
@@ -63,18 +65,18 @@ class _HomePageState extends State<HomePage> {
                     },
                     child: Container(
                       // margin: EdgeInsets.only(left: 10),
-                      height: 50,
-                      width: 50,
+                      height: 45.fh,
+                      width: 50.fw,
                       child: Icon(Icons.person, color: Colors.blue, size: 39),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
+                        borderRadius: BorderRadius.circular(100.fh),
                         color: const Color.fromARGB(255, 111, 170, 219),
                       ),
                       // child: Image.asset('assets/your_image.png'),
                     ),
                   ),
                   SizedBox(
-                    width: 230,
+                    width: 195.fw,
                   ),
                   InkWell(
                     onTap: () {
@@ -86,21 +88,21 @@ class _HomePageState extends State<HomePage> {
                     child: Container(
                       decoration: BoxDecoration(
                           color: Color(0XFFECFAFC),
-                          borderRadius: BorderRadius.circular(15)),
+                          borderRadius: BorderRadius.circular(6.fh)),
                       child: Padding(
-                        padding: const EdgeInsets.all(3.0),
+                        padding: EdgeInsets.all(2.fh),
                         child: Row(
                           children: [
                             Icon(
                               Icons.account_balance_wallet,
                               color: Color(0xFF005473),
-                              size: 30,
+                              size: 25.fh,
                             ),
-                            SizedBox(width: 8),
+                            SizedBox(width: 5.fw),
                             Text(
                               '100',
                               style:
-                                  TextStyle(fontSize: 18, color: Colors.black),
+                                  TextStyle(fontSize: 18.fh, color: Colors.black),
                             ),
                           ],
                         ),
@@ -110,23 +112,25 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
               SizedBox(
-                height: 20,
+                height: 20.fh,
               ),
               Container(
-                height: 50,
-                padding: const EdgeInsets.all(8),
+                height: 50.fh,
+                padding: EdgeInsets.all(8.fh),
                 decoration: BoxDecoration(
                     border: Border.all(color: Color(0xFF5793A8), width: 1.0),
                     borderRadius: BorderRadius.circular(50)),
-                child: TextField(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => Search_Tapped_Page()));
-                  },
-                  decoration: InputDecoration(
-                    border: InputBorder.none, 
-                    prefixIcon: Icon(Icons.search),
-                    hintText: 'Search doctors, hospitals...',
+                child: Center(
+                  child: TextField(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => Search_Tapped_Page()));
+                    },
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      prefixIcon: Icon(Icons.search),
+                      hintText: 'Search doctors, hospitals...',
+                    ),
                   ),
                 ),
               ),
@@ -237,10 +241,11 @@ class _HomePageState extends State<HomePage> {
                 height: 20,
               ),
               Container(
-                height: 148,
+
+                height: 130.fh,
                 decoration: BoxDecoration(
                   color: const Color(0xFFECFAFC),
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius: BorderRadius.circular(16),
                   // border: Border.all(color: Color(0xFF5793A8)),
                 ),
                 child:
@@ -248,68 +253,68 @@ class _HomePageState extends State<HomePage> {
                   Column(
                     children: [
                       Container(
-                          margin: const EdgeInsets.only(left: 20, top: 20),
+                          margin:  EdgeInsets.only( top: 15.fh),
                           child: RichText(
-                            text: const TextSpan(
+                            text:  TextSpan(
                               children: <TextSpan>[
                                 TextSpan(
                                   text: 'We are ',
                                   style: TextStyle(
                                       color: Colors.black,
-                                      fontSize: 16,
+                                      fontSize: 12.fh,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 TextSpan(
                                   text: 'providing',
                                   style: TextStyle(
                                       color: Colors.yellow,
-                                      fontSize: 16,
+                                      fontSize: 12.fh,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 TextSpan(
                                   text: ' the ',
                                   style: TextStyle(
                                       color: Colors.black,
-                                      fontSize: 16,
+                                      fontSize: 12.fh,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 TextSpan(
                                   text: '\nbest ',
                                   style: TextStyle(
                                       color: Colors.black,
-                                      fontSize: 16,
+                                      fontSize: 12.fh,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 TextSpan(
                                   text: 'health',
                                   style: TextStyle(
                                       color: Color(0xFF5793A8),
-                                      fontSize: 16,
+                                      fontSize: 12.fh,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 TextSpan(
                                   text: ' services',
                                   style: TextStyle(
                                       color: Colors.black,
-                                      fontSize: 16,
+                                      fontSize: 12.fh,
                                       fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
                           )),
                       Container(
-                          margin: const EdgeInsets.only(left: 20, top: 10),
-                          child: const Text(
+                          margin: EdgeInsets.only(left: 20.fw, top: 10.fh,),
+                          child: Text(
                             'Always caring about your health, \nFind your doctors and make an \nappointment',
                             style: TextStyle(
-                                fontSize: 10,
+                                fontSize: 9.fh,
                                 fontWeight: FontWeight.w400,
                                 color: Color(0xFF1B3033)),
                           )),
                       Container(
-                        height: 23,
-                        width: 68,
-                        margin: const EdgeInsets.only(top: 10, right: 60),
+                        height: 23.fh,
+                        width: 68.fw,
+                        margin: EdgeInsets.only(top: 10.fh, right: 60.fw),
                         child: Material(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(50),
@@ -324,11 +329,11 @@ class _HomePageState extends State<HomePage> {
                               onTap: () {
                                 // Your button click logic here
                               },
-                              child: const Center(
+                              child: Center(
                                 child: Text(
                                   'Register Now',
                                   style: TextStyle(
-                                    fontSize: 8,
+                                    fontSize: 8.fh,
                                     color: Color(0xFF005473),
                                     fontWeight: FontWeight.w500,
                                   ),
@@ -340,11 +345,12 @@ class _HomePageState extends State<HomePage> {
                       )
                     ],
                   ),
+                  Spacer(),
                   Container(
-                    margin: const EdgeInsets.only(left: 30, top: 20),
-                    height: 118,
-                    width: 167,
-                    child: Image.asset('assets/image 34.png'),
+                    margin:  EdgeInsets.only( top: 30.fh),
+                    height: 118.fh,
+                    // width: 158.fw,
+                    child: Image.asset('assets/image 34.png',),
                   ),
                 ]),
               ),
@@ -684,12 +690,12 @@ class _HomePageState extends State<HomePage> {
                           Container(
                               margin: const EdgeInsets.only(top: 25, right: 35),
                               child: RichText(
-                                text: const TextSpan(
+                                text: TextSpan(
                                   children: <TextSpan>[
                                     TextSpan(
                                       text: 'Why',
                                       style: TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 14.fh,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black,
                                       ),
@@ -697,7 +703,7 @@ class _HomePageState extends State<HomePage> {
                                     TextSpan(
                                       text: ' Doc',
                                       style: TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 14.fh,
                                         fontWeight: FontWeight.bold,
                                         color: Color(0xFF5793A8),
                                       ),
@@ -705,7 +711,7 @@ class _HomePageState extends State<HomePage> {
                                     TextSpan(
                                       text: ' Search',
                                       style: TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 14.fh,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.yellow,
                                       ),
@@ -713,7 +719,7 @@ class _HomePageState extends State<HomePage> {
                                     TextSpan(
                                       text: '?',
                                       style: TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 14.fh,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black,
                                       ),
@@ -722,25 +728,25 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               )),
                           Container(
-                            margin: const EdgeInsets.only(left: 20, top: 10),
-                            child: const Column(
+                            margin: EdgeInsets.only(left: 20.fw, top: 10.fh),
+                            child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   '1. Round-the-clock doctor availability',
-                                  style: TextStyle(fontSize: 11),
+                                  style: TextStyle(fontSize: 9.5.fh),
                                 ),
                                 Text(
                                   '2. Broad range of Specialities',
-                                  style: TextStyle(fontSize: 11),
+                                  style: TextStyle(fontSize: 9.5.fh),
                                 ),
                                 Text(
                                   '3. Order medicines & tests online',
-                                  style: TextStyle(fontSize: 11),
+                                  style: TextStyle(fontSize: 9.5.fh),
                                 ),
                                 Text(
                                   '4. Digitised health records',
-                                  style: TextStyle(fontSize: 11),
+                                  style: TextStyle(fontSize: 9.5.fh),
                                 ),
                               ],
                             ),
@@ -748,11 +754,8 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                       Container(
-                        margin: const EdgeInsets.only(
-                            // left: 59,
-                            ),
-                        height: 148,
-                        width: 130,
+                        height: 148.fh,
+                        width: 130.fw,
                         decoration: const BoxDecoration(
                           borderRadius: BorderRadius.only(
                             bottomRight: Radius.circular(34.0),
@@ -769,7 +772,7 @@ class _HomePageState extends State<HomePage> {
                     ]),
               ),
               SizedBox(
-                height: 30,
+                height: 30.fh,
               )
             ],
           ),

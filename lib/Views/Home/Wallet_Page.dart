@@ -1,3 +1,4 @@
+import 'package:doc_search/Config/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import '../../Bottom_Bar.dart';
 import 'Home_Page.dart';
@@ -26,6 +27,7 @@ class _WalletState extends State<Wallet> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
@@ -69,7 +71,7 @@ class _WalletState extends State<Wallet> with SingleTickerProviderStateMixin {
                         ],
                       ),
                     ),
-                    SizedBox(width: 90),
+                    SizedBox(width: 45.fw),
                     InkWell(
                       onTap: () {},
                       child: Container(
@@ -216,8 +218,8 @@ class _WalletState extends State<Wallet> with SingleTickerProviderStateMixin {
                                   Row(
                                     children: [
                                       Container(
-                                        width: 47,
-                                        height: 24,
+                                        width: 47.fw,
+                                        height: 24.fh,
                                         decoration: BoxDecoration(
                                           color: Color(0xFF155467),
                                           borderRadius:
@@ -239,10 +241,11 @@ class _WalletState extends State<Wallet> with SingleTickerProviderStateMixin {
                                           ),
                                         ),
                                       ),
-                                      SizedBox(width: 110),
+                                      
                                       Container(
-                                        width: 47,
-                                        height: 24,
+                                        margin: EdgeInsets.only(left: 70.fw),
+                                        width: 47.fw,
+                                        height: 24.fh,
                                         decoration: BoxDecoration(
                                           color: Color(0xFF155467),
                                           borderRadius:

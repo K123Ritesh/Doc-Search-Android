@@ -88,103 +88,172 @@ class _DoctorsDetailsState extends State<DoctorsDetails> {
                   fontWeight: FontWeight.w600),
             )),
       ),
-      body: Column(
-        children: [
-          ListTile(
-            leading: Container(
-              height: 65,
-              width: 65,
-              child: const CircleAvatar(
-                  // backgroundImage: NetworkImage(''),
-                  ),
-            ),
-            title: const Text(
-              "Dr. Priya Sharma",
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-            ),
-            subtitle: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      "MBBS,MCh",
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            ListTile(
+              leading: Container(
+                height: 65,
+                width: 65,
+                child: const CircleAvatar(
+                    // backgroundImage: NetworkImage(''),
                     ),
-                    Container(
-                      width: 41,
-                      height: 16,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF1A6A83),
-                        borderRadius: BorderRadius.circular(3),
-                      ),
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.star,
-                            color: Colors.white,
-                            size: 12,
-                          ),
-                          SizedBox(
-                            width: 4,
-                          ),
-                          Text(
-                            '4.7',
-                            style: TextStyle(
-                              fontSize: 11,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                Container(
-                  margin: const EdgeInsets.only(top: 5),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+              ),
+              title: const Text(
+                "Dr. Priya Sharma",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              ),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      const Text(
+                        "MBBS,MCh",
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black),
+                      ),
                       Container(
-                        width: 95,
-                        height: 19,
+                        width: 41,
+                        height: 16,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4),
-                          color: const Color(0xFFE6F7EF),
+                          color: const Color(0xFF1A6A83),
+                          borderRadius: BorderRadius.circular(3),
                         ),
-                        child: const Center(
-                          child: Text(
-                            "Surgical Onotology",
-                            style: TextStyle(
-                              fontSize: 10,
-                              color: Color(0xFF00B05B),
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.star,
+                              color: Colors.white,
+                              size: 12,
                             ),
-                          ),
+                            SizedBox(
+                              width: 4,
+                            ),
+                            Text(
+                              '4.7',
+                              style: TextStyle(
+                                fontSize: 11,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      const Text('Malviya Nagar, New Delhi',
-                          style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black)),
-                      const Text('15 years experience',
-                          style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black)),
                     ],
                   ),
+                  Container(
+                    margin: const EdgeInsets.only(top: 5),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 95,
+                          height: 19,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4),
+                            color: const Color(0xFFE6F7EF),
+                          ),
+                          child: const Center(
+                            child: Text(
+                              "Surgical Onotology",
+                              style: TextStyle(
+                                fontSize: 10,
+                                color: Color(0xFF00B05B),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const Text('Malviya Nagar, New Delhi',
+                            style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black)),
+                        const Text('15 years experience',
+                            style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black)),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: 26,
+                    width: 178,
+                    margin: const EdgeInsets.only(top: 15),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF1A6A83),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Icon(
+                          Icons.verified,
+                          size: 16,
+                          color: Colors.white,
+                        ),
+                        Center(
+                            child: Text(
+                          'Trusted Healthcare',
+                          style: TextStyle(color: Colors.white, fontSize: 14),
+                        )),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(left: 20, top: 10),
+              child: const Row(
+                children: [
+                  Icon(
+                    Icons.verified,
+                    size: 16,
+                    color: Colors.green,
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Center(
+                      child: Text(
+                    'Medical Registration Verified',
+                    style: TextStyle(fontSize: 14),
+                  )),
+                ],
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  height: 26,
+                  width: 190,
+                  margin: const EdgeInsets.only(top: 15, left: 20),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF1A6A83),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  child: const Center(
+                      child: Text(
+                    'Clinic Appointment Fee ₹450',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white,
+                    ),
+                  )),
                 ),
                 Container(
                   height: 26,
-                  width: 178,
-                  margin: const EdgeInsets.only(top: 15),
+                  width: 87,
+                  margin: const EdgeInsets.only(top: 15, right: 20),
                   decoration: BoxDecoration(
                     color: const Color(0xFF1A6A83),
                     borderRadius: BorderRadius.circular(5),
@@ -193,232 +262,106 @@ class _DoctorsDetailsState extends State<DoctorsDetails> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Icon(
-                        Icons.verified,
+                        Icons.calendar_month,
                         size: 16,
                         color: Colors.white,
                       ),
+                      SizedBox(
+                        width: 5,
+                      ),
                       Center(
                           child: Text(
-                        'Trusted Healthcare',
-                        style: TextStyle(color: Colors.white, fontSize: 14),
+                        'Calender',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.white,
+                        ),
                       )),
                     ],
                   ),
                 ),
               ],
             ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(left: 20, top: 10),
-            child: const Row(
-              children: [
-                Icon(
-                  Icons.verified,
-                  size: 16,
-                  color: Colors.green,
-                ),
-                SizedBox(
-                  width: 5,
-                ),
-                Center(
-                    child: Text(
-                  'Medical Registration Verified',
-                  style: TextStyle(fontSize: 14),
-                )),
-              ],
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                height: 26,
-                width: 190,
-                margin: const EdgeInsets.only(top: 15, left: 20),
-                decoration: BoxDecoration(
-                  color: const Color(0xFF1A6A83),
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                child: const Center(
-                    child: Text(
-                  'Clinic Appointment Fee ₹450',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white,
-                  ),
-                )),
-              ),
-              Container(
-                height: 26,
-                width: 87,
-                margin: const EdgeInsets.only(top: 15, right: 20),
-                decoration: BoxDecoration(
-                  color: const Color(0xFF1A6A83),
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Icon(
-                      Icons.calendar_month,
-                      size: 16,
-                      color: Colors.white,
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Center(
-                        child: Text(
-                      'Calender',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.white,
-                      ),
-                    )),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
-            child: const Divider(
-              thickness: 1.0,
-              color: Colors.grey,
-            ),
-          ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Container(
+            Container(
               margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: List.generate(options.length, (index) {
-                  final day = int.parse(options[index]);
-                  final dayOfWeek = getDayOfWeek(day);
-                  return InkWell(
-                    onTap: () {
-                      setState(() {
-                        selectedOption = index;
-                      });
-                    },
-                    child: Container(
-                      width: 76,
-                      height: 61,
-                      margin: const EdgeInsets.only(right: 10),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: const Color(0xFF155467),
+              child: const Divider(
+                thickness: 1.0,
+                color: Colors.grey,
+              ),
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Container(
+                margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: List.generate(options.length, (index) {
+                    final day = int.parse(options[index]);
+                    final dayOfWeek = getDayOfWeek(day);
+                    return InkWell(
+                      onTap: () {
+                        setState(() {
+                          selectedOption = index;
+                        });
+                      },
+                      child: Container(
+                        width: 76,
+                        height: 61,
+                        margin: const EdgeInsets.only(right: 10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: const Color(0xFF155467),
+                          ),
+                          color: selectedOption == index
+                              ? const Color(0xFF155467)
+                              : Colors.white,
                         ),
-                        color: selectedOption == index
-                            ? const Color(0xFF155467)
-                            : Colors.white,
+                        alignment: Alignment.center,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              dayOfWeek,
+                              style: TextStyle(
+                                  color: selectedOption == index
+                                      ? Colors.white
+                                      : const Color(0xFF155467),
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 10),
+                            ),
+                            Text(
+                              options[index],
+                              style: TextStyle(
+                                  color: selectedOption == index
+                                      ? Colors.white
+                                      : const Color(0xFF155467),
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 20),
+                            ),
+                          ],
+                        ),
                       ),
-                      alignment: Alignment.center,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            dayOfWeek,
-                            style: TextStyle(
-                                color: selectedOption == index
-                                    ? Colors.white
-                                    : const Color(0xFF155467),
-                                fontWeight: FontWeight.w500,
-                                fontSize: 10),
-                          ),
-                          Text(
-                            options[index],
-                            style: TextStyle(
-                                color: selectedOption == index
-                                    ? Colors.white
-                                    : const Color(0xFF155467),
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                }),
+                    );
+                  }),
+                ),
               ),
             ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
-            child: const Divider(
-              thickness: 1.0,
-              color: Colors.grey,
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: 25,
+            Container(
+              margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
+              child: const Divider(
+                thickness: 1.0,
+                color: Colors.grey,
               ),
-              const Text(
-                'Afternoon',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-              ),
-              const Text(
-                ' (3 Slots)',
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Color(0XFF3FA536)),
-              )
-            ],
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: List.generate(options2.length, (index) {
-                return InkWell(
-                  onTap: () {
-                    setState(() {
-                      toggleSelection(index);
-                    });
-                  },
-                  child: Container(
-                    width: 101,
-                    height: 36,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                        color: const Color(0xFF155467),
-                      ),
-                      color: selectedOption2 == index
-                          ? const Color(0xFF155467)
-                          : Colors.white,
-                    ),
-                    alignment: Alignment.center,
-                    child: Text(
-                      options2[index],
-                      style: TextStyle(
-                          color: selectedOption2 == index
-                              ? Colors.white
-                              : const Color(0xFF155467),
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ),
-                );
-              }),
             ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 10),
-            child: const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(
                   width: 25,
                 ),
                 const Text(
-                  'Evening',
+                  'Afternoon',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                 ),
                 const Text(
@@ -430,156 +373,216 @@ class _DoctorsDetailsState extends State<DoctorsDetails> {
                 )
               ],
             ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
-            child: Wrap(
-              spacing: 35,
-              runSpacing: 8,
-              children: List.generate(options3.length, (index) {
-                return InkWell(
-                  onTap: () {
-                    setState(() {
-                      toggleSelection2(index);
-                    });
-                  },
-                  child: Container(
-                    width:
-                        100, // Adjust the width to fit three items in one row
-                    height: 36,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: const Color(0xFF155467)),
-                      color: selectedOption3 == index
-                          ? const Color(0xFF155467)
-                          : Colors.white,
-                    ),
-                    alignment: Alignment.center,
-                    child: Text(
-                      options3[index],
-                      style: TextStyle(
-                          color: selectedOption3 == index
-                              ? Colors.white
-                              : const Color(0xFF155467),
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ),
-                );
-              }),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(left: 20, right: 20, top: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  height: 26,
-                  width: 96,
-                  // margin: EdgeInsets.only(top: 8),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const DoctorDetails2()),
-                      );
+            Container(
+              margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: List.generate(options2.length, (index) {
+                  return InkWell(
+                    onTap: () {
+                      setState(() {
+                        toggleSelection(index);
+                      });
                     },
-                    style: ElevatedButton.styleFrom(
-                      primary: Color(0xFF1A6A83),
-                      shape: RoundedRectangleBorder(
+                    child: Container(
+                      width: 101,
+                      height: 36,
+                      decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          color: const Color(0xFF155467),
+                        ),
+                        color: selectedOption2 == index
+                            ? const Color(0xFF155467)
+                            : Colors.white,
+                      ),
+                      alignment: Alignment.center,
+                      child: Text(
+                        options2[index],
+                        style: TextStyle(
+                            color: selectedOption2 == index
+                                ? Colors.white
+                                : const Color(0xFF155467),
+                            fontWeight: FontWeight.w500),
                       ),
                     ),
-                    child: Text('Book now'),
-                  ),
-                ),
-                Column(
-                  children: [
-                    Container(
-                      height: 26,
-                      width: 182,
-                      margin: const EdgeInsets.only(top: 15),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF1A6A83),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: const Row(
-                        // mainAxisAlignment: MainAxisAlignment.,
-                        children: [
-                          SizedBox(
-                            width: 12,
-                          ),
-                          Icon(
-                            Icons.call,
-                            size: 12,
-                            color: Colors.white,
-                          ),
-                          SizedBox(
-                            width: 12,
-                          ),
-                          Center(
-                              child: Text(
-                            '+91 8796206025',
-                            style: TextStyle(color: Colors.white, fontSize: 12),
-                          )),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      height: 26,
-                      width: 182,
-                      margin: const EdgeInsets.only(top: 15),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF1A6A83),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Icon(
-                            Icons.location_on,
-                            size: 12,
-                            color: Colors.white,
-                          ),
-                          Center(
-                              child: Text(
-                            'Malviya Nagar, New Delhi',
-                            style: TextStyle(color: Colors.white, fontSize: 12),
-                          )),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      height: 26,
-                      width: 182,
-                      margin: const EdgeInsets.only(top: 15),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF1A6A83),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Icon(
-                            Icons.mail,
-                            size: 12,
-                            color: Colors.white,
-                          ),
-                          Center(
-                              child: Text(
-                            'docsearch@gmail.com',
-                            style: TextStyle(color: Colors.white, fontSize: 12),
-                          )),
-                        ],
-                      ),
-                    ),
-                  ],
-                )
-              ],
+                  );
+                }),
+              ),
             ),
-          )
-        ],
+            Container(
+              margin: const EdgeInsets.only(top: 10),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: 25,
+                  ),
+                  const Text(
+                    'Evening',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                  ),
+                  const Text(
+                    ' (3 Slots)',
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0XFF3FA536)),
+                  )
+                ],
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
+              child: Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: List.generate(options3.length, (index) {
+                  return InkWell(
+                    onTap: () {
+                      setState(() {
+                        toggleSelection2(index);
+                      });
+                    },
+                    child: Container(
+                      width:
+                          100, // Adjust the width to fit three items in one row
+                      height: 36,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: const Color(0xFF155467)),
+                        color: selectedOption3 == index
+                            ? const Color(0xFF155467)
+                            : Colors.white,
+                      ),
+                      alignment: Alignment.center,
+                      child: Text(
+                        options3[index],
+                        style: TextStyle(
+                            color: selectedOption3 == index
+                                ? Colors.white
+                                : const Color(0xFF155467),
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                  );
+                }),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(left: 20, right: 20, top: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    height: 26,
+                    width: 96,
+                    // margin: EdgeInsets.only(top: 8),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const DoctorDetails2()),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: Color(0xFF1A6A83),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: Text('Book now'),
+                    ),
+                  ),
+                  Column(
+                    children: [
+                      Container(
+                        height: 26,
+                        width: 182,
+                        margin: const EdgeInsets.only(top: 15),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF1A6A83),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: const Row(
+                          // mainAxisAlignment: MainAxisAlignment.,
+                          children: [
+                            SizedBox(
+                              width: 12,
+                            ),
+                            Icon(
+                              Icons.call,
+                              size: 12,
+                              color: Colors.white,
+                            ),
+                            SizedBox(
+                              width: 12,
+                            ),
+                            Center(
+                                child: Text(
+                              '+91 8796206025',
+                              style: TextStyle(color: Colors.white, fontSize: 12),
+                            )),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        height: 26,
+                        width: 182,
+                        margin: const EdgeInsets.only(top: 15),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF1A6A83),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Icon(
+                              Icons.location_on,
+                              size: 12,
+                              color: Colors.white,
+                            ),
+                            Center(
+                                child: Text(
+                              'Malviya Nagar, New Delhi',
+                              style: TextStyle(color: Colors.white, fontSize: 12),
+                            )),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        height: 26,
+                        width: 182,
+                        margin: const EdgeInsets.only(top: 15),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF1A6A83),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Icon(
+                              Icons.mail,
+                              size: 12,
+                              color: Colors.white,
+                            ),
+                            Center(
+                                child: Text(
+                              'docsearch@gmail.com',
+                              style: TextStyle(color: Colors.white, fontSize: 12),
+                            )),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 20,)
+                    ],
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

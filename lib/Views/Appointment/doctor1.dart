@@ -1,4 +1,5 @@
 import 'package:doc_search/Bottom_Bar.dart';
+import 'package:doc_search/Config/sizeConfig.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,6 +19,7 @@ class Doctors extends StatefulWidget {
 class _DoctorsState extends State<Doctors> {
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       bottomNavigationBar: Bottombar(),
       appBar: AppBar(
@@ -29,17 +31,17 @@ class _DoctorsState extends State<Doctors> {
             color: Colors.black,
           ),
           onPressed: () {
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => const Appointment1()),
-            // );
-            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Appointment1()),
+            );
+            // Navigator.pop(context);
           },
         ),
         title: Container(
           margin: const EdgeInsets.only(left: 80),
           child: Text(
-            widget.doc_Category,
+            "Doctor",
             style: TextStyle(
               color: Colors.black,
               fontSize: 18,
@@ -53,8 +55,8 @@ class _DoctorsState extends State<Doctors> {
         itemBuilder: (context, index) {
           // final doctor = doctors[index];
           return Container(
-            height: 230,
-            margin: EdgeInsets.all(20),
+            height: 230.fh,
+            margin: EdgeInsets.all(20.fw),
             decoration: BoxDecoration(
               border: Border.all(color: Colors.grey),
               borderRadius: BorderRadius.circular(12),
@@ -98,7 +100,7 @@ class _DoctorsState extends State<Doctors> {
                                   color: Colors.black),
                             ),
                             SizedBox(
-                              width: 180,
+                              width: 140.fw,
                             ),
                             Container(
                               width: 41,
@@ -165,7 +167,7 @@ class _DoctorsState extends State<Doctors> {
                   Container(
                     // margin: EdgeInsets.only(top: 62),
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey.shade400),
+                      border: Border.all(color: Colors.grey.shade300),
                       borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(12),
                         bottomRight: Radius.circular(12),
@@ -180,7 +182,7 @@ class _DoctorsState extends State<Doctors> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             SizedBox(
-                              width: 20,
+                              width: 20.fw,
                             ),
                             Text('Tues & Thu',
                                 style: TextStyle(
@@ -188,7 +190,7 @@ class _DoctorsState extends State<Doctors> {
                                     fontWeight: FontWeight.w500,
                                     color: Colors.black)),
                             SizedBox(
-                              width: 100,
+                              width: 100.fw,
                             ),
                             Text('₹450',
                                 style: TextStyle(
@@ -198,13 +200,13 @@ class _DoctorsState extends State<Doctors> {
                           ],
                         ),
                         SizedBox(
-                          height: 5,
+                          height: 5.fh,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             SizedBox(
-                              width: 20,
+                              width: 20.fw,
                             ),
                             Text('10:00 AM - 04:00 PM',
                                 style: TextStyle(
@@ -212,7 +214,7 @@ class _DoctorsState extends State<Doctors> {
                                     fontWeight: FontWeight.w500,
                                     color: Colors.black)),
                             SizedBox(
-                              width: 50,
+                              width: 40.fw,
                             ),
                             Text('No Booking fee',
                                 style: TextStyle(
@@ -222,7 +224,7 @@ class _DoctorsState extends State<Doctors> {
                           ],
                         ),
                         SizedBox(
-                          height: 5,
+                          height: 5.fh,
                         ),
                         ElevatedButton(
                           onPressed: () {
@@ -239,19 +241,19 @@ class _DoctorsState extends State<Doctors> {
                             ),
                           ),
                           child: Container(
-                            height: 42,
-                            width: 302,
+                            height: 42.fh,
+                            width: 280.fw,
                             child: Center(
                               child: Text(
                                 'Book an appointment',
                                 style: TextStyle(
-                                    color: Colors.white, fontSize: 15),
+                                    color: Colors.white, fontSize: 15.fh),
                               ),
                             ),
                           ),
                         ),
                         SizedBox(
-                          height: 5,
+                          height: 5.fh,
                         ),
                       ],
                     ),

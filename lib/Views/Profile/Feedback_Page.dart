@@ -1,4 +1,5 @@
 import 'package:doc_search/Bottom_Bar.dart';
+import 'package:doc_search/Config/sizeConfig.dart';
 import 'package:flutter/material.dart';
 
 class Feedback_Page extends StatefulWidget {
@@ -11,6 +12,7 @@ class Feedback_Page extends StatefulWidget {
 class _Feedback_PageState extends State<Feedback_Page> {
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return SafeArea(
       child: Scaffold(
         bottomNavigationBar: Bottombar(),
@@ -22,7 +24,7 @@ class _Feedback_PageState extends State<Feedback_Page> {
               padding: const EdgeInsets.all(8.0),
               child: Column(children: [
                 SizedBox(
-                  height: 20,
+                  height: 20.fh,
                 ),
                 Row(
                   children: [
@@ -34,7 +36,7 @@ class _Feedback_PageState extends State<Feedback_Page> {
                         Navigator.pop(context);
                       },
                       child: Icon(Icons.arrow_back_ios_new,
-                          color: Colors.white, size: 26),
+                          color: Colors.white, size: 26.fh),
                     ),
                     SizedBox(
                       width: 100,
@@ -74,7 +76,7 @@ class Doctors_Feedback extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 180,
-      width: 390,
+      margin: EdgeInsets.only(),
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(15)),
       child: Row(
@@ -93,7 +95,7 @@ class Doctors_Feedback extends StatelessWidget {
             ],
           ),
           SizedBox(
-            width: 10,
+            width: 5.fw,
           ),
           Column(
             children: [
@@ -155,7 +157,7 @@ class Doctors_Feedback extends StatelessWidget {
               Row(
                 children: [
                   SizedBox(
-                    width: 120,
+                    width: 80,
                   ),
                   InkWell(
                     onTap: () {

@@ -39,7 +39,7 @@ class _Appointments_PageState extends State<Appointments_Page> {
                           color: Colors.white, size: 26),
                     ),
                     SizedBox(
-                      width: 100,
+                      width: 70,
                     ),
                     Text(
                       'Appointments',

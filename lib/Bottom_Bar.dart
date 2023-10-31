@@ -75,7 +75,7 @@ class _BottombarState extends State<Bottombar> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.chat),
-            label: 'Notifications',
+            label: 'Chats',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),

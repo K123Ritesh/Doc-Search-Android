@@ -1,64 +1,121 @@
-import 'package:doc_search/Bottom_Bar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doc_search/Views/Patient%20Part/Authentication/Login_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Home_Page.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../Doctor Part/Authentication/Signin_Page.dart';
+
 class Signup_Page extends StatefulWidget {
   const Signup_Page({super.key});
-
+  static String verify = "";
   @override
   State<Signup_Page> createState() => _Signup_PageState();
 }
 
 class _Signup_PageState extends State<Signup_Page> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _mobileNumberController = TextEditingController();
+  final TextEditingController _cityController = TextEditingController();
+
+  // Store verification ID and resend token
+  // String _verificationId = '';
+  int _resendToken = 0;
+  String _countryCode = '+91';
+
+  Future<void> _registerUser() async {
+    try {
+      // Send OTP to the user's mobile number
+      await _auth.verifyPhoneNumber(
+        phoneNumber: '$_countryCode${_mobileNumberController.text}',
+        timeout: const Duration(minutes: 2),
+        verificationCompleted: (PhoneAuthCredential credential) async {
+          // Auto-verify the code
+          await _auth.signInWithCredential(credential);
+          await _saveUserData();
+        },
+        verificationFailed: (FirebaseAuthException e) {
+          print('Error sending OTP: $e');
+        },
+        codeSent: (String verificationId, int? resendToken) {
+          Signup_Page.verify = verificationId;
+          // _verificationId = verificationId;
+          _resendToken = resendToken!;
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {
+          print('Auto-retrieval timed out');
+        },
+      );
+    } catch (e) {
+      print('Error during user registration: $e');
+    }
+  }
+
+  Future<void> _saveUserData() async {
+    try {
+      String formattedMobileNumber = '+91${_mobileNumberController.text}';
+      await _firestore.collection('Users').add({
+        'firstName': _firstNameController.text,
+        'lastName': _lastNameController.text,
+        'mobileNumber': formattedMobileNumber,
+        'city': _cityController.text,
+      });
+      print('User data saved successfully');
+    } catch (e) {
+      print('Error saving user data: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: const Color(0xFF155467),
-    ));
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+        statusBarColor: Color.fromARGB(255, 3, 110, 198)));
     return SafeArea(
         child: Scaffold(
       body: Container(
-          decoration: BoxDecoration(
-            color: const Color(0xFF155467),
-          ),
+          decoration:
+              const BoxDecoration(color: Color.fromARGB(255, 3, 110, 198)),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListView(children: [
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Row(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     width: 15,
                   ),
                   InkWell(
                     onTap: () {
                       Navigator.pop(context);
                     },
-                    child: Icon(Icons.arrow_back_ios_new,
+                    child: const Icon(Icons.arrow_back_ios_new,
                         color: Colors.white, size: 26),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 60,
                   ),
-                  Text(
+                  const Text(
                     'Join ',
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 23,
                         fontWeight: FontWeight.bold),
                   ),
-                  Text(
+                  const Text(
                     'Doc',
                     style: TextStyle(
                         color: Color.fromARGB(255, 255, 20, 20),
                         fontSize: 23,
                         fontWeight: FontWeight.bold),
                   ),
-                  Text(
+                  const Text(
                     'Search',
                     style: TextStyle(
                         color: Color.fromARGB(255, 15, 252, 66),
@@ -67,10 +124,10 @@ class _Signup_PageState extends State<Signup_Page> {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Row(
@@ -92,18 +149,25 @@ class _Signup_PageState extends State<Signup_Page> {
                             fontSize: 17,
                             fontWeight: FontWeight.w400),
                       ),
-                      Text(
-                        'Register here ',
-                        style: TextStyle(
-                            color: Colors.red,
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => Doctor_Signup_Page()));
+                        },
+                        child: Text(
+                          'Register here ',
+                          style: TextStyle(
+                              color: Colors.red,
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ],
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               Padding(
@@ -111,17 +175,18 @@ class _Signup_PageState extends State<Signup_Page> {
                     const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
                 child: Center(
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     decoration: BoxDecoration(
                       color: Colors.grey[200], // Background color
                       borderRadius:
                           BorderRadius.circular(20.0), // Rounded corners
                     ),
                     child: TextField(
-                      decoration: InputDecoration(
+                      controller: _firstNameController,
+                      decoration: const InputDecoration(
                         hintText: 'First Name',
-                        hintStyle: TextStyle(
-                            color: const Color.fromARGB(255, 82, 78, 78)),
+                        hintStyle:
+                            TextStyle(color: Color.fromARGB(255, 82, 78, 78)),
                         prefixIcon:
                             Icon(Icons.person_2_outlined, color: Colors.black),
                         border: InputBorder.none, // Remove default underline
@@ -135,17 +200,18 @@ class _Signup_PageState extends State<Signup_Page> {
                     const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
                 child: Center(
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     decoration: BoxDecoration(
                       color: Colors.grey[200], // Background color
                       borderRadius:
                           BorderRadius.circular(20.0), // Rounded corners
                     ),
                     child: TextField(
-                      decoration: InputDecoration(
+                      controller: _lastNameController,
+                      decoration: const InputDecoration(
                         hintText: 'Last Name',
-                        hintStyle: TextStyle(
-                            color: const Color.fromARGB(255, 82, 78, 78)),
+                        hintStyle:
+                            TextStyle(color: Color.fromARGB(255, 82, 78, 78)),
                         prefixIcon:
                             Icon(Icons.person_2_outlined, color: Colors.black),
                         border: InputBorder.none, // Remove default underline
@@ -159,17 +225,18 @@ class _Signup_PageState extends State<Signup_Page> {
                     const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
                 child: Center(
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     decoration: BoxDecoration(
                       color: Colors.grey[200], // Background color
                       borderRadius:
                           BorderRadius.circular(20.0), // Rounded corners
                     ),
                     child: TextField(
-                      decoration: InputDecoration(
-                        hintText: 'Enter Your Mobile Number',
-                        hintStyle: TextStyle(
-                            color: const Color.fromARGB(255, 82, 78, 78)),
+                      controller: _mobileNumberController,
+                      decoration: const InputDecoration(
+                        hintText: 'Your Mobile Number',
+                        hintStyle:
+                            TextStyle(color: Color.fromARGB(255, 82, 78, 78)),
                         prefixIcon:
                             Icon(Icons.phone_android, color: Colors.black),
                         border: InputBorder.none, // Remove default underline
@@ -183,17 +250,18 @@ class _Signup_PageState extends State<Signup_Page> {
                     const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
                 child: Center(
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     decoration: BoxDecoration(
                       color: Colors.grey[200], // Background color
                       borderRadius:
                           BorderRadius.circular(20.0), // Rounded corners
                     ),
                     child: TextField(
-                      decoration: InputDecoration(
+                      controller: _cityController,
+                      decoration: const InputDecoration(
                         hintText: 'Enter Your City',
-                        hintStyle: TextStyle(
-                            color: const Color.fromARGB(255, 82, 78, 78)),
+                        hintStyle:
+                            TextStyle(color: Color.fromARGB(255, 82, 78, 78)),
                         prefixIcon:
                             Icon(Icons.location_city, color: Colors.black),
                         border: InputBorder.none, // Remove default underline
@@ -202,10 +270,10 @@ class _Signup_PageState extends State<Signup_Page> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
-              Row(
+              const Row(
                 children: [
                   SizedBox(
                     width: 15,
@@ -223,7 +291,7 @@ class _Signup_PageState extends State<Signup_Page> {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               Row(
@@ -231,18 +299,25 @@ class _Signup_PageState extends State<Signup_Page> {
                 children: [
                   InkWell(
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => OTP_Entering_Page()));
+                      _registerUser();
+                      _saveUserData();
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => OTP_Entering_Page(
+                            mobileNumber: _mobileNumberController.text,
+                          ),
+                        ),
+                      );
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 25, 67, 157),
+                          color: const Color.fromARGB(255, 25, 67, 157),
                           borderRadius: BorderRadius.circular(10)),
                       // height: 40,
                       // width: 230,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 30.0, vertical: 6),
+                      child: const Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 30.0, vertical: 6),
                         child: Center(
                           child: Row(
                             children: [
@@ -268,14 +343,14 @@ class _Signup_PageState extends State<Signup_Page> {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               Center(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'Already have an account?',
                       style: TextStyle(
                           fontSize: 18,
@@ -285,9 +360,9 @@ class _Signup_PageState extends State<Signup_Page> {
                     InkWell(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => Login_Page()));
+                            builder: (context) => const Login_Page()));
                       },
-                      child: Text(
+                      child: const Text(
                         ' Log in',
                         style: TextStyle(
                             color: Colors.red,
@@ -298,7 +373,7 @@ class _Signup_PageState extends State<Signup_Page> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 28,
               ),
               Padding(
@@ -311,17 +386,17 @@ class _Signup_PageState extends State<Signup_Page> {
                       width: 150,
                       color: Colors.white,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 12,
                     ),
-                    Text(
+                    const Text(
                       'or',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,
                           fontWeight: FontWeight.w400),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 12,
                     ),
                     Container(
@@ -332,7 +407,7 @@ class _Signup_PageState extends State<Signup_Page> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Row(
@@ -354,7 +429,7 @@ class _Signup_PageState extends State<Signup_Page> {
                             width: 30,
                             'https://s3-alpha-sig.figma.com/img/ee6b/3f48/b89ad3b69027b4448422cdfd225c0901?Expires=1699228800&Signature=figvoE9HfxYgq8ZV4WeXdw8yYThj2vFISwHnUm3ygv7pCOrcNgG3qQxi41jf7duyAjKpQ4qmqTXbw7gRy674qLf1kleOWiCZ7Ci8TVHqd0-yHto80ZKgof6snUOJRYvwO1GHemfSkco7Z7be-deVKazxUJlgfGmg0FK9Eu1puQfaIIuaCWNBXHopU4-dmglnLn04hLr17dLmIDRqpeo2lP9XEo1W39-WM9IxrguCHnFBR9XeF-7URLTLFqVYfZhZSArtvbaIjo8ay2e1J4shUqTRv8YzFZs~ZtHrY4IxZ2YYh8PVx0Ng5RYK7ig9IsDqLmUTjo-yTmA-XVj~ft6b~Q__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
                           ),
-                          Text(
+                          const Text(
                             'Login with facebook',
                             style: TextStyle(
                                 color: Colors.white,
@@ -367,7 +442,7 @@ class _Signup_PageState extends State<Signup_Page> {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Row(
@@ -389,7 +464,7 @@ class _Signup_PageState extends State<Signup_Page> {
                             width: 30,
                             'https://s3-alpha-sig.figma.com/img/0e8c/5336/ec40b19b6983a179020e0e933a042d6b?Expires=1699228800&Signature=B~1zFkzXaDodVf0zzDC9r2IBjoOsAIBd6WGx06wXjuS-Pl6OQXBNFSW12rrN8EEK6xuTfS6sb7xhPwItWTjdIIbg9yfZE9G2MuON6H9vRwj8JPUV9U81e24Fo4AL6fm2OH3NlK-CGOukuYygMQQXXHefm5yAnlyC~u-Ol72v~LCVmVcjzHaMVLBifqYd70RLq-Z3Hwm~4-GjfPKZRrQGcrO6PcHvCTn9QthNlBI7pqSPCrQ6sjb3COAhZrIr5FONCdZNpFoh50W~q~EYxY4sJJJqqex7RfYLQbmALHRQrfBRMlqN7mFxrKPcBkvY-Rq0QMIekVJshaFBHhFLOguN3w__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
                           ),
-                          Text(
+                          const Text(
                             'Login with Google',
                             style: TextStyle(
                                 color: Colors.white,
@@ -413,9 +488,14 @@ class OTPInput extends StatefulWidget {
   _OTPInputState createState() => _OTPInputState();
 }
 
+// class _OTPInputState extends State<OTPInput> {
+//   List<TextEditingController> controllers =
+//       List.generate(6, (index) => TextEditingController());
+
 class _OTPInputState extends State<OTPInput> {
   List<TextEditingController> controllers =
       List.generate(6, (index) => TextEditingController());
+  List<bool> isDigitEntered = List.generate(6, (index) => false);
 
   @override
   Widget build(BuildContext context) {
@@ -426,19 +506,20 @@ class _OTPInputState extends State<OTPInput> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
             color: Colors.white,
+            border: Border.all(
+              color: isDigitEntered[index] ? Colors.green : Colors.grey,
+            ),
           ),
           width: 35.0,
           height: 40,
-          margin: EdgeInsets.all(5.0),
+          margin: const EdgeInsets.all(5.0),
           child: TextField(
             controller: controllers[index],
             textAlign: TextAlign.center,
             keyboardType: TextInputType.number,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               fillColor: Colors.white,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
+              border: InputBorder.none,
             ),
             onChanged: (value) {
               if (value.length == 1) {
@@ -449,8 +530,16 @@ class _OTPInputState extends State<OTPInput> {
                   String otp =
                       controllers.map((controller) => controller.text).join();
                   print("Entered OTP: $otp");
+                  verifyOTPAndSignIn(otp);
                   // You can add your logic for OTP verification here.
                 }
+                setState(() {
+                  isDigitEntered[index] = true;
+                });
+              } else {
+                setState(() {
+                  isDigitEntered[index] = false;
+                });
               }
             },
           ),
@@ -458,48 +547,78 @@ class _OTPInputState extends State<OTPInput> {
       }),
     );
   }
+
+  Future<void> verifyOTPAndSignIn(String code) async {
+    try {
+      PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: Signup_Page.verify,
+        smsCode: code,
+      );
+
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      User? user = userCredential.user;
+
+      // Now, you have access to the authenticated user
+
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => HomePage(user: user),
+        ),
+      );
+    } catch (e) {
+      // Handle OTP verification errors here
+      print('Error verifying OTP: $e');
+    }
+  }
 }
 
 class OTP_Entering_Page extends StatefulWidget {
-  const OTP_Entering_Page({super.key});
+  // final String verificationId;
+  final String mobileNumber;
+
+  OTP_Entering_Page({required this.mobileNumber});
 
   @override
   State<OTP_Entering_Page> createState() => _OTP_Entering_PageState();
 }
 
 class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
+  final TextEditingController _otpController = TextEditingController();
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  var code = '';
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
       body: Container(
-          decoration: BoxDecoration(
-            color: const Color(0xFF155467),
-          ),
+          decoration:
+              const BoxDecoration(color: Color.fromARGB(255, 3, 110, 198)),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListView(children: [
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Row(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     width: 15,
                   ),
                   InkWell(
                     onTap: () {
                       Navigator.pop(context);
                     },
-                    child: Icon(Icons.arrow_back_ios_new,
+                    child: const Icon(Icons.arrow_back_ios_new,
                         color: Colors.white, size: 26),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 60,
                   ),
                   InkWell(
                     onTap: () {},
-                    child: Text(
+                    child: const Text(
                       'Login',
                       style: TextStyle(
                           color: Colors.white,
@@ -509,13 +628,13 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
-              Row(
+              const Row(
                 children: [
                   SizedBox(
                     width: 30,
@@ -529,10 +648,10 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              Center(
+              const Center(
                 child: Row(
                   children: [
                     SizedBox(
@@ -545,14 +664,14 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               OTPInput(),
-              SizedBox(
+              const SizedBox(
                 height: 19,
               ),
-              Center(
+              const Center(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -573,26 +692,48 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 28,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   InkWell(
-                    onTap: () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => HomePage()));
+                    onTap: () async {
+                      // PhoneAuthCredential credential =
+                      //     PhoneAuthProvider.credential(
+                      //   // verificationId: widget.verificationId,
+                      //   smsCode: _otpController.text,
+                      // );
+
+                      try {
+                        PhoneAuthCredential credential =
+                            PhoneAuthProvider.credential(
+                          verificationId: Signup_Page
+                              .verify, // Use the stored verification ID
+                          smsCode: code, // Use the OTP entered by the user
+                        );
+                        await auth.signInWithCredential(credential);
+                        // OTP verification succeeded, navigate to the home page
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const HomePage(),
+                          ),
+                        );
+                      } catch (e) {
+                        // Handle OTP verification errors here
+                        print('Error verifying OTP: $e');
+                      }
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 25, 67, 157),
+                          color: const Color.fromARGB(255, 25, 67, 157),
                           borderRadius: BorderRadius.circular(10)),
                       // height: 40,
                       // width: 230,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 30.0, vertical: 6),
+                      child: const Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 30.0, vertical: 6),
                         child: Center(
                           child: Row(
                             children: [

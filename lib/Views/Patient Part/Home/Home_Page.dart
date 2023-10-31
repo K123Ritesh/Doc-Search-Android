@@ -1,22 +1,19 @@
 import 'package:doc_search/Bottom_Bar.dart';
-import 'package:doc_search/Providers/Doctor_Provider.dart';
-import 'package:doc_search/Testing_page.dart';
-import 'package:doc_search/Views/Not_Build_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Appointment/Appointment.dart';
-import 'package:doc_search/Views/Patient%20Part/Appointment/doctor1.dart';
-import 'package:doc_search/Views/Patient%20Part/Doctors/Doctors_Category_Wise.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Medical_Labs_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Medicine_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Search_Tapped_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Wallet_Page.dart';
-import 'package:doc_search/Views/Patient%20Part/Profile/Appointments_Page.dart';
-import 'package:doc_search/Views/Patient%20Part/Profile/Profile_Page.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
+
+import '../Doctors/Doctors_Category_Wise.dart';
+import '../Profile/Profile_Page.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({super.key, User? user});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -42,7 +39,7 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
-          margin: const EdgeInsets.only(left: 20, right: 20, top: 5),
+          margin: const EdgeInsets.only(left: 20, right: 20, top: 30),
           child: Column(
             children: [
               SizedBox(
@@ -74,19 +71,18 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   SizedBox(
-                    width: 200,
+                    width: 230,
                   ),
                   InkWell(
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) => Not_Build_Page()),
+                        MaterialPageRoute(builder: (context) => Wallet()),
                       );
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 83, 130, 211),
+                          color: Color(0XFFECFAFC),
                           borderRadius: BorderRadius.circular(15)),
                       child: Padding(
                         padding: const EdgeInsets.all(3.0),
@@ -94,7 +90,7 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             Icon(
                               Icons.account_balance_wallet,
-                              color: Colors.white,
+                              color: Color(0xFF005473),
                               size: 30,
                             ),
                             SizedBox(width: 8),
@@ -125,7 +121,7 @@ class _HomePageState extends State<HomePage> {
                         builder: (context) => Search_Tapped_Page()));
                   },
                   decoration: InputDecoration(
-                    border: InputBorder.none, // Remove the default border
+                    border: InputBorder.none,
                     prefixIcon: Icon(Icons.search),
                     hintText: 'Search doctors, hospitals...',
                   ),

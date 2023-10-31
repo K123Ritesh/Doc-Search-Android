@@ -1,15 +1,24 @@
+import 'package:doc_search/Models/Appointment_Model.dart';
+import 'package:doc_search/Providers/Doctor_Provider.dart';
+import 'package:doc_search/Testing_page.dart';
 import 'package:flutter/material.dart';
-import '../../Bottom_Bar.dart';
-import 'doctor2.dart';
+import 'package:provider/provider.dart';
+import '../../../Bottom_Bar.dart';
 
-class DoctorDetails2 extends StatefulWidget {
-  const DoctorDetails2({super.key});
+class Doctor_Category_Wise_Final extends StatefulWidget {
+  const Doctor_Category_Wise_Final(
+      {super.key, required this.slot, required this.date});
+
+  final String slot;
+  final String date;
 
   @override
-  State<DoctorDetails2> createState() => _DoctorDetails2State();
+  State<Doctor_Category_Wise_Final> createState() =>
+      _Doctor_Category_Wise_FinalState();
 }
 
-class _DoctorDetails2State extends State<DoctorDetails2> {
+class _Doctor_Category_Wise_FinalState
+    extends State<Doctor_Category_Wise_Final> {
   bool isChecked = false;
   bool isBlue = false;
   void toggleColor() {
@@ -20,6 +29,7 @@ class _DoctorDetails2State extends State<DoctorDetails2> {
 
   @override
   Widget build(BuildContext context) {
+    final DoctorProvider = Provider.of<Doctor_Provider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -30,6 +40,10 @@ class _DoctorDetails2State extends State<DoctorDetails2> {
             color: Colors.black,
           ),
           onPressed: () {
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(builder: (context) => const DoctorsDetails()),
+            // );
             Navigator.pop(context);
           },
         ),
@@ -473,10 +487,21 @@ class _DoctorDetails2State extends State<DoctorDetails2> {
               // margin: EdgeInsets.only(top: 8),
               child: ElevatedButton(
                 onPressed: () {
+                  DoctorProvider.bookAppointment(
+                      context,
+                      Appointment_Model(
+                          date_for_booking: widget.date,
+                          mode_of_payment: 'online',
+                          self: true,
+                          reg_fee: '450',
+                          paid: true,
+                          doctorId: 'khn@gmail.com',
+                          slot: widget.slot,
+                          userId: 'rit11@gmail.com'));
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const DoctorDetails2()),
+                        builder: (context) => Appointment_Done_Page()),
                   );
                 },
                 style: ElevatedButton.styleFrom(
@@ -490,6 +515,9 @@ class _DoctorDetails2State extends State<DoctorDetails2> {
                         TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
               ),
             ),
+            SizedBox(
+              height: 30,
+            )
           ],
         ),
       ),

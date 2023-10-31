@@ -1,10 +1,11 @@
-import 'package:doc_search/Views/Profile/Appointments_Page.dart';
-import 'package:doc_search/Views/Profile/Refer_And_Earn_Page.dart';
-import 'package:doc_search/Views/Profile/Settings_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Profile/Appointments_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Profile/Health_Care_Plan.dart';
+import 'package:doc_search/Views/Patient%20Part/Profile/Refer_And_Earn_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Profile/Settings_Page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../Bottom_Bar.dart';
+import '../../../Bottom_Bar.dart';
 import 'Edit_User_Profile.dart';
 
 class Profile_Page_Doc_Search extends StatelessWidget {
@@ -165,16 +166,22 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                         trailing: Icon(Icons.arrow_forward_ios,
                             size: 20, color: Colors.white),
                       ),
-                      ListTile(
-                        title: Text(
-                          "Subscriptions",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w400),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => Health_Care_Plan()));
+                        },
+                        child: ListTile(
+                          title: Text(
+                            "Subscriptions",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w400),
+                          ),
+                          trailing: Icon(Icons.arrow_forward_ios,
+                              size: 20, color: Colors.white),
                         ),
-                        trailing: Icon(Icons.arrow_forward_ios,
-                            size: 20, color: Colors.white),
                       ),
                       ListTile(
                         title: Text(

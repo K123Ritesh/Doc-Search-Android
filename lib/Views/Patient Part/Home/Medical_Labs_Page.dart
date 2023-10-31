@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:doc_search/Views/Home/Medical_Labs_Details_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Home/Medical_Labs_Details_Page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-import '../../Bottom_Bar.dart';
-import '../../Models/MedicalLabs.dart';
+import '../../../Bottom_Bar.dart';
+import '../../../Models/MedicalLabs.dart';
 
 class Medical_Labs_Page extends StatefulWidget {
   const Medical_Labs_Page({super.key});

@@ -1,9 +1,9 @@
-import 'package:doc_search/Views/Home/Medical_Labs_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Home/Medical_Labs_Page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../Bottom_Bar.dart';
-import '../../Testing_page.dart';
+import '../../../Bottom_Bar.dart';
+import '../../../Testing_page.dart';
 import '../Doctors/Doctors_Category_Wise.dart';
 import 'Medicine_Page.dart';
 

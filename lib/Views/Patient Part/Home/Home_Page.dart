@@ -1,15 +1,16 @@
 import 'package:doc_search/Bottom_Bar.dart';
 import 'package:doc_search/Providers/Doctor_Provider.dart';
 import 'package:doc_search/Testing_page.dart';
-import 'package:doc_search/Views/Appointment/Appointment.dart';
-import 'package:doc_search/Views/Appointment/doctor1.dart';
-import 'package:doc_search/Views/Doctors/Doctors_Category_Wise.dart';
-import 'package:doc_search/Views/Home/Medical_Labs_Page.dart';
-import 'package:doc_search/Views/Home/Medicine_Page.dart';
-import 'package:doc_search/Views/Home/Search_Tapped_Page.dart';
-import 'package:doc_search/Views/Home/Wallet_Page.dart';
-import 'package:doc_search/Views/Profile/Appointments_Page.dart';
-import 'package:doc_search/Views/Profile/Profile_Page.dart';
+import 'package:doc_search/Views/Not_Build_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Appointment/Appointment.dart';
+import 'package:doc_search/Views/Patient%20Part/Appointment/doctor1.dart';
+import 'package:doc_search/Views/Patient%20Part/Doctors/Doctors_Category_Wise.dart';
+import 'package:doc_search/Views/Patient%20Part/Home/Medical_Labs_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Home/Medicine_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Home/Search_Tapped_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Home/Wallet_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Profile/Appointments_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Profile/Profile_Page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -77,10 +78,11 @@ class _HomePageState extends State<HomePage> {
                   ),
                   InkWell(
                     onTap: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(builder: (context) => Wallet()),
-                      // );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Not_Build_Page()),
+                      );
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -162,15 +164,21 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Column(
                       children: [
-                        Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Color(0xFF5793A8)),
-                              borderRadius: BorderRadius.circular(3),
-                            ),
-                            child: Image.asset(
-                                'assets/DocSearch Android/Group 2412.png')),
+                        InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => const Appointment1()));
+                          },
+                          child: Container(
+                              width: 40,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Color(0xFF5793A8)),
+                                borderRadius: BorderRadius.circular(3),
+                              ),
+                              child: Image.asset(
+                                  'assets/DocSearch Android/Group 2412.png')),
+                        ),
                         const SizedBox(
                           height: 12,
                         ),

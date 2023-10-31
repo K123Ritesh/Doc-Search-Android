@@ -2,7 +2,7 @@ import 'package:doc_search/Bottom_Bar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../Providers/Doctor_Provider.dart';
+import '../../../Providers/Doctor_Provider.dart';
 import 'Appointment.dart';
 import 'doctor2.dart';
 

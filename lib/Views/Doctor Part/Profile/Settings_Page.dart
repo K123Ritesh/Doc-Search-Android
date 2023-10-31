@@ -1,17 +1,16 @@
 import 'package:doc_search/Bottom_Bar.dart';
-import 'package:doc_search/Views/Profile/Change_PhoneNumber_Page.dart';
-import 'package:doc_search/Views/Profile/Feedback_Page.dart';
-import 'package:doc_search/Views/Profile/Privacy_Policy_Page.dart';
+import 'package:doc_search/Views/Doctor%20Part/Profile/Change_Password.dart';
+import 'package:doc_search/Views/Patient%20Part/Profile/Privacy_Policy_Page.dart';
 import 'package:flutter/material.dart';
 
-class Settings_Page extends StatefulWidget {
-  const Settings_Page({super.key});
+class Doctors_Setting_Page extends StatefulWidget {
+  const Doctors_Setting_Page({super.key});
 
   @override
-  State<Settings_Page> createState() => _Settings_PageState();
+  State<Doctors_Setting_Page> createState() => _Doctors_Setting_PageState();
 }
 
-class _Settings_PageState extends State<Settings_Page> {
+class _Doctors_Setting_PageState extends State<Doctors_Setting_Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,23 +81,6 @@ class _Settings_PageState extends State<Settings_Page> {
                     children: [
                       ListTile(
                         title: Text(
-                          "Feedback",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w400),
-                        ),
-                        trailing: InkWell(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => Feedback_Page()));
-                          },
-                          child: Icon(Icons.arrow_forward_ios,
-                              size: 20, color: Colors.white),
-                        ),
-                      ),
-                      ListTile(
-                        title: Text(
                           "Privacy Policy",
                           style: TextStyle(
                               color: Colors.white,
@@ -116,7 +98,7 @@ class _Settings_PageState extends State<Settings_Page> {
                       ),
                       ListTile(
                         title: Text(
-                          "Change Phone Number",
+                          "Password",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 20,
@@ -125,8 +107,7 @@ class _Settings_PageState extends State<Settings_Page> {
                         trailing: InkWell(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    Change_PhoneNumber_Page()));
+                                builder: (context) => Change_Password_Page()));
                           },
                           child: Icon(Icons.arrow_forward_ios,
                               size: 20, color: Colors.white),
@@ -134,7 +115,7 @@ class _Settings_PageState extends State<Settings_Page> {
                       ),
                       ListTile(
                         title: Text(
-                          "Are you a Doctor?",
+                          "Are you a Patient?",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 20,

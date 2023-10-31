@@ -21,4 +21,12 @@ class Doctor_Provider with ChangeNotifier {
     await service.BookAppointment(context, appointment);
     notifyListeners();
   }
+
+  List<String>? availableSlots = [];
+  knowAvailableSlots(context, String docId, String targetDate,
+      List<String> possibleSlots) async {
+    availableSlots = await service.checkAvailableSlots(
+        context, docId, targetDate, possibleSlots);
+    notifyListeners();
+  }
 }

@@ -1,4 +1,4 @@
-import 'package:doc_search/Views/Home/Hospital_Details_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Home/Hospital_Details_Page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

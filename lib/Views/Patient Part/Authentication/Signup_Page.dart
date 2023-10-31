@@ -1,5 +1,4 @@
 import 'package:doc_search/Bottom_Bar.dart';
-import 'package:doc_search/Views/Doctor%20Part/Authentication/Signin_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Authentication/Login_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Home_Page.dart';
 import 'package:flutter/material.dart';
@@ -93,19 +92,12 @@ class _Signup_PageState extends State<Signup_Page> {
                             fontSize: 17,
                             fontWeight: FontWeight.w400),
                       ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) => Doctor_Signup_Page()));
-                        },
-                        child: Text(
-                          'Register here ',
-                          style: TextStyle(
-                              color: Colors.red,
-                              fontSize: 17,
-                              fontWeight: FontWeight.bold),
-                        ),
+                      Text(
+                        'Register here ',
+                        style: TextStyle(
+                            color: Colors.red,
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold),
                       ),
                     ],
                   )

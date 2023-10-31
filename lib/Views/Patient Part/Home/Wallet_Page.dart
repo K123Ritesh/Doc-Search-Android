@@ -1,8 +1,4 @@
-<<<<<<< HEAD:lib/Views/Home/Wallet_Page.dart
 import 'package:doc_search/Config/sizeConfig.dart';
-=======
-import 'package:doc_search/Views/Patient%20Part/Home/Home_Page.dart';
->>>>>>> 2e760eac8dce9152dc1b1d4bdcbff5705784abbb:lib/Views/Patient Part/Home/Wallet_Page.dart
 import 'package:flutter/material.dart';
 
 import '../../../Bottom_Bar.dart';
@@ -247,7 +243,6 @@ class _WalletState extends State<Wallet> with SingleTickerProviderStateMixin {
                                           ),
                                         ),
                                       ),
-                                      
                                       Container(
                                         margin: EdgeInsets.only(left: 70.fw),
                                         width: 47.fw,

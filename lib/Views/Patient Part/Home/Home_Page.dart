@@ -1,4 +1,5 @@
 import 'package:doc_search/Bottom_Bar.dart';
+import 'package:doc_search/Config/sizeConfig.dart';
 import 'package:doc_search/Views/Patient%20Part/Appointment/Appointment.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Medical_Labs_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Medicine_Page.dart';
@@ -11,8 +12,6 @@ import 'package:flutter/services.dart';
 
 import '../Doctors/Doctors_Category_Wise.dart';
 import '../Profile/Profile_Page.dart';
-
-import '../../Config/sizeConfig.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, User? user});
@@ -98,8 +97,8 @@ class _HomePageState extends State<HomePage> {
                             SizedBox(width: 5.fw),
                             Text(
                               '100',
-                              style:
-                                  TextStyle(fontSize: 18.fh, color: Colors.black),
+                              style: TextStyle(
+                                  fontSize: 18.fh, color: Colors.black),
                             ),
                           ],
                         ),
@@ -117,19 +116,6 @@ class _HomePageState extends State<HomePage> {
                 decoration: BoxDecoration(
                     border: Border.all(color: Color(0xFF5793A8), width: 1.0),
                     borderRadius: BorderRadius.circular(50)),
-<<<<<<< HEAD:lib/Views/Home/Home_Page.dart
-                child: Center(
-                  child: TextField(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => Search_Tapped_Page()));
-                    },
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      prefixIcon: Icon(Icons.search),
-                      hintText: 'Search doctors, hospitals...',
-                    ),
-=======
                 child: TextField(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
@@ -139,7 +125,6 @@ class _HomePageState extends State<HomePage> {
                     border: InputBorder.none,
                     prefixIcon: Icon(Icons.search),
                     hintText: 'Search doctors, hospitals...',
->>>>>>> 2e760eac8dce9152dc1b1d4bdcbff5705784abbb:lib/Views/Patient Part/Home/Home_Page.dart
                   ),
                 ),
               ),
@@ -256,7 +241,6 @@ class _HomePageState extends State<HomePage> {
                 height: 20,
               ),
               Container(
-
                 height: 130.fh,
                 decoration: BoxDecoration(
                   color: const Color(0xFFECFAFC),
@@ -268,9 +252,9 @@ class _HomePageState extends State<HomePage> {
                   Column(
                     children: [
                       Container(
-                          margin:  EdgeInsets.only( top: 15.fh),
+                          margin: EdgeInsets.only(top: 15.fh),
                           child: RichText(
-                            text:  TextSpan(
+                            text: TextSpan(
                               children: <TextSpan>[
                                 TextSpan(
                                   text: 'We are ',
@@ -318,7 +302,10 @@ class _HomePageState extends State<HomePage> {
                             ),
                           )),
                       Container(
-                          margin: EdgeInsets.only(left: 20.fw, top: 10.fh,),
+                          margin: EdgeInsets.only(
+                            left: 20.fw,
+                            top: 10.fh,
+                          ),
                           child: Text(
                             'Always caring about your health, \nFind your doctors and make an \nappointment',
                             style: TextStyle(
@@ -362,10 +349,12 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Spacer(),
                   Container(
-                    margin:  EdgeInsets.only( top: 30.fh),
+                    margin: EdgeInsets.only(top: 30.fh),
                     height: 118.fh,
                     // width: 158.fw,
-                    child: Image.asset('assets/image 34.png',),
+                    child: Image.asset(
+                      'assets/image 34.png',
+                    ),
                   ),
                 ]),
               ),

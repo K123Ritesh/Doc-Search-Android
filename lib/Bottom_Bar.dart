@@ -63,11 +63,11 @@ class _BottombarState extends State<Bottombar> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
+            icon: Icon(Icons.book_outlined),
             label: 'Search',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
+            icon: Icon(Icons.chat),
             label: 'Notifications',
           ),
           BottomNavigationBarItem(

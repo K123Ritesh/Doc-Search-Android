@@ -1,165 +1,217 @@
-import 'package:doc_search/Bottom_Bar.dart';
-import 'package:doc_search/main.dart';
-import 'package:doc_search/Views/Authentication/Signup_Page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doc_search/Views/Home/Home_Page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:go_router/go_router.dart';
+import 'package:pinput/pinput.dart';
+
+import 'Signup_Page.dart';
 
 class Login_Page extends StatefulWidget {
-  const Login_Page({super.key});
+  const Login_Page({Key? key}) : super(key: key);
+  static String verify = "";
 
   @override
   State<Login_Page> createState() => _Login_PageState();
 }
 
 class _Login_PageState extends State<Login_Page> {
-  TextEditingController phoneNumber = TextEditingController();
+  TextEditingController countryController = TextEditingController();
+  var phone = '';
 
-  var temp;
+  @override
+  void initState() {
+    // TODO: implement initState
+    countryController.text = "+91";
+    super.initState();
+  }
 
-  Future<ConfirmationResult> sendOTP(String num) async {
+  final _formKey = GlobalKey<FormState>();
+
+  Future<bool> isPhoneNumberInUsersCollection(String phoneNumber) async {
     try {
-      FirebaseAuth auth = FirebaseAuth.instance;
-      ConfirmationResult result = await auth.signInWithPhoneNumber('+91$num');
-      print('OTP sent to +91$num');
-      return result;
+      final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('Users')
+          .where('mobileNumber', isEqualTo: phoneNumber)
+          .get();
+
+      return querySnapshot.docs.isNotEmpty;
     } catch (e) {
-      print('OTP sending error: $e');
-      return temp;
+      print('Error checking phone number in Users collection: $e');
+      return false; // Return false if an error occurs
+    }
+  }
+
+  void showSignUpDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Phone Number Not Registered"),
+          content: Text(
+            "Your phone number is not registered. Would you like to sign up?",
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text("No"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => Signup_Page()),
+                );
+              },
+              child: Text("Yes"),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> checkPhoneNumberAndVerifyOTP(BuildContext context) async {
+    // final fullPhoneNumber = "${countryController.text}$phone";
+    // final fullPhoneNumber = (phone.isNotEmpty) ? phone: "+91";
+    final fullPhoneNumber = "+91$phone";
+    if (await isPhoneNumberInUsersCollection(fullPhoneNumber)) {
+      await FirebaseAuth.instance.verifyPhoneNumber(
+        phoneNumber: fullPhoneNumber,
+        verificationCompleted: (PhoneAuthCredential credential) {},
+        verificationFailed: (FirebaseAuthException e) {
+          print('Verification failed: ${e.message}');
+          if (e.code == 'ERROR_USER_NOT_FOUND') {
+            showSignUpDialog(context);
+          }
+        },
+        codeSent: (String verificationId, int? resendToken) {
+          Login_Page.verify = verificationId;
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => OTP_Entering_Page(),
+          ));
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {},
+      );
+    } else {
+      showSignUpDialog(context);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: Color.fromARGB(255, 3, 110, 198)));
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF1A6A83),
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios_new,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(builder: (context) => const Appointment1()),
+            // );
+          },
+        ),
+        title: Container(
+          margin: const EdgeInsets.only(left: 80),
+          child: Text(
+            'Login',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+      ),
       body: Container(
-          decoration: BoxDecoration(color: Color.fromARGB(255, 3, 110, 198)),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListView(children: [
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: 15,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Icon(Icons.arrow_back_ios_new,
-                        color: Colors.white, size: 26),
-                  ),
-                  SizedBox(
-                    width: 60,
-                  ),
-                  Text(
-                    'Login',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 23,
-                        fontWeight: FontWeight.bold),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: 30,
-                  ),
-                  Text(
-                    'Hi, Welcome Back! 👋',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 25,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                child: Center(
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 16.0),
-                    decoration: BoxDecoration(
-                      color: Colors.grey[200], // Background color
-                      borderRadius:
-                          BorderRadius.circular(20.0), // Rounded corners
-                    ),
-                    child: TextField(
-                      controller: phoneNumber,
-                      decoration: InputDecoration(
-                        hintText: 'Enter Your Mobile Number',
-                        hintStyle: TextStyle(
-                            color: const Color.fromARGB(255, 82, 78, 78)),
-                        prefixIcon:
-                            Icon(Icons.phone_android, color: Colors.black),
-                        border: InputBorder.none, // Remove default underline
-                      ),
-                    ),
-                  ),
+        height: MediaQuery.of(context).size.height,
+        color: const Color(0xFF1A6A83),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                margin: EdgeInsets.only(left: 20, top: 20, bottom: 20),
+                child: Text(
+                  'Hi, Welcome Back! 👋',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
-              SizedBox(
-                height: 30,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => OTP_Entering_Page()));
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 25, 67, 157),
-                          borderRadius: BorderRadius.circular(10)),
-                      // height: 40,
-                      // width: 230,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 30.0, vertical: 6),
-                        child: Center(
-                          child: Row(
-                            children: [
-                              Text(
-                                'Next',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                color: Colors.white,
-                              )
-                            ],
-                          ),
+              Container(
+                margin: const EdgeInsets.only(left: 20, right: 20),
+                height: 55,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(width: 1, color: Colors.grey),
+                    borderRadius: BorderRadius.circular(10)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    SizedBox(
+                      width: 40,
+                      child: TextField(
+                        controller: countryController,
+                        keyboardType: TextInputType.number,
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
                         ),
                       ),
                     ),
-                  )
-                ],
+                    const Text(
+                      "|",
+                      style: TextStyle(fontSize: 33, color: Colors.grey),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(
+                        child: TextField(
+                      keyboardType: TextInputType.phone,
+                      onChanged: (value) {
+                        phone = value;
+                      },
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "Enter Your Mobile Number",
+                      ),
+                    ))
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Center(
+                child: SizedBox(
+                  width: 157,
+                  height: 38,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0XFF005473),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    onPressed: () async {
+                      checkPhoneNumberAndVerifyOTP(
+                          context); // Call the function
+                    },
+                    child: const Text("Next"),
+                  ),
+                ),
               ),
               SizedBox(
                 height: 30,
@@ -201,7 +253,7 @@ class _Login_PageState extends State<Login_Page> {
                   children: [
                     Container(
                       height: 1.5,
-                      width: 150,
+                      width: 130,
                       color: Colors.white,
                     ),
                     SizedBox(
@@ -218,8 +270,9 @@ class _Login_PageState extends State<Login_Page> {
                       width: 12,
                     ),
                     Container(
+                      margin: EdgeInsets.only(right: 10),
                       height: 1.5,
-                      width: 150,
+                      width: 130,
                       color: Colors.white,
                     ),
                   ],
@@ -293,94 +346,98 @@ class _Login_PageState extends State<Login_Page> {
                   )
                 ],
               ),
-            ]),
-          )),
-    ));
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
 
 class OTP_Entering_Page extends StatefulWidget {
-  OTP_Entering_Page({
-    super.key,
-  });
+  const OTP_Entering_Page({Key? key}) : super(key: key);
 
   @override
   State<OTP_Entering_Page> createState() => _OTP_Entering_PageState();
 }
 
 class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
-  List<TextEditingController> controllers =
-      List.generate(6, (index) => TextEditingController());
-  String otp = '';
-  Future<void> authenticate(ConfirmationResult result, String otp) async {
-    try {
-      UserCredential user = await result.confirm(otp);
-      if (user.additionalUserInfo != null &&
-          user.additionalUserInfo!.isNewUser) {
-        print('Successfully authenticated');
-      } else {
-        print('User already exists');
-      }
-    } catch (e) {
-      print('Authentication error: $e');
-    }
-  }
-
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  var code = '';
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
+    final defaultPinTheme = PinTheme(
+      width: 56,
+      height: 56,
+      textStyle: const TextStyle(
+          fontSize: 20,
+          color: Color.fromRGBO(30, 60, 87, 1),
+          fontWeight: FontWeight.w600),
+      decoration: BoxDecoration(
+        border: Border.all(color: const Color.fromRGBO(234, 239, 243, 1)),
+        borderRadius: BorderRadius.circular(20),
+      ),
+    );
+
+    final focusedPinTheme = defaultPinTheme.copyDecorationWith(
+      border: Border.all(color: const Color.fromRGBO(114, 178, 238, 1)),
+      borderRadius: BorderRadius.circular(8),
+    );
+
+    final submittedPinTheme = defaultPinTheme.copyWith(
+      decoration: defaultPinTheme.decoration?.copyWith(
+        color: const Color.fromRGBO(234, 239, 243, 1),
+      ),
+    );
+
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF1A6A83),
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios_new,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Login_Page()),
+            );
+          },
+        ),
+        title: Container(
+          margin: const EdgeInsets.only(left: 80),
+          child: Text(
+            'Login',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+      ),
       body: Container(
-          decoration: BoxDecoration(color: Color.fromARGB(255, 3, 110, 198)),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListView(children: [
+        color: const Color(0xFF1A6A83),
+        height: MediaQuery.of(context).size.height,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
               SizedBox(
-                height: 20,
+                height: 150,
               ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: 15,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Icon(Icons.arrow_back_ios_new,
-                        color: Colors.white, size: 26),
-                  ),
-                  SizedBox(
-                    width: 60,
-                  ),
-                  Text(
-                    'Login',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 23,
-                        fontWeight: FontWeight.bold),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: 30,
-                  ),
-                  Text(
-                    'Almost There! ',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ],
+              Container(
+                margin: EdgeInsets.only(left: 20),
+                child: Text(
+                  'Almost There! ',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold),
+                ),
               ),
               SizedBox(
                 height: 10,
@@ -401,108 +458,68 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
               SizedBox(
                 height: 25,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(6, (index) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      color: Colors.white,
-                    ),
-                    width: 35.0,
-                    height: 40,
-                    margin: EdgeInsets.all(5.0),
-                    child: TextField(
-                      controller: controllers[index],
-                      textAlign: TextAlign.center,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        fillColor: Colors.white,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      ),
-                      onChanged: (value) {
-                        if (value.length == 1) {
-                          if (index < 5) {
-                            FocusScope.of(context).nextFocus();
-                          } else {
-                            // Handle submission when the last digit is entered.
-                            otp = controllers
-                                .map((controller) => controller.text)
-                                .join();
-                            print("Entered OTP: $otp");
-                            // You can add your logic for OTP verification here.
-                          }
-                        }
-                      },
-                    ),
-                  );
-                }),
+              Container(
+                margin: EdgeInsets.only(left: 20, right: 20),
+                child: Pinput(
+                  length: 6,
+                  onChanged: (value) {
+                    code = value;
+                  },
+                  showCursor: true,
+
+                  // onCompleted: (pin) => print(pin),
+                ),
               ),
-              SizedBox(
-                height: 19,
+              const SizedBox(
+                height: 30,
               ),
               Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Dont Received OTP?',
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white),
-                    ),
-                    Text(
-                      'Try Again',
-                      style: TextStyle(
-                          color: Colors.red,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold),
-                    )
-                  ],
+                child: SizedBox(
+                  width: 157,
+                  height: 36,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          primary: Color(0xFF005473),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10))),
+                      onPressed: () async {
+                        try {
+                          PhoneAuthCredential credential =
+                              PhoneAuthProvider.credential(
+                                  verificationId: Login_Page.verify,
+                                  smsCode: code);
+
+                          await auth.signInWithCredential(credential);
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => HomePage()));
+                        } catch (e) {
+                          print('wrong OTP');
+                        }
+                      },
+                      child: const Text("Verify")),
                 ),
               ),
               SizedBox(
-                height: 28,
+                height: 10,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  InkWell(
-                    onTap: () {
-                      context.go('/home');
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 25, 67, 157),
-                          borderRadius: BorderRadius.circular(10)),
-                      // height: 40,
-                      // width: 230,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 30.0, vertical: 6),
-                        child: Center(
-                          child: Row(
-                            children: [
-                              Text(
-                                'Verify',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Login_Page()));
+                      },
+                      child: const Text(
+                        "Edit Phone Number ?",
+                        style: TextStyle(color: Colors.white),
+                      ))
                 ],
-              ),
-            ]),
-          )),
-    ));
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

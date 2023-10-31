@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import '../../Bottom_Bar.dart';
 import '../../Models/MedicalLabs.dart';
 
 class Medical_Labs_Page extends StatefulWidget {
@@ -59,6 +60,7 @@ class _Medical_Labs_PageState extends State<Medical_Labs_Page> {
         SystemUiOverlayStyle(statusBarColor: Colors.white));
     return SafeArea(
         child: Scaffold(
+      bottomNavigationBar: Bottombar(),
       body: Container(
           decoration: BoxDecoration(color: Colors.white),
           child: Padding(

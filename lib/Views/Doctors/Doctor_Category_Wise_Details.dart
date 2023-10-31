@@ -1,5 +1,7 @@
+import 'package:doc_search/Bottom_Bar.dart';
 import 'package:doc_search/Models/Doctor.dart';
 import 'package:doc_search/Providers/Doctor_Provider.dart';
+import 'package:doc_search/Views/Doctors/Doctor_Category_Wise_Final.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -64,6 +66,7 @@ class _Doctors_Category_WiseDetailsState
   Widget build(BuildContext context) {
     final DoctorProvider = Provider.of<Doctor_Provider>(context);
     return Scaffold(
+      bottomNavigationBar: Bottombar(),
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -86,7 +89,7 @@ class _Doctors_Category_WiseDetailsState
                   fontWeight: FontWeight.w600),
             )),
       ),
-      body: Column(
+      body: ListView(
         children: [
           ListTile(
             leading: Container(
@@ -477,17 +480,30 @@ class _Doctors_Category_WiseDetailsState
                   // margin: EdgeInsets.only(top: 8),
                   child: ElevatedButton(
                     onPressed: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //       builder: (context) => const DoctorDetails2()),
-                      // );
-                      print(
-                          'SElECTED Date ${selectedOption + 1}/${now.month}/2023');
-                      print(
-                          'SElECTED Afernoon Slot ${options2[selectedOption2]}');
-                      print(
-                          'SElECTED Evening Slot ${options3[selectedOption3]}');
+                      if (selectedOption2 == -1 && selectedOption3 == -1) {
+                        print('Select the slot first');
+                      } else if (selectedOption2 != -1 &&
+                          selectedOption3 != -1) {
+                        print('You can select only one slot at a time');
+                      } else if (selectedOption2 != -1) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Doctor_Category_Wise_Final(
+                                  slot: '${options2[selectedOption2]}',
+                                  date:
+                                      '${selectedOption + 1}/${now.month}/${now.year}')),
+                        );
+                      } else if (selectedOption3 != -1) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Doctor_Category_Wise_Final(
+                                  slot: '${options2[selectedOption3]}',
+                                  date:
+                                      '$selectedOption/${now.month}/${now.year}')),
+                        );
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Color(0xFF1A6A83),

@@ -10,12 +10,15 @@ import 'Edit_User_Profile.dart';
 class Profile_Page_Doc_Search extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: Color.fromARGB(255, 3, 110, 198)));
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: const Color(0xFF155467),
+    ));
     return Scaffold(
       bottomNavigationBar: Bottombar(),
       body: Container(
-          decoration: BoxDecoration(color: Color.fromARGB(255, 3, 110, 198)),
+          decoration: BoxDecoration(
+            color: const Color(0xFF155467),
+          ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListView(
@@ -95,21 +98,27 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: Column(
                     children: [
-                      ListTile(
-                        title: Text(
-                          "Appointments",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w400),
-                        ),
-                        trailing: InkWell(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => Appointments_Page()));
-                          },
-                          child: Icon(Icons.arrow_forward_ios,
-                              size: 20, color: Colors.white),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => Appointments_Page()));
+                        },
+                        child: ListTile(
+                          title: Text(
+                            "Appointments",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w400),
+                          ),
+                          trailing: InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => Appointments_Page()));
+                            },
+                            child: Icon(Icons.arrow_forward_ios,
+                                size: 20, color: Colors.white),
+                          ),
                         ),
                       ),
                       ListTile(
@@ -178,21 +187,27 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                         trailing: Icon(Icons.arrow_forward_ios,
                             size: 20, color: Colors.white),
                       ),
-                      ListTile(
-                        title: Text(
-                          "Refer and Earn",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w400),
-                        ),
-                        trailing: InkWell(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => Refer_And_Earn_Page()));
-                          },
-                          child: Icon(Icons.arrow_forward_ios,
-                              size: 20, color: Colors.white),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => Refer_And_Earn_Page()));
+                        },
+                        child: ListTile(
+                          title: Text(
+                            "Refer and Earn",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w400),
+                          ),
+                          trailing: InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => Refer_And_Earn_Page()));
+                            },
+                            child: Icon(Icons.arrow_forward_ios,
+                                size: 20, color: Colors.white),
+                          ),
                         ),
                       ),
                       ListTile(
@@ -206,21 +221,27 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                         trailing: Icon(Icons.arrow_forward_ios,
                             size: 20, color: Colors.white),
                       ),
-                      ListTile(
-                        title: Text(
-                          "Settings",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w400),
-                        ),
-                        trailing: InkWell(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => Settings_Page()));
-                          },
-                          child: Icon(Icons.arrow_forward_ios,
-                              size: 20, color: Colors.white),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => Settings_Page()));
+                        },
+                        child: ListTile(
+                          title: Text(
+                            "Settings",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w400),
+                          ),
+                          trailing: InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => Settings_Page()));
+                            },
+                            child: Icon(Icons.arrow_forward_ios,
+                                size: 20, color: Colors.white),
+                          ),
                         ),
                       )
                     ],

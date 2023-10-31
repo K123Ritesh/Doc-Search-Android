@@ -141,7 +141,7 @@ class _HomePageState extends State<HomePage> {
                     InkWell(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const Testing_Widget()));
+                            builder: (context) => const Appointment1()));
                       },
                       child: Column(
                         children: [
@@ -370,6 +370,7 @@ class _HomePageState extends State<HomePage> {
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => Doctors_Category_Wise(
+                                title: 'Dentist',
                                 doc_Category: 'Dentist',
                                 default_city: 'Kolkata',
                               )));
@@ -398,75 +399,105 @@ class _HomePageState extends State<HomePage> {
                           ],
                         )),
                   ),
-                  Container(
-                      width: 74,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xFF5793A8)),
-                        borderRadius: BorderRadius.circular(3),
-                      ),
-                      child: Column(
-                        children: [
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Image.asset(
-                              'assets/DocSearch Android (1)/Group 2454.png'),
-                          const SizedBox(
-                            height: 2,
-                          ),
-                          const Text(
-                            'Orthopedic',
-                            style: TextStyle(fontSize: 11),
-                          )
-                        ],
-                      )),
-                  Container(
-                      width: 74,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xFF5793A8)),
-                        borderRadius: BorderRadius.circular(3),
-                      ),
-                      child: Column(
-                        children: [
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Image.asset(
-                              'assets/DocSearch Android (1)/Group 2447.png'),
-                          const SizedBox(
-                            height: 2,
-                          ),
-                          const Text(
-                            'Oncology',
-                            style: TextStyle(fontSize: 11),
-                          )
-                        ],
-                      )),
-                  Container(
-                      width: 74,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xFF5793A8)),
-                        borderRadius: BorderRadius.circular(3),
-                      ),
-                      child: Column(
-                        children: [
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Image.asset(
-                              'assets/DocSearch Android (1)/Group 2449.png'),
-                          const SizedBox(
-                            height: 2,
-                          ),
-                          const Text(
-                            'Dermatology',
-                            style: TextStyle(fontSize: 11),
-                          )
-                        ],
-                      )),
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => Doctors_Category_Wise(
+                                title: 'Orthopedic',
+                                doc_Category: 'Dentist',
+                                default_city: 'Kolkata',
+                              )));
+                    },
+                    child: Container(
+                        width: 74,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Color(0xFF5793A8)),
+                          borderRadius: BorderRadius.circular(3),
+                        ),
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Image.asset(
+                                'assets/DocSearch Android (1)/Group 2454.png'),
+                            const SizedBox(
+                              height: 2,
+                            ),
+                            const Text(
+                              'Orthopedic',
+                              style: TextStyle(fontSize: 11),
+                            )
+                          ],
+                        )),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => Doctors_Category_Wise(
+                                title: 'Oncology',
+                                doc_Category: 'Dentist',
+                                default_city: 'Kolkata',
+                              )));
+                    },
+                    child: Container(
+                        width: 74,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Color(0xFF5793A8)),
+                          borderRadius: BorderRadius.circular(3),
+                        ),
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Image.asset(
+                                'assets/DocSearch Android (1)/Group 2447.png'),
+                            const SizedBox(
+                              height: 2,
+                            ),
+                            const Text(
+                              'Oncology',
+                              style: TextStyle(fontSize: 11),
+                            )
+                          ],
+                        )),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => Doctors_Category_Wise(
+                                title: 'Dermatology',
+                                doc_Category: 'Dentist',
+                                default_city: 'Kolkata',
+                              )));
+                    },
+                    child: Container(
+                        width: 74,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Color(0xFF5793A8)),
+                          borderRadius: BorderRadius.circular(3),
+                        ),
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Image.asset(
+                                'assets/DocSearch Android (1)/Group 2449.png'),
+                            const SizedBox(
+                              height: 2,
+                            ),
+                            const Text(
+                              'Dermatology',
+                              style: TextStyle(fontSize: 11),
+                            )
+                          ],
+                        )),
+                  ),
                 ],
               ),
               const SizedBox(
@@ -477,92 +508,132 @@ class _HomePageState extends State<HomePage> {
                 secondChild: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      width: 74,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xFF5793A8)),
-                        borderRadius: BorderRadius.circular(3),
-                      ),
-                      child: Column(
-                        children: [
-                          const SizedBox(height: 5),
-                          Image.asset(
-                              'assets/DocSearch Android (1)/Group 2432.png'),
-                          const SizedBox(
-                            height: 2,
-                          ),
-                          const Text(
-                            'Cardiology',
-                            style: TextStyle(fontSize: 11),
-                          )
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: 74,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xFF5793A8)),
-                        borderRadius: BorderRadius.circular(3),
-                      ),
-                      child: Column(
-                        children: [
-                          const SizedBox(height: 5),
-                          Image.asset(
-                              'assets/DocSearch Android (1)/Group 2441.png'),
-                          const SizedBox(
-                            height: 2,
-                          ),
-                          const Text(
-                            'Gastrology',
-                            style: TextStyle(fontSize: 11),
-                          )
-                        ],
+                    InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Doctors_Category_Wise(
+                                  title: 'Cardiology',
+                                  doc_Category: 'Dentist',
+                                  default_city: 'Kolkata',
+                                )));
+                      },
+                      child: Container(
+                        width: 74,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Color(0xFF5793A8)),
+                          borderRadius: BorderRadius.circular(3),
+                        ),
+                        child: Column(
+                          children: [
+                            const SizedBox(height: 5),
+                            Image.asset(
+                                'assets/DocSearch Android (1)/Group 2432.png'),
+                            const SizedBox(
+                              height: 2,
+                            ),
+                            const Text(
+                              'Cardiology',
+                              style: TextStyle(fontSize: 11),
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                    Container(
-                      width: 74,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xFF5793A8)),
-                        borderRadius: BorderRadius.circular(3),
-                      ),
-                      child: Column(
-                        children: [
-                          const SizedBox(height: 5),
-                          Image.asset(
-                              'assets/DocSearch Android (1)/image 40.png'),
-                          const SizedBox(
-                            height: 2,
-                          ),
-                          const Text(
-                            'Neurology',
-                            style: TextStyle(fontSize: 11),
-                          )
-                        ],
+                    InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Doctors_Category_Wise(
+                                  title: 'Gastrology',
+                                  doc_Category: 'Dentist',
+                                  default_city: 'Kolkata',
+                                )));
+                      },
+                      child: Container(
+                        width: 74,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Color(0xFF5793A8)),
+                          borderRadius: BorderRadius.circular(3),
+                        ),
+                        child: Column(
+                          children: [
+                            const SizedBox(height: 5),
+                            Image.asset(
+                                'assets/DocSearch Android (1)/Group 2441.png'),
+                            const SizedBox(
+                              height: 2,
+                            ),
+                            const Text(
+                              'Gastrology',
+                              style: TextStyle(fontSize: 11),
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                    Container(
-                      width: 74,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xFF5793A8)),
-                        borderRadius: BorderRadius.circular(3),
+                    InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Doctors_Category_Wise(
+                                  title: 'Neurology',
+                                  doc_Category: 'Dentist',
+                                  default_city: 'Kolkata',
+                                )));
+                      },
+                      child: Container(
+                        width: 74,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Color(0xFF5793A8)),
+                          borderRadius: BorderRadius.circular(3),
+                        ),
+                        child: Column(
+                          children: [
+                            const SizedBox(height: 5),
+                            Image.asset(
+                                'assets/DocSearch Android (1)/image 40.png'),
+                            const SizedBox(
+                              height: 2,
+                            ),
+                            const Text(
+                              'Neurology',
+                              style: TextStyle(fontSize: 11),
+                            )
+                          ],
+                        ),
                       ),
-                      child: Column(
-                        children: [
-                          const SizedBox(height: 5),
-                          Image.asset(
-                              'assets/DocSearch Android (1)/Group 2452.png'),
-                          const SizedBox(
-                            height: 2,
-                          ),
-                          const Text(
-                            'Pediatrics',
-                            style: TextStyle(fontSize: 11),
-                          )
-                        ],
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Doctors_Category_Wise(
+                                  title: 'Pediatrics',
+                                  doc_Category: 'Dentist',
+                                  default_city: 'Kolkata',
+                                )));
+                      },
+                      child: Container(
+                        width: 74,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Color(0xFF5793A8)),
+                          borderRadius: BorderRadius.circular(3),
+                        ),
+                        child: Column(
+                          children: [
+                            const SizedBox(height: 5),
+                            Image.asset(
+                                'assets/DocSearch Android (1)/Group 2452.png'),
+                            const SizedBox(
+                              height: 2,
+                            ),
+                            const Text(
+                              'Pediatrics',
+                              style: TextStyle(fontSize: 11),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ],

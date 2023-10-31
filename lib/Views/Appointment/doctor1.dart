@@ -1,3 +1,4 @@
+import 'package:doc_search/Bottom_Bar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,6 +19,7 @@ class _DoctorsState extends State<Doctors> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: Bottombar(),
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -27,10 +29,11 @@ class _DoctorsState extends State<Doctors> {
             color: Colors.black,
           ),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const Appointment1()),
-            );
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(builder: (context) => const Appointment1()),
+            // );
+            Navigator.pop(context);
           },
         ),
         title: Container(

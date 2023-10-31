@@ -1,3 +1,4 @@
+import 'package:doc_search/Bottom_Bar.dart';
 import 'package:flutter/material.dart';
 
 class Change_PhoneNumber_Page extends StatefulWidget {
@@ -13,6 +14,7 @@ class _Change_PhoneNumber_PageState extends State<Change_PhoneNumber_Page> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+      bottomNavigationBar: Bottombar(),
       body: Container(
           decoration: BoxDecoration(
             color: const Color(0xFF155467),

@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:doc_search/Bottom_Bar.dart';
 import 'package:doc_search/Models/Medicine_Shop.dart';
 import 'package:doc_search/Views/Home/Order_Done_Page.dart';
 import 'package:flutter/material.dart';
@@ -51,6 +52,7 @@ class _Prescription_Upload_PageState extends State<Prescription_Upload_Page> {
         SystemUiOverlayStyle(statusBarColor: Colors.white));
     return SafeArea(
         child: Scaffold(
+      bottomNavigationBar: Bottombar(),
       body: Container(
           decoration: BoxDecoration(color: Colors.white),
           child: Padding(

@@ -1,3 +1,4 @@
+import 'package:doc_search/Bottom_Bar.dart';
 import 'package:flutter/material.dart';
 import '../Appointment/Appointment.dart';
 import '../Appointment/doctor1.dart';
@@ -14,6 +15,7 @@ class _Appointments_PageState extends State<Appointments_Page> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        bottomNavigationBar: Bottombar(),
         body: Container(
             decoration: BoxDecoration(
               color: const Color(0xFF155467),

@@ -1,8 +1,9 @@
-import 'package:doc_search/Views/Patient%20Part/Home/Home_Page.dart';
+import 'package:doc_search/Config/sizeConfig.dart';
 import 'package:flutter/material.dart';
 
 import '../../../Bottom_Bar.dart';
 import '../../../Config/sizeConfig.dart';
+import 'Home_Page.dart';
 
 class Wallet extends StatefulWidget {
   const Wallet({Key? key}) : super(key: key);
@@ -247,7 +248,6 @@ class _WalletState extends State<Wallet> with SingleTickerProviderStateMixin {
                                           ),
                                         ),
                                       ),
-                                      
                                       Container(
                                         margin: EdgeInsets.only(left: 70.fw),
                                         width: 47.fw,
@@ -412,7 +412,9 @@ class _WalletState extends State<Wallet> with SingleTickerProviderStateMixin {
                 // Content for Medical tab
                 Column(
                   children: [
-                    Container(),
+                    Container(
+                      child: Text('Not any Transactions now'),
+                    ),
                   ],
                 )
               ],

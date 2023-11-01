@@ -1,3 +1,6 @@
+import 'package:doc_search/Views/Doctor%20Part/Profile/Online_Consultations_Page.dart';
+import 'package:doc_search/Views/Not_Build_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Authentication/Login_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Appointments_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Health_Care_Plan.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Refer_And_Earn_Page.dart';
@@ -31,7 +34,7 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                     InkWell(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => HomePage()));
+                            builder: (context) => HomePage()));
                       },
                       child: Icon(Icons.arrow_back_ios_new,
                           color: Colors.white, size: 26),
@@ -124,49 +127,86 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                           ),
                         ),
                       ),
-                      ListTile(
-                        title: Text(
-                          "Online Consultations",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w400),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    Online_Consultations_Page()),
+                          );
+                        },
+                        child: ListTile(
+                          title: Text(
+                            "Online Consultations",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w400),
+                          ),
+                          trailing: Icon(Icons.arrow_forward_ios,
+                              size: 20, color: Colors.white),
                         ),
-                        trailing: Icon(Icons.arrow_forward_ios,
-                            size: 20, color: Colors.white),
                       ),
-                      ListTile(
-                        title: Text(
-                          "My Test",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w400),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Not_Build_Page()),
+                          );
+                        },
+                        child: ListTile(
+                          title: Text(
+                            "My Test",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w400),
+                          ),
+                          trailing: Icon(Icons.arrow_forward_ios,
+                              size: 20, color: Colors.white),
                         ),
-                        trailing: Icon(Icons.arrow_forward_ios,
-                            size: 20, color: Colors.white),
                       ),
-                      ListTile(
-                        title: Text(
-                          "Medical Order",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w400),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Not_Build_Page()),
+                          );
+                        },
+                        child: ListTile(
+                          title: Text(
+                            "Medical Order",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w400),
+                          ),
+                          trailing: Icon(Icons.arrow_forward_ios,
+                              size: 20, color: Colors.white),
                         ),
-                        trailing: Icon(Icons.arrow_forward_ios,
-                            size: 20, color: Colors.white),
                       ),
-                      ListTile(
-                        title: Text(
-                          "Order History",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w400),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Not_Build_Page()),
+                          );
+                        },
+                        child: ListTile(
+                          title: Text(
+                            "Order History",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w400),
+                          ),
+                          trailing: Icon(Icons.arrow_forward_ios,
+                              size: 20, color: Colors.white),
                         ),
-                        trailing: Icon(Icons.arrow_forward_ios,
-                            size: 20, color: Colors.white),
                       ),
                       InkWell(
                         onTap: () {
@@ -185,16 +225,25 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                               size: 20, color: Colors.white),
                         ),
                       ),
-                      ListTile(
-                        title: Text(
-                          "Family Tree",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w400),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Not_Build_Page()),
+                          );
+                        },
+                        child: ListTile(
+                          title: Text(
+                            "Family Tree",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w400),
+                          ),
+                          trailing: Icon(Icons.arrow_forward_ios,
+                              size: 20, color: Colors.white),
                         ),
-                        trailing: Icon(Icons.arrow_forward_ios,
-                            size: 20, color: Colors.white),
                       ),
                       InkWell(
                         onTap: () {
@@ -219,16 +268,25 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                           ),
                         ),
                       ),
-                      ListTile(
-                        title: Text(
-                          "Transactions",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w400),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Not_Build_Page()),
+                          );
+                        },
+                        child: ListTile(
+                          title: Text(
+                            "Transactions",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w400),
+                          ),
+                          trailing: Icon(Icons.arrow_forward_ios,
+                              size: 20, color: Colors.white),
                         ),
-                        trailing: Icon(Icons.arrow_forward_ios,
-                            size: 20, color: Colors.white),
                       ),
                       InkWell(
                         onTap: () {
@@ -256,26 +314,34 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                     ],
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          color: Colors.black,
-                          borderRadius: BorderRadius.circular(10)),
-                      height: 40,
-                      width: 230,
-                      child: Center(
-                        child: Text(
-                          'Log Out',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 22,
-                              fontWeight: FontWeight.w400),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Login_Page()),
+                    );
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(10)),
+                        height: 40,
+                        width: 230,
+                        child: Center(
+                          child: Text(
+                            'Log Out',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 22,
+                                fontWeight: FontWeight.w400),
+                          ),
                         ),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 )
               ],
             ),

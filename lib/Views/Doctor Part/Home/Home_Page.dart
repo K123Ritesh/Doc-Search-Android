@@ -3,6 +3,7 @@ import 'package:doc_search/Views/Doctor%20Part/Home/Appointment_Patient_Details_
 import 'package:doc_search/Views/Doctor%20Part/Profile/Online_Consultations_Page.dart';
 import 'package:doc_search/Views/Doctor%20Part/Profile/Profile_Page.dart';
 import 'package:doc_search/Views/Not_Build_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Home/Wallet_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Health_Care_Plan.dart';
 
 import 'package:flutter/material.dart';
@@ -60,7 +61,7 @@ class _Doctor_Home_PageState extends State<Doctor_Home_Page> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Not_Build_Page()),
+                    MaterialPageRoute(builder: (context) => Wallet()),
                   );
                 },
                 child: Container(

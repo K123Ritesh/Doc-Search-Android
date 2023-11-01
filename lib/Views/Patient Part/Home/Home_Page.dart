@@ -1,5 +1,8 @@
 import 'package:doc_search/Bottom_Bar.dart';
+import 'package:doc_search/Config/sizeConfig.dart';
+import 'package:doc_search/Views/Not_Build_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Appointment/Appointment.dart';
+import 'package:doc_search/Views/Patient%20Part/Home/Consultancy_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Medical_Labs_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Medicine_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Search_Tapped_Page.dart';
@@ -12,7 +15,6 @@ import 'package:flutter/services.dart';
 import '../../../Config/sizeConfig.dart';
 import '../Doctors/Doctors_Category_Wise.dart';
 import '../Profile/Profile_Page.dart';
-
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, User? user});
@@ -98,8 +100,8 @@ class _HomePageState extends State<HomePage> {
                             SizedBox(width: 5.fw),
                             Text(
                               '100',
-                              style:
-                                  TextStyle(fontSize: 18.fh, color: Colors.black),
+                              style: TextStyle(
+                                  fontSize: 18.fh, color: Colors.black),
                             ),
                           ],
                         ),
@@ -165,7 +167,7 @@ class _HomePageState extends State<HomePage> {
                         InkWell(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const Appointment1()));
+                                builder: (context) => Consultancy_Page()));
                           },
                           child: Container(
                               width: 40,
@@ -242,7 +244,6 @@ class _HomePageState extends State<HomePage> {
                 height: 20,
               ),
               Container(
-
                 height: 130.fh,
                 decoration: BoxDecoration(
                   color: const Color(0xFFECFAFC),
@@ -254,9 +255,9 @@ class _HomePageState extends State<HomePage> {
                   Column(
                     children: [
                       Container(
-                          margin:  EdgeInsets.only( top: 15.fh),
+                          margin: EdgeInsets.only(top: 15.fh),
                           child: RichText(
-                            text:  TextSpan(
+                            text: TextSpan(
                               children: <TextSpan>[
                                 TextSpan(
                                   text: 'We are ',
@@ -304,7 +305,10 @@ class _HomePageState extends State<HomePage> {
                             ),
                           )),
                       Container(
-                          margin: EdgeInsets.only(left: 20.fw, top: 10.fh,),
+                          margin: EdgeInsets.only(
+                            left: 20.fw,
+                            top: 10.fh,
+                          ),
                           child: Text(
                             'Always caring about your health, \nFind your doctors and make an \nappointment',
                             style: TextStyle(
@@ -328,7 +332,11 @@ class _HomePageState extends State<HomePage> {
                             ),
                             child: InkWell(
                               onTap: () {
-                                // Your button click logic here
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Appointment1()),
+                                );
                               },
                               child: Center(
                                 child: Text(
@@ -348,10 +356,12 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Spacer(),
                   Container(
-                    margin:  EdgeInsets.only( top: 30.fh),
+                    margin: EdgeInsets.only(top: 30.fh),
                     height: 118.fh,
                     // width: 158.fw,
-                    child: Image.asset('assets/image 34.png',),
+                    child: Image.asset(
+                      'assets/image 34.png',
+                    ),
                   ),
                 ]),
               ),

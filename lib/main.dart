@@ -21,7 +21,7 @@ void main() async {
     ],
     child: MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Doctor_Login_Page(),
+      home: SplashScreen(),
     ),
   ));
 }

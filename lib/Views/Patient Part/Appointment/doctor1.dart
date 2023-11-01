@@ -51,7 +51,7 @@ class _DoctorsState extends State<Doctors> {
         ),
       ),
       body: ListView.builder(
-        // itemCount: DoctorProvider.acc_to_search!.length,
+        itemCount: 5,
         itemBuilder: (context, index) {
           // final doctor = doctors[index];
           return Container(

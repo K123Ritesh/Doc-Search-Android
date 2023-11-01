@@ -68,14 +68,13 @@ class _DoctorsDetailsState extends State<DoctorsDetails> {
             color: Colors.black,
           ),
           onPressed: () {
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(
-            //       builder: (context) => const Doctors(
-            //             doc_Category: 'Doctors',
-            //           )),
-            // );
-            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const Doctors(
+                        doc_Category: 'Doctors',
+                      )),
+            );
           },
         ),
         title: Container(

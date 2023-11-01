@@ -383,25 +383,26 @@ class _Signup_PageState extends State<Signup_Page> {
                   children: [
                     Container(
                       height: 1.5,
-                      width: 150,
+                      width: 130,
                       color: Colors.white,
                     ),
-                    const SizedBox(
+                    SizedBox(
                       width: 12,
                     ),
-                    const Text(
+                    Text(
                       'or',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,
                           fontWeight: FontWeight.w400),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       width: 12,
                     ),
                     Container(
+                      // margin: EdgeInsets.only(right: 10),
                       height: 1.5,
-                      width: 150,
+                      width: 130,
                       color: Colors.white,
                     ),
                   ],

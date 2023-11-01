@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:doc_search/Config/sizeConfig.dart';
 import 'package:doc_search/Models/Medicine_Shop.dart';
 import 'package:doc_search/Providers/Medicine_Shop_Provider.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Prescription_Upload_Page.dart';
@@ -32,6 +33,7 @@ class _Medicine_PageState extends State<Medicine_Page> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     final MedicineShopProvider = Provider.of<Medicine_Shop_Provider>(context);
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.white));
@@ -188,6 +190,7 @@ class Container_For_Medicine_Store extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 7.0),
       child: Container(
+        
         decoration: BoxDecoration(
             border: Border.all(color: Colors.blue),
             borderRadius: BorderRadius.circular(15)),
@@ -210,8 +213,8 @@ class Container_For_Medicine_Store extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: 190,
-              height: 150,
+              width: 180.fw,
+              height: 150.fh,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -241,15 +244,18 @@ class Container_For_Medicine_Store extends StatelessWidget {
                           ))
                     ],
                   ),
-                  Text(
-                    name,
-                    style: const TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
+                  Container(
+                    margin: EdgeInsets.only(left: 10.fw,top: 10.fh),
+                    child: Text(
+                      name,
+                      style:  TextStyle(
+                          fontSize: 18.fh,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),
+                    ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 12.0),
+                  Container(
+                    margin: EdgeInsets.only(left: 10.fw),
                     child: Text(
                       address,
                       style: const TextStyle(
@@ -270,12 +276,13 @@ class Container_For_Medicine_Store extends StatelessWidget {
                                   )));
                         },
                         child: Container(
+                          margin: EdgeInsets.only(top: 10),
                           decoration: BoxDecoration(
                               color: const Color.fromARGB(255, 69, 13, 222),
                               borderRadius: BorderRadius.circular(10)),
                           // height: 40,
                           // width: 230,
-                          child: const Padding(
+                          child: Padding(
                             padding: EdgeInsets.symmetric(
                                 horizontal: 8.0, vertical: 4),
                             child: Center(
@@ -283,7 +290,7 @@ class Container_For_Medicine_Store extends StatelessWidget {
                                 'Upload Your Prescription',
                                 style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 15,
+                                    fontSize: 12.fh,
                                     fontWeight: FontWeight.w400),
                               ),
                             ),

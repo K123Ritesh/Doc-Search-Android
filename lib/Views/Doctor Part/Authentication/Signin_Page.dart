@@ -407,7 +407,8 @@ class _Doctor_Signup_PageState extends State<Doctor_Signup_Page> {
                         ],
                       ),
                     ),
-                  )
+                  ),
+                  SizedBox(height: 20,),
                 ],
               ),
             ]),

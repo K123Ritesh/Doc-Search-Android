@@ -9,10 +9,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../../Config/sizeConfig.dart';
 import '../Doctors/Doctors_Category_Wise.dart';
 import '../Profile/Profile_Page.dart';
 
-import '../../Config/sizeConfig.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, User? user});
@@ -117,19 +117,6 @@ class _HomePageState extends State<HomePage> {
                 decoration: BoxDecoration(
                     border: Border.all(color: Color(0xFF5793A8), width: 1.0),
                     borderRadius: BorderRadius.circular(50)),
-<<<<<<< HEAD:lib/Views/Home/Home_Page.dart
-                child: Center(
-                  child: TextField(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => Search_Tapped_Page()));
-                    },
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      prefixIcon: Icon(Icons.search),
-                      hintText: 'Search doctors, hospitals...',
-                    ),
-=======
                 child: TextField(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
@@ -139,7 +126,6 @@ class _HomePageState extends State<HomePage> {
                     border: InputBorder.none,
                     prefixIcon: Icon(Icons.search),
                     hintText: 'Search doctors, hospitals...',
->>>>>>> 2e760eac8dce9152dc1b1d4bdcbff5705784abbb:lib/Views/Patient Part/Home/Home_Page.dart
                   ),
                 ),
               ),

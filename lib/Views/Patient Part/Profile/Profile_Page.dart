@@ -1,18 +1,12 @@
-<<<<<<< HEAD:lib/Views/Profile/Profile_Page.dart
-import 'package:doc_search/Views/Home/Home_Page.dart';
-import 'package:doc_search/Views/Profile/Appointments_Page.dart';
-import 'package:doc_search/Views/Profile/Refer_And_Earn_Page.dart';
-import 'package:doc_search/Views/Profile/Settings_Page.dart';
-=======
 import 'package:doc_search/Views/Patient%20Part/Profile/Appointments_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Health_Care_Plan.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Refer_And_Earn_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Settings_Page.dart';
->>>>>>> 2e760eac8dce9152dc1b1d4bdcbff5705784abbb:lib/Views/Patient Part/Profile/Profile_Page.dart
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../Bottom_Bar.dart';
+import '../Home/Home_Page.dart';
 import 'Edit_User_Profile.dart';
 
 class Profile_Page_Doc_Search extends StatelessWidget {

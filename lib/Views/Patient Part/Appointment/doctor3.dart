@@ -32,7 +32,7 @@ class _DoctorDetails2State extends State<DoctorDetails2> {
             color: Colors.black,
           ),
           onPressed: () {
-            Navigator.pop(context);
+            
           },
         ),
         title: Container(

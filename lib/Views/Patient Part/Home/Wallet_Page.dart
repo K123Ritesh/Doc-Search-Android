@@ -407,7 +407,9 @@ class _WalletState extends State<Wallet> with SingleTickerProviderStateMixin {
                 // Content for Medical tab
                 Column(
                   children: [
-                    Container(),
+                    Container(
+                      child: Text('Not any Transactions now'),
+                    ),
                   ],
                 )
               ],

@@ -1,4 +1,5 @@
 import 'package:doc_search/Bottom_Bar.dart';
+import 'package:doc_search/Views/Not_Build_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Change_PhoneNumber_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Feedback_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Privacy_Policy_Page.dart';
@@ -80,70 +81,94 @@ class _Settings_PageState extends State<Settings_Page> {
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: Column(
                     children: [
-                      ListTile(
-                        title: Text(
-                          "Feedback",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w400),
-                        ),
-                        trailing: InkWell(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => Feedback_Page()));
-                          },
-                          child: Icon(Icons.arrow_forward_ios,
-                              size: 20, color: Colors.white),
-                        ),
-                      ),
-                      ListTile(
-                        title: Text(
-                          "Privacy Policy",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w400),
-                        ),
-                        trailing: InkWell(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => Privacy_Policy_Page()));
-                          },
-                          child: Icon(Icons.arrow_forward_ios,
-                              size: 20, color: Colors.white),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => Feedback_Page()));
+                        },
+                        child: ListTile(
+                          title: Text(
+                            "Feedback",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w400),
+                          ),
+                          trailing: InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => Feedback_Page()));
+                            },
+                            child: Icon(Icons.arrow_forward_ios,
+                                size: 20, color: Colors.white),
+                          ),
                         ),
                       ),
-                      ListTile(
-                        title: Text(
-                          "Change Phone Number",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w400),
-                        ),
-                        trailing: InkWell(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    Change_PhoneNumber_Page()));
-                          },
-                          child: Icon(Icons.arrow_forward_ios,
-                              size: 20, color: Colors.white),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => Privacy_Policy_Page()));
+                        },
+                        child: ListTile(
+                          title: Text(
+                            "Privacy Policy",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w400),
+                          ),
+                          trailing: InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => Privacy_Policy_Page()));
+                            },
+                            child: Icon(Icons.arrow_forward_ios,
+                                size: 20, color: Colors.white),
+                          ),
                         ),
                       ),
-                      ListTile(
-                        title: Text(
-                          "Are you a Doctor?",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w400),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => Change_PhoneNumber_Page()));
+                        },
+                        child: ListTile(
+                          title: Text(
+                            "Change Phone Number",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w400),
+                          ),
+                          trailing: InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      Change_PhoneNumber_Page()));
+                            },
+                            child: Icon(Icons.arrow_forward_ios,
+                                size: 20, color: Colors.white),
+                          ),
                         ),
-                        trailing: InkWell(
-                          onTap: () {},
-                          child: Icon(Icons.arrow_forward_ios,
-                              size: 20, color: Colors.white),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => Not_Build_Page()));
+                        },
+                        child: ListTile(
+                          title: Text(
+                            "Are you a Doctor?",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w400),
+                          ),
+                          trailing: InkWell(
+                            onTap: () {},
+                            child: Icon(Icons.arrow_forward_ios,
+                                size: 20, color: Colors.white),
+                          ),
                         ),
                       )
                     ],

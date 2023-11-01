@@ -2,6 +2,8 @@ import 'package:doc_search/Providers/Doctor_Provider.dart';
 import 'package:doc_search/Providers/Medicine_Shop_Provider.dart';
 import 'package:doc_search/Views/Doctor%20Part/Authentication/Login_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Authentication/Login_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Doctors/Appointment_Done_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Home/Home_Page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:lottie/lottie.dart';

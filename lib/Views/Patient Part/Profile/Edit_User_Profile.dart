@@ -218,7 +218,7 @@ class _EditUserProfileState extends State<EditUserProfile>
                                     TextStyle(fontSize: 18, color: Colors.grey),
                               ),
                               SizedBox(
-                                width: 190,
+                                width: 170.fw,
                               ),
                               Align(
                                 alignment: Alignment.topRight,
@@ -274,7 +274,7 @@ class _EditUserProfileState extends State<EditUserProfile>
                                   ),
                                 ),
                                 SizedBox(
-                                  width: 140.fw,
+                                  width: 110.fw,
                                 ),
                                 Text(_dateTime.year.toString()),
                               ],

@@ -17,16 +17,17 @@ class Doctor_Provider with ChangeNotifier {
     notifyListeners();
   }
 
-  bookAppointment(context, Appointment_Model appointment) async {
-    await service.BookAppointment(context, appointment);
+  bookAppointment(
+      context, Appointment_Model appointment, String doc_category) async {
+    await service.BookAppointment(context, doc_category, appointment);
     notifyListeners();
   }
 
   List<String>? availableSlots = [];
   knowAvailableSlots(context, String docId, String targetDate,
-      List<String> possibleSlots) async {
+      List<String> possibleSlots, String doc_category) async {
     availableSlots = await service.checkAvailableSlots(
-        context, docId, targetDate, possibleSlots);
+        context, docId, targetDate, possibleSlots, doc_category);
     notifyListeners();
   }
 }

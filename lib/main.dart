@@ -4,6 +4,7 @@ import 'package:doc_search/Views/Doctor%20Part/Authentication/Login_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Authentication/Login_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Doctors/Appointment_Done_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Home_Page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:lottie/lottie.dart';
@@ -36,12 +37,30 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  Future<bool> isUserLoggedIn() async {
+    User? user = _auth.currentUser;
+    return user != null;
+  }
+
   @override
   void initState() {
     super.initState();
+
+    checkLoginStatus();
+  }
+
+  // Function to check login status and navigate accordingly
+  void checkLoginStatus() async {
+    bool isLoggedIn = await isUserLoggedIn();
+
+    // Delayed navigation based on login status
     Future.delayed(Duration(seconds: 5), () {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => Login_Page()),
+        MaterialPageRoute(
+          builder: (context) => isLoggedIn ? HomePage() : Login_Page(),
+        ),
       );
     });
   }
@@ -50,33 +69,38 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Doc',
-              style: TextStyle(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Doc',
+                style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: const Color.fromARGB(255, 4, 72, 127),
-                  fontSize: 22),
-            ),
-            Text(
-              'Search',
-              style: TextStyle(
+                  fontSize: 22,
+                ),
+              ),
+              Text(
+                'Search',
+                style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: const Color.fromARGB(255, 255, 230, 0),
-                  fontSize: 22),
-            )
-          ],
-        ),
-        SizedBox(
-          height: 15,
-        ),
-        Lottie.asset(
-          'assets/lottie/Splash_Animation.json',
-        )
-      ]),
+                  fontSize: 22,
+                ),
+              )
+            ],
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          Lottie.asset(
+            'assets/lottie/Splash_Animation.json',
+          )
+        ],
+      ),
     );
   }
 }

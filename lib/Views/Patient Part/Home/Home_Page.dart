@@ -421,7 +421,7 @@ class _HomePageState extends State<HomePage> {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => Doctors_Category_Wise(
                                 title: 'Orthopedic',
-                                doc_Category: 'Dentist',
+                                doc_Category: 'Orthopedic',
                                 default_city: 'Kolkata',
                               )));
                     },
@@ -454,7 +454,7 @@ class _HomePageState extends State<HomePage> {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => Doctors_Category_Wise(
                                 title: 'Oncology',
-                                doc_Category: 'Dentist',
+                                doc_Category: 'Oncology',
                                 default_city: 'Kolkata',
                               )));
                     },
@@ -487,7 +487,7 @@ class _HomePageState extends State<HomePage> {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => Doctors_Category_Wise(
                                 title: 'Dermatology',
-                                doc_Category: 'Dentist',
+                                doc_Category: 'Dermatology',
                                 default_city: 'Kolkata',
                               )));
                     },
@@ -530,7 +530,7 @@ class _HomePageState extends State<HomePage> {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => Doctors_Category_Wise(
                                   title: 'Cardiology',
-                                  doc_Category: 'Dentist',
+                                  doc_Category: 'Cardiology',
                                   default_city: 'Kolkata',
                                 )));
                       },
@@ -562,7 +562,7 @@ class _HomePageState extends State<HomePage> {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => Doctors_Category_Wise(
                                   title: 'Gastrology',
-                                  doc_Category: 'Dentist',
+                                  doc_Category: 'Gastrology',
                                   default_city: 'Kolkata',
                                 )));
                       },
@@ -594,7 +594,7 @@ class _HomePageState extends State<HomePage> {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => Doctors_Category_Wise(
                                   title: 'Neurology',
-                                  doc_Category: 'Dentist',
+                                  doc_Category: 'Neurology',
                                   default_city: 'Kolkata',
                                 )));
                       },
@@ -626,7 +626,7 @@ class _HomePageState extends State<HomePage> {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => Doctors_Category_Wise(
                                   title: 'Pediatrics',
-                                  doc_Category: 'Dentist',
+                                  doc_Category: 'Pediatrics',
                                   default_city: 'Kolkata',
                                 )));
                       },

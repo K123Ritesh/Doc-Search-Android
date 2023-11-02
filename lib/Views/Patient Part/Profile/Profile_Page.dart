@@ -5,6 +5,7 @@ import 'package:doc_search/Views/Patient%20Part/Profile/Appointments_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Health_Care_Plan.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Refer_And_Earn_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Settings_Page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -18,6 +19,9 @@ class Profile_Page_Doc_Search extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: const Color(0xFF155467),
     ));
+
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+
     return Scaffold(
       bottomNavigationBar: Bottombar(),
       body: Container(
@@ -315,7 +319,8 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                   ),
                 ),
                 InkWell(
-                  onTap: () {
+                  onTap: () async {
+                    await _auth.signOut();
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => Login_Page()),

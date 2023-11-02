@@ -328,6 +328,8 @@ class _Doctors_Category_WiseState extends State<Doctors_Category_Wise> {
                                                             doctor: DoctorProvider
                                                                     .acc_to_search![
                                                                 index],
+                                                            doc_category: widget
+                                                                .doc_Category,
                                                           )),
                                                 );
                                               },

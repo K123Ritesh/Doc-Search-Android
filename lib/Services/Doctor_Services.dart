@@ -41,7 +41,7 @@ class Doctor_Services {
 
         return accToSearch;
       } else {
-        print('No Doctors found for pincode $city');
+        print('No Doctors found for $doctorType in city $city');
         accToSearch.clear();
         return null;
       }
@@ -55,7 +55,8 @@ class Doctor_Services {
 when the appointment is booked it should send notification to the respective
  doctor with doctorId and that slot of that date should be marked as booked*/
 
-  Future<void> BookAppointment(context, Appointment_Model appointment) async {
+  Future<void> BookAppointment(
+      context, String doc_category, Appointment_Model appointment) async {
     try {
       final firestore = FirebaseFirestore.instance;
 
@@ -79,7 +80,7 @@ when the appointment is booked it should send notification to the respective
 
       // Check availability in the 'Dentists' Collection
       final dentistRef =
-          firestore.collection('Dentist').doc(appointment.doctorId);
+          firestore.collection(doc_category).doc(appointment.doctorId);
       final dentistDoc = await dentistRef.get();
 
       if (dentistDoc.exists) {
@@ -131,11 +132,15 @@ when the appointment is booked it should send notification to the respective
 
   //Slots Service
 
-  Future<List<String>?> checkAvailableSlots(context, String docId,
-      String targetDate, List<String> possibleSlots) async {
+  Future<List<String>?> checkAvailableSlots(
+      context,
+      String docId,
+      String targetDate,
+      List<String> possibleSlots,
+      String doc_category) async {
     try {
       DocumentSnapshot dentistDoc = await FirebaseFirestore.instance
-          .collection('Dentist')
+          .collection(doc_category)
           .doc(docId)
           .get();
       Map<String, dynamic> bookingsData =

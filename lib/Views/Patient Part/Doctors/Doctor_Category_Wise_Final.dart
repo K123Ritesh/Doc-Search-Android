@@ -8,10 +8,15 @@ import '../../../Bottom_Bar.dart';
 
 class Doctor_Category_Wise_Final extends StatefulWidget {
   const Doctor_Category_Wise_Final(
-      {super.key, required this.slot, required this.date});
+      {super.key,
+      required this.slot,
+      required this.date,
+      required this.doc_Category});
 
   final String slot;
   final String date;
+
+  final String doc_Category;
 
   @override
   State<Doctor_Category_Wise_Final> createState() =>
@@ -489,16 +494,18 @@ class _Doctor_Category_Wise_FinalState
               child: ElevatedButton(
                 onPressed: () {
                   DoctorProvider.bookAppointment(
-                      context,
-                      Appointment_Model(
-                          date_for_booking: widget.date,
-                          mode_of_payment: 'online',
-                          self: true,
-                          reg_fee: '450',
-                          paid: true,
-                          doctorId: 'khn@gmail.com',
-                          slot: widget.slot,
-                          userId: 'rit11@gmail.com'));
+                    context,
+                    Appointment_Model(
+                        date_for_booking: widget.date,
+                        mode_of_payment: 'online',
+                        self: true,
+                        reg_fee: '450',
+                        paid: true,
+                        doctorId: 'khn@gmail.com',
+                        slot: widget.slot,
+                        userId: 'rit11@gmail.com'),
+                    widget.doc_Category,
+                  );
                   Navigator.push(
                     context,
                     MaterialPageRoute(

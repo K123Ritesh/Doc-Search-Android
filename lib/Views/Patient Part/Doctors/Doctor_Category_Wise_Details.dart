@@ -7,9 +7,11 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class Doctors_Category_WiseDetails extends StatefulWidget {
-  const Doctors_Category_WiseDetails({super.key, required this.doctor});
+  const Doctors_Category_WiseDetails(
+      {super.key, required this.doctor, required this.doc_category});
 
   final Doctor doctor;
+  final String doc_category;
 
   @override
   State<Doctors_Category_WiseDetails> createState() =>
@@ -508,6 +510,7 @@ class _Doctors_Category_WiseDetailsState
                           MaterialPageRoute(
                               builder: (context) => Doctor_Category_Wise_Final(
                                   slot: '${options2[selectedOption2]}',
+                                  doc_Category: widget.doc_category,
                                   date:
                                       '${selectedOption + 1}/${now.month}/${now.year}')),
                         );
@@ -516,6 +519,7 @@ class _Doctors_Category_WiseDetailsState
                           context,
                           MaterialPageRoute(
                               builder: (context) => Doctor_Category_Wise_Final(
+                                  doc_Category: widget.doc_category,
                                   slot: '${options2[selectedOption3]}',
                                   date:
                                       '$selectedOption/${now.month}/${now.year}')),

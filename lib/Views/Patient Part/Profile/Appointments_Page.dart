@@ -1,4 +1,5 @@
 import 'package:doc_search/Bottom_Bar.dart';
+import 'package:doc_search/Views/Patient%20Part/Doctors/Doctors_Category_Wise.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../Appointment/Appointment.dart';
@@ -84,7 +85,10 @@ class _Appointments_PageState extends State<Appointments_Page> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const Appointment1()),
+                              builder: (context) => Doctors_Category_Wise(
+                                  title: 'Doctors',
+                                  doc_Category: 'Dentist',
+                                  default_city: 'Kolkata')),
                         );
                       },
                       child: Container(

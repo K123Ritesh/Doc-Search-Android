@@ -5,6 +5,7 @@ import 'package:doc_search/Views/Patient%20Part/Home/Home_Page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../Doctor Part/Authentication/Signin_Page.dart';
 
@@ -83,15 +84,15 @@ class _Signup_PageState extends State<Signup_Page> {
             color: const Color(0xFF1A6A83),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8.0.w),
             child: ListView(children: [
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: 20.h,
               ),
               Row(
                 children: [
-                  const SizedBox(
-                    width: 15,
+                  SizedBox(
+                    width: 15.w,
                   ),
                   InkWell(
                     onTap: () {
@@ -100,37 +101,34 @@ class _Signup_PageState extends State<Signup_Page> {
                     child: const Icon(Icons.arrow_back_ios_new,
                         color: Colors.white, size: 26),
                   ),
-                  const SizedBox(
-                    width: 60,
+                  SizedBox(
+                    width: 60.w,
                   ),
-                  const Text(
+                  Text(
                     'Join ',
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 23,
+                        fontSize: 23.sp,
                         fontWeight: FontWeight.bold),
                   ),
-                  const Text(
+                  Text(
                     'Doc',
                     style: TextStyle(
                         color: Color.fromARGB(255, 255, 20, 20),
-                        fontSize: 23,
+                        fontSize: 23.sp,
                         fontWeight: FontWeight.bold),
                   ),
-                  const Text(
+                  Text(
                     'Search',
                     style: TextStyle(
                         color: Color.fromARGB(255, 15, 252, 66),
-                        fontSize: 23,
+                        fontSize: 23.sp,
                         fontWeight: FontWeight.bold),
                   )
                 ],
               ),
-              const SizedBox(
-                height: 30,
-              ),
-              const SizedBox(
-                height: 15,
+              SizedBox(
+                height: 45.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -139,7 +137,7 @@ class _Signup_PageState extends State<Signup_Page> {
                     'Hi, Welcome! 👋',
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 22,
+                        fontSize: 22.sp,
                         fontWeight: FontWeight.bold),
                   ),
                   Column(
@@ -148,7 +146,7 @@ class _Signup_PageState extends State<Signup_Page> {
                         'Are you a Doctor?',
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 17,
+                            fontSize: 17.sp,
                             fontWeight: FontWeight.w400),
                       ),
                       InkWell(
@@ -161,7 +159,7 @@ class _Signup_PageState extends State<Signup_Page> {
                           'Register here ',
                           style: TextStyle(
                               color: Colors.red,
-                              fontSize: 17,
+                              fontSize: 17.sp,
                               fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -169,19 +167,19 @@ class _Signup_PageState extends State<Signup_Page> {
                   )
                 ],
               ),
-              const SizedBox(
-                height: 25,
+              SizedBox(
+                height: 25.h,
               ),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
+                    EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 8.h),
                 child: Center(
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    padding: EdgeInsets.symmetric(horizontal: 16.0.w),
                     decoration: BoxDecoration(
                       color: Colors.grey[200], // Background color
                       borderRadius:
-                          BorderRadius.circular(20.0), // Rounded corners
+                          BorderRadius.circular(20.0.r), // Rounded corners
                     ),
                     child: TextField(
                       controller: _firstNameController,
@@ -199,14 +197,14 @@ class _Signup_PageState extends State<Signup_Page> {
               ),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
+                    EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 8.h),
                 child: Center(
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    padding: EdgeInsets.symmetric(horizontal: 16.0.w),
                     decoration: BoxDecoration(
                       color: Colors.grey[200], // Background color
                       borderRadius:
-                          BorderRadius.circular(20.0), // Rounded corners
+                          BorderRadius.circular(20.0.r), // Rounded corners
                     ),
                     child: TextField(
                       controller: _lastNameController,
@@ -224,14 +222,14 @@ class _Signup_PageState extends State<Signup_Page> {
               ),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
+                    EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 8.h),
                 child: Center(
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    padding: EdgeInsets.symmetric(horizontal: 16.0.w),
                     decoration: BoxDecoration(
                       color: Colors.grey[200], // Background color
                       borderRadius:
-                          BorderRadius.circular(20.0), // Rounded corners
+                          BorderRadius.circular(20.0.r), // Rounded corners
                     ),
                     child: TextField(
                       controller: _mobileNumberController,
@@ -249,14 +247,14 @@ class _Signup_PageState extends State<Signup_Page> {
               ),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
+                    EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 8.h),
                 child: Center(
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    padding: EdgeInsets.symmetric(horizontal: 16.0.w),
                     decoration: BoxDecoration(
                       color: Colors.grey[200], // Background color
                       borderRadius:
-                          BorderRadius.circular(20.0), // Rounded corners
+                          BorderRadius.circular(20.0.r), // Rounded corners
                     ),
                     child: TextField(
                       controller: _cityController,
@@ -272,29 +270,29 @@ class _Signup_PageState extends State<Signup_Page> {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 15,
+              SizedBox(
+                height: 15.h,
               ),
-              const Row(
+              Row(
                 children: [
                   SizedBox(
-                    width: 15,
+                    width: 15.w,
                   ),
                   Icon(
                     Icons.check_box_outline_blank,
                     color: Colors.white,
                   ),
                   SizedBox(
-                    width: 15,
+                    width: 15.w,
                   ),
                   Text(
                     "Yes, I understand and agree the Terms &\n Conditions",
-                    style: TextStyle(fontSize: 16, color: Colors.white),
+                    style: TextStyle(fontSize: 16.sp, color: Colors.white),
                   )
                 ],
               ),
-              const SizedBox(
-                height: 30,
+              SizedBox(
+                height: 30.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -314,12 +312,12 @@ class _Signup_PageState extends State<Signup_Page> {
                     child: Container(
                       decoration: BoxDecoration(
                           color: const Color.fromARGB(255, 25, 67, 157),
-                          borderRadius: BorderRadius.circular(10)),
+                          borderRadius: BorderRadius.circular(10.r)),
                       // height: 40,
                       // width: 230,
-                      child: const Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 30.0, vertical: 6),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 30.0.w, vertical: 6.h),
                         child: Center(
                           child: Row(
                             children: [
@@ -327,11 +325,11 @@ class _Signup_PageState extends State<Signup_Page> {
                                 'Get Otp',
                                 style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 20,
+                                    fontSize: 20.sp,
                                     fontWeight: FontWeight.w400),
                               ),
                               SizedBox(
-                                width: 10,
+                                width: 10.w,
                               ),
                               Icon(
                                 Icons.arrow_forward_ios,
@@ -345,17 +343,17 @@ class _Signup_PageState extends State<Signup_Page> {
                   )
                 ],
               ),
-              const SizedBox(
-                height: 30,
+              SizedBox(
+                height: 30.h,
               ),
               Center(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
+                    Text(
                       'Already have an account?',
                       style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 18.sp,
                           fontWeight: FontWeight.w400,
                           color: Colors.white),
                     ),
@@ -364,54 +362,54 @@ class _Signup_PageState extends State<Signup_Page> {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => const Login_Page()));
                       },
-                      child: const Text(
+                      child: Text(
                         ' Log in',
                         style: TextStyle(
                             color: Colors.red,
-                            fontSize: 18,
+                            fontSize: 18.sp,
                             fontWeight: FontWeight.bold),
                       ),
                     )
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 28,
+              SizedBox(
+                height: 28.h,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                padding: EdgeInsets.symmetric(horizontal: 20.0.w),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      height: 1.5,
-                      width: 130,
+                      height: 1.5.h,
+                      width: 130.w,
                       color: Colors.white,
                     ),
                     SizedBox(
-                      width: 12,
+                      width: 12.w,
                     ),
                     Text(
                       'or',
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 20,
+                          fontSize: 20.sp,
                           fontWeight: FontWeight.w400),
                     ),
                     SizedBox(
-                      width: 12,
+                      width: 12.w,
                     ),
                     Container(
                       // margin: EdgeInsets.only(right: 10),
-                      height: 1.5,
-                      width: 130,
+                      height: 1.5.h,
+                      width: 130.w,
                       color: Colors.white,
                     ),
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: 20.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -420,23 +418,23 @@ class _Signup_PageState extends State<Signup_Page> {
                     decoration: BoxDecoration(
                         // color: Colors.white,
                         border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(10)),
-                    height: 44,
-                    width: 300,
+                        borderRadius: BorderRadius.circular(10.r)),
+                    height: 44.h,
+                    width: 300.w,
                     child: Center(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Image.network(
-                            height: 24,
-                            width: 30,
+                            height: 24.h,
+                            width: 30.w,
                             'https://s3-alpha-sig.figma.com/img/ee6b/3f48/b89ad3b69027b4448422cdfd225c0901?Expires=1699228800&Signature=figvoE9HfxYgq8ZV4WeXdw8yYThj2vFISwHnUm3ygv7pCOrcNgG3qQxi41jf7duyAjKpQ4qmqTXbw7gRy674qLf1kleOWiCZ7Ci8TVHqd0-yHto80ZKgof6snUOJRYvwO1GHemfSkco7Z7be-deVKazxUJlgfGmg0FK9Eu1puQfaIIuaCWNBXHopU4-dmglnLn04hLr17dLmIDRqpeo2lP9XEo1W39-WM9IxrguCHnFBR9XeF-7URLTLFqVYfZhZSArtvbaIjo8ay2e1J4shUqTRv8YzFZs~ZtHrY4IxZ2YYh8PVx0Ng5RYK7ig9IsDqLmUTjo-yTmA-XVj~ft6b~Q__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
                           ),
-                          const Text(
+                          Text(
                             'Login with facebook',
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 20,
+                                fontSize: 20.sp,
                                 fontWeight: FontWeight.w400),
                           ),
                         ],
@@ -445,8 +443,8 @@ class _Signup_PageState extends State<Signup_Page> {
                   )
                 ],
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: 20.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -455,23 +453,23 @@ class _Signup_PageState extends State<Signup_Page> {
                     decoration: BoxDecoration(
                         // color: Colors.white,
                         border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(10)),
-                    height: 44,
-                    width: 300,
+                        borderRadius: BorderRadius.circular(10.r)),
+                    height: 44.h,
+                    width: 300.w,
                     child: Center(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Image.network(
-                            height: 24,
-                            width: 30,
+                            height: 24.h,
+                            width: 30.w,
                             'https://s3-alpha-sig.figma.com/img/0e8c/5336/ec40b19b6983a179020e0e933a042d6b?Expires=1699228800&Signature=B~1zFkzXaDodVf0zzDC9r2IBjoOsAIBd6WGx06wXjuS-Pl6OQXBNFSW12rrN8EEK6xuTfS6sb7xhPwItWTjdIIbg9yfZE9G2MuON6H9vRwj8JPUV9U81e24Fo4AL6fm2OH3NlK-CGOukuYygMQQXXHefm5yAnlyC~u-Ol72v~LCVmVcjzHaMVLBifqYd70RLq-Z3Hwm~4-GjfPKZRrQGcrO6PcHvCTn9QthNlBI7pqSPCrQ6sjb3COAhZrIr5FONCdZNpFoh50W~q~EYxY4sJJJqqex7RfYLQbmALHRQrfBRMlqN7mFxrKPcBkvY-Rq0QMIekVJshaFBHhFLOguN3w__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
                           ),
-                          const Text(
+                          Text(
                             'Login with Google',
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 20,
+                                fontSize: 20.sp,
                                 fontWeight: FontWeight.w400),
                           ),
                         ],
@@ -513,9 +511,9 @@ class _OTPInputState extends State<OTPInput> {
               color: isDigitEntered[index] ? Colors.green : Colors.grey,
             ),
           ),
-          width: 35.0,
-          height: 40,
-          margin: const EdgeInsets.all(5.0),
+          width: 35.0.w,
+          height: 40.h,
+          margin: EdgeInsets.all(5.0.w),
           child: TextField(
             controller: controllers[index],
             textAlign: TextAlign.center,
@@ -599,15 +597,15 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
           decoration:
               const BoxDecoration(color: Color.fromARGB(255, 3, 110, 198)),
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8.0.w),
             child: ListView(children: [
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: 20.h,
               ),
               Row(
                 children: [
-                  const SizedBox(
-                    width: 15,
+                  SizedBox(
+                    width: 15.w,
                   ),
                   InkWell(
                     onTap: () {
@@ -616,72 +614,69 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
                     child: const Icon(Icons.arrow_back_ios_new,
                         color: Colors.white, size: 26),
                   ),
-                  const SizedBox(
-                    width: 60,
+                  SizedBox(
+                    width: 60.w,
                   ),
                   InkWell(
                     onTap: () {},
-                    child: const Text(
+                    child: Text(
                       'Login',
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 23,
+                          fontSize: 23.sp,
                           fontWeight: FontWeight.bold),
                     ),
                   )
                 ],
               ),
-              const SizedBox(
-                height: 30,
+              SizedBox(
+                height: 45.h,
               ),
-              const SizedBox(
-                height: 15,
-              ),
-              const Row(
+              Row(
                 children: [
                   SizedBox(
-                    width: 30,
+                    width: 30.w,
                   ),
                   Text(
                     'Almost There! ',
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 22,
+                        fontSize: 22.sp,
                         fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 10,
+              SizedBox(
+                height: 10.h,
               ),
-              const Center(
+              Center(
                 child: Row(
                   children: [
                     SizedBox(
-                      width: 20,
+                      width: 20.w,
                     ),
                     Text(
                       'Please enter the 6-digit code sent to your\nmobile number for verification.',
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                      style: TextStyle(color: Colors.white, fontSize: 18.sp),
                     ),
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 25,
+              SizedBox(
+                height: 25.h,
               ),
               OTPInput(),
-              const SizedBox(
-                height: 19,
+              SizedBox(
+                height: 19.h,
               ),
-              const Center(
+              Center(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       'Dont Received OTP?',
                       style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 18.sp,
                           fontWeight: FontWeight.w400,
                           color: Colors.white),
                     ),
@@ -689,14 +684,14 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
                       'Try Again',
                       style: TextStyle(
                           color: Colors.red,
-                          fontSize: 18,
+                          fontSize: 18.sp,
                           fontWeight: FontWeight.bold),
                     )
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 28,
+              SizedBox(
+                height: 28.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -731,12 +726,12 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
                     child: Container(
                       decoration: BoxDecoration(
                           color: const Color.fromARGB(255, 25, 67, 157),
-                          borderRadius: BorderRadius.circular(10)),
+                          borderRadius: BorderRadius.circular(10.r)),
                       // height: 40,
                       // width: 230,
-                      child: const Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 30.0, vertical: 6),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 30.0.w, vertical: 6.h),
                         child: Center(
                           child: Row(
                             children: [
@@ -744,7 +739,7 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
                                 'Create My Account',
                                 style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 20,
+                                    fontSize: 20.sp,
                                     fontWeight: FontWeight.w400),
                               ),
                             ],

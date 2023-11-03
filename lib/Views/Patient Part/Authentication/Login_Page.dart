@@ -125,7 +125,7 @@ class _Login_PageState extends State<Login_Page> {
             'Login',
             style: TextStyle(
               color: Colors.white,
-              fontSize: 18,
+              fontSize: 18.sp,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -139,7 +139,7 @@ class _Login_PageState extends State<Login_Page> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                margin: EdgeInsets.only(left: 20, top: 20, bottom: 20),
+                margin: EdgeInsets.only(left: 20.w, top: 20.h, bottom: 20.h),
                 child: Text(
                   'Hi, Welcome Back! 👋',
                   style: TextStyle(
@@ -149,20 +149,20 @@ class _Login_PageState extends State<Login_Page> {
                 ),
               ),
               Container(
-                margin: const EdgeInsets.only(left: 20, right: 20),
-                height: 55,
+                margin: EdgeInsets.only(left: 20.w, right: 20.w),
+                height: 55.h,
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    border: Border.all(width: 1, color: Colors.grey),
-                    borderRadius: BorderRadius.circular(10)),
+                    border: Border.all(width: 1.w, color: Colors.grey),
+                    borderRadius: BorderRadius.circular(10.r)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const SizedBox(
-                      width: 10,
+                    SizedBox(
+                      width: 10.w,
                     ),
                     SizedBox(
-                      width: 40,
+                      width: 40.w,
                       child: TextField(
                         controller: countryController,
                         keyboardType: TextInputType.number,
@@ -171,12 +171,12 @@ class _Login_PageState extends State<Login_Page> {
                         ),
                       ),
                     ),
-                    const Text(
+                    Text(
                       "|",
-                      style: TextStyle(fontSize: 33, color: Colors.grey),
+                      style: TextStyle(fontSize: 33.sp, color: Colors.grey),
                     ),
-                    const SizedBox(
-                      width: 10,
+                    SizedBox(
+                      width: 10.w,
                     ),
                     Expanded(
                         child: TextField(
@@ -192,30 +192,32 @@ class _Login_PageState extends State<Login_Page> {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: 20.h,
               ),
               Center(
                 child: SizedBox(
-                  width: 157,
-                  height: 38,
+                  width: 157.w,
+                  height: 38.h,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       primary: Color(0XFF005473),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(10.r),
                       ),
                     ),
                     onPressed: () async {
                       checkPhoneNumberAndVerifyOTP(
                           context); // Call the function
                     },
-                    child: const Text("Next"),
+                    child: const Text(
+                      "Next",
+                    ),
                   ),
                 ),
               ),
               SizedBox(
-                height: 30,
+                height: 30.h,
               ),
               Center(
                 child: Row(
@@ -224,7 +226,7 @@ class _Login_PageState extends State<Login_Page> {
                     Text(
                       'Dont have an account?',
                       style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 18.sp,
                           fontWeight: FontWeight.w400,
                           color: Colors.white),
                     ),
@@ -237,7 +239,7 @@ class _Login_PageState extends State<Login_Page> {
                         ' Sign up',
                         style: TextStyle(
                             color: Colors.red,
-                            fontSize: 18,
+                            fontSize: 18.sp,
                             fontWeight: FontWeight.bold),
                       ),
                     )
@@ -245,42 +247,42 @@ class _Login_PageState extends State<Login_Page> {
                 ),
               ),
               SizedBox(
-                height: 28,
+                height: 28.h,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                padding: EdgeInsets.symmetric(horizontal: 20.0.w),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      height: 1.5,
-                      width: 130,
+                      height: 1.5.h,
+                      width: 130.w,
                       color: Colors.white,
                     ),
                     SizedBox(
-                      width: 12,
+                      width: 12.w,
                     ),
                     Text(
                       'or',
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 20,
+                          fontSize: 20.sp,
                           fontWeight: FontWeight.w400),
                     ),
                     SizedBox(
-                      width: 12,
+                      width: 12.w,
                     ),
                     Container(
-                      margin: EdgeInsets.only(right: 10),
-                      height: 1.5,
-                      width: 130,
+                      margin: EdgeInsets.only(right: 10.w),
+                      height: 1.5.h,
+                      width: 130.w,
                       color: Colors.white,
                     ),
                   ],
                 ),
               ),
               SizedBox(
-                height: 20,
+                height: 20.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -288,23 +290,23 @@ class _Login_PageState extends State<Login_Page> {
                   Container(
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(10)),
-                    height: 44,
-                    width: 300,
+                        borderRadius: BorderRadius.circular(10.r)),
+                    height: 44.h,
+                    width: 300.w,
                     child: Center(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Image.network(
-                            height: 24,
-                            width: 30,
+                            height: 24.h,
+                            width: 30.w,
                             'https://s3-alpha-sig.figma.com/img/ee6b/3f48/b89ad3b69027b4448422cdfd225c0901?Expires=1699228800&Signature=figvoE9HfxYgq8ZV4WeXdw8yYThj2vFISwHnUm3ygv7pCOrcNgG3qQxi41jf7duyAjKpQ4qmqTXbw7gRy674qLf1kleOWiCZ7Ci8TVHqd0-yHto80ZKgof6snUOJRYvwO1GHemfSkco7Z7be-deVKazxUJlgfGmg0FK9Eu1puQfaIIuaCWNBXHopU4-dmglnLn04hLr17dLmIDRqpeo2lP9XEo1W39-WM9IxrguCHnFBR9XeF-7URLTLFqVYfZhZSArtvbaIjo8ay2e1J4shUqTRv8YzFZs~ZtHrY4IxZ2YYh8PVx0Ng5RYK7ig9IsDqLmUTjo-yTmA-XVj~ft6b~Q__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
                           ),
                           Text(
                             'Login with facebook',
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 20,
+                                fontSize: 20.sp,
                                 fontWeight: FontWeight.w400),
                           ),
                         ],
@@ -314,7 +316,7 @@ class _Login_PageState extends State<Login_Page> {
                 ],
               ),
               SizedBox(
-                height: 20,
+                height: 20.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -322,23 +324,23 @@ class _Login_PageState extends State<Login_Page> {
                   Container(
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(10)),
-                    height: 44,
-                    width: 300,
+                        borderRadius: BorderRadius.circular(10.r)),
+                    height: 44.h,
+                    width: 300.w,
                     child: Center(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Image.network(
-                            height: 24,
-                            width: 30,
+                            height: 24.h,
+                            width: 30.w,
                             'https://s3-alpha-sig.figma.com/img/0e8c/5336/ec40b19b6983a179020e0e933a042d6b?Expires=1699228800&Signature=B~1zFkzXaDodVf0zzDC9r2IBjoOsAIBd6WGx06wXjuS-Pl6OQXBNFSW12rrN8EEK6xuTfS6sb7xhPwItWTjdIIbg9yfZE9G2MuON6H9vRwj8JPUV9U81e24Fo4AL6fm2OH3NlK-CGOukuYygMQQXXHefm5yAnlyC~u-Ol72v~LCVmVcjzHaMVLBifqYd70RLq-Z3Hwm~4-GjfPKZRrQGcrO6PcHvCTn9QthNlBI7pqSPCrQ6sjb3COAhZrIr5FONCdZNpFoh50W~q~EYxY4sJJJqqex7RfYLQbmALHRQrfBRMlqN7mFxrKPcBkvY-Rq0QMIekVJshaFBHhFLOguN3w__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
                           ),
                           Text(
                             'Login with Google',
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 20,
+                                fontSize: 20.sp,
                                 fontWeight: FontWeight.w400),
                           ),
                         ],
@@ -368,21 +370,21 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
   @override
   Widget build(BuildContext context) {
     final defaultPinTheme = PinTheme(
-      width: 56,
-      height: 56,
-      textStyle: const TextStyle(
-          fontSize: 20,
+      width: 56.w,
+      height: 56.h,
+      textStyle: TextStyle(
+          fontSize: 20.sp,
           color: Color.fromRGBO(30, 60, 87, 1),
           fontWeight: FontWeight.w600),
       decoration: BoxDecoration(
         border: Border.all(color: const Color.fromRGBO(234, 239, 243, 1)),
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(20.r),
       ),
     );
 
     final focusedPinTheme = defaultPinTheme.copyDecorationWith(
       border: Border.all(color: const Color.fromRGBO(114, 178, 238, 1)),
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(8.r),
     );
 
     final submittedPinTheme = defaultPinTheme.copyWith(
@@ -409,12 +411,12 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
           },
         ),
         title: Container(
-          margin: const EdgeInsets.only(left: 80),
+          margin: EdgeInsets.only(left: 80.w),
           child: Text(
             'Login',
             style: TextStyle(
               color: Colors.white,
-              fontSize: 18,
+              fontSize: 18.sp,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -428,39 +430,39 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: 150,
+                height: 150.h,
               ),
               Container(
-                margin: EdgeInsets.only(left: 20),
+                margin: EdgeInsets.only(left: 20.w),
                 child: Text(
                   'Almost There! ',
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: 22,
+                      fontSize: 22.sp,
                       fontWeight: FontWeight.bold),
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 10.h,
               ),
               Center(
                 child: Row(
                   children: [
                     SizedBox(
-                      width: 20,
+                      width: 20.w,
                     ),
                     Text(
                       'Please enter the 6-digit code sent to your\nmobile number for verification.',
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                      style: TextStyle(color: Colors.white, fontSize: 18.sp),
                     ),
                   ],
                 ),
               ),
               SizedBox(
-                height: 25,
+                height: 25.h,
               ),
               Container(
-                margin: EdgeInsets.only(left: 20, right: 20),
+                margin: EdgeInsets.only(left: 20.w, right: 20.w),
                 child: Pinput(
                   length: 6,
                   onChanged: (value) {
@@ -471,18 +473,18 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
                   // onCompleted: (pin) => print(pin),
                 ),
               ),
-              const SizedBox(
-                height: 30,
+              SizedBox(
+                height: 30.h,
               ),
               Center(
                 child: SizedBox(
-                  width: 157,
-                  height: 36,
+                  width: 157.w,
+                  height: 36.h,
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           primary: Color(0xFF005473),
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10))),
+                              borderRadius: BorderRadius.circular(10.r))),
                       onPressed: () async {
                         try {
                           PhoneAuthCredential credential =
@@ -501,7 +503,7 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 10.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

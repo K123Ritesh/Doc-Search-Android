@@ -1,6 +1,7 @@
 import 'package:doc_search/Bottom_Bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Medical_Labs_Details_Page extends StatefulWidget {
@@ -34,15 +35,15 @@ class _Medical_Labs_Details_PageState extends State<Medical_Labs_Details_Page> {
       body: Container(
           decoration: BoxDecoration(color: Colors.white),
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8.0.w),
             child: ListView(children: [
               SizedBox(
-                height: 20,
+                height: 20.h,
               ),
               Row(
                 children: [
                   SizedBox(
-                    width: 15,
+                    width: 15.w,
                   ),
                   InkWell(
                     onTap: () {
@@ -52,34 +53,34 @@ class _Medical_Labs_Details_PageState extends State<Medical_Labs_Details_Page> {
                         color: Colors.black, size: 26),
                   ),
                   SizedBox(
-                    width: 60,
+                    width: 60.w,
                   ),
                   Text(
                     'Medical Lab',
                     style: TextStyle(
                         color: Colors.black,
-                        fontSize: 23,
+                        fontSize: 23.sp,
                         fontWeight: FontWeight.bold),
                   )
                 ],
               ),
               SizedBox(
-                height: 30,
+                height: 30.h,
               ),
               SizedBox(
-                height: 15,
+                height: 15.h,
               ),
               Center(
                 child: Text(
                   'Find a Medical Lab near by',
                   style: TextStyle(
                       color: Colors.black,
-                      fontSize: 22,
+                      fontSize: 22.sp,
                       fontWeight: FontWeight.bold),
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 10.h,
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
@@ -89,13 +90,13 @@ class _Medical_Labs_Details_PageState extends State<Medical_Labs_Details_Page> {
                       borderRadius: BorderRadius.circular(15),
                       child: Image.network(
                         'https://s3-alpha-sig.figma.com/img/8e99/156b/3966a970d29e00d2c9fbcba8ec97dc4e?Expires=1699228800&Signature=G4XfzM8KQXWwPmgeIybKPpafP-qyHsr9ykClrm01kpDSs58y~izeZF7mvopK5MV6PqM6UAqHF-hzxPtslq3sl~ZXTW50InN6W6apRCJsIW2TJD4NRlkL4zHsjhPdELTLmu4BO4pA8rv~Om-a3ktOGbFSQzeRDomPUd0YA5H~IMWjiphojGAHn9O~xvAv3eM8a28rF4QmGHGbXbewBFqVJdy4aO3KRYF3BgCCoXvYv3rvChc7j68LW0aiLAtjXTs5fCfHllT2MqrBNoNf-mkSADtO2bJzX~XirR21BjQEJL9j65ov7NcjSJ14BsQ8F1giwxzglFauHnZXvsOWAHxwgw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
-                        height: 150,
-                        width: 400,
+                        height: 150.h,
+                        width: 400.w,
                         fit: BoxFit.fill,
                       ),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 20.h,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -105,7 +106,7 @@ class _Medical_Labs_Details_PageState extends State<Medical_Labs_Details_Page> {
                             Text(
                               'Pathology Lab',
                               style: TextStyle(
-                                  fontSize: 22,
+                                  fontSize: 22.sp,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black),
                             ),
@@ -116,16 +117,16 @@ class _Medical_Labs_Details_PageState extends State<Medical_Labs_Details_Page> {
                             Container(
                                 decoration: BoxDecoration(
                                     color: Colors.blue,
-                                    borderRadius: BorderRadius.circular(15)),
+                                    borderRadius: BorderRadius.circular(15.r)),
                                 child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 14.0, vertical: 4),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 14.0.w, vertical: 4.h),
                                   child: Row(
                                     children: [
                                       Image.network(
                                           'https://s3-alpha-sig.figma.com/img/6b44/dfe8/5c57af73afca6dcfe03f4edefe50e0d8?Expires=1699228800&Signature=Lr3Xoqc42oUgyw5W-edowlsanrCojTS6AGSLTprSiVaLqanRw6UMsk33zhZeJFeEmHw7fcp9m9hu2xA0iiPAxg2XmR2qWDEp8DyTMw0uSL3NwdSspGPq69NY1a-5xCBdWmFnRGRd1g-nx-83Gjc7zKmiBLShElK6UObuPx9K3nnsvLd8TCAt4E23Y3pdzDtmiT5jJri5n55E7kHO6etZGfoVryhiWEH7jHL8cEP-qoRrKx4in8xm8AZts6XBM7k2DgCSXmrUmI6X5YGwMwGpGG6Z74Pfc8TKgzFv5bp2ilKmulUbag0ID37DphiT2G2lpPExL2r-xAkR3dffovWEZA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
-                                          height: 15,
-                                          width: 15),
+                                          height: 15.h,
+                                          width: 15.w),
                                       Text('4.5',
                                           style: TextStyle(color: Colors.white))
                                     ],
@@ -138,12 +139,12 @@ class _Medical_Labs_Details_PageState extends State<Medical_Labs_Details_Page> {
                     Text(
                       '${widget.detailedAddress}',
                       style: TextStyle(
-                          fontSize: 19,
+                          fontSize: 19.sp,
                           fontWeight: FontWeight.w400,
                           color: Colors.black),
                     ),
                     SizedBox(
-                      height: 30,
+                      height: 30.h,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -162,10 +163,10 @@ class _Medical_Labs_Details_PageState extends State<Medical_Labs_Details_Page> {
                           child: Container(
                               decoration: BoxDecoration(
                                   color: Colors.blue,
-                                  borderRadius: BorderRadius.circular(15)),
+                                  borderRadius: BorderRadius.circular(15.r)),
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 14.0, vertical: 4),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 14.0.w, vertical: 4.h),
                                 child: Row(
                                   children: [
                                     Icon(
@@ -173,11 +174,12 @@ class _Medical_Labs_Details_PageState extends State<Medical_Labs_Details_Page> {
                                       color: Colors.white,
                                     ),
                                     SizedBox(
-                                      width: 10,
+                                      width: 10.w,
                                     ),
                                     Text('${widget.contactInfo1}',
                                         style: TextStyle(
-                                            color: Colors.white, fontSize: 20))
+                                            color: Colors.white,
+                                            fontSize: 20.sp))
                                   ],
                                 ),
                               )),
@@ -185,7 +187,7 @@ class _Medical_Labs_Details_PageState extends State<Medical_Labs_Details_Page> {
                       ],
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -204,10 +206,10 @@ class _Medical_Labs_Details_PageState extends State<Medical_Labs_Details_Page> {
                           child: Container(
                               decoration: BoxDecoration(
                                   color: Colors.blue,
-                                  borderRadius: BorderRadius.circular(15)),
+                                  borderRadius: BorderRadius.circular(15.r)),
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 14.0, vertical: 4),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 14.0.w, vertical: 4.h),
                                 child: Row(
                                   children: [
                                     Icon(
@@ -215,11 +217,12 @@ class _Medical_Labs_Details_PageState extends State<Medical_Labs_Details_Page> {
                                       color: Colors.white,
                                     ),
                                     SizedBox(
-                                      width: 10,
+                                      width: 10.w,
                                     ),
                                     Text('${widget.contactInfo2}',
                                         style: TextStyle(
-                                            color: Colors.white, fontSize: 20))
+                                            color: Colors.white,
+                                            fontSize: 20.sp))
                                   ],
                                 ),
                               )),

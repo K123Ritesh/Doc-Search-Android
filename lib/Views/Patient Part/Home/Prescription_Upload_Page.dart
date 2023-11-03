@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:path/path.dart' as path;
 import 'package:provider/provider.dart';
 
@@ -56,17 +57,17 @@ class _Prescription_Upload_PageState extends State<Prescription_Upload_Page> {
       body: Container(
           decoration: BoxDecoration(color: Colors.white),
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8.0.w),
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Column(children: [
                 SizedBox(
-                  height: 20,
+                  height: 20.h,
                 ),
                 Row(
                   children: [
                     SizedBox(
-                      width: 15,
+                      width: 15.w,
                     ),
                     InkWell(
                       onTap: () {
@@ -76,50 +77,50 @@ class _Prescription_Upload_PageState extends State<Prescription_Upload_Page> {
                           color: Colors.black, size: 26),
                     ),
                     SizedBox(
-                      width: 60,
+                      width: 60.w,
                     ),
                     Text(
                       'Medicine',
                       style: TextStyle(
                           color: Colors.black,
-                          fontSize: 23,
+                          fontSize: 23.sp,
                           fontWeight: FontWeight.bold),
                     )
                   ],
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 30.h,
                 ),
                 SizedBox(
-                  height: 15,
+                  height: 15.h,
                 ),
                 Center(
                   child: Text(
                     'Upload Your Prescription',
                     style: TextStyle(
                         color: Colors.black,
-                        fontSize: 22,
+                        fontSize: 22.sp,
                         fontWeight: FontWeight.bold),
                   ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 10.h,
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                  padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 2.h),
                   child: Column(
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(15),
                         child: Image.network(
                           'https://s3-alpha-sig.figma.com/img/794b/f823/888e96939d2cdc3a020b483113f691e6?Expires=1699228800&Signature=VseIWQAWN33pNICILnj70LXfeN6memzt6Z-OCXz6IAqpv3V~87ADxWi0O7vHJtwfhjhkrltSjReikFhEgjMl~USyfilpabpN4cKIfJPdqz6rKUTFw6Qk2HWsT8cSirCOmPcHzmnLGUhhTSeqraR-UfUmkb79IWvL9JWFl~HPNllntFDok0nUHs0fa0brCyv6Lu55KKensPkenhRfCW1nUc8p0tj3iqELCd5UdakJFKdrTrbM7qaXJpLWyJcCZpn5f42QSfRlqAJj6v6s5KMxzU0T48DiJI241aPBbYr0iwzGHnK9ySVa7PB3iUC1vBlOBkgn3W33ueEpxWIjrH~8Jg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
-                          height: 150,
-                          width: 400,
+                          height: 150.h,
+                          width: 400.w,
                           fit: BoxFit.fill,
                         ),
                       ),
                       SizedBox(
-                        height: 20,
+                        height: 20.h,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -129,7 +130,7 @@ class _Prescription_Upload_PageState extends State<Prescription_Upload_Page> {
                               Text(
                                 'Medical Store',
                                 style: TextStyle(
-                                    fontSize: 22,
+                                    fontSize: 22.sp,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black),
                               ),
@@ -140,16 +141,17 @@ class _Prescription_Upload_PageState extends State<Prescription_Upload_Page> {
                               Container(
                                   decoration: BoxDecoration(
                                       color: Colors.blue,
-                                      borderRadius: BorderRadius.circular(15)),
+                                      borderRadius:
+                                          BorderRadius.circular(15.r)),
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 14.0, vertical: 4),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 14.0.w, vertical: 4.h),
                                     child: Row(
                                       children: [
                                         Image.network(
                                             'https://s3-alpha-sig.figma.com/img/6b44/dfe8/5c57af73afca6dcfe03f4edefe50e0d8?Expires=1699228800&Signature=Lr3Xoqc42oUgyw5W-edowlsanrCojTS6AGSLTprSiVaLqanRw6UMsk33zhZeJFeEmHw7fcp9m9hu2xA0iiPAxg2XmR2qWDEp8DyTMw0uSL3NwdSspGPq69NY1a-5xCBdWmFnRGRd1g-nx-83Gjc7zKmiBLShElK6UObuPx9K3nnsvLd8TCAt4E23Y3pdzDtmiT5jJri5n55E7kHO6etZGfoVryhiWEH7jHL8cEP-qoRrKx4in8xm8AZts6XBM7k2DgCSXmrUmI6X5YGwMwGpGG6Z74Pfc8TKgzFv5bp2ilKmulUbag0ID37DphiT2G2lpPExL2r-xAkR3dffovWEZA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
-                                            height: 15,
-                                            width: 15),
+                                            height: 15.h,
+                                            width: 15.w),
                                         Text('4.5',
                                             style:
                                                 TextStyle(color: Colors.white))
@@ -163,12 +165,12 @@ class _Prescription_Upload_PageState extends State<Prescription_Upload_Page> {
                       Text(
                         'E-13, South Extension Market,Part-II, New Delhi, Delhi 110049',
                         style: TextStyle(
-                            fontSize: 19,
+                            fontSize: 19.sp,
                             fontWeight: FontWeight.w400,
                             color: Colors.black),
                       ),
                       SizedBox(
-                        height: 30,
+                        height: 30.h,
                       ),
                       SingleChildScrollView(
                         scrollDirection: Axis.vertical,
@@ -177,7 +179,7 @@ class _Prescription_Upload_PageState extends State<Prescription_Upload_Page> {
                             for (int i = 0; i < files_list.length; i++)
                               ListTile(
                                 title: Text('${files_list[i]}',
-                                    style: TextStyle(fontSize: 18)),
+                                    style: TextStyle(fontSize: 18.sp)),
                                 trailing: Icon(
                                   Icons.check_box_rounded,
                                   color: Colors.green,
@@ -192,7 +194,7 @@ class _Prescription_Upload_PageState extends State<Prescription_Upload_Page> {
                         },
                         child: Container(
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(15.r),
                               color: const Color.fromARGB(255, 15, 79, 131)),
                           child: Icon(
                             Icons.add,
@@ -202,17 +204,17 @@ class _Prescription_Upload_PageState extends State<Prescription_Upload_Page> {
                         ),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 10.h,
                       ),
                       Text(
                         'Add more Prescription',
                         style: TextStyle(
-                            fontSize: 19,
+                            fontSize: 19.sp,
                             fontWeight: FontWeight.w500,
                             color: Color.fromARGB(255, 15, 79, 131)),
                       ),
                       SizedBox(
-                        height: 22,
+                        height: 22.h,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -226,16 +228,16 @@ class _Prescription_Upload_PageState extends State<Prescription_Upload_Page> {
                             child: Container(
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black),
-                                  borderRadius: BorderRadius.circular(10)),
+                                  borderRadius: BorderRadius.circular(10.r)),
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
-                                  horizontal: 30,
-                                  vertical: 8,
+                                  horizontal: 30.w,
+                                  vertical: 8.h,
                                 ),
                                 child: Text(
                                   'Cancel',
                                   style: TextStyle(
-                                      fontSize: 20,
+                                      fontSize: 20.sp,
                                       fontWeight: FontWeight.w400),
                                 ),
                               ),
@@ -271,16 +273,16 @@ class _Prescription_Upload_PageState extends State<Prescription_Upload_Page> {
                               decoration: BoxDecoration(
                                   color: Color.fromARGB(255, 15, 79, 131),
                                   border: Border.all(color: Colors.black),
-                                  borderRadius: BorderRadius.circular(10)),
+                                  borderRadius: BorderRadius.circular(10.r)),
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
-                                  horizontal: 33,
-                                  vertical: 8,
+                                  horizontal: 33.w,
+                                  vertical: 8.h,
                                 ),
                                 child: Text(
                                   'Save',
                                   style: TextStyle(
-                                      fontSize: 20,
+                                      fontSize: 20.sp,
                                       color: Colors.white,
                                       fontWeight: FontWeight.w400),
                                 ),

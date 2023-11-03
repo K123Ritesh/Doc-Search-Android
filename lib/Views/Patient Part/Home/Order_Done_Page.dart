@@ -1,5 +1,6 @@
 import 'package:doc_search/Bottom_Bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Order_Done_Page extends StatefulWidget {
   const Order_Done_Page({super.key});
@@ -17,17 +18,17 @@ class _Order_Done_PageState extends State<Order_Done_Page> {
             body: Container(
                 decoration: BoxDecoration(color: Colors.white),
                 child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(8.0.w),
                     child: SingleChildScrollView(
                         scrollDirection: Axis.vertical,
                         child: Column(children: [
                           SizedBox(
-                            height: 20,
+                            height: 20.h,
                           ),
                           Row(
                             children: [
                               SizedBox(
-                                width: 15,
+                                width: 15.w,
                               ),
                               InkWell(
                                 onTap: () {
@@ -37,22 +38,22 @@ class _Order_Done_PageState extends State<Order_Done_Page> {
                                     color: Colors.black, size: 26),
                               ),
                               SizedBox(
-                                width: 60,
+                                width: 60.w,
                               ),
                               Text(
                                 'Medicine',
                                 style: TextStyle(
                                     color: Colors.black,
-                                    fontSize: 23,
+                                    fontSize: 23.sp,
                                     fontWeight: FontWeight.bold),
                               )
                             ],
                           ),
                           SizedBox(
-                            height: 30,
+                            height: 30.h,
                           ),
                           SizedBox(
-                            height: 105,
+                            height: 105.h,
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -63,22 +64,22 @@ class _Order_Done_PageState extends State<Order_Done_Page> {
                                   'Congrats!',
                                   style: TextStyle(
                                       color: Colors.black,
-                                      fontSize: 28,
+                                      fontSize: 28.sp,
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),
                               SizedBox(
-                                height: 20,
+                                height: 20.h,
                               ),
                               Text(
                                 'The Prescription was successfully uploaded.Your medicines will be at your doorstep.',
                                 style: TextStyle(
                                     color: Colors.black,
-                                    fontSize: 19,
+                                    fontSize: 19.sp,
                                     fontWeight: FontWeight.w400),
                               ),
                               SizedBox(
-                                height: 10,
+                                height: 10.h,
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -87,7 +88,7 @@ class _Order_Done_PageState extends State<Order_Done_Page> {
                                     'Check status ',
                                     style: TextStyle(
                                         color: Colors.blue,
-                                        fontSize: 21,
+                                        fontSize: 21.sp,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Icon(Icons.arrow_forward_ios,
@@ -95,7 +96,7 @@ class _Order_Done_PageState extends State<Order_Done_Page> {
                                 ],
                               ),
                               SizedBox(
-                                height: 20,
+                                height: 20.h,
                               ),
                               InkWell(
                                 onTap: () {
@@ -107,16 +108,17 @@ class _Order_Done_PageState extends State<Order_Done_Page> {
                                 child: Container(
                                   decoration: BoxDecoration(
                                       color: Colors.blueAccent,
-                                      borderRadius: BorderRadius.circular(15)),
+                                      borderRadius:
+                                          BorderRadius.circular(15.r)),
                                   child: Padding(
                                     padding: EdgeInsets.symmetric(
-                                      horizontal: 20,
-                                      vertical: 6,
+                                      horizontal: 20.w,
+                                      vertical: 6.h,
                                     ),
                                     child: Text('Close',
                                         style: TextStyle(
                                             color: Colors.white,
-                                            fontSize: 21,
+                                            fontSize: 21.sp,
                                             fontWeight: FontWeight.w500)),
                                   ),
                                 ),

@@ -2,13 +2,15 @@ import 'package:doc_search/Views/Patient%20Part/Home/Home_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Profile_Page.dart';
 import 'package:flutter/material.dart';
 
+import 'Views/Patient Part/Appointment/PastApointment.dart';
+
 class Bottombar extends StatefulWidget {
   @override
   State<Bottombar> createState() => _BottombarState();
 }
 
 class _BottombarState extends State<Bottombar> {
-  int currentIndex = 0; // Variable to track the selected tab index
+  int currentIndex = 0;
 
   void onTabTapped(int index) {
     setState(() {
@@ -23,10 +25,10 @@ class _BottombarState extends State<Bottombar> {
         );
         break;
       case 1:
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(builder: (context) => SearchPage()),
-        // );
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => PastAppointment()),
+        );
         break;
       case 2:
         // Navigator.push(
@@ -53,9 +55,9 @@ class _BottombarState extends State<Bottombar> {
           topLeft: Radius.circular(33.0),
           topRight: Radius.circular(33.0),
         ),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
-            color: const Color.fromARGB(255, 234, 165, 165),
+            color: Color.fromARGB(255, 234, 165, 165),
             blurRadius: 10.0,
             offset: Offset(0, -3),
           ),
@@ -64,14 +66,14 @@ class _BottombarState extends State<Bottombar> {
       child: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         elevation: 3,
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.book_outlined),
-            label: 'Search',
+            label: 'Appointment',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.chat),
@@ -86,6 +88,7 @@ class _BottombarState extends State<Bottombar> {
         onTap: onTabTapped,
         unselectedItemColor: Colors.black,
         selectedItemColor: Colors.blue,
+        selectedLabelStyle: TextStyle(color: Colors.blue),
       ),
     );
   }

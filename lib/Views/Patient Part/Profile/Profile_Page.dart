@@ -12,6 +12,7 @@ import 'package:flutter/services.dart';
 import '../../../Bottom_Bar.dart';
 import '../Home/Home_Page.dart';
 import 'Edit_User_Profile.dart';
+import 'MedicalOrder.dart';
 
 class Profile_Page_Doc_Search extends StatelessWidget {
   @override
@@ -177,7 +178,7 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Not_Build_Page()),
+                                builder: (context) => MedicalRecord()),
                           );
                         },
                         child: ListTile(

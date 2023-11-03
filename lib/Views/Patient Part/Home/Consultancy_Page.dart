@@ -1,5 +1,6 @@
 import 'package:doc_search/Views/Doctor%20Part/Profile/Online_Consultations_Page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../Bottom_Bar.dart';
 
@@ -21,15 +22,15 @@ class _Consultancy_PageState extends State<Consultancy_Page> {
               color: Colors.white,
             ),
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8.0.w),
               child: ListView(children: [
                 SizedBox(
-                  height: 20,
+                  height: 20.h,
                 ),
                 Row(
                   children: [
                     SizedBox(
-                      width: 15,
+                      width: 15.w,
                     ),
                     InkWell(
                       onTap: () {
@@ -39,27 +40,27 @@ class _Consultancy_PageState extends State<Consultancy_Page> {
                           color: Colors.black, size: 26),
                     ),
                     SizedBox(
-                      width: 70,
+                      width: 70.w,
                     ),
                     Text(
                       'Consultancy',
                       style: TextStyle(
                           color: Colors.black,
-                          fontSize: 23,
+                          fontSize: 23.sp,
                           fontWeight: FontWeight.w400),
                     )
                   ],
                 ),
                 SizedBox(
-                  height: 50,
+                  height: 50.h,
                 ),
                 Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(10.r),
                     color: Color.fromRGBO(194, 230, 243, 1.0),
                   ),
                   child: Padding(
-                    padding: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(10.w),
                     child: Container(
                       child: Column(
                         children: [
@@ -70,13 +71,13 @@ class _Consultancy_PageState extends State<Consultancy_Page> {
                                 'Skip your travel !',
                                 style: TextStyle(
                                     color: Color.fromRGBO(0, 84, 115, 1),
-                                    fontSize: 22,
+                                    fontSize: 22.sp,
                                     fontWeight: FontWeight.bold),
                               )
                             ],
                           ),
                           SizedBox(
-                            height: 15,
+                            height: 15.h,
                           ),
                           Row(
                             children: [
@@ -87,11 +88,11 @@ class _Consultancy_PageState extends State<Consultancy_Page> {
                                     'Consult top doctors\neffortlessly',
                                     style: TextStyle(
                                         color: Colors.black,
-                                        fontSize: 20,
+                                        fontSize: 20.sp,
                                         fontWeight: FontWeight.w400),
                                   ),
                                   SizedBox(
-                                    height: 10,
+                                    height: 10.h,
                                   ),
                                   Row(
                                     // mainAxisAlignment: MainAxisAlignment.start,
@@ -100,7 +101,7 @@ class _Consultancy_PageState extends State<Consultancy_Page> {
                                         'Starting at ',
                                         style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 17,
+                                            fontSize: 17.sp,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
@@ -108,16 +109,16 @@ class _Consultancy_PageState extends State<Consultancy_Page> {
                                         style: TextStyle(
                                             color:
                                                 Color.fromRGBO(0, 84, 115, 1),
-                                            fontSize: 17,
+                                            fontSize: 17.sp,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       SizedBox(
-                                        width: 55,
+                                        width: 55.w,
                                       )
                                     ],
                                   ),
                                   SizedBox(
-                                    height: 10,
+                                    height: 10.h,
                                   ),
                                   InkWell(
                                     onTap: () {
@@ -137,16 +138,17 @@ class _Consultancy_PageState extends State<Consultancy_Page> {
                                               borderRadius:
                                                   BorderRadius.circular(15),
                                               border: Border.all(
-                                                  width: 4,
+                                                  width: 4.w,
                                                   color: Color.fromRGBO(
                                                       0, 84, 115, 1))),
                                           child: Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 12.0, vertical: 5),
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 12.0.w,
+                                                vertical: 5.h),
                                             child: Text(
                                               'Consult now',
                                               style: TextStyle(
-                                                  fontSize: 16,
+                                                  fontSize: 16.sp,
                                                   fontWeight: FontWeight.bold,
                                                   color: Color.fromRGBO(
                                                       0, 84, 115, 1)),
@@ -154,7 +156,7 @@ class _Consultancy_PageState extends State<Consultancy_Page> {
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 47,
+                                          width: 47.w,
                                         )
                                       ],
                                     ),
@@ -162,11 +164,11 @@ class _Consultancy_PageState extends State<Consultancy_Page> {
                                 ],
                               ),
                               SizedBox(
-                                width: 10,
+                                width: 10.w,
                               ),
                               Container(
-                                width: 167,
-                                height: 128,
+                                width: 167.w,
+                                height: 128.h,
                                 child: Image.network(
                                     'https://s3-alpha-sig.figma.com/img/c6d2/7964/5beb6d1957bb1f7cb2abeba0d5020cab?Expires=1699833600&Signature=kbbgxpPbt-Z3BEPO5yi-wY2Pp2Xs5MHhdSA3xCbhzagc9HHN~tcanWaY83xkBNAJQlE8HzfgMgj8AmDX4fZviFqLBiE1yAGltw2l6bhjsgLt140dFS89UeiigIWGiTpyNUce2cvvr7IDMxnrar9nOMLAcL3e5iGtr4I1PSvzeSqTEta~osnROm8wE9rsJgxMNdSezRQEhswtIeV7YjA3BIGWj1x-ClgPG~W3Ba7lGZUtYx5f1-1Mb1rtvXGHpuV-K-ORv-jcIOVS7D2SOEsMoVd2lArFYhteWMNnv2z-Tz6ZOmtlO6xuwOxwLRt8Sa1Tf9omVuFQCo21CHSg4ENLKQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4'),
                               )
@@ -178,20 +180,20 @@ class _Consultancy_PageState extends State<Consultancy_Page> {
                   ),
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 30.h,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       'Get 24/7 online consultations with the best doctors',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          fontSize: 16.sp, fontWeight: FontWeight.bold),
                     )
                   ],
                 ),
                 SizedBox(
-                  height: 15,
+                  height: 15.h,
                 ),
                 Expanded(child: Image.asset('assets/Images/Pasted image.png'))
               ]),

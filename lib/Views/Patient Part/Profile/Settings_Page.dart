@@ -4,6 +4,7 @@ import 'package:doc_search/Views/Patient%20Part/Profile/Change_PhoneNumber_Page.
 import 'package:doc_search/Views/Patient%20Part/Profile/Feedback_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Privacy_Policy_Page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Settings_Page extends StatefulWidget {
   const Settings_Page({super.key});
@@ -22,14 +23,14 @@ class _Settings_PageState extends State<Settings_Page> {
             color: const Color(0xFF155467),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8.0.w),
             child: ListView(
               children: [
-                SizedBox(height: 23),
+                SizedBox(height: 23.h),
                 Row(
                   children: [
                     SizedBox(
-                      width: 15,
+                      width: 15.w,
                     ),
                     InkWell(
                       onTap: () {
@@ -41,44 +42,44 @@ class _Settings_PageState extends State<Settings_Page> {
                   ],
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 10.h,
                 ),
                 Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                   SizedBox(
-                    width: 20,
+                    width: 20.w,
                   ),
                   Column(
                     children: [
                       CircleAvatar(
                         child: Icon(Icons.person, size: 90),
-                        maxRadius: 50,
+                        maxRadius: 50.r,
                         backgroundColor: Colors.white,
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 10.h,
                       ),
                       Text(
                         "Ritesh Kumar",
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 23,
+                            fontSize: 23.sp,
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
                         "ritkumar@gmail.com | +91 9905411917",
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 18,
+                            fontSize: 18.sp,
                             fontWeight: FontWeight.w400),
                       )
                     ],
                   )
                 ]),
                 SizedBox(
-                  height: 20,
+                  height: 20.h,
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  padding: EdgeInsets.symmetric(horizontal: 10.0.w),
                   child: Column(
                     children: [
                       InkWell(
@@ -91,7 +92,7 @@ class _Settings_PageState extends State<Settings_Page> {
                             "Feedback",
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 20,
+                                fontSize: 20.sp,
                                 fontWeight: FontWeight.w400),
                           ),
                           trailing: InkWell(
@@ -114,7 +115,7 @@ class _Settings_PageState extends State<Settings_Page> {
                             "Privacy Policy",
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 20,
+                                fontSize: 20.sp,
                                 fontWeight: FontWeight.w400),
                           ),
                           trailing: InkWell(
@@ -137,7 +138,7 @@ class _Settings_PageState extends State<Settings_Page> {
                             "Change Phone Number",
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 20,
+                                fontSize: 20.sp,
                                 fontWeight: FontWeight.w400),
                           ),
                           trailing: InkWell(
@@ -161,7 +162,7 @@ class _Settings_PageState extends State<Settings_Page> {
                             "Are you a Doctor?",
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 20,
+                                fontSize: 20.sp,
                                 fontWeight: FontWeight.w400),
                           ),
                           trailing: InkWell(
@@ -175,7 +176,7 @@ class _Settings_PageState extends State<Settings_Page> {
                   ),
                 ),
                 SizedBox(
-                  height: 220,
+                  height: 220.h,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -183,15 +184,15 @@ class _Settings_PageState extends State<Settings_Page> {
                     Container(
                       decoration: BoxDecoration(
                           color: Colors.black,
-                          borderRadius: BorderRadius.circular(10)),
-                      height: 40,
-                      width: 230,
+                          borderRadius: BorderRadius.circular(10.r)),
+                      height: 40.h,
+                      width: 230.w,
                       child: Center(
                         child: Text(
                           'Log Out',
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 22,
+                              fontSize: 22.sp,
                               fontWeight: FontWeight.w400),
                         ),
                       ),

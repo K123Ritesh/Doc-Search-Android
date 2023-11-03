@@ -1,6 +1,7 @@
 import 'package:doc_search/Views/Doctor%20Part/Home/Home_Page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../Bottom_Bar.dart';
 
@@ -24,15 +25,15 @@ class _Appointment_Patient_Details_PageState
             color: const Color(0xFF155467),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8.0.w),
             child: ListView(children: [
               SizedBox(
-                height: 20,
+                height: 20.h,
               ),
               Row(
                 children: [
                   SizedBox(
-                    width: 15,
+                    width: 15.w,
                   ),
                   InkWell(
                     onTap: () {
@@ -42,23 +43,23 @@ class _Appointment_Patient_Details_PageState
                         color: Colors.white, size: 26),
                   ),
                   SizedBox(
-                    width: 60,
+                    width: 60.w,
                   ),
                   Text(
                     'Appointments',
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 23,
+                        fontSize: 23.sp,
                         fontWeight: FontWeight.w400),
                   )
                 ],
               ),
               SizedBox(
-                height: 10,
+                height: 10.h,
               ),
               AppointmentId_Searched(),
               SizedBox(
-                height: 20,
+                height: 20.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -66,15 +67,15 @@ class _Appointment_Patient_Details_PageState
                   Container(
                     decoration: BoxDecoration(
                         color: Colors.black,
-                        borderRadius: BorderRadius.circular(10)),
-                    height: 40,
-                    width: 200,
+                        borderRadius: BorderRadius.circular(10.r)),
+                    height: 40.h,
+                    width: 200.w,
                     child: Center(
                       child: Text(
                         'Prescription',
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 20,
+                            fontSize: 20.sp,
                             fontWeight: FontWeight.w400),
                       ),
                     ),
@@ -82,14 +83,14 @@ class _Appointment_Patient_Details_PageState
                 ],
               ),
               SizedBox(
-                height: 20,
+                height: 20.h,
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(8.0.w),
                 child: Container(
                   child: SingleChildScrollView(
                     child: Padding(
-                      padding: const EdgeInsets.all(28.0),
+                      padding: EdgeInsets.all(28.0.w),
                       child: Column(
                         children: [
                           Row(
@@ -97,32 +98,32 @@ class _Appointment_Patient_Details_PageState
                             children: [
                               Text(
                                 'Allergies',
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 20.sp),
                               ),
                               Text(
                                 'No',
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 20.sp),
                               )
                             ],
                           ),
                           SizedBox(
-                            height: 8,
+                            height: 8.h,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
                                 'Current medications',
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 20.sp),
                               ),
                               Text(
                                 'No',
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 20.sp),
                               )
                             ],
                           ),
                           SizedBox(
-                            height: 8,
+                            height: 8.h,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -130,16 +131,17 @@ class _Appointment_Patient_Details_PageState
                               Text(
                                 'Past medications',
                                 style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.w400),
+                                    fontSize: 20.sp,
+                                    fontWeight: FontWeight.w400),
                               ),
                               Text(
                                 'No',
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 20.sp),
                               )
                             ],
                           ),
                           SizedBox(
-                            height: 8,
+                            height: 8.h,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -147,16 +149,17 @@ class _Appointment_Patient_Details_PageState
                               Text(
                                 'Chronic diseases',
                                 style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.w400),
+                                    fontSize: 20.sp,
+                                    fontWeight: FontWeight.w400),
                               ),
                               Text(
                                 'Diabties',
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 20.sp),
                               )
                             ],
                           ),
                           SizedBox(
-                            height: 8,
+                            height: 8.h,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -164,27 +167,28 @@ class _Appointment_Patient_Details_PageState
                               Text(
                                 'Injuries',
                                 style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.w400),
+                                    fontSize: 20.sp,
+                                    fontWeight: FontWeight.w400),
                               ),
                               Text(
                                 'No',
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 20.sp),
                               )
                             ],
                           ),
                           SizedBox(
-                            height: 8,
+                            height: 8.h,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
                                 'Surgeries',
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 20.sp),
                               ),
                               Text(
                                 'No',
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 20.sp),
                               )
                             ],
                           )
@@ -193,21 +197,21 @@ class _Appointment_Patient_Details_PageState
                     ),
                   ),
                   // height: 250,
-                  width: 300,
+                  width: 300.w,
                   decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(15)),
+                      borderRadius: BorderRadius.circular(15.r)),
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 10.h,
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(8.0.w),
                 child: Container(
                   child: SingleChildScrollView(
                     child: Padding(
-                      padding: const EdgeInsets.all(28.0),
+                      padding: EdgeInsets.all(28.0.w),
                       child: Column(
                         children: [
                           Row(
@@ -215,16 +219,16 @@ class _Appointment_Patient_Details_PageState
                             children: [
                               Text(
                                 'Smoking Habits',
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 20.sp),
                               ),
                               Text(
                                 'Yes',
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 20.sp),
                               )
                             ],
                           ),
                           SizedBox(
-                            height: 8,
+                            height: 8.h,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -232,16 +236,17 @@ class _Appointment_Patient_Details_PageState
                               Text(
                                 'Alcohol Consumptions',
                                 style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.w400),
+                                    fontSize: 20.sp,
+                                    fontWeight: FontWeight.w400),
                               ),
                               Text(
                                 'No',
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 20.sp),
                               )
                             ],
                           ),
                           SizedBox(
-                            height: 8,
+                            height: 8.h,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -249,16 +254,17 @@ class _Appointment_Patient_Details_PageState
                               Text(
                                 'Activity Level',
                                 style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.w400),
+                                    fontSize: 20.sp,
+                                    fontWeight: FontWeight.w400),
                               ),
                               Text(
                                 'Moderate',
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 20.sp),
                               )
                             ],
                           ),
                           SizedBox(
-                            height: 8,
+                            height: 8.h,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -266,27 +272,28 @@ class _Appointment_Patient_Details_PageState
                               Text(
                                 'Food Prefrence',
                                 style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.w400),
+                                    fontSize: 20.sp,
+                                    fontWeight: FontWeight.w400),
                               ),
                               Text(
                                 'Non-veg',
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 20.sp),
                               )
                             ],
                           ),
                           SizedBox(
-                            height: 8,
+                            height: 8.h,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
                                 'Occupation',
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 20.sp),
                               ),
                               Text(
                                 'Farmer',
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 20.sp),
                               )
                             ],
                           )
@@ -295,14 +302,14 @@ class _Appointment_Patient_Details_PageState
                     ),
                   ),
                   // height: 250,
-                  width: 300,
+                  width: 300.w,
                   decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(15)),
+                      borderRadius: BorderRadius.circular(15.r)),
                 ),
               ),
               SizedBox(
-                height: 30,
+                height: 30.h,
               )
             ]),
           )),

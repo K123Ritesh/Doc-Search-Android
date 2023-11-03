@@ -9,10 +9,12 @@ class Family_Tree_Page extends StatefulWidget {
 }
 
 class _Family_Tree_PageState extends State<Family_Tree_Page> {
+  int n = 1;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: const Color(0xFF1A6A83),
         appBar: AppBar(
           backgroundColor: const Color(0xFF1A6A83),
           elevation: 0,
@@ -23,24 +25,90 @@ class _Family_Tree_PageState extends State<Family_Tree_Page> {
             },
           ),
           title: Container(
-              margin: const EdgeInsets.only(left: 70),
-              child: const Text(
+              margin: EdgeInsets.only(left: 70.w),
+              child: Text(
                 'Family Tree',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600),
               )),
         ),
         body: ListView(
-          children: const [
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: 85.h,
+                  width: 85.w,
+                  child: CircleAvatar(
+                    backgroundColor: Colors.blue,
+                    // You can add the image here
+                    // backgroundImage: NetworkImage('URL'),
+                  ),
+                ),
+                SizedBox(
+                  height: 5.h,
+                ),
+                Text(
+                  'Vivek Sharma',
+                  style: TextStyle(
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white),
+                ),
+                SizedBox(
+                  height: 5.h,
+                ),
+                Text(
+                  '27 Years',
+                  style: TextStyle(
+                      fontSize: 17.sp,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white),
+                ),
+                SizedBox(
+                  height: 5.h,
+                ),
+                Text(
+                  'B-9 Vasnat Kunj New Delhi',
+                  style: TextStyle(
+                      fontSize: 17.sp,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white),
+                ),
+                SizedBox(
+                  height: 5.h,
+                ),
+                Text(
+                  '+91 9876543210',
+                  style: TextStyle(
+                      fontSize: 17.sp,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white),
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
             Row(
               children: [
                 SizedBox(
-                  width: 15,
+                  width: 30.w,
                 ),
                 Text(
                   'Add Family Members',
-                  style: TextStyle(fontSize: 21),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 23.sp,
+                  ),
                 ),
               ],
+            ),
+            SizedBox(
+              height: 35.h,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -48,11 +116,74 @@ class _Family_Tree_PageState extends State<Family_Tree_Page> {
                 Text(
                   'Please provide following information ',
                   style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,
+                      fontSize: 18.sp,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            for (int i = 0; i < n; i++) Person_Details(n: i),
+            SizedBox(
+              height: 10.h,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                InkWell(
+                  onTap: () {
+                    setState(() {
+                      n++;
+                    });
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 15, 79, 131),
+                        border: Border.all(color: Colors.black),
+                        borderRadius: BorderRadius.circular(10.r)),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 33.w,
+                        vertical: 8.h,
+                      ),
+                      child: Text(
+                        'Add more',
+                        style: TextStyle(
+                            fontSize: 20.sp,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {},
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 15, 79, 131),
+                        border: Border.all(color: Colors.black),
+                        borderRadius: BorderRadius.circular(10.r)),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 33.w,
+                        vertical: 8.h,
+                      ),
+                      child: Text(
+                        'Save',
+                        style: TextStyle(
+                            fontSize: 20.sp,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ),
                   ),
                 ),
               ],
+            ),
+            SizedBox(
+              height: 30.h,
             )
           ],
         ),
@@ -62,13 +193,37 @@ class _Family_Tree_PageState extends State<Family_Tree_Page> {
 }
 
 class Person_Details extends StatelessWidget {
-  const Person_Details({super.key});
+  const Person_Details({super.key, required this.n});
+  final int n;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Text(
+          '${n + 1} Person',
+          style: TextStyle(
+              color: Colors.white,
+              fontSize: 21.sp,
+              fontWeight: FontWeight.bold),
+        ),
+        SizedBox(
+          height: 15.h,
+        ),
         RoundedTextField(hintText: 'Full Name'),
+        SizedBox(
+          height: 15.h,
+        ),
+        RoundedTextField(hintText: 'Full Name'),
+        SizedBox(
+          height: 15.h,
+        ),
+        RoundedDropdownField(
+            labelText: 'Relation',
+            items: ['Mother', 'Father', 'Wife', 'Brother', 'Sister']),
+        SizedBox(
+          height: 15.h,
+        ),
       ],
     );
   }
@@ -82,8 +237,8 @@ class RoundedTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 180.w,
-      height: 40.h, // Adjust the width as needed
+      width: 350.w,
+      height: 50.h, // Adjust the width as needed
       padding: EdgeInsets.only(left: 8.0.w),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -115,8 +270,8 @@ class _RoundedDropdownFieldState extends State<RoundedDropdownField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 180.w,
-      height: 40.h, // Adjust the width as needed
+      width: 350.w,
+      height: 50.h, // Adjust the width as needed
       padding: EdgeInsets.only(left: 8.0.w),
       decoration: BoxDecoration(
         color: Colors.white,

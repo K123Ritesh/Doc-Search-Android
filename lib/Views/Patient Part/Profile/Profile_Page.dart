@@ -2,12 +2,14 @@ import 'package:doc_search/Views/Doctor%20Part/Profile/Online_Consultations_Page
 import 'package:doc_search/Views/Not_Build_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Authentication/Login_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Appointments_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Profile/Family_Tree_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Health_Care_Plan.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Refer_And_Earn_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Settings_Page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../Bottom_Bar.dart';
 import '../Home/Home_Page.dart';
@@ -30,12 +32,12 @@ class Profile_Page_Doc_Search extends StatelessWidget {
             color: const Color(0xFF155467),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8.0.w),
             child: ListView(
               children: [
                 Row(
                   children: [
-                    SizedBox(width: 20),
+                    SizedBox(width: 20.w),
                     InkWell(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
@@ -46,10 +48,10 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 23),
+                SizedBox(height: 23.h),
                 Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                   SizedBox(
-                    width: 20,
+                    width: 20.w,
                   ),
                   Column(
                     children: [
@@ -62,7 +64,7 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                             children: <Widget>[
                               CircleAvatar(
                                 child: Icon(Icons.person, size: 90),
-                                maxRadius: 50,
+                                maxRadius: 50.r,
                                 backgroundColor: Colors.white,
                               ),
                               Positioned(
@@ -83,30 +85,30 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                             ],
                           )),
                       SizedBox(
-                        height: 10,
+                        height: 10.h,
                       ),
                       Text(
                         "Ritesh Kumar",
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 23,
+                            fontSize: 23.sp,
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
                         "ritkumar@gmail.com | +91 9905411917",
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 18,
+                            fontSize: 18.sp,
                             fontWeight: FontWeight.w400),
                       )
                     ],
                   )
                 ]),
                 SizedBox(
-                  height: 10,
+                  height: 10.h,
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  padding: EdgeInsets.symmetric(horizontal: 10.0.w),
                   child: Column(
                     children: [
                       InkWell(
@@ -119,7 +121,7 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                             "Appointments",
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 20,
+                                fontSize: 20.sp,
                                 fontWeight: FontWeight.w400),
                           ),
                           trailing: InkWell(
@@ -146,10 +148,10 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                             "Online Consultations",
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 20,
+                                fontSize: 20.sp,
                                 fontWeight: FontWeight.w400),
                           ),
-                          trailing: Icon(Icons.arrow_forward_ios,
+                          trailing: const Icon(Icons.arrow_forward_ios,
                               size: 20, color: Colors.white),
                         ),
                       ),
@@ -166,7 +168,7 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                             "My Test",
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 20,
+                                fontSize: 20.sp,
                                 fontWeight: FontWeight.w400),
                           ),
                           trailing: Icon(Icons.arrow_forward_ios,
@@ -186,7 +188,7 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                             "Medical Order",
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 20,
+                                fontSize: 20.sp,
                                 fontWeight: FontWeight.w400),
                           ),
                           trailing: Icon(Icons.arrow_forward_ios,
@@ -206,7 +208,7 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                             "Order History",
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 20,
+                                fontSize: 20.sp,
                                 fontWeight: FontWeight.w400),
                           ),
                           trailing: Icon(Icons.arrow_forward_ios,
@@ -223,7 +225,7 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                             "Subscriptions",
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 20,
+                                fontSize: 20.sp,
                                 fontWeight: FontWeight.w400),
                           ),
                           trailing: Icon(Icons.arrow_forward_ios,
@@ -235,7 +237,7 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Not_Build_Page()),
+                                builder: (context) => Family_Tree_Page()),
                           );
                         },
                         child: ListTile(
@@ -243,7 +245,7 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                             "Family Tree",
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 20,
+                                fontSize: 20.sp,
                                 fontWeight: FontWeight.w400),
                           ),
                           trailing: Icon(Icons.arrow_forward_ios,
@@ -260,7 +262,7 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                             "Refer and Earn",
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 20,
+                                fontSize: 20.sp,
                                 fontWeight: FontWeight.w400),
                           ),
                           trailing: InkWell(
@@ -269,7 +271,7 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                                   builder: (context) => Refer_And_Earn_Page()));
                             },
                             child: Icon(Icons.arrow_forward_ios,
-                                size: 20, color: Colors.white),
+                                size: 20.sp, color: Colors.white),
                           ),
                         ),
                       ),
@@ -286,7 +288,7 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                             "Transactions",
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 20,
+                                fontSize: 20.sp,
                                 fontWeight: FontWeight.w400),
                           ),
                           trailing: Icon(Icons.arrow_forward_ios,
@@ -303,7 +305,7 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                             "Settings",
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 20,
+                                fontSize: 20.sp,
                                 fontWeight: FontWeight.w400),
                           ),
                           trailing: InkWell(
@@ -333,15 +335,15 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                       Container(
                         decoration: BoxDecoration(
                             color: Colors.black,
-                            borderRadius: BorderRadius.circular(10)),
-                        height: 40,
-                        width: 230,
+                            borderRadius: BorderRadius.circular(10.r)),
+                        height: 40.h,
+                        width: 230.w,
                         child: Center(
                           child: Text(
                             'Log Out',
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 22,
+                                fontSize: 22.sp,
                                 fontWeight: FontWeight.w400),
                           ),
                         ),

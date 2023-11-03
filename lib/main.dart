@@ -1,7 +1,9 @@
 import 'package:doc_search/Providers/Doctor_Provider.dart';
 import 'package:doc_search/Providers/Medicine_Shop_Provider.dart';
+import 'package:doc_search/Providers/User_Provider.dart';
 import 'package:doc_search/Views/Patient%20Part/Authentication/Login_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Home_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Profile/Profile_Page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -19,6 +21,7 @@ void main() async {
     providers: [
       ChangeNotifierProvider<Medicine_Shop_Provider>(
           create: (_) => Medicine_Shop_Provider()),
+      ChangeNotifierProvider<User_Provider>(create: (_) => User_Provider()),
       ChangeNotifierProvider<Doctor_Provider>(create: (_) => Doctor_Provider())
     ],
     child: ScreenUtilInit(
@@ -51,7 +54,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-
     checkLoginStatus();
   }
 

@@ -1,5 +1,6 @@
 import 'package:doc_search/Models/Medicine_Shop.dart';
 import 'package:doc_search/Providers/Medicine_Shop_Provider.dart';
+import 'package:doc_search/Providers/User_Provider.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Prescription_Upload_Page.dart';
 
 import 'package:flutter/material.dart';

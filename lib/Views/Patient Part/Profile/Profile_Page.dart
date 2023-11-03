@@ -1,3 +1,4 @@
+import 'package:doc_search/Providers/User_Provider.dart';
 import 'package:doc_search/Views/Doctor%20Part/Profile/Online_Consultations_Page.dart';
 import 'package:doc_search/Views/Not_Build_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Authentication/Login_Page.dart';
@@ -11,15 +12,35 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 import '../../../Bottom_Bar.dart';
 import '../Home/Home_Page.dart';
 import 'Edit_User_Profile.dart';
 import 'MedicalOrder.dart';
 
-class Profile_Page_Doc_Search extends StatelessWidget {
+class Profile_Page_Doc_Search extends StatefulWidget {
+  @override
+  State<Profile_Page_Doc_Search> createState() =>
+      _Profile_Page_Doc_SearchState();
+}
+
+class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    super.initState();
+
+    Provider.of<User_Provider>(context, listen: false).getPhoneNo(context);
+    Provider.of<User_Provider>(context, listen: false).getUserDetails(
+        context, Provider.of<User_Provider>(context, listen: false).phoneNo);
+  }
+
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<User_Provider>(context);
+
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: const Color(0xFF155467),
     ));
@@ -89,14 +110,14 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                         height: 10.h,
                       ),
                       Text(
-                        "Ritesh Kumar",
+                        "${userProvider.user!.firstName} ${userProvider.user!.lastName}",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 23.sp,
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        "ritkumar@gmail.com | +91 9905411917",
+                        "${userProvider.user!.email} | ${userProvider.user!.mobileNo}",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 18.sp,

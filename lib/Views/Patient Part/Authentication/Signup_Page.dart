@@ -62,11 +62,14 @@ class _Signup_PageState extends State<Signup_Page> {
   Future<void> _saveUserData() async {
     try {
       String formattedMobileNumber = '+91${_mobileNumberController.text}';
-      await _firestore.collection('Users').add({
+      await _firestore.collection('Users').doc(formattedMobileNumber).set({
         'firstName': _firstNameController.text,
         'lastName': _lastNameController.text,
         'mobileNumber': formattedMobileNumber,
         'city': _cityController.text,
+        'apointments': {
+          'dummy_date': ['dummy appointment Id 1', 'dummy appointment Id 2'],
+        }
       });
       print('User data saved successfully');
     } catch (e) {

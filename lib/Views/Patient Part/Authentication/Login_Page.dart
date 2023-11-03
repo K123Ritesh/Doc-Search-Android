@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:doc_search/Providers/User_Provider.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Home_Page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinput/pinput.dart';
+import 'package:provider/provider.dart';
 
 import 'Signup_Page.dart';
 
@@ -24,6 +26,8 @@ class _Login_PageState extends State<Login_Page> {
   void initState() {
     // TODO: implement initState
     countryController.text = "+91";
+    Provider.of<User_Provider>(context, listen: false)
+        .getUserDetails(context, '+91990541117');
     super.initState();
   }
 
@@ -91,7 +95,7 @@ class _Login_PageState extends State<Login_Page> {
         codeSent: (String verificationId, int? resendToken) {
           Login_Page.verify = verificationId;
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => OTP_Entering_Page(),
+            builder: (context) => OTP_Entering_Page(phoneNo: fullPhoneNumber),
           ));
         },
         codeAutoRetrievalTimeout: (String verificationId) {},
@@ -358,7 +362,9 @@ class _Login_PageState extends State<Login_Page> {
 }
 
 class OTP_Entering_Page extends StatefulWidget {
-  const OTP_Entering_Page({Key? key}) : super(key: key);
+  const OTP_Entering_Page({Key? key, required this.phoneNo}) : super(key: key);
+
+  final String phoneNo;
 
   @override
   State<OTP_Entering_Page> createState() => _OTP_Entering_PageState();
@@ -369,6 +375,7 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
   var code = '';
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<User_Provider>(context);
     final defaultPinTheme = PinTheme(
       width: 56.w,
       height: 56.h,
@@ -493,6 +500,11 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
                                   smsCode: code);
 
                           await auth.signInWithCredential(credential);
+
+                          userProvider.savePhoneNo(context, widget.phoneNo);
+                          userProvider.getPhoneNo(context);
+                          userProvider.getUserDetails(
+                              context, userProvider.phoneNo);
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => HomePage()));
                         } catch (e) {

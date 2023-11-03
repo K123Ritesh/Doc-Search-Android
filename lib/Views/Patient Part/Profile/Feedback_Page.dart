@@ -224,7 +224,9 @@ class _Give_Feedback_PageState extends State<Give_Feedback_Page> {
     return SafeArea(
       child: Scaffold(
         body: Container(
-            decoration: BoxDecoration(color: Color.fromARGB(255, 3, 110, 198)),
+            decoration: BoxDecoration(
+              color: const Color(0xFF155467),
+            ),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: ListView(children: [

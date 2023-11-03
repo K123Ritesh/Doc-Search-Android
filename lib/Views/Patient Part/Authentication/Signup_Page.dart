@@ -29,6 +29,8 @@ class _Signup_PageState extends State<Signup_Page> {
   int _resendToken = 0;
   String _countryCode = '+91';
 
+  bool isSelected = false;
+
   Future<void> _registerUser() async {
     try {
       // Send OTP to the user's mobile number
@@ -278,9 +280,19 @@ class _Signup_PageState extends State<Signup_Page> {
                   SizedBox(
                     width: 15.w,
                   ),
-                  Icon(
-                    Icons.check_box_outline_blank,
-                    color: Colors.white,
+                  InkWell(
+                    onTap: () {
+                      isSelected = !isSelected;
+                    },
+                    child: isSelected == false
+                        ? Icon(
+                            Icons.check_box_outline_blank,
+                            color: Colors.white,
+                          )
+                        : Icon(
+                            Icons.check_box_rounded,
+                            color: Colors.green,
+                          ),
                   ),
                   SizedBox(
                     width: 15.w,

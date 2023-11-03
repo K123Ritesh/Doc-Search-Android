@@ -16,6 +16,7 @@ class _Refer_And_Earn_PageState extends State<Refer_And_Earn_Page> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: const Color(0xFF155467),
         bottomNavigationBar: Bottombar(),
         body: SingleChildScrollView(
           child: Container(

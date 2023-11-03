@@ -3,6 +3,7 @@ import 'package:doc_search/Models/Doctor.dart';
 import 'package:doc_search/Providers/Doctor_Provider.dart';
 import 'package:doc_search/Views/Patient%20Part/Doctors/Doctor_Category_Wise_Final.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -619,6 +620,9 @@ class _Doctors_Category_WiseDetailsState
                 )
               ],
             ),
+          ),
+          const SizedBox(
+            height: 30,
           )
         ],
       ),

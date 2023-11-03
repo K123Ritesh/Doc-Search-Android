@@ -81,6 +81,7 @@ class _Signup_PageState extends State<Signup_Page> {
     ));
     return SafeArea(
         child: Scaffold(
+      backgroundColor: const Color(0xFF1A6A83),
       body: Container(
           decoration: const BoxDecoration(
             color: const Color(0xFF1A6A83),
@@ -282,7 +283,9 @@ class _Signup_PageState extends State<Signup_Page> {
                   ),
                   InkWell(
                     onTap: () {
-                      isSelected = !isSelected;
+                      setState(() {
+                        isSelected = !isSelected;
+                      });
                     },
                     child: isSelected == false
                         ? Icon(
@@ -605,9 +608,9 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+      backgroundColor: const Color(0xFF1A6A83),
       body: Container(
-          decoration:
-              const BoxDecoration(color: Color.fromARGB(255, 3, 110, 198)),
+          decoration: const BoxDecoration(color: const Color(0xFF1A6A83)),
           child: Padding(
             padding: EdgeInsets.all(8.0.w),
             child: ListView(children: [

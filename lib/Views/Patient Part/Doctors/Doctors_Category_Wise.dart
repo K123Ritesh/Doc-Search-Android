@@ -1,4 +1,6 @@
 import 'package:doc_search/Bottom_Bar.dart';
+import 'package:doc_search/Config/sizeConfig.dart';
+import 'package:doc_search/Views/Patient%20Part/Home/Home_Page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -40,6 +42,7 @@ class _Doctors_Category_WiseState extends State<Doctors_Category_Wise> {
         SystemUiOverlayStyle(statusBarColor: Colors.white));
 
     final DoctorProvider = Provider.of<Doctor_Provider>(context);
+    SizeConfig().init(context);
     return Scaffold(
         bottomNavigationBar: Bottombar(),
         appBar: AppBar(
@@ -51,20 +54,19 @@ class _Doctors_Category_WiseState extends State<Doctors_Category_Wise> {
               color: Colors.black,
             ),
             onPressed: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => const Appointment1()),
-              // );
-              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const HomePage()),
+              );
             },
           ),
           title: Container(
-            margin: const EdgeInsets.only(left: 80),
+            margin:  EdgeInsets.only(left: 80.fw),
             child: Text(
               widget.title,
               style: TextStyle(
                 color: Colors.black,
-                fontSize: 18,
+                fontSize: 18.fh,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -76,9 +78,9 @@ class _Doctors_Category_WiseState extends State<Doctors_Category_Wise> {
             children: [
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 18.0, vertical: 5.0),
+                     EdgeInsets.symmetric(horizontal: 18.fw, vertical: 5.fh),
                 child: Container(
-                  height: 50,
+                  height: 50.fh,
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
                       border: Border.all(color: Color(0xFF5793A8), width: 1.0),
@@ -119,8 +121,8 @@ class _Doctors_Category_WiseState extends State<Doctors_Category_Wise> {
                             itemBuilder: (context, index) {
                               // final doctor = Doctors_Category_Wise[index];
                               return Container(
-                                height: 230,
-                                margin: EdgeInsets.all(20),
+                                height: 220.fh,
+                                margin: EdgeInsets.all(20.fw),
                                 decoration: BoxDecoration(
                                   border: Border.all(color: Colors.grey),
                                   borderRadius: BorderRadius.circular(12),
@@ -129,12 +131,12 @@ class _Doctors_Category_WiseState extends State<Doctors_Category_Wise> {
                                   child: Column(
                                     children: [
                                       SizedBox(
-                                        height: 10,
+                                        height: 10.fh,
                                       ),
                                       Row(
                                         children: [
                                           SizedBox(
-                                            width: 10,
+                                            width: 10.fw,
                                           ),
                                           CircleAvatar(
                                             backgroundColor: Colors.blue,
@@ -142,38 +144,38 @@ class _Doctors_Category_WiseState extends State<Doctors_Category_Wise> {
                                             // backgroundImage: NetworkImage('URL'),
                                           ),
                                           SizedBox(
-                                            width: 10,
+                                            width: 10.fw,
                                           ),
                                           Text(
                                               DoctorProvider
                                                   .acc_to_search![index].name,
                                               style: TextStyle(
-                                                  fontSize: 16,
+                                                  fontSize: 15.fh,
                                                   fontWeight: FontWeight.w600)),
                                         ],
                                       ),
                                       Container(
-                                        margin: EdgeInsets.only(left: 60),
+                                        margin: EdgeInsets.only(left: 60.fw),
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
                                             Row(
                                               children: [
-                                                const Text(
+                                                 Text(
                                                   "MBBS,MCh",
                                                   style: TextStyle(
-                                                      fontSize: 14,
+                                                      fontSize: 13.fh,
                                                       fontWeight:
                                                           FontWeight.w600,
                                                       color: Colors.black),
                                                 ),
                                                 SizedBox(
-                                                  width: 180,
+                                                  width: 140.fw,
                                                 ),
                                                 Container(
-                                                  width: 41,
-                                                  height: 16,
+                                                  width: 41.fw,
+                                                  height: 16.fh,
                                                   decoration: BoxDecoration(
                                                     color:
                                                         const Color(0xFF1A6A83),
@@ -189,10 +191,10 @@ class _Doctors_Category_WiseState extends State<Doctors_Category_Wise> {
                                                       Icon(
                                                         Icons.star,
                                                         color: Colors.white,
-                                                        size: 12,
+                                                        size: 12.fh,
                                                       ),
                                                       SizedBox(
-                                                        width: 4,
+                                                        width: 4.fw,
                                                       ),
                                                       Text(
                                                         DoctorProvider
@@ -200,7 +202,7 @@ class _Doctors_Category_WiseState extends State<Doctors_Category_Wise> {
                                                                 index]
                                                             .rating,
                                                         style: TextStyle(
-                                                          fontSize: 11,
+                                                          fontSize: 11.fh,
                                                           fontWeight:
                                                               FontWeight.w600,
                                                           color: Colors.white,
@@ -211,9 +213,10 @@ class _Doctors_Category_WiseState extends State<Doctors_Category_Wise> {
                                                 ),
                                               ],
                                             ),
+                                            SizedBox(height: 2.fh,),
                                             Container(
-                                              width: 95,
-                                              height: 19,
+                                              width: 95.fw,
+                                              height: 19.fh,
                                               decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(4),
@@ -223,24 +226,29 @@ class _Doctors_Category_WiseState extends State<Doctors_Category_Wise> {
                                                 child: Text(
                                                   "${DoctorProvider.acc_to_search![index].specialization}",
                                                   style: TextStyle(
-                                                    fontSize: 10,
+                                                    fontSize: 9.fh,
                                                     color: Color(0xFF00B05B),
                                                   ),
                                                 ),
                                               ),
                                             ),
+                                            SizedBox(height: 2.fh,),
                                             Text(
                                                 '${DoctorProvider.acc_to_search![index].address}',
                                                 style: TextStyle(
-                                                    fontSize: 12,
+                                                    fontSize: 11.fh,
                                                     fontWeight: FontWeight.w400,
                                                     color: Colors.black)),
+                                                    SizedBox(height: 2.fh,),
                                             Text(
                                                 '${DoctorProvider.acc_to_search![index].experience} years experience',
                                                 style: TextStyle(
-                                                    fontSize: 12,
+                                                    fontSize: 11.fh,
                                                     fontWeight: FontWeight.w400,
                                                     color: Colors.black)),
+                                                    SizedBox(
+                                              height: 4.fh,
+                                            ),
                                           ],
                                         ),
                                       ),
@@ -258,65 +266,65 @@ class _Doctors_Category_WiseState extends State<Doctors_Category_Wise> {
                                         child: Column(
                                           children: [
                                             SizedBox(
-                                              height: 10,
+                                              height: 8.fh,
                                             ),
                                             Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.start,
                                               children: [
                                                 SizedBox(
-                                                  width: 20,
+                                                  width: 20.fw,
                                                 ),
                                                 Text(
                                                     '${DoctorProvider.acc_to_search![index].sitting_days[0]},${DoctorProvider.acc_to_search![index].sitting_days[1]}',
                                                     style: TextStyle(
-                                                        fontSize: 14,
+                                                        fontSize: 13.fh,
                                                         fontWeight:
                                                             FontWeight.w500,
                                                         color: Colors.black)),
                                                 SizedBox(
-                                                  width: 100,
+                                                  width: 90.fw,
                                                 ),
                                                 Text(
                                                     DoctorProvider
                                                         .acc_to_search![index]
                                                         .reg_fee,
                                                     style: TextStyle(
-                                                        fontSize: 14,
+                                                        fontSize: 13.fh,
                                                         fontWeight:
                                                             FontWeight.w500,
                                                         color: Colors.black)),
                                               ],
                                             ),
                                             SizedBox(
-                                              height: 5,
+                                              height: 5.fh,
                                             ),
                                             Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.start,
                                               children: [
                                                 SizedBox(
-                                                  width: 20,
+                                                  width: 20.fw,
                                                 ),
                                                 Text('10:00 AM - 04:00 PM',
                                                     style: TextStyle(
-                                                        fontSize: 14,
+                                                        fontSize: 13.fh,
                                                         fontWeight:
                                                             FontWeight.w500,
                                                         color: Colors.black)),
                                                 SizedBox(
-                                                  width: 50,
+                                                  width: 50.fw,
                                                 ),
                                                 Text('No Booking fee',
                                                     style: TextStyle(
-                                                        fontSize: 14,
+                                                        fontSize: 13.fh,
                                                         fontWeight:
                                                             FontWeight.w500,
                                                         color: Colors.black)),
                                               ],
                                             ),
                                             SizedBox(
-                                              height: 5,
+                                              height: 5.fh,
                                             ),
                                             ElevatedButton(
                                               onPressed: () {
@@ -341,14 +349,14 @@ class _Doctors_Category_WiseState extends State<Doctors_Category_Wise> {
                                                 ),
                                               ),
                                               child: Container(
-                                                height: 42,
-                                                width: 302,
+                                                height: 42.fh,
+                                                width: 270.fw,
                                                 child: Center(
                                                   child: Text(
                                                     'Book an appointment',
                                                     style: TextStyle(
                                                         color: Colors.white,
-                                                        fontSize: 15),
+                                                        fontSize: 15.fh),
                                                   ),
                                                 ),
                                               ),

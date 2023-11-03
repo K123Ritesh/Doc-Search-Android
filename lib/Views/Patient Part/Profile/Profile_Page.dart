@@ -128,10 +128,7 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                           trailing: InkWell(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => Doctors_Category_Wise(
-                                      title: 'Doctors',
-                                      doc_Category: 'Dentist',
-                                      default_city: 'Kolkata')));
+                                  builder: (context) => Appointments_Page()));
                             },
                             child: Icon(Icons.arrow_forward_ios,
                                 size: 20, color: Colors.white),

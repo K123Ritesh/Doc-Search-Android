@@ -16,6 +16,7 @@ class Doctor_Signup_Page extends StatefulWidget {
 class _Doctor_Signup_PageState extends State<Doctor_Signup_Page> {
   @override
   Widget build(BuildContext context) {
+    bool isSelected = false;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: const Color(0xFF155467),
     ));
@@ -217,9 +218,21 @@ class _Doctor_Signup_PageState extends State<Doctor_Signup_Page> {
                   SizedBox(
                     width: 15.w,
                   ),
-                  Icon(
-                    Icons.check_box_outline_blank,
-                    color: Colors.white,
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        isSelected = !isSelected;
+                      });
+                    },
+                    child: isSelected == false
+                        ? Icon(
+                            Icons.check_box_outline_blank,
+                            color: Colors.white,
+                          )
+                        : Icon(
+                            Icons.check_box_rounded,
+                            color: Colors.green,
+                          ),
                   ),
                   SizedBox(
                     width: 15.w,

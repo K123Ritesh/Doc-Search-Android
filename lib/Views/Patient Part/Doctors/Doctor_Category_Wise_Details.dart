@@ -3,9 +3,10 @@ import 'package:doc_search/Models/Doctor.dart';
 import 'package:doc_search/Providers/Doctor_Provider.dart';
 import 'package:doc_search/Views/Patient%20Part/Doctors/Doctor_Category_Wise_Final.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Doctors_Category_WiseDetails extends StatefulWidget {
   const Doctors_Category_WiseDetails(
@@ -21,6 +22,18 @@ class Doctors_Category_WiseDetails extends StatefulWidget {
 
 class _Doctors_Category_WiseDetailsState
     extends State<Doctors_Category_WiseDetails> {
+  void showToastMessage(String message) {
+    Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.black87,
+      textColor: Colors.white,
+      fontSize: 16.0,
+    );
+  }
+
   int selectedOption2 = -1;
   void toggleSelection(int index) {
     setState(() {
@@ -502,8 +515,12 @@ class _Doctors_Category_WiseDetailsState
                     onPressed: () {
                       if (selectedOption2 == -1 && selectedOption3 == -1) {
                         print('Select the slot first');
+
+                        showToastMessage('Please Select the slot ');
                       } else if (selectedOption2 != -1 &&
                           selectedOption3 != -1) {
+                        showToastMessage(
+                            'You can select only one slot at a time');
                         print('You can select only one slot at a time');
                       } else if (selectedOption2 != -1) {
                         Navigator.push(

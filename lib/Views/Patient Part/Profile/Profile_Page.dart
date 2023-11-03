@@ -1,6 +1,7 @@
 import 'package:doc_search/Views/Doctor%20Part/Profile/Online_Consultations_Page.dart';
 import 'package:doc_search/Views/Not_Build_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Authentication/Login_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Doctors/Doctors_Category_Wise.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Appointments_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Family_Tree_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Health_Care_Plan.dart';
@@ -127,7 +128,10 @@ class Profile_Page_Doc_Search extends StatelessWidget {
                           trailing: InkWell(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => Appointments_Page()));
+                                  builder: (context) => Doctors_Category_Wise(
+                                      title: 'Doctors',
+                                      doc_Category: 'Dentist',
+                                      default_city: 'Kolkata')));
                             },
                             child: Icon(Icons.arrow_forward_ios,
                                 size: 20, color: Colors.white),

@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:path/path.dart' as path;
 import 'package:provider/provider.dart';
 
@@ -23,6 +24,18 @@ class Prescription_Upload_Page extends StatefulWidget {
 }
 
 class _Prescription_Upload_PageState extends State<Prescription_Upload_Page> {
+  void showToastMessage(String message) {
+    Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.black87,
+      textColor: Colors.white,
+      fontSize: 16.0,
+    );
+  }
+
   String fileName = '';
   late File selectedFile;
   List<String> files_list = [];
@@ -245,13 +258,14 @@ class _Prescription_Upload_PageState extends State<Prescription_Upload_Page> {
                           ),
                           InkWell(
                             onTap: () {
-                              print('Save tapped');
                               if (selectedFile != null) {
                                 MedicineShopProvider.uploadPrescription(
                                     context, selectedFile, "userId");
                                 String? downloadURL =
                                     MedicineShopProvider.downloadURL;
                                 if (downloadURL != null) {
+                                  showToastMessage(
+                                      'Wait a minute ordering medicine');
                                   print(
                                       'File uploaded. Download URL: $downloadURL');
                                   MedicineShopProvider.createOrderDocument(
@@ -264,9 +278,12 @@ class _Prescription_Upload_PageState extends State<Prescription_Upload_Page> {
                                           const Order_Done_Page()));
                                 } else {
                                   print('File upload failed.');
+                                  showToastMessage(
+                                      'Error in Uploading , Check Your Internet!!');
                                 }
                               } else {
-                                print('No file selected.');
+                                showToastMessage(
+                                    'Please select at least one file');
                               }
                             },
                             child: Container(

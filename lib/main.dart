@@ -15,31 +15,22 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
-  runApp(
-    MaterialApp(
-      builder: (context, child) {
-        return ScreenUtilInit(
-          designSize: Size(412, 892),
-          // Your design size in dps
-          // allowFontScaling: false,
-          child: child,
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider<Medicine_Shop_Provider>(
+          create: (_) => Medicine_Shop_Provider()),
+      ChangeNotifierProvider<Doctor_Provider>(create: (_) => Doctor_Provider())
+    ],
+    child: ScreenUtilInit(
+      designSize: const Size(412, 892),
+      builder: (_, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: SplashScreen(),
         );
       },
-      debugShowCheckedModeBanner: false,
-      home: MultiProvider(
-        providers: [
-          ChangeNotifierProvider<Medicine_Shop_Provider>(
-            create: (_) => Medicine_Shop_Provider(),
-          ),
-          ChangeNotifierProvider<Doctor_Provider>(
-            create: (_) => Doctor_Provider(),
-          ),
-        ],
-        child: SplashScreen(),
-      ),
     ),
-  );
+  ));
 }
 
 class SplashScreen extends StatefulWidget {

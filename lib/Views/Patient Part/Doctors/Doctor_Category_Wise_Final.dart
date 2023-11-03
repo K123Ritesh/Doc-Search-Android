@@ -5,6 +5,7 @@ import 'package:doc_search/Views/Patient%20Part/Doctors/Appointment_Done_Page.da
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../Bottom_Bar.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class Doctor_Category_Wise_Final extends StatefulWidget {
   const Doctor_Category_Wise_Final(
@@ -26,12 +27,8 @@ class Doctor_Category_Wise_Final extends StatefulWidget {
 class _Doctor_Category_Wise_FinalState
     extends State<Doctor_Category_Wise_Final> {
   bool isChecked = false;
-  bool isBlue = false;
-  void toggleColor() {
-    setState(() {
-      isBlue = !isBlue;
-    });
-  }
+  bool isBlue1 = true;
+  bool isBlue2 = false;
 
   @override
   Widget build(BuildContext context) {
@@ -333,13 +330,20 @@ class _Doctor_Category_Wise_FinalState
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   GestureDetector(
-                    onTap: toggleColor,
+                    onTap: () {
+                      setState(() {
+                        if (isBlue1 == false) {
+                          isBlue1 = true;
+                          isBlue2 = false;
+                        }
+                      });
+                    },
                     child: Container(
                       width: 16,
                       height: 18,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: isBlue
+                        color: isBlue1
                             ? const Color(0xFF1A6A83)
                             : Colors.transparent,
                         border: Border.all(
@@ -374,13 +378,20 @@ class _Doctor_Category_Wise_FinalState
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   GestureDetector(
-                    onTap: toggleColor,
+                    onTap: () {
+                      setState(() {
+                        if (isBlue2 == false) {
+                          isBlue2 = true;
+                          isBlue1 = false;
+                        }
+                      });
+                    },
                     child: Container(
                       width: 16,
                       height: 18,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: isBlue
+                        color: isBlue2
                             ? const Color(0xFF1A6A83)
                             : Colors.transparent,
                         border: Border.all(
@@ -391,7 +402,7 @@ class _Doctor_Category_Wise_FinalState
                     ),
                   ),
                   Text(
-                    'Shiddhart sharma',
+                    'Someone else',
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
@@ -404,64 +415,71 @@ class _Doctor_Category_Wise_FinalState
             SizedBox(
               height: 20,
             ),
-            Text(
-              'Please provide following information ',
-              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
-            ),
-            Container(
-              margin: EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Colors.blue[50],
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Container(
-                margin: EdgeInsets.only(left: 10),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    labelText: 'Full Name',
-                    // border: OutlineInputBorder(),
-                    border: InputBorder.none,
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(
-                left: 20,
-                right: 20,
-              ),
-              decoration: BoxDecoration(
-                color: Colors.blue[50],
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Container(
-                margin: EdgeInsets.only(left: 10),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    labelText: 'Mobile Number',
-                    // border: OutlineInputBorder(),
-                    border: InputBorder.none,
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(left: 20, right: 20, top: 20),
-              decoration: BoxDecoration(
-                color: Colors.blue[50],
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Container(
-                margin: EdgeInsets.only(left: 10),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    labelText: 'Email Address',
-                    // border: OutlineInputBorder(),
-                    border: InputBorder.none,
-                  ),
-                ),
-              ),
-            ),
+            isBlue2 == true
+                ? Column(
+                    children: [
+                      Text(
+                        'Please provide following information ',
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.w400),
+                      ),
+                      Container(
+                        margin: EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          color: Colors.blue[50],
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Container(
+                          margin: EdgeInsets.only(left: 10),
+                          child: TextFormField(
+                            decoration: InputDecoration(
+                              labelText: 'Full Name',
+                              // border: OutlineInputBorder(),
+                              border: InputBorder.none,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(
+                          left: 20,
+                          right: 20,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.blue[50],
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Container(
+                          margin: EdgeInsets.only(left: 10),
+                          child: TextFormField(
+                            decoration: InputDecoration(
+                              labelText: 'Mobile Number',
+                              // border: OutlineInputBorder(),
+                              border: InputBorder.none,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: 20, right: 20, top: 20),
+                        decoration: BoxDecoration(
+                          color: Colors.blue[50],
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Container(
+                          margin: EdgeInsets.only(left: 10),
+                          child: TextFormField(
+                            decoration: InputDecoration(
+                              labelText: 'Email Address',
+                              // border: OutlineInputBorder(),
+                              border: InputBorder.none,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                : Text(''),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Row(
@@ -474,10 +492,11 @@ class _Doctor_Category_Wise_FinalState
                       });
                     },
                   ),
-                  Icon(
-                    Icons.whatshot_outlined, // WhatsApp icon
-                    color: Colors.green,
-                    size: 24.0,
+                  Image.network(
+                    'https://s3-alpha-sig.figma.com/img/fc39/822d/4f0d87c00046b984c9fbfc08eb3be9b6?Expires=1699228800&Signature=a5hFvuDmOq52eWJALNBvy5cOT1rvYru3UZOHBUN0eigKKHIn4vIzuQz2RNwFu0YP~~nbAZq4DCQ0~Py3YEZYvwVPbltMiNTyakxFAiljinBika5UT3cId~U8iOLuqmgVJvY9fUWfRnOoL50cFVg53HodXAJPE6qBnOh3v4v-Jp9n5sfIL-exD~UGmBdeyAlm5MCZ~uoPD9J79zwqsmiF5Tr33JQvQ4sH7J3B7vtKOXcfuq1tyI5avCs2V9n0FxD3cTWFKxVa-AvmNp6dLIYhJyjhpBN6kKdDkoYsfZcAWQlsN~gR3AAqV0cDYlGdXxUgyW0OGtGO5FmZEiM~1naJ4w__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                    height: 24,
+                    width: 24,
+                    fit: BoxFit.fill,
                   ),
                   SizedBox(width: 8.0),
                   Text(

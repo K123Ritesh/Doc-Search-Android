@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../Bottom_Bar.dart';
 
@@ -162,22 +163,32 @@ class _Appointment_Done_PageState extends State<Appointment_Done_Page> {
                         SizedBox(
                           height: 15.h,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15.r),
-                                    color: Color.fromRGBO(0, 84, 115, 1)),
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 10.0.w, vertical: 6.0.h),
-                                  child: Text(
-                                    "Get Directions",
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                )),
-                          ],
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      MapWebView(place: 'Malviya Nagar Delhi')),
+                            );
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15.r),
+                                      color: Color.fromRGBO(0, 84, 115, 1)),
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10.0.w, vertical: 6.0.h),
+                                    child: Text(
+                                      "Get Directions",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  )),
+                            ],
+                          ),
                         ),
                       ],
                     ),
@@ -274,5 +285,29 @@ class _Appointment_Done_PageState extends State<Appointment_Done_Page> {
             )),
       ),
     );
+  }
+}
+
+class MapWebView extends StatefulWidget {
+  final String place;
+
+  MapWebView({required this.place});
+
+  @override
+  _MapWebViewState createState() => _MapWebViewState();
+}
+
+class _MapWebViewState extends State<MapWebView> {
+  @override
+  Widget build(BuildContext context) {
+    String mapUrl =
+        'https://www.google.com/maps/search/?api=1&query=${widget.place}';
+
+    final _controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..loadRequest(Uri.parse(mapUrl));
+
+    return Scaffold(
+        body: SafeArea(child: WebViewWidget(controller: _controller)));
   }
 }

@@ -29,6 +29,8 @@ class _Signup_PageState extends State<Signup_Page> {
   int _resendToken = 0;
   String _countryCode = '+91';
 
+  bool isSelected = false;
+
   Future<void> _registerUser() async {
     try {
       // Send OTP to the user's mobile number
@@ -79,6 +81,7 @@ class _Signup_PageState extends State<Signup_Page> {
     ));
     return SafeArea(
         child: Scaffold(
+      backgroundColor: const Color(0xFF1A6A83),
       body: Container(
           decoration: const BoxDecoration(
             color: const Color(0xFF1A6A83),
@@ -278,9 +281,21 @@ class _Signup_PageState extends State<Signup_Page> {
                   SizedBox(
                     width: 15.w,
                   ),
-                  Icon(
-                    Icons.check_box_outline_blank,
-                    color: Colors.white,
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        isSelected = !isSelected;
+                      });
+                    },
+                    child: isSelected == false
+                        ? Icon(
+                            Icons.check_box_outline_blank,
+                            color: Colors.white,
+                          )
+                        : Icon(
+                            Icons.check_box_rounded,
+                            color: Colors.green,
+                          ),
                   ),
                   SizedBox(
                     width: 15.w,
@@ -593,9 +608,9 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+      backgroundColor: const Color(0xFF1A6A83),
       body: Container(
-          decoration:
-              const BoxDecoration(color: Color.fromARGB(255, 3, 110, 198)),
+          decoration: const BoxDecoration(color: const Color(0xFF1A6A83)),
           child: Padding(
             padding: EdgeInsets.all(8.0.w),
             child: ListView(children: [

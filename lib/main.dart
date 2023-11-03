@@ -1,8 +1,6 @@
 import 'package:doc_search/Providers/Doctor_Provider.dart';
 import 'package:doc_search/Providers/Medicine_Shop_Provider.dart';
-import 'package:doc_search/Views/Doctor%20Part/Authentication/Login_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Authentication/Login_Page.dart';
-import 'package:doc_search/Views/Patient%20Part/Doctors/Appointment_Done_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Home_Page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -10,23 +8,38 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider<Medicine_Shop_Provider>(
-          create: (_) => Medicine_Shop_Provider()),
-      ChangeNotifierProvider<Doctor_Provider>(create: (_) => Doctor_Provider())
-    ],
-    child: MaterialApp(
+
+  runApp(
+    MaterialApp(
+      builder: (context, child) {
+        return ScreenUtilInit(
+          designSize: Size(412, 892),
+          // Your design size in dps
+          // allowFontScaling: false,
+          child: child,
+        );
+      },
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: MultiProvider(
+        providers: [
+          ChangeNotifierProvider<Medicine_Shop_Provider>(
+            create: (_) => Medicine_Shop_Provider(),
+          ),
+          ChangeNotifierProvider<Doctor_Provider>(
+            create: (_) => Doctor_Provider(),
+          ),
+        ],
+        child: SplashScreen(),
+      ),
     ),
-  ));
+  );
 }
 
 class SplashScreen extends StatefulWidget {

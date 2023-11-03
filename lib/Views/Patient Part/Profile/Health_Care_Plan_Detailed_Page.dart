@@ -1,6 +1,7 @@
 import 'package:doc_search/Views/Not_Build_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Privacy_Policy_Page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../Bottom_Bar.dart';
 
@@ -21,11 +22,11 @@ class _Health_Care_Plan_Detailed_PageState
       body: Container(
         decoration: BoxDecoration(color: Colors.white),
         child: ListView(children: [
-          SizedBox(height: 23),
+          SizedBox(height: 23.h),
           Row(
             children: [
               SizedBox(
-                width: 15,
+                width: 15.w,
               ),
               InkWell(
                 onTap: () {
@@ -35,34 +36,35 @@ class _Health_Care_Plan_Detailed_PageState
                     color: Colors.black, size: 26),
               ),
               SizedBox(
-                width: 70,
+                width: 70.w,
               ),
               Text(
                 'Health Care Plans',
                 style: TextStyle(
                     color: Colors.black,
-                    fontSize: 23,
+                    fontSize: 23.sp,
                     fontWeight: FontWeight.w500),
               )
             ],
           ),
           SizedBox(
-            height: 20,
+            height: 20.h,
           ),
           Row(
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 13.0),
+                padding: EdgeInsets.only(left: 13.0.w),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
+                      borderRadius: BorderRadius.circular(15.r),
                       color: Color.fromRGBO(194, 230, 243, 1)),
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 15.w, vertical: 5.h),
                     child: Text(
                       'Doc search Bronze plan',
-                      style:
-                          TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          fontSize: 17.sp, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
@@ -70,10 +72,10 @@ class _Health_Care_Plan_Detailed_PageState
             ],
           ),
           SizedBox(
-            height: 5,
+            height: 5.h,
           ),
           Padding(
-            padding: const EdgeInsets.all(13.0),
+            padding: EdgeInsets.all(13.0.h),
             child: Container(
               width: MediaQuery.of(context).size.width * 0.9,
               decoration: BoxDecoration(
@@ -86,13 +88,13 @@ class _Health_Care_Plan_Detailed_PageState
                     Color.fromRGBO(10, 163, 185, 0.94)
                   ]),
                   // color: const Color.fromRGBO(41, 120, 147, 1),
-                  borderRadius: BorderRadius.circular(15)),
+                  borderRadius: BorderRadius.circular(15.r)),
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(8.0.w),
                 child: Column(
                   children: [
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                     Row(
                       children: [
@@ -102,13 +104,13 @@ class _Health_Care_Plan_Detailed_PageState
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 SizedBox(
-                                  width: 20,
+                                  width: 20.w,
                                 ),
                                 Text(
                                   'Bronze Plan (Yearly)',
                                   style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 20,
+                                      fontSize: 20.sp,
                                       fontWeight: FontWeight.bold),
                                 ),
                               ],
@@ -123,30 +125,30 @@ class _Health_Care_Plan_Detailed_PageState
                                   '(Single Person',
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 15,
+                                    fontSize: 15.sp,
                                   ),
                                 ),
                                 Text(
                                   '*',
                                   style: TextStyle(
                                     color: Colors.red,
-                                    fontSize: 19,
+                                    fontSize: 20.sp,
                                   ),
                                 ),
                                 Text(
                                   ' )',
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 20,
+                                    fontSize: 20.sp,
                                   ),
                                 ),
                                 SizedBox(
-                                  width: 40,
+                                  width: 40.w,
                                 )
                               ],
                             ),
                             SizedBox(
-                              height: 20,
+                              height: 20.h,
                             )
                           ],
                         ),
@@ -155,13 +157,13 @@ class _Health_Care_Plan_Detailed_PageState
                             Row(
                               children: [
                                 SizedBox(
-                                  width: 20,
+                                  width: 20.w,
                                 ),
                                 Text(
                                   '₹999/Year',
                                   style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 18,
+                                      fontSize: 18.sp,
                                       fontWeight: FontWeight.w400),
                                 ),
                               ],
@@ -169,20 +171,20 @@ class _Health_Care_Plan_Detailed_PageState
                             Row(
                               children: [
                                 SizedBox(
-                                  width: 20,
+                                  width: 20.w,
                                 ),
                                 Text(
                                   'Billed Every 1 year ',
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 15,
+                                    fontSize: 15.sp,
                                   ),
                                 ),
                                 Text(
                                   '*',
                                   style: TextStyle(
                                     color: Colors.red,
-                                    fontSize: 19,
+                                    fontSize: 19.sp,
                                   ),
                                 ),
                               ],
@@ -212,37 +214,37 @@ class _Health_Care_Plan_Detailed_PageState
                       ],
                     ),
                     SizedBox(
-                      height: 15,
+                      height: 15.h,
                     ),
                     Row(
                       children: [
                         SizedBox(
-                          width: 20,
+                          width: 20.w,
                         ),
                         Text(
                           'Benifits',
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 18,
+                              fontSize: 18.sp,
                               fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                     Padding(
                       padding: EdgeInsets.only(left: 20),
                       child: Text(
                         style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 16.sp,
                             fontWeight: FontWeight.w400,
                             color: Colors.white),
                         '1. Experience continuous care with unlimited consultations\n2. No shipping charges on order above   Rs 149\n3. 24/7 access to doctors across all specialties\n4. Video consultations for clinic-like experience\n5. Same day delivery on the available medicine (Within 1 Hour)',
                       ),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 20.h,
                     )
                   ],
                 ),
@@ -250,7 +252,7 @@ class _Health_Care_Plan_Detailed_PageState
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(13.0),
+            padding: EdgeInsets.all(13.0.w),
             child: Container(
               width: MediaQuery.of(context).size.width * 0.9,
               decoration: BoxDecoration(
@@ -263,13 +265,13 @@ class _Health_Care_Plan_Detailed_PageState
                     Color.fromRGBO(10, 163, 185, 0.94)
                   ]),
                   // color: const Color.fromRGBO(41, 120, 147, 1),
-                  borderRadius: BorderRadius.circular(15)),
+                  borderRadius: BorderRadius.circular(15.r)),
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(8.0.w),
                 child: Column(
                   children: [
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -277,29 +279,29 @@ class _Health_Care_Plan_Detailed_PageState
                         Text(
                           'Buy DocSearch health care Bronze 1 year plan',
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 17),
+                              fontWeight: FontWeight.bold, fontSize: 17.sp),
                         )
                       ],
                     ),
                     SizedBox(
-                      height: 15,
+                      height: 15.h,
                     ),
                     Row(
                       children: [
                         SizedBox(
-                          width: 10,
+                          width: 10.w,
                         ),
                         Text(
                           'Person Details',
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 18,
+                              fontSize: 18.sp,
                               fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -309,7 +311,7 @@ class _Health_Care_Plan_Detailed_PageState
                       ],
                     ),
                     SizedBox(
-                      height: 15,
+                      height: 15.h,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -319,24 +321,24 @@ class _Health_Care_Plan_Detailed_PageState
                       ],
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                     Row(
                       children: [
                         SizedBox(
-                          width: 10,
+                          width: 10.w,
                         ),
                         Text(
                           '2nd Person Details',
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 18,
+                              fontSize: 18.sp,
                               fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 10.w,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -346,7 +348,7 @@ class _Health_Care_Plan_Detailed_PageState
                       ],
                     ),
                     SizedBox(
-                      height: 15,
+                      height: 15.h,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -357,7 +359,7 @@ class _Health_Care_Plan_Detailed_PageState
                       ],
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 20.h,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -365,35 +367,35 @@ class _Health_Care_Plan_Detailed_PageState
                         Text(
                           'Have a coupon code',
                           style: TextStyle(
-                              fontSize: 17,
+                              fontSize: 17.sp,
                               fontWeight: FontWeight.bold,
                               color: Color.fromRGBO(251, 188, 5, 1)),
                         ),
                         Text(
                           '₹999/Year',
                           style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 18.sp,
                               fontWeight: FontWeight.bold,
                               color: Colors.white),
                         )
                       ],
                     ),
                     SizedBox(
-                      height: 30,
+                      height: 30.h,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
                             style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 16.sp,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white),
                             'By purchasing this plan you agree with\n Term and Condition of Doc search')
                       ],
                     ),
                     SizedBox(
-                      height: 19,
+                      height: 19.h,
                     )
                   ],
                 ),
@@ -401,7 +403,7 @@ class _Health_Care_Plan_Detailed_PageState
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            padding: EdgeInsets.symmetric(horizontal: 10.0.w),
             child: InkWell(
               onTap: () {
                 Navigator.of(context).push(
@@ -410,9 +412,10 @@ class _Health_Care_Plan_Detailed_PageState
               child: Container(
                 decoration: BoxDecoration(
                     color: Colors.black,
-                    borderRadius: BorderRadius.circular(15)),
+                    borderRadius: BorderRadius.circular(15.r)),
                 child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 18, vertical: 9),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 18.w, vertical: 9.h),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -420,11 +423,11 @@ class _Health_Care_Plan_Detailed_PageState
                           'Continue with Premium',
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 20,
+                              fontSize: 20.sp,
                               fontWeight: FontWeight.w500),
                         ),
                         SizedBox(
-                          width: 12,
+                          width: 12.w,
                         ),
                         Icon(
                           Icons.arrow_forward_ios,
@@ -436,7 +439,7 @@ class _Health_Care_Plan_Detailed_PageState
             ),
           ),
           SizedBox(
-            height: 50,
+            height: 50.h,
           )
         ]),
       ),
@@ -452,12 +455,12 @@ class RoundedTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 180,
-      height: 40, // Adjust the width as needed
-      padding: EdgeInsets.only(left: 8.0),
+      width: 180.w,
+      height: 40.h, // Adjust the width as needed
+      padding: EdgeInsets.only(left: 8.0.w),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(10.0.r),
       ),
       child: TextField(
         decoration: InputDecoration(
@@ -485,12 +488,12 @@ class _RoundedDropdownFieldState extends State<RoundedDropdownField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 180,
-      height: 40, // Adjust the width as needed
-      padding: EdgeInsets.only(left: 8.0),
+      width: 180.w,
+      height: 40.h, // Adjust the width as needed
+      padding: EdgeInsets.only(left: 8.0.w),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(10.0.r),
       ),
       child: TextField(
         controller: text,

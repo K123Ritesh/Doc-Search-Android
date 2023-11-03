@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../Bottom_Bar.dart';
 
@@ -24,12 +25,12 @@ class _Appointment_Done_PageState extends State<Appointment_Done_Page> {
               padding: const EdgeInsets.all(8.0),
               child: ListView(children: [
                 SizedBox(
-                  height: 20,
+                  height: 20.h,
                 ),
                 Row(
                   children: [
                     SizedBox(
-                      width: 15,
+                      width: 15.w,
                     ),
                     InkWell(
                       onTap: () {
@@ -39,19 +40,19 @@ class _Appointment_Done_PageState extends State<Appointment_Done_Page> {
                           color: Colors.black, size: 26),
                     ),
                     SizedBox(
-                      width: 70,
+                      width: 70.w,
                     ),
                     Text(
                       'Appointments',
                       style: TextStyle(
                           color: Colors.black,
-                          fontSize: 23,
+                          fontSize: 23.sp,
                           fontWeight: FontWeight.w400),
                     )
                   ],
                 ),
                 SizedBox(
-                  height: 50,
+                  height: 50.h,
                 ),
                 Container(
                   decoration: BoxDecoration(
@@ -59,7 +60,7 @@ class _Appointment_Done_PageState extends State<Appointment_Done_Page> {
                     color: Color.fromRGBO(194, 230, 243, 1.0),
                   ),
                   child: Padding(
-                    padding: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(10.w),
                     child: Column(
                       children: [
                         Row(
@@ -112,14 +113,14 @@ class _Appointment_Done_PageState extends State<Appointment_Done_Page> {
                               child: CircleAvatar(
                                 backgroundColor:
                                     Color.fromRGBO(194, 230, 243, 1.0),
-                                maxRadius: 50,
+                                maxRadius: 50.r,
                                 child: Image.network(
                                     fit: BoxFit.fill,
                                     'https://s3-alpha-sig.figma.com/img/88e8/51db/df6ae21b4d7fa0dee0c33d99d1409301?Expires=1699833600&Signature=NcqPPRUO45~8AMzhmbW5n-OSNaCVPLhz67cz4Mow6k5ZtVmbtxeclnZJc5vn5rsWDtBX6pvKL-OzWixCYONOA9hOKWC4CfD8LxexoIvJZyEKTleZcL~PQT2fLUBlBRToECRgRRyk9xwQQ2dCn8JYJ6lNwOR44xr8x6NaMj4ePf6PqgLWUrU7Sw4coxv347V0HfXM33qVqyLzPWW9~agOreeuR6aMbPScb2q4022PmC~qBQMOvCN0JAjeswboIx07l7RUgjcujJadZo-gh7flFVDmntGc7G6Z~mN4z1m3GuOdDyFfMaHfmmwf~E58ioWdnX6xEuLsRhekL-0IYfpmmQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4'),
                               ),
                             ),
                             SizedBox(
-                              width: 10,
+                              width: 10.w,
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -135,7 +136,7 @@ class _Appointment_Done_PageState extends State<Appointment_Done_Page> {
                                   "MBBS, M.ch",
                                   style: TextStyle(
                                       color: Colors.black,
-                                      fontSize: 18,
+                                      fontSize: 18.sp,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Container(
@@ -143,8 +144,8 @@ class _Appointment_Done_PageState extends State<Appointment_Done_Page> {
                                         borderRadius: BorderRadius.circular(15),
                                         color: Colors.white),
                                     child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10.0, vertical: 6.0),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10.w, vertical: 6.h),
                                       child: Text(
                                         "Specialization",
                                         style: TextStyle(
@@ -159,18 +160,18 @@ class _Appointment_Done_PageState extends State<Appointment_Done_Page> {
                           ],
                         ),
                         SizedBox(
-                          height: 15,
+                          height: 15.h,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Container(
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15),
+                                    borderRadius: BorderRadius.circular(15.r),
                                     color: Color.fromRGBO(0, 84, 115, 1)),
                                 child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10.0, vertical: 6.0),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 10.0.w, vertical: 6.0.h),
                                   child: Text(
                                     "Get Directions",
                                     style: TextStyle(color: Colors.white),
@@ -183,7 +184,7 @@ class _Appointment_Done_PageState extends State<Appointment_Done_Page> {
                   ),
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 30.h,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -194,53 +195,54 @@ class _Appointment_Done_PageState extends State<Appointment_Done_Page> {
                     ),
                     Text(
                       '  Appointment Confirmed',
-                      style: TextStyle(fontSize: 23),
+                      style: TextStyle(fontSize: 23.sp),
                     )
                   ],
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 30.h,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       'Your appointment ID XXXXXX',
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(fontSize: 20.sp),
                     )
                   ],
                 ),
                 SizedBox(
-                  height: 15,
+                  height: 15.h,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       'We have sent you an SMS with details',
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(fontSize: 20.sp),
                     )
                   ],
                 ),
                 SizedBox(
-                  height: 15,
+                  height: 15.h,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       'Verified consultation fee of',
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(fontSize: 20.sp),
                     ),
                     Text(
                       ' ₹450 ',
                       style: TextStyle(
-                          fontSize: 20, color: Color.fromRGBO(251, 188, 5, 1)),
+                          fontSize: 20.sp,
+                          color: Color.fromRGBO(251, 188, 5, 1)),
                     )
                   ],
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 30.h,
                 ),
                 InkWell(
                   onTap: () {
@@ -254,15 +256,15 @@ class _Appointment_Done_PageState extends State<Appointment_Done_Page> {
                     children: [
                       Container(
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(15.r),
                               color: Color.fromRGBO(0, 84, 115, 1)),
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10.0, vertical: 6.0),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10.0.w, vertical: 6.0.h),
                             child: Text(
                               "Close",
-                              style:
-                                  TextStyle(fontSize: 21, color: Colors.white),
+                              style: TextStyle(
+                                  fontSize: 21.sp, color: Colors.white),
                             ),
                           )),
                     ],

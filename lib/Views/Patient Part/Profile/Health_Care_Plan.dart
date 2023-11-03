@@ -1,5 +1,6 @@
 import 'package:doc_search/Views/Patient%20Part/Profile/Health_Care_Plan_Detailed_Page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../Bottom_Bar.dart';
 
@@ -36,11 +37,11 @@ class _Health_Care_PlanState extends State<Health_Care_Plan> {
           decoration: BoxDecoration(color: Colors.white),
           child: ListView(
             children: [
-              SizedBox(height: 23),
+              SizedBox(height: 23.h),
               Row(
                 children: [
                   SizedBox(
-                    width: 15,
+                    width: 15.w,
                   ),
                   InkWell(
                     onTap: () {
@@ -50,19 +51,19 @@ class _Health_Care_PlanState extends State<Health_Care_Plan> {
                         color: Colors.black, size: 26),
                   ),
                   SizedBox(
-                    width: 70,
+                    width: 70.w,
                   ),
                   Text(
                     'Health Care Plans',
                     style: TextStyle(
                         color: Colors.black,
-                        fontSize: 23,
+                        fontSize: 23.sp,
                         fontWeight: FontWeight.w500),
                   )
                 ],
               ),
               SizedBox(
-                height: 20,
+                height: 20.h,
               ),
               Container(
                 width: MediaQuery.of(context).size.width,
@@ -75,65 +76,66 @@ class _Health_Care_PlanState extends State<Health_Care_Plan> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(left: 5.0),
+                          padding: EdgeInsets.only(left: 5.0.w),
                           child: Container(
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius: BorderRadius.circular(20.r),
                                 color: Color.fromARGB(255, 58, 176, 255)),
                             child: Padding(
                               padding: EdgeInsets.symmetric(
-                                  horizontal: 16.0, vertical: 7.0),
+                                  horizontal: 16.0.w, vertical: 7.0.h),
                               child: Text(
                                 'Doc Search Plans',
                                 style: TextStyle(
-                                    fontSize: 17, fontWeight: FontWeight.bold),
+                                    fontSize: 17.sp,
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
                           ),
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 10.h,
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 5.0),
+                          padding: EdgeInsets.only(left: 5.0.w),
                           child: Text(
                             'Become a DOC search members and \nReduce your medical Expenses',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 14,
+                                fontSize: 14.sp,
                                 color: const Color.fromARGB(255, 255, 231, 14)),
                           ),
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 10.h,
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 5.0),
+                          padding: EdgeInsets.only(left: 5.0.w),
                           child: Text(
                             'Save the things that makes you happy',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 15,
+                                fontSize: 15.sp,
                                 color: Colors.white),
                           ),
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 10.h,
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
+                          padding: EdgeInsets.only(left: 8.0.w),
                           child: Container(
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius: BorderRadius.circular(20.r),
                                 color: Color.fromARGB(255, 1, 71, 118)),
                             child: Padding(
                               padding: EdgeInsets.symmetric(
-                                  horizontal: 16.0, vertical: 7.0),
+                                  horizontal: 16.0.w, vertical: 7.0.h),
                               child: Text(
                                 'Explore',
                                 style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 17,
+                                    fontSize: 17.sp,
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
@@ -146,14 +148,14 @@ class _Health_Care_PlanState extends State<Health_Care_Plan> {
                     width: MediaQuery.of(context).size.width * 0.40,
                     child: Image.network(
                         width: MediaQuery.of(context).size.width * 0.5,
-                        height: 180,
+                        height: 180.h,
                         fit: BoxFit.fill,
                         'https://s3-alpha-sig.figma.com/img/4d9e/cabd/c149c67687cf1082c190a6b63deade16?Expires=1699833600&Signature=W3eKZjtVByt~TpLcc9K6oO5IAd2OkkMeSPbKUoFG3fKLd8fU0P1pLRtt88P6UQoR6aK3mn1MU10eKIwPZfud4etKZaCT24tL3fXmOzmvORlGus6mSKrQen03kdeP6FhlGV1P7F2S-Zw3M5IboIWYsQfr52iqsJS0IooW9u8jIkCVOkUL1dsSxMbd0dyQ7LowFTs2pT~4U7dDTedbDHCVtqfdkFhLWh1H18Q4tS1uCU~7mhnX3qOJO~LLmnlWKfBi7EvkwL8nh6DxTaGVJqMU~o5MXN9kOworNfnhqrZqEEudaHMiwW7GkDZNTtL-cvvbpyehSbIwFKUyeHHzl9S-2w__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4'),
                   )
                 ]),
               ),
               SizedBox(
-                height: 20,
+                height: 20.h,
               ),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -176,10 +178,10 @@ class _Health_Care_PlanState extends State<Health_Care_Plan> {
                 ),
               ),
               SizedBox(
-                height: 20,
+                height: 20.h,
               ),
               Padding(
-                padding: const EdgeInsets.only(right: 20.0),
+                padding: EdgeInsets.only(right: 20.0.w),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -187,36 +189,36 @@ class _Health_Care_PlanState extends State<Health_Care_Plan> {
                       children: [
                         Container(
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
+                              borderRadius: BorderRadius.circular(12.r),
                               border: Border.all(color: Colors.black)),
                           child: Padding(
                             padding: EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 6),
+                                horizontal: 15.w, vertical: 6.h),
                             child: Text(
                               amount[selectedIndex],
                               style: TextStyle(
-                                  fontSize: 18,
+                                  fontSize: 18.sp,
                                   fontWeight: FontWeight.w400,
                                   color: Colors.black),
                             ),
                           ),
                         ),
                         SizedBox(
-                          height: 3,
+                          height: 3.h,
                         ),
                         Row(
                           children: [
                             Text(
                               'Billed every 1 year',
                               style: TextStyle(
-                                  fontSize: 16,
+                                  fontSize: 16.sp,
                                   fontWeight: FontWeight.bold,
                                   color: const Color.fromARGB(255, 8, 91, 158)),
                             ),
                             Text(
                               '*',
                               style: TextStyle(
-                                  fontSize: 16,
+                                  fontSize: 16.sp,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.red),
                             ),
@@ -228,10 +230,10 @@ class _Health_Care_PlanState extends State<Health_Care_Plan> {
                 ),
               ),
               SizedBox(
-                height: 20,
+                height: 20.h,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                padding: EdgeInsets.symmetric(horizontal: 10.0.w),
                 child: InkWell(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
@@ -241,10 +243,10 @@ class _Health_Care_PlanState extends State<Health_Care_Plan> {
                   child: Container(
                     decoration: BoxDecoration(
                         color: Colors.black,
-                        borderRadius: BorderRadius.circular(15)),
+                        borderRadius: BorderRadius.circular(15.r)),
                     child: Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 18, vertical: 9),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 18.w, vertical: 9.h),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -252,11 +254,11 @@ class _Health_Care_PlanState extends State<Health_Care_Plan> {
                               'Continue with Premium',
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 20,
+                                  fontSize: 20.sp,
                                   fontWeight: FontWeight.w500),
                             ),
                             SizedBox(
-                              width: 12,
+                              width: 12.w,
                             ),
                             Icon(
                               Icons.arrow_forward_ios,
@@ -268,7 +270,7 @@ class _Health_Care_PlanState extends State<Health_Care_Plan> {
                 ),
               ),
               SizedBox(
-                height: 30,
+                height: 30.h,
               )
             ],
           ),
@@ -291,11 +293,11 @@ class Container_for_Premium extends StatelessWidget {
   Widget build(BuildContext context) {
     return isSelected == true
         ? Padding(
-            padding: const EdgeInsets.all(13.0),
+            padding: EdgeInsets.all(13.0.w),
             child: Container(
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.black, width: 3),
-                  borderRadius: BorderRadius.circular(15)),
+                  borderRadius: BorderRadius.circular(15.r)),
               child: Card(
                 elevation: 30,
                 shadowColor: Colors.black,
@@ -305,22 +307,22 @@ class Container_for_Premium extends StatelessWidget {
                       color: const Color(0xFF155467),
                       borderRadius: BorderRadius.circular(15)),
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(8.0.w),
                     child: Column(
                       children: [
                         SizedBox(
-                          height: 10,
+                          height: 10.w,
                         ),
                         Row(
                           children: [
                             SizedBox(
-                              width: 20,
+                              width: 20.w,
                             ),
                             Text(
                               type,
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 23,
+                                  fontSize: 23.sp,
                                   fontWeight: FontWeight.bold),
                             ),
                           ],
@@ -328,63 +330,63 @@ class Container_for_Premium extends StatelessWidget {
                         Row(
                           children: [
                             SizedBox(
-                              width: 20,
+                              width: 20.w,
                             ),
                             Text(
                               '(Single Person',
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 20,
+                                fontSize: 20.sp,
                               ),
                             ),
                             Text(
                               '*',
                               style: TextStyle(
                                 color: Colors.red,
-                                fontSize: 20,
+                                fontSize: 20.sp,
                               ),
                             ),
                             Text(
                               ' )',
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 20,
+                                fontSize: 20.sp,
                               ),
                             ),
                           ],
                         ),
                         SizedBox(
-                          height: 15,
+                          height: 15.h,
                         ),
                         Row(
                           children: [
                             SizedBox(
-                              width: 20,
+                              width: 20.w,
                             ),
                             Text(
                               'Benifits',
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 21,
+                                  fontSize: 21.sp,
                                   fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 10.h,
                         ),
                         Padding(
                           padding: EdgeInsets.only(left: 20),
                           child: Text(
                             details,
                             style: TextStyle(
-                                fontSize: 20,
+                                fontSize: 20.sp,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.white),
                           ),
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 20.h,
                         )
                       ],
                     ),
@@ -394,29 +396,29 @@ class Container_for_Premium extends StatelessWidget {
             ),
           )
         : Padding(
-            padding: const EdgeInsets.all(13.0),
+            padding: EdgeInsets.all(13.0.w),
             child: Container(
               width: MediaQuery.of(context).size.width * 0.9,
               decoration: BoxDecoration(
                   color: const Color(0xFF155467),
                   borderRadius: BorderRadius.circular(15)),
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(8.0.w),
                 child: Column(
                   children: [
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                     Row(
                       children: [
                         SizedBox(
-                          width: 20,
+                          width: 20.w,
                         ),
                         Text(
                           type,
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 23,
+                              fontSize: 23.sp,
                               fontWeight: FontWeight.bold),
                         ),
                       ],
@@ -424,62 +426,62 @@ class Container_for_Premium extends StatelessWidget {
                     Row(
                       children: [
                         SizedBox(
-                          width: 20,
+                          width: 20.w,
                         ),
                         Text(
                           '(Single Person',
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 20,
+                            fontSize: 20.sp,
                           ),
                         ),
                         Text(
                           '*',
                           style: TextStyle(
                             color: Colors.red,
-                            fontSize: 20,
+                            fontSize: 20.sp,
                           ),
                         ),
                         Text(
                           ' )',
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 20,
+                            fontSize: 20.sp,
                           ),
                         ),
                       ],
                     ),
                     SizedBox(
-                      height: 15,
+                      height: 15.h,
                     ),
                     Row(
                       children: [
                         SizedBox(
-                          width: 20,
+                          width: 20.w,
                         ),
                         Text(
                           'Benifits',
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 21,
+                              fontSize: 21.sp,
                               fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 20),
+                      padding: EdgeInsets.only(left: 20.w),
                       child: Text(
                           style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 20.sp,
                               fontWeight: FontWeight.w400,
                               color: Colors.white),
                           details),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 20.h,
                     )
                   ],
                 ),

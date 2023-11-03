@@ -63,6 +63,7 @@ class _Signup_PageState extends State<Signup_Page> {
     try {
       String formattedMobileNumber = '+91${_mobileNumberController.text}';
       await _firestore.collection('Users').doc(formattedMobileNumber).set({
+        'email': 'dummy@gmail.com',
         'firstName': _firstNameController.text,
         'lastName': _lastNameController.text,
         'mobileNumber': formattedMobileNumber,

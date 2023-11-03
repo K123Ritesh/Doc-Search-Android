@@ -1,3 +1,4 @@
+import 'package:doc_search/Config/sizeConfig.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/MedicalOrder.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,7 @@ class MedicalReportDetails extends StatefulWidget {
 class _MedicalReportDetailsState extends State<MedicalReportDetails> {
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       backgroundColor: const Color(0xFF1A6A83),
       appBar: AppBar(
@@ -26,20 +28,20 @@ class _MedicalReportDetailsState extends State<MedicalReportDetails> {
           },
         ),
         title: Container(
-            margin: const EdgeInsets.only(left: 70),
-            child: const Text(
+            margin: EdgeInsets.only(left: 60.fw),
+            child:  Text(
               'Medical Records',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+              style: TextStyle(fontSize: 18.fh, fontWeight: FontWeight.w600),
             )),
       ),
       body: Center(
         child: Container(
-          margin: EdgeInsets.all(20),
+          margin: EdgeInsets.only(left:20.fw,right: 20.fw,bottom: 20.fh),
           child: Column(
             children: [
               Container(
-                height: 65,
-                width: 65,
+                height: 65.fh,
+                width: 65.fw,
                 child: CircleAvatar(
                   backgroundColor: Colors.blue,
                   // You can add the image here
@@ -47,12 +49,12 @@ class _MedicalReportDetailsState extends State<MedicalReportDetails> {
                 ),
               ),
               SizedBox(
-                height: 5,
+                height: 5.fh,
               ),
               Text(
                 'Vivek Sharma',
                 style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 14.fh,
                     fontWeight: FontWeight.w500,
                     color: Colors.white),
               ),
@@ -62,7 +64,7 @@ class _MedicalReportDetailsState extends State<MedicalReportDetails> {
               Text(
                 '27 Years',
                 style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 14.fh,
                     fontWeight: FontWeight.w500,
                     color: Colors.white),
               ),
@@ -72,17 +74,17 @@ class _MedicalReportDetailsState extends State<MedicalReportDetails> {
               Text(
                 'B-9 Vasnat Kunj New Delhi',
                 style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 14.fh,
                     fontWeight: FontWeight.w500,
                     color: Colors.white),
               ),
               SizedBox(
-                height: 5,
+                height: 5.fh,
               ),
               Text(
                 '+91 9876543210',
                 style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 14.fh,
                     fontWeight: FontWeight.w500,
                     color: Colors.white),
               ),
@@ -91,19 +93,20 @@ class _MedicalReportDetailsState extends State<MedicalReportDetails> {
               ),
               Row(
                 children: [
+                  SizedBox(width: 10.fw,),
                   Text(
                     'Disease:',
                     style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 18.fh,
                         fontWeight: FontWeight.w600,
                         color: Colors.white),
                   ),
                   SizedBox(
-                    width: 10,
+                    width: 10.fw,
                   ),
                   Container(
-                    height: 27,
-                    width: 150,
+                    height: 27.fh,
+                    width: 150.fw,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(13),
                       color: Color(0XFFC2E6F3),
@@ -111,136 +114,169 @@ class _MedicalReportDetailsState extends State<MedicalReportDetails> {
                     child: Center(
                       child: Text("Red eyes and itchiness",
                           style: TextStyle(
-                            fontSize: 10,
+                            fontSize: 10.fh,
                           )),
                     ),
                   ),
                 ],
               ),
               SizedBox(
-                height: 10,
+                height: 10.fh,
               ),
               Container(
-                height: 100,
+                height: 100.fh,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: Color(0XFFC2E6F3),
                 ),
                 child: Center(
                   child: Container(
-                      margin: EdgeInsets.only(left: 20, right: 20),
+                      margin: EdgeInsets.only(left: 20.fw, right: 20.fw),
                       child: Text(
                           "Lorem ipsum dolor sit amet consectetur. Dolor hendrerit enim vitae est nulla.Lorem ipsum dolor sit amet consectetur. Dolor hendrerit enim vitae est nulla.Lorem ipsum dolor sit amet consectetur. Dolor hendrerit enim vitae est nulla.Lorem ipsum dolor sit amet consectetur.",
                           style: TextStyle(
-                            fontSize: 12,
+                            fontSize: 12.fh,
                           ))),
                 ),
               ),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10.fh,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text('6 Ways To Treat Eyes At Home',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500,color: Colors.white),),
+                  
+                  Text(
+                    '6 Ways To Treat Eyes At Home',
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white),
+                  ),
                 ],
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20.fh,
+              ),
               Row(
                 children: [
                   Row(
                     children: [
                       Container(
-                        height: 12,
-                        width: 12,
+                        height: 11.fh,
+                        width: 12.fw,
                         decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(50)
-                        ),
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(50)),
                       ),
-                      SizedBox(width: 5,),
-                      Text('Warm or cold compress',style: TextStyle(fontSize: 14,color: Colors.white)),
+                      SizedBox(
+                        width: 5.fw,
+                      ),
+                      Text('Warm or cold compress',
+                          style: TextStyle(fontSize: 13.fh, color: Colors.white)),
                     ],
                   ),
-                  SizedBox(width: 40,),
+                  SizedBox(
+                    width: 20.fw,
+                  ),
                   Row(
                     children: [
                       Container(
-                        height: 12,
-                        width: 12,
+                        height: 11.fh,
+                        width: 12.fw,
                         decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(50)
-                        ),
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(50)),
                       ),
-                      SizedBox(width: 5,),
-                      Text('Artificial tears',style: TextStyle(fontSize: 14,color: Colors.white)),
+                      SizedBox(
+                        width: 5.fw,
+                      ),
+                      Text('Artificial tears',
+                          style: TextStyle(fontSize: 13.fh, color: Colors.white)),
                     ],
                   )
                 ],
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20.fh,
+              ),
               Row(
                 children: [
                   Row(
                     children: [
                       Container(
-                        height: 12,
-                        width: 12,
+                        height: 11.fh,
+                        width: 12.fw,
                         decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(50)
-                        ),
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(50)),
                       ),
-                      SizedBox(width: 5,),
-                      Text('Wear sunglasses',style: TextStyle(fontSize: 14,color: Colors.white)),
+                      SizedBox(
+                        width: 5.fw,
+                      ),
+                      Text('Wear sunglasses',
+                          style: TextStyle(fontSize: 13.fh, color: Colors.white)),
                     ],
                   ),
-                  SizedBox(width: 80,),
+                  SizedBox(
+                    width: 64.fw,
+                  ),
                   Row(
                     children: [
                       Container(
-                        height: 12,
-                        width: 12,
+                        height: 11.fh,
+                        width: 12.fw,
                         decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(50)
-                        ),
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(50)),
                       ),
-                      SizedBox(width: 5,),
-                      Text('Clean your eye area',style: TextStyle(fontSize: 14,color: Colors.white)),
+                      SizedBox(
+                        width: 5.fw,
+                      ),
+                      Text('Clean your eye area',
+                          style: TextStyle(fontSize: 13.fh, color: Colors.white)),
                     ],
                   )
                 ],
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20.fh,
+              ),
               Row(
                 children: [
                   Row(
                     children: [
                       Container(
-                        height: 12,
-                        width: 12,
+                        height: 11.fh,
+                        width: 12.fw,
                         decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(50)
-                        ),
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(50)),
                       ),
-                      SizedBox(width: 5,),
-                      Text('Use a Humidifier',style: TextStyle(fontSize: 14,color: Colors.white)),
+                      SizedBox(
+                        width: 5.fw,
+                      ),
+                      Text('Use a Humidifier',
+                          style: TextStyle(fontSize: 13.fh, color: Colors.white)),
                     ],
                   ),
-                  SizedBox(width: 85,),
+                  SizedBox(
+                    width: 68.fw,
+                  ),
                   Row(
                     children: [
                       Container(
-                        height: 12,
-                        width: 12,
+                        height: 11.fh,
+                        width: 12.fw,
                         decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(50)
-                        ),
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(50)),
                       ),
-                      SizedBox(width: 5,),
-                      Text('Stay hydrated',style: TextStyle(fontSize: 14,color: Colors.white)),
+                      SizedBox(
+                        width: 5.fw,
+                      ),
+                      Text('Stay hydrated',
+                          style: TextStyle(fontSize: 13.fh, color: Colors.white)),
                     ],
                   )
                 ],

@@ -1,3 +1,4 @@
+import 'package:doc_search/Config/sizeConfig.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Medical_report_details.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +14,7 @@ class MedicalRecord extends StatefulWidget {
 class _MedicalRecordState extends State<MedicalRecord> {
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       backgroundColor: const Color(0xFF1A6A83),
       appBar: AppBar(
@@ -29,31 +31,31 @@ class _MedicalRecordState extends State<MedicalRecord> {
           },
         ),
         title: Container(
-            margin: const EdgeInsets.only(left: 85),
-            child: const Text(
+            margin:  EdgeInsets.only(left: 60.fw),
+            child:  Text(
               'Medical Records',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+              style: TextStyle(fontSize: 18.fh, fontWeight: FontWeight.w600),
             )),
       ),
       body: ListView.builder(
         itemCount: 3,
         itemBuilder: (context, index) {
           return Container(
-            height: 89,
-            margin: EdgeInsets.only(left: 20, top: 20, right: 20),
+            height: 89.fh,
+            margin: EdgeInsets.only(left: 20.fw, top: 20.fh, right: 20.fw),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               color: Colors.white,
             ),
             child: Container(
-              margin: EdgeInsets.only(top: 10),
+              margin: EdgeInsets.only(top: 10.fh),
               child: Column(children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Container(
-                      height: 65,
-                      width: 65,
+                      height: 65.fh,
+                      width: 65.fw,
                       child: CircleAvatar(
                         backgroundColor: Colors.blue,
                         // You can add the image here
@@ -66,48 +68,49 @@ class _MedicalRecordState extends State<MedicalRecord> {
                         Text(
                           'Dr.Vikas Sharma',
                           style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.w500),
+                              fontSize: 15.fh, fontWeight: FontWeight.w500),
                         ),
                         SizedBox(
-                          height: 5,
+                          height: 5.fh,
                         ),
                         Text(
                           '35 years',
                           style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w500),
+                              fontSize: 14.fh, fontWeight: FontWeight.w500),
                         ),
                         SizedBox(
-                          height: 5,
+                          height: 5.fh,
                         ),
                         Text(
                           '+91 8796383738',
                           style: TextStyle(
-                              fontSize: 12, fontWeight: FontWeight.w500),
+                              fontSize: 12.fh, fontWeight: FontWeight.w500),
                         ),
                       ],
                     ),
                     Column(
                       children: [
                         Container(
-                          width: 98,
-                          height: 19,
+                          width: 98.fw,
+                          height: 19.fh,
                           decoration: BoxDecoration(
                               color: Color(0XFFE6F7EF),
                               borderRadius: BorderRadius.circular(4)),
                           child: Center(
                               child: Text("Dentist",
                                   style: TextStyle(
-                                      color: Color(0XFF00B05B), fontSize: 11))),
+                                      color: Color(0XFF00B05B), fontSize: 11.fh))),
                         ),
                         SizedBox(
-                          height: 5,
+                          height: 5.fh,
                         ),
                         ElevatedButton(
                           onPressed: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const MedicalReportDetails()),
+                                  builder: (context) =>
+                                      const MedicalReportDetails()),
                             );
                           },
                           style: ElevatedButton.styleFrom(
@@ -117,14 +120,14 @@ class _MedicalRecordState extends State<MedicalRecord> {
                             ),
                           ),
                           child: Container(
-                            height: 28,
-                            width: 103,
+                            height: 28.fh,
+                            width: 90.fw,
                             child: Center(
                               child: Text(
                                 'Medical Report',
                                 style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 12,
+                                    fontSize: 11.fh,
                                     fontWeight: FontWeight.w500),
                               ),
                             ),

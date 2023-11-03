@@ -49,7 +49,7 @@ class _PastAppointmentState extends State<PastAppointment>
           },
         ),
         title: Container(
-            margin: const EdgeInsets.only(left: 85),
+            margin: EdgeInsets.only(left: 75.fw),
             child: const Text(
               'Appointments',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),

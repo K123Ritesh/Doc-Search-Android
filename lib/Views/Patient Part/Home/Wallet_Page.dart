@@ -65,7 +65,7 @@ class _WalletState extends State<Wallet> with SingleTickerProviderStateMixin {
                             },
                           ),
                           Container(
-                            margin: EdgeInsets.only(left: 100),
+                            margin: EdgeInsets.only(left: 90.fw),
                             child: Text(
                               'Wallet',
                               style: TextStyle(
@@ -78,33 +78,32 @@ class _WalletState extends State<Wallet> with SingleTickerProviderStateMixin {
                         ],
                       ),
                     ),
-                    SizedBox(width: 45.fw),
+                    SizedBox(width: 55.fw),
                     InkWell(
                       onTap: () {},
                       child: Container(
-                        decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 83, 130, 211),
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(3.0),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.account_balance_wallet,
-                                color: Colors.white,
-                                size: 30,
-                              ),
-                              SizedBox(width: 8),
-                              Text(
-                                '100',
-                                style: TextStyle(
-                                    fontSize: 18, color: Colors.black),
-                              ),
-                            ],
-                          ),
+                      decoration: BoxDecoration(
+                          color: Color(0XFFECFAFC),
+                          borderRadius: BorderRadius.circular(6.fh)),
+                      child: Padding(
+                        padding: EdgeInsets.all(2.fh),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.account_balance_wallet,
+                              color: Color(0xFF005473),
+                              size: 25.fh,
+                            ),
+                            SizedBox(width: 5.fw),
+                            Text(
+                              '100',
+                              style: TextStyle(
+                                  fontSize: 18.fh, color: Colors.black),
+                            ),
+                          ],
                         ),
                       ),
+                    ),
                     ),
                   ],
                 ),
@@ -182,231 +181,233 @@ class _WalletState extends State<Wallet> with SingleTickerProviderStateMixin {
             child: TabBarView(
               controller: _tabController,
               children: [
-                Column(
-                  children: [
-                    Container(
-                      color: Colors.white,
-                      child: Column(children: [
-                        Container(
-                          margin: EdgeInsets.all(20),
-                          height: 88,
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Color(0xFF3F849C),
-                              ),
-                              borderRadius: BorderRadius.circular(4)),
-                          child: Row(
-                            children: [
-                              Image(
-                                image: AssetImage('assets/Rectangle 5698.png'),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text('Paste Your Referral Code',
+                SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Container(
+                        color: Colors.white,
+                        child: Column(children: [
+                          Container(
+                            margin: EdgeInsets.all(20),
+                            height: 88,
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Color(0xFF3F849C),
+                                ),
+                                borderRadius: BorderRadius.circular(4)),
+                            child: Row(
+                              children: [
+                                Image(
+                                  image: AssetImage('assets/Rectangle 5698.png'),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text('Paste Your Referral Code',
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w400)),
+                                    Text(
+                                      'here to get 100 coins.',
                                       style: TextStyle(
                                           fontSize: 12,
-                                          fontWeight: FontWeight.w400)),
-                                  Text(
-                                    'here to get 100 coins.',
-                                    style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                  SizedBox(
-                                    height: 15,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Container(
-                                        width: 47.fw,
-                                        height: 24.fh,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFF155467),
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                        ),
-                                        child: Center(
-                                          child: TextField(
-                                            textAlign: TextAlign.center,
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                            decoration: InputDecoration(
-                                              border: InputBorder.none,
-                                              hintText: 'CODE',
-                                              hintStyle: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600),
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                    SizedBox(
+                                      height: 15,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Container(
+                                          width: 47.fw,
+                                          height: 24.fh,
+                                          decoration: BoxDecoration(
+                                            color: Color(0xFF155467),
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                          ),
+                                          child: Center(
+                                            child: TextField(
+                                              textAlign: TextAlign.center,
+                                              style:
+                                                  TextStyle(color: Colors.white),
+                                              decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                hintText: 'CODE',
+                                                hintStyle: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.w600),
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      Container(
-                                        margin: EdgeInsets.only(left: 70.fw),
-                                        width: 47.fw,
-                                        height: 24.fh,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFF155467),
-                                          borderRadius:
-                                              BorderRadius.circular(5),
+                                        Container(
+                                          margin: EdgeInsets.only(left: 70.fw),
+                                          width: 47.fw,
+                                          height: 24.fh,
+                                          decoration: BoxDecoration(
+                                            color: Color(0xFF155467),
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                          ),
+                                          child: InkWell(
+                                            onTap: () {},
+                                            child: Center(
+                                                child: Text(
+                                              'Claim',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w600),
+                                            )),
+                                          ),
                                         ),
-                                        child: InkWell(
-                                          onTap: () {},
-                                          child: Center(
-                                              child: Text(
-                                            'Claim',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w600),
-                                          )),
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
-                        )
-                      ]),
-                    ),
-                    Container(
-                      color: Colors.white,
-                      child: Column(children: [
-                        Container(
-                          margin: EdgeInsets.only(right: 20, left: 20),
-                          height: 88,
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Color(0xFF155467),
-                              ),
-                              borderRadius: BorderRadius.circular(4)),
-                          child: Row(
-                            children: [
-                              Image(
-                                image: AssetImage('assets/Rectangle 5698.png'),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text('Paste Your Referral Code',
+                                      ],
+                                    )
+                                  ],
+                                )
+                              ],
+                            ),
+                          )
+                        ]),
+                      ),
+                      Container(
+                        color: Colors.white,
+                        child: Column(children: [
+                          Container(
+                            margin: EdgeInsets.only(right: 20, left: 20),
+                            height: 88,
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Color(0xFF155467),
+                                ),
+                                borderRadius: BorderRadius.circular(4)),
+                            child: Row(
+                              children: [
+                                Image(
+                                  image: AssetImage('assets/Rectangle 5698.png'),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text('Paste Your Referral Code',
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w400)),
+                                    Text(
+                                      'here to get 100 coins.',
                                       style: TextStyle(
                                           fontSize: 12,
-                                          fontWeight: FontWeight.w400)),
-                                  Text(
-                                    'here to get 100 coins.',
-                                    style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                  SizedBox(
-                                    height: 15,
-                                  ),
-                                  Container(
-                                    width: 71,
-                                    height: 24,
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFF155467),
-                                      borderRadius: BorderRadius.circular(5),
+                                          fontWeight: FontWeight.w400),
                                     ),
-                                    child: InkWell(
-                                      onTap: () {},
-                                      child: Center(
-                                          child: Text(
-                                        'Book Now',
+                                    SizedBox(
+                                      height: 15,
+                                    ),
+                                    Container(
+                                      width: 71,
+                                      height: 24,
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFF155467),
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      child: InkWell(
+                                        onTap: () {},
+                                        child: Center(
+                                            child: Text(
+                                          'Book Now',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600),
+                                        )),
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          )
+                        ]),
+                      ),
+                      Container(
+                        color: Colors.white,
+                        child: Column(children: [
+                          Container(
+                            margin: EdgeInsets.only(right: 20, left: 20, top: 20),
+                            height: 88,
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Color(0xFF155467),
+                                ),
+                                borderRadius: BorderRadius.circular(4)),
+                            child: Row(
+                              children: [
+                                Image(
+                                  image: AssetImage('assets/Rectangle 5698.png'),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text('Paste Your Referral Code',
                                         style: TextStyle(
-                                            color: Colors.white,
                                             fontSize: 12,
-                                            fontWeight: FontWeight.w600),
-                                      )),
-                                    ),
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        )
-                      ]),
-                    ),
-                    Container(
-                      color: Colors.white,
-                      child: Column(children: [
-                        Container(
-                          margin: EdgeInsets.only(right: 20, left: 20, top: 20),
-                          height: 88,
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Color(0xFF155467),
-                              ),
-                              borderRadius: BorderRadius.circular(4)),
-                          child: Row(
-                            children: [
-                              Image(
-                                image: AssetImage('assets/Rectangle 5698.png'),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text('Paste Your Referral Code',
+                                            fontWeight: FontWeight.w400)),
+                                    Text(
+                                      'here to get 100 coins.',
                                       style: TextStyle(
                                           fontSize: 12,
-                                          fontWeight: FontWeight.w400)),
-                                  Text(
-                                    'here to get 100 coins.',
-                                    style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                  SizedBox(
-                                    height: 15,
-                                  ),
-                                  Container(
-                                    width: 71,
-                                    height: 24,
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFF155467),
-                                      borderRadius: BorderRadius.circular(5),
+                                          fontWeight: FontWeight.w400),
                                     ),
-                                    child: InkWell(
-                                      onTap: () {},
-                                      child: Center(
-                                          child: Text(
-                                        'Book Now',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w600),
-                                      )),
+                                    SizedBox(
+                                      height: 15,
                                     ),
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        )
-                      ]),
-                    ),
-                  ],
+                                    Container(
+                                      width: 71,
+                                      height: 24,
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFF155467),
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      child: InkWell(
+                                        onTap: () {},
+                                        child: Center(
+                                            child: Text(
+                                          'Book Now',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600),
+                                        )),
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          )
+                        ]),
+                      ),
+                    ],
+                  ),
                 ),
 
                 // Content for Medical tab

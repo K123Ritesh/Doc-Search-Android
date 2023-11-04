@@ -371,6 +371,18 @@ class OTP_Entering_Page extends StatefulWidget {
 }
 
 class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
+  String getCurrentUserUid() {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user = auth.currentUser;
+
+    if (user != null) {
+      String uid = user.uid;
+      return uid;
+    } else {
+      return "User not authenticated";
+    }
+  }
+
   final FirebaseAuth auth = FirebaseAuth.instance;
   var code = '';
   @override
@@ -501,10 +513,10 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
 
                           await auth.signInWithCredential(credential);
 
-                          userProvider.savePhoneNo(context, widget.phoneNo);
-                          userProvider.getPhoneNo(context);
-                          userProvider.getUserDetails(
-                              context, userProvider.phoneNo);
+                          String uid = getCurrentUserUid();
+
+                          userProvider.getUserDetails(context, uid);
+
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => HomePage()));
                         } catch (e) {

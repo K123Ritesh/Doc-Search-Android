@@ -64,6 +64,9 @@ when the appointment is booked it should send notification to the respective
 
       // Store the appointment details in the 'Appointments' collection
       await appointmentRef.set({
+        'doctor_name': appointment.doctor_name,
+        'doctor_address': appointment.doctor_address,
+        'doctor_qualification': appointment.doctor_qualification,
         'date_for_booking': appointment.date_for_booking,
         'doctorId': appointment.doctorId,
         'fee': appointment.reg_fee,

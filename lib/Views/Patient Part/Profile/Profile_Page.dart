@@ -31,10 +31,6 @@ class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
     // TODO: implement initState
 
     super.initState();
-
-    Provider.of<User_Provider>(context, listen: false).getPhoneNo(context);
-    Provider.of<User_Provider>(context, listen: false).getUserDetails(
-        context, Provider.of<User_Provider>(context, listen: false).phoneNo);
   }
 
   @override
@@ -48,7 +44,7 @@ class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
     final FirebaseAuth _auth = FirebaseAuth.instance;
 
     return Scaffold(
-      bottomNavigationBar: Bottombar(),
+      // bottomNavigationBar: Bottombar(),
       body: Container(
           decoration: BoxDecoration(
             color: const Color(0xFF155467),
@@ -110,14 +106,14 @@ class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
                         height: 10.h,
                       ),
                       Text(
-                        "${userProvider.user!.firstName} ${userProvider.user!.lastName}",
+                        "${userProvider.user.firstName} ${userProvider.user.lastName}",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 23.sp,
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        "${userProvider.user!.email} | ${userProvider.user!.mobileNo}",
+                        "${userProvider.user.email} | ${userProvider.user.mobileNo}",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 18.sp,

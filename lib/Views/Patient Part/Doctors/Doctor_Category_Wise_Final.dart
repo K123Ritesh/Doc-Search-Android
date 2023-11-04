@@ -7,15 +7,20 @@ import 'package:provider/provider.dart';
 import '../../../Bottom_Bar.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import '../../../Models/Doctor.dart';
+
 class Doctor_Category_Wise_Final extends StatefulWidget {
   const Doctor_Category_Wise_Final(
       {super.key,
       required this.slot,
       required this.date,
-      required this.doc_Category});
+      required this.doc_Category,
+      required this.doctor});
 
   final String slot;
   final String date;
+
+  final Doctor doctor;
 
   final String doc_Category;
 
@@ -515,12 +520,15 @@ class _Doctor_Category_Wise_FinalState
                   DoctorProvider.bookAppointment(
                     context,
                     Appointment_Model(
+                        doctor_address: widget.doctor.address,
+                        doctor_name: widget.doctor.name,
+                        doctor_qualification: 'MBBS , MS',
                         date_for_booking: widget.date,
                         mode_of_payment: 'online',
                         self: true,
                         reg_fee: '450',
                         paid: true,
-                        doctorId: 'khn@gmail.com',
+                        doctorId: widget.doctor.email,
                         slot: widget.slot,
                         userId: 'rit11@gmail.com'),
                     widget.doc_Category,

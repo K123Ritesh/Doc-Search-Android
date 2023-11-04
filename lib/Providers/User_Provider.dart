@@ -8,24 +8,20 @@ class User_Provider with ChangeNotifier {
   List<dynamic>? todayAppointmentId;
   List<dynamic>? pastAppointmentId;
   List<dynamic>? upcomingAppointmentId;
-
-  late PatientUser? user;
+  PatientUser user = PatientUser(
+      email: '',
+      firstName: 'firstName',
+      lastName: 'lastName',
+      mobileNo: 'mobileNo',
+      city: 'city',
+      appointments: {});
   bool isLoadingDetails = false;
 
-  getUserDetails(context, String phoneNo) async {
+  getUserDetails(context, String uid) async {
     isLoadingDetails = true;
-    user = await userServices.UserAllDetails(phoneNo);
+    user = (await userServices.UserAllDetails(uid))!;
     isLoadingDetails = false;
 
     notifyListeners();
-  }
-
-  savePhoneNo(context, String phoneNo) async {
-    await userServices.storePhoneNumber(context, phoneNo);
-  }
-
-  String phoneNo = '+919905411917';
-  getPhoneNo(context) async {
-    phoneNo = await userServices.getMobileNo(context);
   }
 }

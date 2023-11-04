@@ -102,7 +102,8 @@ class _PastAppointmentState extends State<PastAppointment>
                         itemBuilder: (context, index) {
                           return Container(
                             height: 182.fh,
-                            margin: EdgeInsets.only(left:20.fw,right: 20.fw,top: 20.fh),
+                            margin: EdgeInsets.only(
+                                left: 20.fw, right: 20.fw, top: 20.fh),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(16),
@@ -185,8 +186,15 @@ class _PastAppointmentState extends State<PastAppointment>
                                                 // backgroundImage: NetworkImage('URL'),
                                               ),
                                             ),
-                                            SizedBox(height: 10,),
-                                            Text('MBBS, MS',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w600),)
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            Text(
+                                              'MBBS, MS',
+                                              style: TextStyle(
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.w600),
+                                            )
                                           ],
                                         )
                                       ],
@@ -210,10 +218,11 @@ class _PastAppointmentState extends State<PastAppointment>
                                           children: [
                                             Divider(
                                               height: 0,
-                                              color: Color(0XFF005473
-),
+                                              color: Color(0XFF005473),
                                             ),
-                                            SizedBox(height: 5,),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
                                             Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment
@@ -296,7 +305,8 @@ class _PastAppointmentState extends State<PastAppointment>
                         itemBuilder: (context, index) {
                           return Container(
                             height: 182.fh,
-                            margin: EdgeInsets.only(left:20.fw,right: 20.fw,top: 20.fh),
+                            margin: EdgeInsets.only(
+                                left: 20.fw, right: 20.fw, top: 20.fh),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(16),
@@ -379,8 +389,15 @@ class _PastAppointmentState extends State<PastAppointment>
                                                 // backgroundImage: NetworkImage('URL'),
                                               ),
                                             ),
-                                            SizedBox(height: 10,),
-                                            Text('MBBS, MS',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w600),)
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            Text(
+                                              'MBBS, MS',
+                                              style: TextStyle(
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.w600),
+                                            )
                                           ],
                                         )
                                       ],
@@ -404,10 +421,11 @@ class _PastAppointmentState extends State<PastAppointment>
                                           children: [
                                             Divider(
                                               height: 0,
-                                              color: Color(0XFF005473
-),
+                                              color: Color(0XFF005473),
                                             ),
-                                            SizedBox(height: 5,),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
                                             Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment
@@ -490,7 +508,8 @@ class _PastAppointmentState extends State<PastAppointment>
                         itemBuilder: (context, index) {
                           return Container(
                             height: 182.fh,
-                            margin: EdgeInsets.only(left:20.fw,right: 20.fw,top: 20.fh),
+                            margin: EdgeInsets.only(
+                                left: 20.fw, right: 20.fw, top: 20.fh),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(16),
@@ -573,8 +592,15 @@ class _PastAppointmentState extends State<PastAppointment>
                                                 // backgroundImage: NetworkImage('URL'),
                                               ),
                                             ),
-                                            SizedBox(height: 10,),
-                                            Text('MBBS, MS',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w600),)
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            Text(
+                                              'MBBS, MS',
+                                              style: TextStyle(
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.w600),
+                                            )
                                           ],
                                         )
                                       ],
@@ -598,10 +624,11 @@ class _PastAppointmentState extends State<PastAppointment>
                                           children: [
                                             Divider(
                                               height: 0,
-                                              color: Color(0XFF005473
-),
+                                              color: Color(0XFF005473),
                                             ),
-                                            SizedBox(height: 5,),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
                                             Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment
@@ -667,7 +694,7 @@ class _PastAppointmentState extends State<PastAppointment>
           ),
         ],
       ),
-      bottomNavigationBar: Bottombar(),
+      // bottomNavigationBar: Bottombar(),
     );
   }
 

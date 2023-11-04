@@ -1,4 +1,5 @@
 import 'package:doc_search/Views/Doctor%20Part/Profile/Online_Consultations_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Appointment/Appointment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -126,7 +127,7 @@ class _Consultancy_PageState extends State<Consultancy_Page> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                Online_Consultations_Page()),
+                                                Appointment1()),
                                       );
                                     },
                                     child: Row(

@@ -80,7 +80,6 @@ class _Doctors_Category_WiseDetailsState
 
   @override
   Widget build(BuildContext context) {
-    final DoctorProvider = Provider.of<Doctor_Provider>(context);
     return Scaffold(
       bottomNavigationBar: Bottombar(),
       appBar: AppBar(
@@ -527,6 +526,7 @@ class _Doctors_Category_WiseDetailsState
                           context,
                           MaterialPageRoute(
                               builder: (context) => Doctor_Category_Wise_Final(
+                                  doctor: widget.doctor,
                                   slot: '${options2[selectedOption2]}',
                                   doc_Category: widget.doc_category,
                                   date:
@@ -537,6 +537,7 @@ class _Doctors_Category_WiseDetailsState
                           context,
                           MaterialPageRoute(
                               builder: (context) => Doctor_Category_Wise_Final(
+                                  doctor: widget.doctor,
                                   doc_Category: widget.doc_category,
                                   slot: '${options2[selectedOption3]}',
                                   date:

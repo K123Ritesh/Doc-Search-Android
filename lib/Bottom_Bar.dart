@@ -1,3 +1,4 @@
+import 'package:doc_search/Views/Final_Home_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Home_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Profile_Page.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class _BottombarState extends State<Bottombar> {
       case 0:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => HomePage()),
+          MaterialPageRoute(builder: (context) => Final_Home_Page()),
         );
         break;
       case 1:

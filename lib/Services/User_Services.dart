@@ -4,12 +4,10 @@ import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserServices {
-  Future<PatientUser?> UserAllDetails(String mobileNo) async {
+  Future<PatientUser?> UserAllDetails(String uid) async {
     try {
-      DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
-          .collection("Users")
-          .doc(mobileNo)
-          .get();
+      DocumentSnapshot documentSnapshot =
+          await FirebaseFirestore.instance.collection("Users").doc(uid).get();
 
       if (documentSnapshot.exists) {
         Map<dynamic, dynamic> data =

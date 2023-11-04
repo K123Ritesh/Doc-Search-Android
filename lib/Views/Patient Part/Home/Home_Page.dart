@@ -789,7 +789,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      bottomNavigationBar: Bottombar(),
+      // bottomNavigationBar: Bottombar(),
     );
   }
 }

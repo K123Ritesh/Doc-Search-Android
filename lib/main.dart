@@ -29,7 +29,7 @@ void main() async {
       builder: (_, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: Final_Home_Page(),
+          home: SplashScreen(),
         );
       },
     ),
@@ -65,7 +65,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(Duration(seconds: 5), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => isLoggedIn ? HomePage() : Login_Page(),
+          builder: (context) => isLoggedIn ? Final_Home_Page() : Login_Page(),
         ),
       );
     });

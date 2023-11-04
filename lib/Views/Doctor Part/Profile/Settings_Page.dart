@@ -14,7 +14,7 @@ class _Doctors_Setting_PageState extends State<Doctors_Setting_Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Bottombar(),
+      bottomNavigationBar: Bottombar(SelectedIndex: 3),
       body: Container(
           decoration: BoxDecoration(
             color: const Color(0xFF155467),

@@ -34,6 +34,7 @@ class _PastAppointmentState extends State<PastAppointment>
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
+      bottomNavigationBar: Bottombar(SelectedIndex: 1),
       backgroundColor: const Color(0xFF1A6A83),
       appBar: AppBar(
         backgroundColor: const Color(0xFF1A6A83),

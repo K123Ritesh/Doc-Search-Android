@@ -18,7 +18,7 @@ class _Hospital_Details_PageState extends State<Hospital_Details_Page> {
         SystemUiOverlayStyle(statusBarColor: Colors.white));
     return SafeArea(
         child: Scaffold(
-      bottomNavigationBar: Bottombar(),
+      bottomNavigationBar: Bottombar(SelectedIndex: 0),
       body: Container(
           decoration: BoxDecoration(color: Colors.white),
           child: Padding(

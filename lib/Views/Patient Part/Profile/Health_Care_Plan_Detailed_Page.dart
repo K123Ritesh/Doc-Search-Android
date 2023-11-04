@@ -18,7 +18,7 @@ class _Health_Care_Plan_Detailed_PageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Bottombar(),
+      bottomNavigationBar: Bottombar(SelectedIndex: 3),
       body: Container(
         decoration: BoxDecoration(color: Colors.white),
         child: ListView(children: [
@@ -406,8 +406,10 @@ class _Health_Care_Plan_Detailed_PageState
             padding: EdgeInsets.symmetric(horizontal: 10.0.w),
             child: InkWell(
               onTap: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => Not_Build_Page()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => Not_Build_Page(
+                          selectedIndex: 3,
+                        )));
               },
               child: Container(
                 decoration: BoxDecoration(

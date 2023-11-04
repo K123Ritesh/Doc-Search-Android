@@ -58,7 +58,7 @@ class _DoctorsDetailsState extends State<DoctorsDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Bottombar(),
+      bottomNavigationBar: Bottombar(SelectedIndex: 0),
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -521,7 +521,8 @@ class _DoctorsDetailsState extends State<DoctorsDetails> {
                             Center(
                                 child: Text(
                               '+91 8796206025',
-                              style: TextStyle(color: Colors.white, fontSize: 12),
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 12),
                             )),
                           ],
                         ),
@@ -545,7 +546,8 @@ class _DoctorsDetailsState extends State<DoctorsDetails> {
                             Center(
                                 child: Text(
                               'Malviya Nagar, New Delhi',
-                              style: TextStyle(color: Colors.white, fontSize: 12),
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 12),
                             )),
                           ],
                         ),
@@ -569,12 +571,15 @@ class _DoctorsDetailsState extends State<DoctorsDetails> {
                             Center(
                                 child: Text(
                               'docsearch@gmail.com',
-                              style: TextStyle(color: Colors.white, fontSize: 12),
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 12),
                             )),
                           ],
                         ),
                       ),
-                      SizedBox(height: 20,)
+                      SizedBox(
+                        height: 20,
+                      )
                     ],
                   )
                 ],

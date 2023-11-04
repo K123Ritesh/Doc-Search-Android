@@ -556,7 +556,7 @@ class _Doctor_Category_Wise_FinalState
           ],
         ),
       ),
-      bottomNavigationBar: Bottombar(),
+      bottomNavigationBar: Bottombar(SelectedIndex: 0),
     );
   }
 }

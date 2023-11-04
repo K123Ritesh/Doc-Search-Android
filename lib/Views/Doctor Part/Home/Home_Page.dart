@@ -127,7 +127,10 @@ class _Doctor_Home_PageState extends State<Doctor_Home_Page> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Not_Build_Page()),
+                      MaterialPageRoute(
+                          builder: (context) => Not_Build_Page(
+                                selectedIndex: 0,
+                              )),
                     );
                   },
                   child: Column(
@@ -181,7 +184,9 @@ class _Doctor_Home_PageState extends State<Doctor_Home_Page> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => Not_Build_Page()),
+                              builder: (context) => Not_Build_Page(
+                                    selectedIndex: 0,
+                                  )),
                         );
                       },
                       child: Container(
@@ -207,7 +212,9 @@ class _Doctor_Home_PageState extends State<Doctor_Home_Page> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => Not_Build_Page()),
+                              builder: (context) => Not_Build_Page(
+                                    selectedIndex: 0,
+                                  )),
                         );
                       },
                       child: Container(
@@ -392,7 +399,9 @@ class _Doctor_Home_PageState extends State<Doctor_Home_Page> {
           AppointmentId_Searched()
         ],
       ),
-      bottomNavigationBar: Bottombar(),
+      bottomNavigationBar: Bottombar(
+        SelectedIndex: 0,
+      ),
     );
   }
 }

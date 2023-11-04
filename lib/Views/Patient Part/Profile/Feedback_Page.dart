@@ -15,7 +15,7 @@ class _Feedback_PageState extends State<Feedback_Page> {
     SizeConfig().init(context);
     return SafeArea(
       child: Scaffold(
-        bottomNavigationBar: Bottombar(),
+        bottomNavigationBar: Bottombar(SelectedIndex: 3),
         body: Container(
             decoration: BoxDecoration(
               color: const Color(0xFF155467),

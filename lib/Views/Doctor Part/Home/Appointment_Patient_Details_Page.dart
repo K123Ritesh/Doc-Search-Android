@@ -19,7 +19,9 @@ class _Appointment_Patient_Details_PageState
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      bottomNavigationBar: Bottombar(),
+      bottomNavigationBar: Bottombar(
+        SelectedIndex: 0,
+      ),
       body: Container(
           decoration: BoxDecoration(
             color: const Color(0xFF155467),

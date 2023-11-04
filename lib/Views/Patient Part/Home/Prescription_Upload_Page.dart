@@ -66,7 +66,7 @@ class _Prescription_Upload_PageState extends State<Prescription_Upload_Page> {
         SystemUiOverlayStyle(statusBarColor: Colors.white));
     return SafeArea(
         child: Scaffold(
-      bottomNavigationBar: Bottombar(),
+      bottomNavigationBar: Bottombar(SelectedIndex: 0),
       body: Container(
           decoration: BoxDecoration(color: Colors.white),
           child: Padding(

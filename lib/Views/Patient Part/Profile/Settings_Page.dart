@@ -17,7 +17,7 @@ class _Settings_PageState extends State<Settings_Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Bottombar(),
+      bottomNavigationBar: Bottombar(SelectedIndex: 3),
       body: Container(
           decoration: BoxDecoration(
             color: const Color(0xFF155467),
@@ -155,7 +155,9 @@ class _Settings_PageState extends State<Settings_Page> {
                       InkWell(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => Not_Build_Page()));
+                              builder: (context) => Not_Build_Page(
+                                    selectedIndex: 3,
+                                  )));
                         },
                         child: ListTile(
                           title: Text(

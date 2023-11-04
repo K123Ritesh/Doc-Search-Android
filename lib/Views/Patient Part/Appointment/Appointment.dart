@@ -30,7 +30,7 @@ class _Appointment1State extends State<Appointment1> {
       statusBarColor: Color(0xFF1A6A83),
     ));
     return Scaffold(
-      bottomNavigationBar: Bottombar(),
+      bottomNavigationBar: Bottombar(SelectedIndex: 0),
       appBar: AppBar(
         backgroundColor: const Color(0xFF1A6A83),
         elevation: 0,
@@ -42,7 +42,8 @@ class _Appointment1State extends State<Appointment1> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Profile_Page_Doc_Search()),
+              MaterialPageRoute(
+                  builder: (context) => Profile_Page_Doc_Search()),
             );
           },
         ),
@@ -446,7 +447,9 @@ class _Appointment1State extends State<Appointment1> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const Doctors(doc_Category: '',)),
+                                builder: (context) => const Doctors(
+                                      doc_Category: '',
+                                    )),
                           );
                         },
                         style: ElevatedButton.styleFrom(

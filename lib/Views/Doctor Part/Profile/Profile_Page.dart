@@ -14,7 +14,7 @@ class Doctor_Profile_Page extends StatelessWidget {
       statusBarColor: const Color(0xFF155467),
     ));
     return Scaffold(
-      bottomNavigationBar: Bottombar(),
+      bottomNavigationBar: Bottombar(SelectedIndex: 3),
       body: Container(
           decoration: BoxDecoration(
             color: const Color(0xFF155467),

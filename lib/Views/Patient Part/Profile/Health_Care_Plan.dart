@@ -32,7 +32,7 @@ class _Health_Care_PlanState extends State<Health_Care_Plan> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: Bottombar(),
+        bottomNavigationBar: Bottombar(SelectedIndex: 3),
         body: Container(
           decoration: BoxDecoration(color: Colors.white),
           child: ListView(

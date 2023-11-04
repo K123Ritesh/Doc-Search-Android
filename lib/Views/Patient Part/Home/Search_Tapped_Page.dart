@@ -465,7 +465,7 @@ class _Search_Tapped_PageState extends State<Search_Tapped_Page> {
           ),
         ),
       ),
-      bottomNavigationBar: Bottombar(),
+      bottomNavigationBar: Bottombar(SelectedIndex: 0),
     );
   }
 }

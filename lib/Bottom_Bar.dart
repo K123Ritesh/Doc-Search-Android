@@ -1,4 +1,5 @@
 import 'package:doc_search/Views/Final_Home_Page.dart';
+import 'package:doc_search/Views/Not_Build_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Home_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Profile_Page.dart';
 import 'package:flutter/material.dart';
@@ -7,48 +8,51 @@ import 'Views/Patient Part/Appointment/PastApointment.dart';
 
 class Bottombar extends StatefulWidget {
   @override
+  final int SelectedIndex;
+
+  const Bottombar({super.key, required this.SelectedIndex});
   State<Bottombar> createState() => _BottombarState();
 }
 
 class _BottombarState extends State<Bottombar> {
-  int currentIndex = 0;
-
-  void onTabTapped(int index) {
-    setState(() {
-      currentIndex = index;
-    });
-
-    switch (index) {
-      case 0:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => Final_Home_Page()),
-        );
-        break;
-      case 1:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => PastAppointment()),
-        );
-        break;
-      case 2:
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(builder: (context) => NotificationsPage()),
-        // );
-        break;
-      case 3:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => Profile_Page_Doc_Search()),
-        );
-        break;
-      // Add more cases for additional pages if needed
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
+    int currentIndex = widget.SelectedIndex;
+    void onTabTapped(int index) {
+      setState(() {
+        currentIndex = index;
+      });
+
+      switch (index) {
+        case 0:
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => HomePage()),
+          );
+          break;
+        case 1:
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => PastAppointment()),
+          );
+          break;
+        case 2:
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => Not_Build_Page(selectedIndex: 2)),
+          );
+          break;
+        case 3:
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => Profile_Page_Doc_Search()),
+          );
+          break;
+        // Add more cases for additional pages if needed
+      }
+    }
+
     return Container(
       height: 68,
       decoration: BoxDecoration(

@@ -81,7 +81,7 @@ class _Doctors_Category_WiseDetailsState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Bottombar(),
+      bottomNavigationBar: Bottombar(SelectedIndex: 0),
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,

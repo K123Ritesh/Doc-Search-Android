@@ -22,43 +22,6 @@ class _Final_Home_PageState extends State<Final_Home_Page> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: currentIndex == 0
-          ? HomePage()
-          : currentIndex == 1
-              ? PastAppointment()
-              : currentIndex == 2
-                  ? Not_Build_Page()
-                  : currentIndex == 3
-                      ? Profile_Page_Doc_Search()
-                      : Not_Build_Page(),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        elevation: 30,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.book_outlined),
-            label: 'Appointment',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            label: 'Chats',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
-        currentIndex: currentIndex,
-        onTap: onTabTapped,
-        unselectedItemColor: Colors.black,
-        selectedItemColor: Colors.blue,
-        selectedLabelStyle: TextStyle(color: Colors.blue),
-      ),
-    );
+    return Scaffold();
   }
 }

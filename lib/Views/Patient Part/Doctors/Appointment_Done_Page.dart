@@ -17,7 +17,7 @@ class _Appointment_Done_PageState extends State<Appointment_Done_Page> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        bottomNavigationBar: Bottombar(),
+        bottomNavigationBar: Bottombar(SelectedIndex: 0),
         body: Container(
             decoration: BoxDecoration(
               color: Colors.white,

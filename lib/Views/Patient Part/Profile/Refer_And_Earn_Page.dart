@@ -17,7 +17,7 @@ class _Refer_And_Earn_PageState extends State<Refer_And_Earn_Page> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(0xFF155467),
-        bottomNavigationBar: Bottombar(),
+        bottomNavigationBar: Bottombar(SelectedIndex: 3),
         body: SingleChildScrollView(
           child: Container(
               decoration: BoxDecoration(

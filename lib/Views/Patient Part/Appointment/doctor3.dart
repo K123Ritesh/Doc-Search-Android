@@ -31,9 +31,7 @@ class _DoctorDetails2State extends State<DoctorDetails2> {
             Icons.arrow_back_ios_new,
             color: Colors.black,
           ),
-          onPressed: () {
-            
-          },
+          onPressed: () {},
         ),
         title: Container(
             margin: const EdgeInsets.only(left: 80),
@@ -492,11 +490,13 @@ class _DoctorDetails2State extends State<DoctorDetails2> {
                         TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
               ),
             ),
-            SizedBox(height: 20,)
+            SizedBox(
+              height: 20,
+            )
           ],
         ),
       ),
-      bottomNavigationBar: Bottombar(),
+      bottomNavigationBar: Bottombar(SelectedIndex: 0),
     );
   }
 }

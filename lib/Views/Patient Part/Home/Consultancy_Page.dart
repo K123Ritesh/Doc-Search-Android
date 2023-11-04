@@ -17,7 +17,7 @@ class _Consultancy_PageState extends State<Consultancy_Page> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        bottomNavigationBar: Bottombar(),
+        bottomNavigationBar: Bottombar(SelectedIndex: 0),
         body: Container(
             decoration: BoxDecoration(
               color: Colors.white,

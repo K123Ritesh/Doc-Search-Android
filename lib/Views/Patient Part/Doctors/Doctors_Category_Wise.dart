@@ -44,7 +44,7 @@ class _Doctors_Category_WiseState extends State<Doctors_Category_Wise> {
     final DoctorProvider = Provider.of<Doctor_Provider>(context);
     SizeConfig().init(context);
     return Scaffold(
-        bottomNavigationBar: Bottombar(),
+        bottomNavigationBar: Bottombar(SelectedIndex: 0),
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
@@ -61,7 +61,7 @@ class _Doctors_Category_WiseState extends State<Doctors_Category_Wise> {
             },
           ),
           title: Container(
-            margin:  EdgeInsets.only(left: 80.fw),
+            margin: EdgeInsets.only(left: 80.fw),
             child: Text(
               widget.title,
               style: TextStyle(
@@ -78,7 +78,7 @@ class _Doctors_Category_WiseState extends State<Doctors_Category_Wise> {
             children: [
               Padding(
                 padding:
-                     EdgeInsets.symmetric(horizontal: 18.fw, vertical: 5.fh),
+                    EdgeInsets.symmetric(horizontal: 18.fw, vertical: 5.fh),
                 child: Container(
                   height: 50.fh,
                   padding: const EdgeInsets.all(8),
@@ -162,7 +162,7 @@ class _Doctors_Category_WiseState extends State<Doctors_Category_Wise> {
                                           children: [
                                             Row(
                                               children: [
-                                                 Text(
+                                                Text(
                                                   "MBBS,MCh",
                                                   style: TextStyle(
                                                       fontSize: 13.fh,
@@ -213,7 +213,9 @@ class _Doctors_Category_WiseState extends State<Doctors_Category_Wise> {
                                                 ),
                                               ],
                                             ),
-                                            SizedBox(height: 2.fh,),
+                                            SizedBox(
+                                              height: 2.fh,
+                                            ),
                                             Container(
                                               width: 95.fw,
                                               height: 19.fh,
@@ -232,21 +234,25 @@ class _Doctors_Category_WiseState extends State<Doctors_Category_Wise> {
                                                 ),
                                               ),
                                             ),
-                                            SizedBox(height: 2.fh,),
+                                            SizedBox(
+                                              height: 2.fh,
+                                            ),
                                             Text(
                                                 '${DoctorProvider.acc_to_search![index].address}',
                                                 style: TextStyle(
                                                     fontSize: 11.fh,
                                                     fontWeight: FontWeight.w400,
                                                     color: Colors.black)),
-                                                    SizedBox(height: 2.fh,),
+                                            SizedBox(
+                                              height: 2.fh,
+                                            ),
                                             Text(
                                                 '${DoctorProvider.acc_to_search![index].experience} years experience',
                                                 style: TextStyle(
                                                     fontSize: 11.fh,
                                                     fontWeight: FontWeight.w400,
                                                     color: Colors.black)),
-                                                    SizedBox(
+                                            SizedBox(
                                               height: 4.fh,
                                             ),
                                           ],

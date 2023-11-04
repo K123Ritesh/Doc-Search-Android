@@ -44,7 +44,7 @@ class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
     final FirebaseAuth _auth = FirebaseAuth.instance;
 
     return Scaffold(
-      // bottomNavigationBar: Bottombar(),
+      bottomNavigationBar: Bottombar(SelectedIndex: 3),
       body: Container(
           decoration: BoxDecoration(
             color: const Color(0xFF155467),
@@ -178,7 +178,9 @@ class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Not_Build_Page()),
+                                builder: (context) => Not_Build_Page(
+                                      selectedIndex: 3,
+                                    )),
                           );
                         },
                         child: ListTile(
@@ -218,7 +220,9 @@ class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Not_Build_Page()),
+                                builder: (context) => Not_Build_Page(
+                                      selectedIndex: 3,
+                                    )),
                           );
                         },
                         child: ListTile(
@@ -298,7 +302,9 @@ class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Not_Build_Page()),
+                                builder: (context) => Not_Build_Page(
+                                      selectedIndex: 3,
+                                    )),
                           );
                         },
                         child: ListTile(

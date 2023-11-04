@@ -14,7 +14,7 @@ class _Order_Done_PageState extends State<Order_Done_Page> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-            bottomNavigationBar: Bottombar(),
+            bottomNavigationBar: Bottombar(SelectedIndex: 0),
             body: Container(
                 decoration: BoxDecoration(color: Colors.white),
                 child: Padding(

@@ -12,7 +12,7 @@ class _EditProfileMedicalState extends State<EditProfileMedical> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Bottombar(),
+      bottomNavigationBar: Bottombar(SelectedIndex: 3),
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(

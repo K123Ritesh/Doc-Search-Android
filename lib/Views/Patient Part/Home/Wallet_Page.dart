@@ -61,7 +61,6 @@ class _WalletState extends State<Wallet> with SingleTickerProviderStateMixin {
                                   builder: (context) => const HomePage(),
                                 ),
                               );
-
                             },
                           ),
                           Container(
@@ -82,28 +81,28 @@ class _WalletState extends State<Wallet> with SingleTickerProviderStateMixin {
                     InkWell(
                       onTap: () {},
                       child: Container(
-                      decoration: BoxDecoration(
-                          color: Color(0XFFECFAFC),
-                          borderRadius: BorderRadius.circular(6.fh)),
-                      child: Padding(
-                        padding: EdgeInsets.all(2.fh),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.account_balance_wallet,
-                              color: Color(0xFF005473),
-                              size: 25.fh,
-                            ),
-                            SizedBox(width: 5.fw),
-                            Text(
-                              '100',
-                              style: TextStyle(
-                                  fontSize: 18.fh, color: Colors.black),
-                            ),
-                          ],
+                        decoration: BoxDecoration(
+                            color: Color(0XFFECFAFC),
+                            borderRadius: BorderRadius.circular(6.fh)),
+                        child: Padding(
+                          padding: EdgeInsets.all(2.fh),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.account_balance_wallet,
+                                color: Color(0xFF005473),
+                                size: 25.fh,
+                              ),
+                              SizedBox(width: 5.fw),
+                              Text(
+                                '100',
+                                style: TextStyle(
+                                    fontSize: 18.fh, color: Colors.black),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
                     ),
                   ],
                 ),
@@ -198,7 +197,8 @@ class _WalletState extends State<Wallet> with SingleTickerProviderStateMixin {
                             child: Row(
                               children: [
                                 Image(
-                                  image: AssetImage('assets/Rectangle 5698.png'),
+                                  image:
+                                      AssetImage('assets/Rectangle 5698.png'),
                                 ),
                                 SizedBox(
                                   width: 10,
@@ -235,15 +235,16 @@ class _WalletState extends State<Wallet> with SingleTickerProviderStateMixin {
                                           child: Center(
                                             child: TextField(
                                               textAlign: TextAlign.center,
-                                              style:
-                                                  TextStyle(color: Colors.white),
+                                              style: TextStyle(
+                                                  color: Colors.white),
                                               decoration: InputDecoration(
                                                 border: InputBorder.none,
                                                 hintText: 'CODE',
                                                 hintStyle: TextStyle(
                                                     color: Colors.white,
                                                     fontSize: 12,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             ),
                                           ),
@@ -292,7 +293,8 @@ class _WalletState extends State<Wallet> with SingleTickerProviderStateMixin {
                             child: Row(
                               children: [
                                 Image(
-                                  image: AssetImage('assets/Rectangle 5698.png'),
+                                  image:
+                                      AssetImage('assets/Rectangle 5698.png'),
                                 ),
                                 SizedBox(
                                   width: 10,
@@ -346,7 +348,8 @@ class _WalletState extends State<Wallet> with SingleTickerProviderStateMixin {
                         color: Colors.white,
                         child: Column(children: [
                           Container(
-                            margin: EdgeInsets.only(right: 20, left: 20, top: 20),
+                            margin:
+                                EdgeInsets.only(right: 20, left: 20, top: 20),
                             height: 88,
                             decoration: BoxDecoration(
                                 border: Border.all(
@@ -356,7 +359,8 @@ class _WalletState extends State<Wallet> with SingleTickerProviderStateMixin {
                             child: Row(
                               children: [
                                 Image(
-                                  image: AssetImage('assets/Rectangle 5698.png'),
+                                  image:
+                                      AssetImage('assets/Rectangle 5698.png'),
                                 ),
                                 SizedBox(
                                   width: 10,
@@ -423,7 +427,7 @@ class _WalletState extends State<Wallet> with SingleTickerProviderStateMixin {
           ),
         ],
       ),
-      bottomNavigationBar: Bottombar(),
+      bottomNavigationBar: Bottombar(SelectedIndex: 0),
     );
   }
 
@@ -444,8 +448,10 @@ class _WalletState extends State<Wallet> with SingleTickerProviderStateMixin {
         child: Center(
           child: Text(
             text,
-            style: TextStyle(fontSize: 12, color: Colors.white,),
-            
+            style: TextStyle(
+              fontSize: 12,
+              color: Colors.white,
+            ),
           ),
         ),
       ),

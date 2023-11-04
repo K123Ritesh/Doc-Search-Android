@@ -21,7 +21,7 @@ class _DoctorsState extends State<Doctors> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      bottomNavigationBar: Bottombar(),
+      bottomNavigationBar: Bottombar(SelectedIndex: 0),
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,

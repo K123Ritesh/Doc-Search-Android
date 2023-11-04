@@ -43,8 +43,10 @@ class _Signup_PageState extends State<Signup_Page> {
           // Auto-verify the code
           await _auth.signInWithCredential(credential);
 
-          // String uid = getCurrentUserUid();
-          // await _saveUserData(uid);
+          String uid = getCurrentUserUid();
+          await _saveUserData(uid);
+          Provider.of<User_Provider>(context, listen: false)
+              .getUserDetails(context, uid);
         },
         verificationFailed: (FirebaseAuthException e) {
           print('Error sending OTP: $e');
@@ -60,6 +62,25 @@ class _Signup_PageState extends State<Signup_Page> {
       );
     } catch (e) {
       print('Error during user registration: $e');
+    }
+  }
+
+  Future<void> _saveUserData(String uid) async {
+    try {
+      String formattedMobileNumber = '+91${_mobileNumberController.text}';
+      await _firestore.collection('Users').doc(uid).set({
+        'email': 'dummy@gmail.com',
+        'firstName': _firstNameController.text,
+        'lastName': _lastNameController.text,
+        'mobileNumber': formattedMobileNumber,
+        'city': _cityController.text,
+        'apointments': {
+          'dummy_date': ['dummy appointment Id 1', 'dummy appointment Id 2'],
+        }
+      });
+      print('User data saved successfully');
+    } catch (e) {
+      print('Error saving user data: $e');
     }
   }
 

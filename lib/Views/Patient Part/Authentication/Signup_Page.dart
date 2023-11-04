@@ -794,7 +794,8 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
                         );
                         await auth.signInWithCredential(credential);
                         String uid = getCurrentUserUid();
-                        _saveUserData(uid);
+                        // _saveUserData(uid);
+                        print(uid);
                         userProvider.getUserDetails(context, uid);
                         // OTP verification succeeded, navigate to the home page
                         Navigator.of(context).push(

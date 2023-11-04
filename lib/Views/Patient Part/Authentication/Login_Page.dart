@@ -26,8 +26,6 @@ class _Login_PageState extends State<Login_Page> {
   void initState() {
     // TODO: implement initState
     countryController.text = "+91";
-    Provider.of<User_Provider>(context, listen: false)
-        .getUserDetails(context, '+91990541117');
     super.initState();
   }
 
@@ -512,10 +510,6 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
                                   smsCode: code);
 
                           await auth.signInWithCredential(credential);
-
-                          // String uid = getCurrentUserUid();
-
-                          // userProvider.getUserDetails(context, uid);
 
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => HomePage()));

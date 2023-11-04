@@ -29,6 +29,8 @@ class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
   @override
   void initState() {
     String uid = getCurrentUserUid();
+    print(uid);
+    // TODO: implement initState
     Provider.of<User_Provider>(context, listen: false)
         .getUserDetails(context, uid);
     super.initState();
@@ -42,7 +44,7 @@ class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
       String uid = user.uid;
       return uid;
     } else {
-      return "JMhNlPl2bPfHmPFc5otWIeS4Tqh2";
+      return "User not authenticated";
     }
   }
 

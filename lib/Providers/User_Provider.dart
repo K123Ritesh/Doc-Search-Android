@@ -8,7 +8,7 @@ class User_Provider with ChangeNotifier {
   List<dynamic>? todayAppointmentId;
   List<dynamic>? pastAppointmentId;
   List<dynamic>? upcomingAppointmentId;
-  PatientUser user = PatientUser(
+  PatientUser? user = PatientUser(
       email: '',
       firstName: 'firstName',
       lastName: 'lastName',
@@ -19,7 +19,7 @@ class User_Provider with ChangeNotifier {
 
   getUserDetails(context, String uid) async {
     isLoadingDetails = true;
-    user = (await userServices.UserAllDetails(uid))!;
+    user = await userServices.UserAllDetails(uid);
     isLoadingDetails = false;
 
     notifyListeners();

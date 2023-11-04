@@ -28,9 +28,22 @@ class Profile_Page_Doc_Search extends StatefulWidget {
 class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
   @override
   void initState() {
-    // TODO: implement initState
-
+    String uid = getCurrentUserUid();
+    Provider.of<User_Provider>(context, listen: false)
+        .getUserDetails(context, uid);
     super.initState();
+  }
+
+  String getCurrentUserUid() {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user = auth.currentUser;
+
+    if (user != null) {
+      String uid = user.uid;
+      return uid;
+    } else {
+      return "JMhNlPl2bPfHmPFc5otWIeS4Tqh2";
+    }
   }
 
   @override
@@ -106,14 +119,14 @@ class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
                         height: 10.h,
                       ),
                       Text(
-                        "${userProvider.user.firstName} ${userProvider.user.lastName}",
+                        "${userProvider.user!.firstName} ${userProvider.user!.lastName}",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 23.sp,
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        "${userProvider.user.email} | ${userProvider.user.mobileNo}",
+                        "${userProvider.user!.email} | ${userProvider.user!.mobileNo}",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 18.sp,

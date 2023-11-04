@@ -513,9 +513,9 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
 
                           await auth.signInWithCredential(credential);
 
-                          String uid = getCurrentUserUid();
+                          // String uid = getCurrentUserUid();
 
-                          userProvider.getUserDetails(context, uid);
+                          // userProvider.getUserDetails(context, uid);
 
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => HomePage()));

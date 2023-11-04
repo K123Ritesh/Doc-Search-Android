@@ -66,21 +66,25 @@ class _Signup_PageState extends State<Signup_Page> {
   }
 
   Future<void> _saveUserData(String uid) async {
-    try {
-      String formattedMobileNumber = '+91${_mobileNumberController.text}';
-      await _firestore.collection('Users').doc(uid).set({
-        'email': 'dummy@gmail.com',
-        'firstName': _firstNameController.text,
-        'lastName': _lastNameController.text,
-        'mobileNumber': formattedMobileNumber,
-        'city': _cityController.text,
-        'apointments': {
-          'dummy_date': ['dummy appointment Id 1', 'dummy appointment Id 2'],
-        }
-      });
-      print('User data saved successfully');
-    } catch (e) {
-      print('Error saving user data: $e');
+    if (uid != "User not authenticated") {
+      try {
+        String formattedMobileNumber = '+91${_mobileNumberController.text}';
+        await _firestore.collection('Users').doc(uid).set({
+          'email': 'dummy@gmail.com',
+          'firstName': _firstNameController.text,
+          'lastName': _lastNameController.text,
+          'mobileNumber': formattedMobileNumber,
+          'city': _cityController.text,
+          'apointments': {
+            'dummy_date': ['dummy appointment Id 1', 'dummy appointment Id 2'],
+          }
+        });
+        print('User data saved successfully');
+      } catch (e) {
+        print('Error saving user data: $e');
+      }
+    } else {
+      print('User not authenticated');
     }
   }
 
@@ -632,39 +636,6 @@ class OTP_Entering_Page extends StatefulWidget {
 }
 
 class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
-  String getCurrentUserUid() {
-    FirebaseAuth auth = FirebaseAuth.instance;
-    User? user = auth.currentUser;
-
-    if (user != null) {
-      String uid = user.uid;
-      return uid;
-    } else {
-      return "User not authenticated";
-    }
-  }
-
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
-  Future<void> _saveUserData(String uid) async {
-    try {
-      String formattedMobileNumber = '+91${widget.mobileNumber}';
-      await _firestore.collection('Users').doc(uid).set({
-        'email': 'dummy@gmail.com',
-        'firstName': {widget.firstName},
-        'lastName': {widget.lastName},
-        'mobileNumber': formattedMobileNumber,
-        'city': {widget.city},
-        'apointments': {
-          'dummy_date': ['dummy appointment Id 1', 'dummy appointment Id 2'],
-        }
-      });
-      print('User data saved successfully');
-    } catch (e) {
-      print('Error saving user data: $e');
-    }
-  }
-
   final TextEditingController _otpController = TextEditingController();
   final FirebaseAuth auth = FirebaseAuth.instance;
   var code = '';
@@ -793,10 +764,6 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
                           smsCode: code, // Use the OTP entered by the user
                         );
                         await auth.signInWithCredential(credential);
-                        String uid = getCurrentUserUid();
-                        // _saveUserData(uid);
-                        print(uid);
-                        userProvider.getUserDetails(context, uid);
                         // OTP verification succeeded, navigate to the home page
                         Navigator.of(context).push(
                           MaterialPageRoute(

@@ -154,7 +154,10 @@ class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
                           userProvider.getTodayAppointments(context);
                           userProvider.getUpcomingAppointments(context);
                           userProvider.getPastAppointments(context);
+                          print(userProvider.todayAppointmentModel.length);
+                          print(userProvider.upcomingAppointmentId);
                           userProvider.getTodayAppointmentModels(context);
+
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => Appointments_Page()));
                         },

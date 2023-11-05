@@ -1,7 +1,9 @@
 import 'package:doc_search/Bottom_Bar.dart';
 import 'package:doc_search/Config/sizeConfig.dart';
+import 'package:doc_search/Providers/User_Provider.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Profile_Page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class PastAppointment extends StatefulWidget {
   const PastAppointment({super.key});
@@ -17,6 +19,19 @@ class _PastAppointmentState extends State<PastAppointment>
   @override
   void initState() {
     super.initState();
+    Provider.of<User_Provider>(context, listen: false)
+        .getTodayAppointments(context);
+    Provider.of<User_Provider>(context, listen: false)
+        .getPastAppointments(context);
+    Provider.of<User_Provider>(context, listen: false)
+        .getUpcomingAppointments(context);
+    Provider.of<User_Provider>(context, listen: false)
+        .getPastAppointmentModels(context);
+    Provider.of<User_Provider>(context, listen: false)
+        .getTodayAppointmentModels(context);
+    Provider.of<User_Provider>(context, listen: false)
+        .getUpcomingAppointmentModels(context);
+
     _tabController = TabController(length: 3, vsync: this);
     _tabController.index = 0;
     _tabController.addListener(() {
@@ -32,8 +47,13 @@ class _PastAppointmentState extends State<PastAppointment>
 
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<User_Provider>(context);
     SizeConfig().init(context);
     return Scaffold(
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {},
+      //   child: Text('data'),
+      // ),
       bottomNavigationBar: Bottombar(SelectedIndex: 1),
       backgroundColor: const Color(0xFF1A6A83),
       appBar: AppBar(
@@ -83,13 +103,259 @@ class _PastAppointmentState extends State<PastAppointment>
               children: [
                 Column(
                   children: [
-                    Text(
-                      '3 APPOINTMENT',
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white),
+                    userProvider.pastAppointmentModel.length == 0
+                        ? Text(
+                            'NO APPOINTMENT',
+                            style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white),
+                          )
+                        : Text(
+                            '${userProvider.pastAppointmentModel.length} APPOINTMENT',
+                            style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white),
+                          ),
+                    Container(
+                      margin: EdgeInsets.only(left: 20, right: 20, top: 5),
+                      child: Divider(
+                        height: 0,
+                        color: Colors.grey,
+                      ),
                     ),
+                    userProvider.isLoadingPastAppointmentModel == true
+                        ? CircularProgressIndicator()
+                        : Expanded(
+                            child: ListView.builder(
+                              itemCount:
+                                  userProvider.pastAppointmentModel.length,
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  height: 182.fh,
+                                  margin: EdgeInsets.only(
+                                      left: 20.fw, right: 20.fw, top: 20.fh),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
+                                  child: Container(
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          margin: EdgeInsets.only(
+                                              top: 20, right: 30, left: 30),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    'On 5 September 2023, 4:30 PM',
+                                                    style: TextStyle(
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color:
+                                                            Color(0XFF005473)),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Text(
+                                                    'Next appointment is on',
+                                                    style: TextStyle(
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color:
+                                                            Color(0XFF212427)),
+                                                  ),
+                                                  Text(
+                                                    'October 30, 4:30 PM',
+                                                    style: TextStyle(
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color:
+                                                            Color(0XFF005473)),
+                                                  ),
+                                                  Text(
+                                                    'Dentist',
+                                                    style: TextStyle(
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color:
+                                                            Color(0XFFFBBC05)),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Text(
+                                                    userProvider
+                                                        .pastAppointmentModel[
+                                                            index]
+                                                        .doctor_name,
+                                                    style: TextStyle(
+                                                        fontSize: 10.3,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color:
+                                                            Color(0XFF4D4E4F)),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Text(
+                                                    'Multispeciality Dental \nclinic, New Delhi ',
+                                                    style: TextStyle(
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                        color:
+                                                            Color(0XFF3F3F42)),
+                                                  ),
+                                                ],
+                                              ),
+                                              Column(
+                                                children: [
+                                                  Container(
+                                                    height: 57,
+                                                    width: 57,
+                                                    child: CircleAvatar(
+                                                      backgroundColor:
+                                                          Colors.blue,
+                                                      // You can add the image here
+                                                      // backgroundImage: NetworkImage('URL'),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 10,
+                                                  ),
+                                                  Text(
+                                                    'MBBS, MS',
+                                                    style: TextStyle(
+                                                        fontSize: 10,
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                                  )
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                        Spacer(),
+                                        Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.only(
+                                                bottomLeft: Radius.circular(12),
+                                                bottomRight:
+                                                    Radius.circular(12),
+                                              ),
+                                            ),
+                                            child: Container(
+                                              margin: EdgeInsets.only(
+                                                  right: 20,
+                                                  left: 30,
+                                                  top: 5,
+                                                  bottom: 5),
+                                              child: Column(
+                                                children: [
+                                                  Divider(
+                                                    height: 0,
+                                                    color: Color(0XFF005473),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Text(
+                                                          'Booked for Kirti Jindal',
+                                                          style: TextStyle(
+                                                              fontSize: 12,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              color: Color(
+                                                                  0XFF005473))),
+                                                      ElevatedButton(
+                                                        onPressed: () {
+                                                          // Navigator.push(
+                                                          //   context,
+                                                          //   MaterialPageRoute(
+                                                          //       builder: (context) => const DoctorsDetails()),
+                                                          // );
+                                                        },
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                          primary:
+                                                              Color(0xFF1A6A83),
+                                                          shape:
+                                                              RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10),
+                                                          ),
+                                                        ),
+                                                        child: Container(
+                                                          height: 20.fh,
+                                                          width: 107.fw,
+                                                          child: Center(
+                                                            child: Text(
+                                                              'View Details',
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize:
+                                                                      12.fh,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            )),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    userProvider.todayAppointmentModel.length == 0
+                        ? Text(
+                            'NO APPOINTMENT',
+                            style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white),
+                          )
+                        : Text(
+                            '${userProvider.todayAppointmentModel.length} APPOINTMENT',
+                            style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white),
+                          ),
                     Container(
                       margin: EdgeInsets.only(left: 20, right: 20, top: 5),
                       child: Divider(
@@ -99,7 +365,7 @@ class _PastAppointmentState extends State<PastAppointment>
                     ),
                     Expanded(
                       child: ListView.builder(
-                        itemCount: 3,
+                        itemCount: userProvider.todayAppointmentModel.length,
                         itemBuilder: (context, index) {
                           return Container(
                             height: 182.fh,
@@ -158,7 +424,9 @@ class _PastAppointmentState extends State<PastAppointment>
                                               height: 5,
                                             ),
                                             Text(
-                                              'Dr. Shiddharta Sharma ',
+                                              userProvider
+                                                  .todayAppointmentModel[index]
+                                                  .doctor_name,
                                               style: TextStyle(
                                                   fontSize: 10.3,
                                                   fontWeight: FontWeight.w600,
@@ -286,13 +554,21 @@ class _PastAppointmentState extends State<PastAppointment>
                 ),
                 Column(
                   children: [
-                    Text(
-                      '1 APPOINTMENT',
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white),
-                    ),
+                    userProvider.upcomingAppointmentModel.length == 0
+                        ? Text(
+                            'NO APPOINTMENT',
+                            style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white),
+                          )
+                        : Text(
+                            '${userProvider.upcomingAppointmentModel.length} APPOINTMENT',
+                            style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white),
+                          ),
                     Container(
                       margin: EdgeInsets.only(left: 20, right: 20, top: 5),
                       child: Divider(
@@ -302,7 +578,7 @@ class _PastAppointmentState extends State<PastAppointment>
                     ),
                     Expanded(
                       child: ListView.builder(
-                        itemCount: 1,
+                        itemCount: userProvider.upcomingAppointmentModel.length,
                         itemBuilder: (context, index) {
                           return Container(
                             height: 182.fh,
@@ -361,210 +637,10 @@ class _PastAppointmentState extends State<PastAppointment>
                                               height: 5,
                                             ),
                                             Text(
-                                              'Dr. Shiddharta Sharma ',
-                                              style: TextStyle(
-                                                  fontSize: 10.3,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Color(0XFF4D4E4F)),
-                                            ),
-                                            SizedBox(
-                                              height: 5,
-                                            ),
-                                            Text(
-                                              'Multispeciality Dental \nclinic, New Delhi ',
-                                              style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: Color(0XFF3F3F42)),
-                                            ),
-                                          ],
-                                        ),
-                                        Column(
-                                          children: [
-                                            Container(
-                                              height: 57,
-                                              width: 57,
-                                              child: CircleAvatar(
-                                                backgroundColor: Colors.blue,
-                                                // You can add the image here
-                                                // backgroundImage: NetworkImage('URL'),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              height: 10,
-                                            ),
-                                            Text(
-                                              'MBBS, MS',
-                                              style: TextStyle(
-                                                  fontSize: 10,
-                                                  fontWeight: FontWeight.w600),
-                                            )
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  Spacer(),
-                                  Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(12),
-                                          bottomRight: Radius.circular(12),
-                                        ),
-                                      ),
-                                      child: Container(
-                                        margin: EdgeInsets.only(
-                                            right: 20,
-                                            left: 30,
-                                            top: 5,
-                                            bottom: 5),
-                                        child: Column(
-                                          children: [
-                                            Divider(
-                                              height: 0,
-                                              color: Color(0XFF005473),
-                                            ),
-                                            SizedBox(
-                                              height: 5,
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Text('Booked for Kirti Jindal',
-                                                    style: TextStyle(
-                                                        fontSize: 12,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        color:
-                                                            Color(0XFF005473))),
-                                                ElevatedButton(
-                                                  onPressed: () {
-                                                    // Navigator.push(
-                                                    //   context,
-                                                    //   MaterialPageRoute(
-                                                    //       builder: (context) => const DoctorsDetails()),
-                                                    // );
-                                                  },
-                                                  style:
-                                                      ElevatedButton.styleFrom(
-                                                    primary: Color(0xFF1A6A83),
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                    ),
-                                                  ),
-                                                  child: Container(
-                                                    height: 20.fh,
-                                                    width: 107.fw,
-                                                    child: Center(
-                                                      child: Text(
-                                                        'View Details',
-                                                        style: TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize: 12.fh,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w500),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      )),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Text(
-                      '2 APPOINTMENT',
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(left: 20, right: 20, top: 5),
-                      child: Divider(
-                        height: 0,
-                        color: Colors.grey,
-                      ),
-                    ),
-                    Expanded(
-                      child: ListView.builder(
-                        itemCount: 2,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            height: 182.fh,
-                            margin: EdgeInsets.only(
-                                left: 20.fw, right: 20.fw, top: 20.fh),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            child: Container(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    margin: EdgeInsets.only(
-                                        top: 20, right: 30, left: 30),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'On 5 September 2023, 4:30 PM',
-                                              style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Color(0XFF005473)),
-                                            ),
-                                            SizedBox(
-                                              height: 5,
-                                            ),
-                                            Text(
-                                              'Next appointment is on',
-                                              style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Color(0XFF212427)),
-                                            ),
-                                            Text(
-                                              'October 30, 4:30 PM',
-                                              style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Color(0XFF005473)),
-                                            ),
-                                            Text(
-                                              'Dentist',
-                                              style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Color(0XFFFBBC05)),
-                                            ),
-                                            SizedBox(
-                                              height: 5,
-                                            ),
-                                            Text(
-                                              'Dr. Shiddharta Sharma ',
+                                              userProvider
+                                                  .upcomingAppointmentModel[
+                                                      index]
+                                                  .doctor_name,
                                               style: TextStyle(
                                                   fontSize: 10.3,
                                                   fontWeight: FontWeight.w600,

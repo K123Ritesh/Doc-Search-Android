@@ -131,9 +131,10 @@ class UserServices {
           print('AppointmentId  not found.');
         }
       }
+      return ans_list;
     } catch (e) {
       print('Error in Getting Appointment Details: $e');
     }
-    return [];
+    return ans_list;
   }
 }

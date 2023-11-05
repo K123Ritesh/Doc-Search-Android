@@ -1,11 +1,10 @@
 import 'package:doc_search/Models/Appointment_Model.dart';
 import 'package:doc_search/Providers/Doctor_Provider.dart';
-import 'package:doc_search/Testing_page.dart';
 import 'package:doc_search/Views/Patient%20Part/Doctors/Appointment_Done_Page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../Bottom_Bar.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../Models/Doctor.dart';
 
@@ -31,6 +30,7 @@ class Doctor_Category_Wise_Final extends StatefulWidget {
 
 class _Doctor_Category_Wise_FinalState
     extends State<Doctor_Category_Wise_Final> {
+  final user = FirebaseAuth.instance.currentUser;
   bool isChecked = false;
   bool isBlue1 = true;
   bool isBlue2 = false;
@@ -530,7 +530,7 @@ class _Doctor_Category_Wise_FinalState
                         paid: true,
                         doctorId: widget.doctor.email,
                         slot: widget.slot,
-                        userId: 'rit11@gmail.com'),
+                        userId: user!.uid),
                     widget.doc_Category,
                   );
                   Navigator.push(

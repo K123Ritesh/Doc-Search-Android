@@ -1,11 +1,11 @@
 import 'package:doc_search/Bottom_Bar.dart';
 import 'package:doc_search/Models/Doctor.dart';
-import 'package:doc_search/Providers/Doctor_Provider.dart';
+
 import 'package:doc_search/Views/Patient%20Part/Doctors/Doctor_Category_Wise_Final.dart';
 import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
+
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Doctors_Category_WiseDetails extends StatefulWidget {
@@ -522,6 +522,12 @@ class _Doctors_Category_WiseDetailsState
                             'You can select only one slot at a time');
                         print('You can select only one slot at a time');
                       } else if (selectedOption2 != -1) {
+                        late String day;
+                        if (selectedOption < 9) {
+                          day = '0${selectedOption + 1}';
+                        } else {
+                          day = '${selectedOption + 1}';
+                        }
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -529,10 +535,15 @@ class _Doctors_Category_WiseDetailsState
                                   doctor: widget.doctor,
                                   slot: '${options2[selectedOption2]}',
                                   doc_Category: widget.doc_category,
-                                  date:
-                                      '${selectedOption + 1}/${now.month}/${now.year}')),
+                                  date: '$day/${now.month}/${now.year}')),
                         );
                       } else if (selectedOption3 != -1) {
+                        late String day;
+                        if (selectedOption < 9) {
+                          day = '0${selectedOption + 1}';
+                        } else {
+                          day = '${selectedOption + 1}';
+                        }
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -540,8 +551,7 @@ class _Doctors_Category_WiseDetailsState
                                   doctor: widget.doctor,
                                   doc_Category: widget.doc_category,
                                   slot: '${options2[selectedOption3]}',
-                                  date:
-                                      '$selectedOption/${now.month}/${now.year}')),
+                                  date: '$day/${now.month}/${now.year}')),
                         );
                       }
                     },

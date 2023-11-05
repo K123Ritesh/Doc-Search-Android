@@ -33,6 +33,11 @@ class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
     // TODO: implement initState
     Provider.of<User_Provider>(context, listen: false)
         .getUserDetails(context, uid);
+    // Provider.of<User_Provider>(context, listen: false)
+    //     .getTodayAppointments(context);
+    // print(
+    //     'Today ${Provider.of<User_Provider>(context, listen: false).todayAppointmentId}');
+
     super.initState();
   }
 
@@ -146,6 +151,10 @@ class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
                     children: [
                       InkWell(
                         onTap: () {
+                          userProvider.getTodayAppointments(context);
+                          userProvider.getUpcomingAppointments(context);
+                          userProvider.getPastAppointments(context);
+                          userProvider.getTodayAppointmentModels(context);
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => Appointments_Page()));
                         },
@@ -157,14 +166,8 @@ class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
                                 fontSize: 20.sp,
                                 fontWeight: FontWeight.w400),
                           ),
-                          trailing: InkWell(
-                            onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => Appointments_Page()));
-                            },
-                            child: Icon(Icons.arrow_forward_ios,
-                                size: 20, color: Colors.white),
-                          ),
+                          trailing: Icon(Icons.arrow_forward_ios,
+                              size: 20, color: Colors.white),
                         ),
                       ),
                       InkWell(

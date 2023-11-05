@@ -12,7 +12,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../../Config/sizeConfig.dart';
 import '../Doctors/Doctors_Category_Wise.dart';
 import '../Profile/Profile_Page.dart';
 

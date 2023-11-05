@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../Bottom_Bar.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class Health_Care_Plan extends StatefulWidget {
   const Health_Care_Plan({super.key});
@@ -157,26 +158,67 @@ class _Health_Care_PlanState extends State<Health_Care_Plan> {
               SizedBox(
                 height: 20.h,
               ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    for (int i = 0; i < 4; i++)
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            selectedIndex = i;
-                          });
-                        },
-                        child: Container_for_Premium(
-                          details: details[i],
-                          isSelected: i == selectedIndex,
-                          type: premium_type[i],
-                        ),
-                      )
-                  ],
+              CarouselSlider(
+                items: [
+                  Container_for_Premium(
+                    details: details[selectedIndex],
+                    isSelected: selectedIndex == 0,
+                    type: premium_type[selectedIndex],
+                  ),
+                  Container_for_Premium(
+                    details: details[selectedIndex],
+                    isSelected: selectedIndex == 1,
+                    type: premium_type[selectedIndex],
+                  ),
+                  Container_for_Premium(
+                    details: details[selectedIndex],
+                    isSelected: selectedIndex == 2,
+                    type: premium_type[selectedIndex],
+                  ),
+                  Container_for_Premium(
+                    details: details[selectedIndex],
+                    isSelected: selectedIndex == 3,
+                    type: premium_type[selectedIndex],
+                  ),
+                ],
+                options: CarouselOptions(
+                  // height: 200.0, // Adjust the height as needed
+                  aspectRatio: 7 / 9, // Adjust the aspect ratio as needed
+                  viewportFraction:
+                      0.8, // Adjust the visible portion of each widget
+                  initialPage: selectedIndex,
+                  enableInfiniteScroll: true,
+                  reverse: false,
+                  autoPlay: false, // Disable auto-play
+                  enlargeCenterPage: true,
+                  scrollDirection: Axis.horizontal,
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      selectedIndex = index; // Store the current active index
+                    });
+                  },
                 ),
               ),
+              // SingleChildScrollView(
+              //   scrollDirection: Axis.horizontal,
+              //   child: Row(
+              //     children: [
+              //       for (int i = 0; i < 4; i++)
+              //         InkWell(
+              //           onTap: () {
+              //             setState(() {
+              //               selectedIndex = i;
+              //             });
+              //           },
+              //           child: Container_for_Premium(
+              //             details: details[i],
+              //             isSelected: i == selectedIndex,
+              //             type: premium_type[i],
+              //           ),
+              //         )
+              //     ],
+              //   ),
+              // ),
               SizedBox(
                 height: 20.h,
               ),
@@ -293,7 +335,7 @@ class Container_for_Premium extends StatelessWidget {
   Widget build(BuildContext context) {
     return isSelected == true
         ? Padding(
-            padding: EdgeInsets.all(13.0.w),
+            padding: EdgeInsets.symmetric(vertical: 13.0.h),
             child: Container(
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.black, width: 3),
@@ -307,7 +349,8 @@ class Container_for_Premium extends StatelessWidget {
                       color: const Color(0xFF155467),
                       borderRadius: BorderRadius.circular(15)),
                   child: Padding(
-                    padding: EdgeInsets.all(8.0.w),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: 3.0.w, vertical: 8.0.h),
                     child: Column(
                       children: [
                         SizedBox(
@@ -396,7 +439,7 @@ class Container_for_Premium extends StatelessWidget {
             ),
           )
         : Padding(
-            padding: EdgeInsets.all(13.0.w),
+            padding: EdgeInsets.all(1.w),
             child: Container(
               width: MediaQuery.of(context).size.width * 0.9,
               decoration: BoxDecoration(

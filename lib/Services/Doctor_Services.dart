@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doc_search/Models/Appointment_Model.dart';
 import 'package:doc_search/Models/Doctor.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 class Doctor_Services {
@@ -106,6 +107,12 @@ when the appointment is booked it should send notification to the respective
               bookingMap[appointment.date_for_booking][appointment.slot] =
                   appointmentId;
               await dentistRef.update({'Bookings': bookingMap});
+              try {
+                await addOrUpdateAppointment(appointment.userId,
+                    appointment.date_for_booking, appointmentId);
+              } catch (e) {
+                print(e);
+              }
               print('Appointment booked successfully.');
             }
           } else {
@@ -114,6 +121,12 @@ when the appointment is booked it should send notification to the respective
               appointment.slot: appointmentId
             };
             await dentistRef.update({'Bookings': bookingMap});
+            try {
+              await addOrUpdateAppointment(appointment.userId,
+                  appointment.date_for_booking, appointmentId);
+            } catch (e) {
+              print(e);
+            }
             print('Appointment booked successfully.');
           }
         } else {
@@ -123,6 +136,13 @@ when the appointment is booked it should send notification to the respective
           };
           await dentistRef
               .set({'Bookings': newBooking}, SetOptions(merge: true));
+
+          try {
+            await addOrUpdateAppointment(appointment.userId,
+                appointment.date_for_booking, appointmentId);
+          } catch (e) {
+            print(e);
+          }
           print('Appointment booked successfully.');
         }
       } else {
@@ -131,6 +151,45 @@ when the appointment is booked it should send notification to the respective
     } catch (e) {
       print('Error in Appointment Booking: $e');
     }
+  }
+
+  Future<void> addOrUpdateAppointment(
+      String uid, String key, dynamic value) async {
+    final firestoreInstance = FirebaseFirestore.instance;
+
+    await firestoreInstance
+        .collection('Users')
+        .doc(uid)
+        .get()
+        .then((documentSnapshot) {
+      if (documentSnapshot.exists) {
+        // Get the existing appointments map from the document
+        Map<String, dynamic> appointments =
+            documentSnapshot.data()!['apointments'] ?? {};
+
+        // Check if the key already exists in the map
+        if (appointments.containsKey(key)) {
+          // If the key exists, add the value to the existing array
+          List<dynamic> existingValue = appointments[key] as List<dynamic>;
+          existingValue.add(value);
+          appointments[key] = existingValue;
+        } else {
+          // If the key does not exist, create a new key with the value in an array
+          appointments[key] = [value];
+        }
+
+        // Update the appointments map in the Firestore document
+        firestoreInstance.collection('Users').doc(uid).update({
+          'apointments': appointments,
+        }).then((_) {
+          print('Appointment added/updated successfully');
+        }).catchError((error) {
+          print('Error updating document: $error');
+        });
+      } else {
+        print('Document does not exist');
+      }
+    });
   }
 
   //Slots Service

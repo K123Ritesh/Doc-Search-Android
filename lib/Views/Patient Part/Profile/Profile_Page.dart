@@ -28,30 +28,25 @@ class Profile_Page_Doc_Search extends StatefulWidget {
 class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
   @override
   void initState() {
-    String uid = getCurrentUserUid();
-    print(uid);
-    // TODO: implement initState
-    Provider.of<User_Provider>(context, listen: false)
-        .getUserDetails(context, uid);
+    // String uid = getCurrentUserUid();
+    // print(uid);
     // Provider.of<User_Provider>(context, listen: false)
-    //     .getTodayAppointments(context);
-    // print(
-    //     'Today ${Provider.of<User_Provider>(context, listen: false).todayAppointmentId}');
+    //     .getUserDetails(context, uid);
 
     super.initState();
   }
 
-  String getCurrentUserUid() {
-    FirebaseAuth auth = FirebaseAuth.instance;
-    User? user = auth.currentUser;
+  // String getCurrentUserUid() {
+  //   FirebaseAuth auth = FirebaseAuth.instance;
+  //   User? user = auth.currentUser;
 
-    if (user != null) {
-      String uid = user.uid;
-      return uid;
-    } else {
-      return "User not authenticated";
-    }
-  }
+  //   if (user != null) {
+  //     String uid = user.uid;
+  //     return uid;
+  //   } else {
+  //     return "User not authenticated";
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -151,12 +146,10 @@ class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
                     children: [
                       InkWell(
                         onTap: () {
-                          userProvider.getTodayAppointments(context);
-                          userProvider.getUpcomingAppointments(context);
-                          userProvider.getPastAppointments(context);
-                          print(userProvider.todayAppointmentModel.length);
-                          print(userProvider.upcomingAppointmentId);
-                          userProvider.getTodayAppointmentModels(context);
+                          // userProvider.getTodayAppointments(context);
+                          // userProvider.getUpcomingAppointments(context);
+                          // userProvider.getPastAppointments(context);
+                          // userProvider.getTodayAppointmentModels(context);
 
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => Appointments_Page()));

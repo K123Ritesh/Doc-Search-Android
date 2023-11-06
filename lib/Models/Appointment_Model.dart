@@ -10,9 +10,11 @@ class Appointment_Model {
   final bool self;
   final String reg_fee;
   final String mode_of_payment;
+  final String name;
 
   Appointment_Model(
-      {required this.doctor_name,
+      {required this.name,
+      required this.doctor_name,
       required this.doctor_address,
       required this.doctor_qualification,
       required this.date_for_booking,

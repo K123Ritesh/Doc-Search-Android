@@ -1,8 +1,11 @@
 import 'package:doc_search/Bottom_Bar.dart';
 import 'package:doc_search/Config/sizeConfig.dart';
 import 'package:doc_search/Providers/User_Provider.dart';
+import 'package:doc_search/Views/Patient%20Part/Appointment/Appointment.dart';
+import 'package:doc_search/Views/Patient%20Part/Doctors/Doctors_Category_Wise.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Profile_Page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class PastAppointment extends StatefulWidget {
@@ -19,19 +22,6 @@ class _PastAppointmentState extends State<PastAppointment>
   @override
   void initState() {
     super.initState();
-    Provider.of<User_Provider>(context, listen: false)
-        .getTodayAppointments(context);
-    Provider.of<User_Provider>(context, listen: false)
-        .getPastAppointments(context);
-    Provider.of<User_Provider>(context, listen: false)
-        .getUpcomingAppointments(context);
-    Provider.of<User_Provider>(context, listen: false)
-        .getPastAppointmentModels(context);
-    Provider.of<User_Provider>(context, listen: false)
-        .getTodayAppointmentModels(context);
-    Provider.of<User_Provider>(context, listen: false)
-        .getUpcomingAppointmentModels(context);
-
     _tabController = TabController(length: 3, vsync: this);
     _tabController.index = 0;
     _tabController.addListener(() {
@@ -45,15 +35,62 @@ class _PastAppointmentState extends State<PastAppointment>
     super.dispose();
   }
 
+  List<String> months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ];
+
+  String getTimeAndSlot(String date, String slot) {
+    String time_and_slot = "";
+    List<String> dateParts =
+        date.split('/'); // Split the string by the '/' character
+
+    if (dateParts.length == 3) {
+      List<int> dateIntegers = dateParts.map((part) {
+        int? parsedInt = int.tryParse(part);
+        if (parsedInt != null) {
+          return parsedInt;
+        } else {
+          throw FormatException("Invalid date part: $part");
+        }
+      }).toList();
+
+      time_and_slot =
+          'On ${dateIntegers[0]} ${months[dateIntegers[1] - 1]} ${dateIntegers[2]} $slot';
+    } else {
+      print("Invalid date format. Please use 'dd/mm/yyyy' format.");
+    }
+    return time_and_slot;
+  }
+
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<User_Provider>(context);
     SizeConfig().init(context);
     return Scaffold(
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {},
-      //   child: Text('data'),
-      // ),
+      floatingActionButton: FloatingActionButton(
+          elevation: 100,
+          backgroundColor: Colors.black,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Appointment1()),
+            );
+          },
+          child: Icon(
+            Icons.add,
+            size: 49,
+          )),
       bottomNavigationBar: Bottombar(SelectedIndex: 1),
       backgroundColor: const Color(0xFF1A6A83),
       appBar: AppBar(
@@ -155,7 +192,15 @@ class _PastAppointmentState extends State<PastAppointment>
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    'On 5 September 2023, 4:30 PM',
+                                                    getTimeAndSlot(
+                                                        userProvider
+                                                            .pastAppointmentModel[
+                                                                index]
+                                                            .date_for_booking,
+                                                        userProvider
+                                                            .pastAppointmentModel[
+                                                                index]
+                                                            .slot),
                                                     style: TextStyle(
                                                         fontSize: 12,
                                                         fontWeight:
@@ -212,7 +257,10 @@ class _PastAppointmentState extends State<PastAppointment>
                                                     height: 5,
                                                   ),
                                                   Text(
-                                                    'Multispeciality Dental \nclinic, New Delhi ',
+                                                    userProvider
+                                                        .pastAppointmentModel[
+                                                            index]
+                                                        .doctor_address,
                                                     style: TextStyle(
                                                         fontSize: 12,
                                                         fontWeight:
@@ -238,7 +286,10 @@ class _PastAppointmentState extends State<PastAppointment>
                                                     height: 10,
                                                   ),
                                                   Text(
-                                                    'MBBS, MS',
+                                                    userProvider
+                                                        .pastAppointmentModel[
+                                                            index]
+                                                        .doctor_qualification,
                                                     style: TextStyle(
                                                         fontSize: 10,
                                                         fontWeight:
@@ -279,7 +330,7 @@ class _PastAppointmentState extends State<PastAppointment>
                                                             .spaceBetween,
                                                     children: [
                                                       Text(
-                                                          'Booked for Kirti Jindal',
+                                                          'Booked for ${userProvider.pastAppointmentModel[index].name}',
                                                           style: TextStyle(
                                                               fontSize: 12,
                                                               fontWeight:
@@ -390,7 +441,15 @@ class _PastAppointmentState extends State<PastAppointment>
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              'On 5 September 2023, 4:30 PM',
+                                              getTimeAndSlot(
+                                                  userProvider
+                                                      .todayAppointmentModel[
+                                                          index]
+                                                      .date_for_booking,
+                                                  userProvider
+                                                      .todayAppointmentModel[
+                                                          index]
+                                                      .slot),
                                               style: TextStyle(
                                                   fontSize: 12,
                                                   fontWeight: FontWeight.w600,
@@ -436,7 +495,9 @@ class _PastAppointmentState extends State<PastAppointment>
                                               height: 5,
                                             ),
                                             Text(
-                                              'Multispeciality Dental \nclinic, New Delhi ',
+                                              userProvider
+                                                  .todayAppointmentModel[index]
+                                                  .doctor_address,
                                               style: TextStyle(
                                                   fontSize: 12,
                                                   fontWeight: FontWeight.w400,
@@ -459,7 +520,9 @@ class _PastAppointmentState extends State<PastAppointment>
                                               height: 10,
                                             ),
                                             Text(
-                                              'MBBS, MS',
+                                              userProvider
+                                                  .todayAppointmentModel[index]
+                                                  .doctor_qualification,
                                               style: TextStyle(
                                                   fontSize: 10,
                                                   fontWeight: FontWeight.w600),
@@ -497,7 +560,8 @@ class _PastAppointmentState extends State<PastAppointment>
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text('Booked for Kirti Jindal',
+                                                Text(
+                                                    'Booked for ${userProvider.todayAppointmentModel[index].name}',
                                                     style: TextStyle(
                                                         fontSize: 12,
                                                         fontWeight:
@@ -603,7 +667,15 @@ class _PastAppointmentState extends State<PastAppointment>
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              'On 5 September 2023, 4:30 PM',
+                                              getTimeAndSlot(
+                                                  userProvider
+                                                      .upcomingAppointmentModel[
+                                                          index]
+                                                      .date_for_booking,
+                                                  userProvider
+                                                      .upcomingAppointmentModel[
+                                                          index]
+                                                      .slot),
                                               style: TextStyle(
                                                   fontSize: 12,
                                                   fontWeight: FontWeight.w600,
@@ -650,7 +722,10 @@ class _PastAppointmentState extends State<PastAppointment>
                                               height: 5,
                                             ),
                                             Text(
-                                              'Multispeciality Dental \nclinic, New Delhi ',
+                                              userProvider
+                                                  .upcomingAppointmentModel[
+                                                      index]
+                                                  .doctor_address,
                                               style: TextStyle(
                                                   fontSize: 12,
                                                   fontWeight: FontWeight.w400,
@@ -673,7 +748,10 @@ class _PastAppointmentState extends State<PastAppointment>
                                               height: 10,
                                             ),
                                             Text(
-                                              'MBBS, MS',
+                                              userProvider
+                                                  .upcomingAppointmentModel[
+                                                      index]
+                                                  .doctor_qualification,
                                               style: TextStyle(
                                                   fontSize: 10,
                                                   fontWeight: FontWeight.w600),
@@ -711,7 +789,8 @@ class _PastAppointmentState extends State<PastAppointment>
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text('Booked for Kirti Jindal',
+                                                Text(
+                                                    'Booked for ${userProvider.upcomingAppointmentModel[index].name}',
                                                     style: TextStyle(
                                                         fontSize: 12,
                                                         fontWeight:

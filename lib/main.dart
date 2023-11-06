@@ -1,8 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doc_search/Providers/Doctor_Provider.dart';
 import 'package:doc_search/Providers/Medicine_Shop_Provider.dart';
 import 'package:doc_search/Providers/User_Provider.dart';
-import 'package:doc_search/Views/Final_Home_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Authentication/Login_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Home_Page.dart';
 import 'package:firebase_auth/firebase_auth.dart';

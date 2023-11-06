@@ -138,7 +138,7 @@ class _Doctors_Category_WiseDetailsState
                         color: const Color(0xFF1A6A83),
                         borderRadius: BorderRadius.circular(3),
                       ),
-                      child: const Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
@@ -150,7 +150,7 @@ class _Doctors_Category_WiseDetailsState
                             width: 4,
                           ),
                           Text(
-                            '4.7',
+                            widget.doctor.rating,
                             style: TextStyle(
                               fontSize: 11,
                               fontWeight: FontWeight.w600,
@@ -174,9 +174,9 @@ class _Doctors_Category_WiseDetailsState
                           borderRadius: BorderRadius.circular(4),
                           color: const Color(0xFFE6F7EF),
                         ),
-                        child: const Center(
+                        child: Center(
                           child: Text(
-                            "Surgical Onotology",
+                            widget.doctor.specialization,
                             style: TextStyle(
                               fontSize: 10,
                               color: Color(0xFF00B05B),
@@ -184,12 +184,12 @@ class _Doctors_Category_WiseDetailsState
                           ),
                         ),
                       ),
-                      const Text('Malviya Nagar, New Delhi',
+                      Text(widget.doctor.address,
                           style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w400,
                               color: Colors.black)),
-                      const Text('15 years experience',
+                      Text('${widget.doctor.experience} years experience',
                           style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w400,
@@ -604,7 +604,7 @@ class _Doctors_Category_WiseDetailsState
                         color: const Color(0xFF1A6A83),
                         borderRadius: BorderRadius.circular(5),
                       ),
-                      child: const Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Icon(
@@ -614,7 +614,7 @@ class _Doctors_Category_WiseDetailsState
                           ),
                           Center(
                               child: Text(
-                            'Malviya Nagar, New Delhi',
+                            widget.doctor.address,
                             style: TextStyle(color: Colors.white, fontSize: 12),
                           )),
                         ],

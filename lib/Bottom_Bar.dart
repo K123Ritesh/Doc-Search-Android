@@ -1,8 +1,11 @@
+import 'package:doc_search/Providers/User_Provider.dart';
 import 'package:doc_search/Views/Final_Home_Page.dart';
 import 'package:doc_search/Views/Not_Build_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Home_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Profile_Page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'Views/Patient Part/Appointment/PastApointment.dart';
 
@@ -15,13 +18,40 @@ class Bottombar extends StatefulWidget {
 }
 
 class _BottombarState extends State<Bottombar> {
+  String getCurrentUserUid() {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user = auth.currentUser;
+
+    if (user != null) {
+      String uid = user.uid;
+      return uid;
+    } else {
+      return "User not authenticated";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<User_Provider>(context);
     int currentIndex = widget.SelectedIndex;
     void onTabTapped(int index) {
       setState(() {
         currentIndex = index;
       });
+      if (currentIndex == 1) {
+        userProvider.getTodayAppointments(context);
+        userProvider.getPastAppointments(context);
+        userProvider.getUpcomingAppointments(context);
+        userProvider.getPastAppointmentModels(context);
+        userProvider.getTodayAppointmentModels(context);
+        userProvider.getUpcomingAppointmentModels(context);
+      }
+
+      if (currentIndex == 0) {
+        String uid = getCurrentUserUid();
+        print(uid);
+        userProvider.getUserDetails(context, uid);
+      }
 
       switch (index) {
         case 0:

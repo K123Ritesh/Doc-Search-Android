@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:doc_search/Models/Doctor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -6,13 +6,33 @@ import 'package:webview_flutter/webview_flutter.dart';
 import '../../../Bottom_Bar.dart';
 
 class Appointment_Done_Page extends StatefulWidget {
-  const Appointment_Done_Page({super.key});
+  const Appointment_Done_Page(
+      {super.key, required this.doctor, required this.Status});
+
+  final Doctor doctor;
+  final int Status;
 
   @override
   State<Appointment_Done_Page> createState() => _Appointment_Done_PageState();
 }
 
 class _Appointment_Done_PageState extends State<Appointment_Done_Page> {
+  DateTime today = DateTime.now();
+
+  List<String> months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -75,7 +95,7 @@ class _Appointment_Done_PageState extends State<Appointment_Done_Page> {
                                     color: Color.fromRGBO(0, 84, 115, 1.0),
                                   ),
                                   Text(
-                                    " August 4,2023",
+                                    "${months[today.month - 1]} ${today.day} ${today.year}",
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Color.fromRGBO(0, 84, 115, 1.0),
@@ -92,7 +112,7 @@ class _Appointment_Done_PageState extends State<Appointment_Done_Page> {
                                     color: Color.fromRGBO(0, 84, 115, 1.0),
                                   ),
                                   Text(
-                                    "11:30 AM",
+                                    "${today.hour}:${today.minute} ${today.timeZoneName}",
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Color.fromRGBO(0, 84, 115, 1.0),
@@ -112,13 +132,13 @@ class _Appointment_Done_PageState extends State<Appointment_Done_Page> {
                                 color: Colors.white, // Background color
                               ),
                               child: CircleAvatar(
-                                backgroundColor:
-                                    Color.fromRGBO(194, 230, 243, 1.0),
-                                maxRadius: 50.r,
-                                child: Image.network(
-                                    fit: BoxFit.fill,
-                                    'https://s3-alpha-sig.figma.com/img/88e8/51db/df6ae21b4d7fa0dee0c33d99d1409301?Expires=1699833600&Signature=NcqPPRUO45~8AMzhmbW5n-OSNaCVPLhz67cz4Mow6k5ZtVmbtxeclnZJc5vn5rsWDtBX6pvKL-OzWixCYONOA9hOKWC4CfD8LxexoIvJZyEKTleZcL~PQT2fLUBlBRToECRgRRyk9xwQQ2dCn8JYJ6lNwOR44xr8x6NaMj4ePf6PqgLWUrU7Sw4coxv347V0HfXM33qVqyLzPWW9~agOreeuR6aMbPScb2q4022PmC~qBQMOvCN0JAjeswboIx07l7RUgjcujJadZo-gh7flFVDmntGc7G6Z~mN4z1m3GuOdDyFfMaHfmmwf~E58ioWdnX6xEuLsRhekL-0IYfpmmQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4'),
-                              ),
+                                  backgroundColor:
+                                      Color.fromRGBO(194, 230, 243, 1.0),
+                                  maxRadius: 50.r,
+                                  child: Icon(
+                                    Icons.person,
+                                    size: 60,
+                                  )),
                             ),
                             SizedBox(
                               width: 10.w,
@@ -127,7 +147,7 @@ class _Appointment_Done_PageState extends State<Appointment_Done_Page> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Dr. Priya Sharma",
+                                  widget.doctor.name,
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 20,
@@ -148,14 +168,15 @@ class _Appointment_Done_PageState extends State<Appointment_Done_Page> {
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 10.w, vertical: 6.h),
                                       child: Text(
-                                        "Specialization",
+                                        widget.doctor.specialization,
                                         style: TextStyle(
                                             color:
                                                 Color.fromRGBO(0, 176, 91, 1)),
                                       ),
                                     )),
-                                Text("Malviya Nagar, New Delhi "),
-                                Text("!5 years Experience"),
+                                Text(widget.doctor.address),
+                                Text(
+                                    "${widget.doctor.experience} years Experience"),
                               ],
                             ),
                           ],
@@ -169,7 +190,7 @@ class _Appointment_Done_PageState extends State<Appointment_Done_Page> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      MapWebView(place: 'Malviya Nagar Delhi')),
+                                      MapWebView(place: widget.doctor.address)),
                             );
                           },
                           child: Row(
@@ -245,7 +266,7 @@ class _Appointment_Done_PageState extends State<Appointment_Done_Page> {
                       style: TextStyle(fontSize: 20.sp),
                     ),
                     Text(
-                      ' ₹450 ',
+                      widget.doctor.reg_fee,
                       style: TextStyle(
                           fontSize: 20.sp,
                           color: Color.fromRGBO(251, 188, 5, 1)),

@@ -1,6 +1,5 @@
 import 'package:doc_search/Bottom_Bar.dart';
 import 'package:doc_search/Config/sizeConfig.dart';
-import 'package:doc_search/Views/Not_Build_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Appointment/Appointment.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Consultancy_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Medical_Labs_Page.dart';
@@ -11,7 +10,9 @@ import 'package:doc_search/Views/Patient%20Part/Home/Wallet_Page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
+import '../../../Providers/User_Provider.dart';
 import '../Doctors/Doctors_Category_Wise.dart';
 import '../Profile/Profile_Page.dart';
 
@@ -35,8 +36,35 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
+    String uid = getCurrentUserUid();
+    print(uid);
+    Provider.of<User_Provider>(context, listen: false)
+        .getUserDetails(context, uid);
+    Provider.of<User_Provider>(context, listen: false)
+        .getTodayAppointments(context);
+    Provider.of<User_Provider>(context, listen: false)
+        .getPastAppointments(context);
+    Provider.of<User_Provider>(context, listen: false)
+        .getUpcomingAppointments(context);
+    Provider.of<User_Provider>(context, listen: false)
+        .getPastAppointmentModels(context);
+    Provider.of<User_Provider>(context, listen: false)
+        .getTodayAppointmentModels(context);
+    Provider.of<User_Provider>(context, listen: false)
+        .getUpcomingAppointmentModels(context);
     super.initState();
+  }
+
+  String getCurrentUserUid() {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user = auth.currentUser;
+
+    if (user != null) {
+      String uid = user.uid;
+      return uid;
+    } else {
+      return "User not authenticated";
+    }
   }
 
   @override

@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 import '../../Doctor Part/Authentication/Signin_Page.dart';
@@ -32,6 +33,18 @@ class _Signup_PageState extends State<Signup_Page> {
   String _countryCode = '+91';
 
   bool isSelected = false;
+
+  void showToastMessage(String message) {
+    Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.black87,
+      textColor: Colors.white,
+      fontSize: 16.0,
+    );
+  }
 
   Future<void> _registerUser() async {
     try {
@@ -334,17 +347,30 @@ class _Signup_PageState extends State<Signup_Page> {
                 children: [
                   InkWell(
                     onTap: () {
-                      _registerUser();
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => OTP_Entering_Page(
-                            city: _cityController.text,
-                            firstName: _firstNameController.text,
-                            lastName: _lastNameController.text,
-                            mobileNumber: _mobileNumberController.text,
+                      if (_firstNameController.text == "") {
+                        showToastMessage('Please Enter all the Fields ');
+                      } else if (_lastNameController.text == "") {
+                        showToastMessage('Please Enter all the Fields ');
+                      } else if (_cityController.text == "") {
+                        showToastMessage('Please Enter all the Fields ');
+                      } else if (_mobileNumberController.text == "") {
+                        showToastMessage('Please Enter all the Fields ');
+                      } else if (_mobileNumberController.text != "" &&
+                          _cityController.text != "" &&
+                          _firstNameController.text != "" &&
+                          _lastNameController.text != "") {
+                        _registerUser();
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => OTP_Entering_Page(
+                              city: _cityController.text,
+                              firstName: _firstNameController.text,
+                              lastName: _lastNameController.text,
+                              mobileNumber: _mobileNumberController.text,
+                            ),
                           ),
-                        ),
-                      );
+                        );
+                      }
                     },
                     child: Container(
                       decoration: BoxDecoration(

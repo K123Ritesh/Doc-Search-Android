@@ -102,6 +102,7 @@ class UserServices {
 
         if (AppointmentData.exists) {
           ans_list.add(Appointment_Model(
+              name: AppointmentData['bookedFor'],
               doctor_name: AppointmentData['doctor_name'],
               doctor_address: AppointmentData['doctor_address'],
               doctor_qualification: AppointmentData['doctor_qualification'],

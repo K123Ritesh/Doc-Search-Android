@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
 
@@ -101,6 +102,18 @@ class _Login_PageState extends State<Login_Page> {
     } else {
       showSignUpDialog(context);
     }
+  }
+
+  void showToastMessage(String message) {
+    Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.black87,
+      textColor: Colors.white,
+      fontSize: 16.0,
+    );
   }
 
   @override
@@ -209,8 +222,14 @@ class _Login_PageState extends State<Login_Page> {
                       ),
                     ),
                     onPressed: () async {
-                      checkPhoneNumberAndVerifyOTP(
-                          context); // Call the function
+                      if (phone.length == 0 ||
+                          phone.length > 10 ||
+                          phone.length < 10) {
+                        showToastMessage('Enter valid mobile Number');
+                      } else {
+                        checkPhoneNumberAndVerifyOTP(context);
+                      }
+                      // Call the function
                     },
                     child: const Text(
                       "Next",

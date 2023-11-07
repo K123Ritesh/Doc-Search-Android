@@ -605,7 +605,7 @@ class _OTPInputState extends State<OTPInput> {
         'pincode': ' ',
         'profession': ' ',
         'gender': ' ',
-        'profile_pic': ' ',
+        'profile_pic': '',
       });
       print('User data saved successfully');
     } catch (e) {

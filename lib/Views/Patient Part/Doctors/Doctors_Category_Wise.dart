@@ -1,7 +1,5 @@
 import 'package:doc_search/Bottom_Bar.dart';
 import 'package:doc_search/Config/sizeConfig.dart';
-import 'package:doc_search/Views/Patient%20Part/Home/Home_Page.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -33,11 +31,12 @@ class _Doctors_Category_WiseState extends State<Doctors_Category_Wise> {
   }
 
   int ans = 1;
+  TextEditingController city = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController city =
-        TextEditingController(text: widget.default_city);
+    String title = widget.title;
+
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.white));
 
@@ -54,16 +53,13 @@ class _Doctors_Category_WiseState extends State<Doctors_Category_Wise> {
               color: Colors.black,
             ),
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const HomePage()),
-              );
+              Navigator.pop(context);
             },
           ),
           title: Container(
             margin: EdgeInsets.only(left: 80.fw),
             child: Text(
-              widget.title,
+              widget.doc_Category,
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 18.fh,
@@ -85,13 +81,14 @@ class _Doctors_Category_WiseState extends State<Doctors_Category_Wise> {
                   decoration: BoxDecoration(
                       border: Border.all(color: Color(0xFF5793A8), width: 1.0),
                       borderRadius: BorderRadius.circular(50)),
-                  child: TextField(
+                  child: TextFormField(
                     controller: city,
+                    // initialValue: ,
                     onChanged: (value) {
-                      DoctorProvider.getDocByCity(
-                          context, value, widget.doc_Category);
-                    },
-                    onSubmitted: (value) {
+                      // setState(() {
+                      //   //   city.text = value.toString();
+                      //   title = "${widget.doc_Category} in ${value}";
+                      // });
                       DoctorProvider.getDocByCity(
                           context, value, widget.doc_Category);
                     },
@@ -110,7 +107,7 @@ class _Doctors_Category_WiseState extends State<Doctors_Category_Wise> {
                   : DoctorProvider.acc_to_search == null
                       ? Center(
                           child: Text(
-                            'No Doctors Found in your city',
+                            'No ${widget.doc_Category} Found in ${city.text}',
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold),
                           ),

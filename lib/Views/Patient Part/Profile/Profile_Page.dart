@@ -1,6 +1,7 @@
 import 'package:doc_search/Providers/User_Provider.dart';
 import 'package:doc_search/Views/Doctor%20Part/Profile/Online_Consultations_Page.dart';
 import 'package:doc_search/Views/Not_Build_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Appointment/PastApointment.dart';
 import 'package:doc_search/Views/Patient%20Part/Authentication/Login_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Doctors/Doctors_Category_Wise.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Appointments_Page.dart';
@@ -28,29 +29,7 @@ class Profile_Page_Doc_Search extends StatefulWidget {
 class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
   @override
   void initState() {
-    String uid = getCurrentUserUid();
-    print(uid);
-    // TODO: implement initState
-    Provider.of<User_Provider>(context, listen: false)
-        .getUserDetails(context, uid);
-    // Provider.of<User_Provider>(context, listen: false)
-    //     .getTodayAppointments(context);
-    // print(
-    //     'Today ${Provider.of<User_Provider>(context, listen: false).todayAppointmentId}');
-
     super.initState();
-  }
-
-  String getCurrentUserUid() {
-    FirebaseAuth auth = FirebaseAuth.instance;
-    User? user = auth.currentUser;
-
-    if (user != null) {
-      String uid = user.uid;
-      return uid;
-    } else {
-      return "User not authenticated";
-    }
   }
 
   @override
@@ -73,75 +52,81 @@ class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
             padding: EdgeInsets.all(8.0.w),
             child: ListView(
               children: [
+                SizedBox(height: 33.h),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(width: 20.w),
                     InkWell(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => HomePage()));
-                      },
-                      child: Icon(Icons.arrow_back_ios_new,
-                          color: Colors.white, size: 26),
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => EditUserProfile()));
+                        },
+                        child: Stack(
+                          children: <Widget>[
+                            CircleAvatar(
+                              child: userProvider.user.profilePicUrl == ''
+                                  ? Icon(Icons.person,
+                                      color: Colors.blue, size: 90)
+                                  : ClipOval(
+                                      child: Image.network(
+                                        userProvider.user.profilePicUrl,
+                                        width: 95.0.w,
+                                        height: 95.0.h,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                              maxRadius: 50.r,
+                              backgroundColor: Colors.white,
+                            ),
+                            Positioned(
+                              bottom: 0,
+                              right: 0,
+                              child: Container(
+                                padding: EdgeInsets.all(4),
+                                decoration: BoxDecoration(
+                                  color: Colors.blue,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Icon(
+                                  Icons.edit,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ],
+                        )),
+                  ],
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "${userProvider.user.firstName} ${userProvider.user.lastName}",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 23.sp,
+                          fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
-                SizedBox(height: 23.h),
-                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  SizedBox(
-                    width: 20.w,
-                  ),
-                  Column(
-                    children: [
-                      InkWell(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => EditUserProfile()));
-                          },
-                          child: Stack(
-                            children: <Widget>[
-                              CircleAvatar(
-                                child: Icon(Icons.person, size: 90),
-                                maxRadius: 50.r,
-                                backgroundColor: Colors.white,
-                              ),
-                              Positioned(
-                                bottom: 0,
-                                right: 0,
-                                child: Container(
-                                  padding: EdgeInsets.all(4),
-                                  decoration: BoxDecoration(
-                                    color: Colors.blue,
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Icon(
-                                    Icons.edit,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      Text(
-                        "${userProvider.user!.firstName} ${userProvider.user!.lastName}",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 23.sp,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        "${userProvider.user!.email} | ${userProvider.user!.mobileNo}",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18.sp,
-                            fontWeight: FontWeight.w400),
-                      )
-                    ],
-                  )
-                ]),
+                SizedBox(
+                  height: 10.h,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "${userProvider.user.city.toUpperCase()}  |  ${userProvider.user.mobileNo}",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w400),
+                    ),
+                  ],
+                ),
                 SizedBox(
                   height: 10.h,
                 ),
@@ -151,12 +136,20 @@ class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
                     children: [
                       InkWell(
                         onTap: () {
-                          userProvider.getTodayAppointments(context);
-                          userProvider.getUpcomingAppointments(context);
-                          userProvider.getPastAppointments(context);
-                          userProvider.getTodayAppointmentModels(context);
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => Appointments_Page()));
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => (userProvider
+                                                  .todayAppointmentModel
+                                                  .length ==
+                                              0 &&
+                                          userProvider.todayAppointmentModel
+                                                  .length ==
+                                              0 &&
+                                          userProvider.todayAppointmentModel
+                                                  .length ==
+                                              0)
+                                      ? Appointments_Page()
+                                      : PastAppointment()));
                         },
                         child: ListTile(
                           title: Text(
@@ -366,7 +359,7 @@ class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
                 InkWell(
                   onTap: () async {
                     await _auth.signOut();
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => Login_Page()),
                     );

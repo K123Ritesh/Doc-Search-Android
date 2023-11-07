@@ -422,7 +422,7 @@ class _WalletState extends State<Wallet> with SingleTickerProviderStateMixin {
           ),
         ],
       ),
-      bottomNavigationBar: Bottombar(SelectedIndex: 0),
+      bottomNavigationBar: Bottombar(SelectedIndex: 2),
     );
   }
 

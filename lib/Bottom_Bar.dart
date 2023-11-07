@@ -1,10 +1,15 @@
+import 'package:doc_search/Providers/User_Provider.dart';
 import 'package:doc_search/Views/Final_Home_Page.dart';
 import 'package:doc_search/Views/Not_Build_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Home_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Home/Wallet_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Profile_Page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'Views/Patient Part/Appointment/PastApointment.dart';
+import 'Views/Patient Part/Profile/Appointments_Page.dart';
 
 class Bottombar extends StatefulWidget {
   @override
@@ -15,13 +20,40 @@ class Bottombar extends StatefulWidget {
 }
 
 class _BottombarState extends State<Bottombar> {
+  String getCurrentUserUid() {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user = auth.currentUser;
+
+    if (user != null) {
+      String uid = user.uid;
+      return uid;
+    } else {
+      return "User not authenticated";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<User_Provider>(context);
     int currentIndex = widget.SelectedIndex;
     void onTabTapped(int index) {
       setState(() {
         currentIndex = index;
       });
+      if (currentIndex == 1) {
+        userProvider.getTodayAppointments(context);
+        userProvider.getPastAppointments(context);
+        userProvider.getUpcomingAppointments(context);
+        userProvider.getPastAppointmentModels(context);
+        userProvider.getTodayAppointmentModels(context);
+        userProvider.getUpcomingAppointmentModels(context);
+      }
+
+      if (currentIndex == 0) {
+        String uid = getCurrentUserUid();
+        print(uid);
+        userProvider.getUserDetails(context, uid);
+      }
 
       switch (index) {
         case 0:
@@ -31,20 +63,22 @@ class _BottombarState extends State<Bottombar> {
           );
           break;
         case 1:
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => PastAppointment()),
-          );
+          Navigator.of(context).pushReplacement(MaterialPageRoute(
+              builder: (context) =>
+                  (userProvider.todayAppointmentModel.length == 0 &&
+                          userProvider.todayAppointmentModel.length == 0 &&
+                          userProvider.todayAppointmentModel.length == 0)
+                      ? Appointments_Page()
+                      : PastAppointment()));
           break;
         case 2:
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
-            MaterialPageRoute(
-                builder: (context) => Not_Build_Page(selectedIndex: 2)),
+            MaterialPageRoute(builder: (context) => Wallet()),
           );
           break;
         case 3:
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => Profile_Page_Doc_Search()),
           );
@@ -81,8 +115,8 @@ class _BottombarState extends State<Bottombar> {
             label: 'Appointment',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            label: 'Chats',
+            icon: Icon(Icons.wallet),
+            label: 'Wallet',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),

@@ -170,8 +170,7 @@ class _Consultancy_PageState extends State<Consultancy_Page> {
                               Container(
                                 width: 167.w,
                                 height: 128.h,
-                                child: Image.network(
-                                    'https://s3-alpha-sig.figma.com/img/c6d2/7964/5beb6d1957bb1f7cb2abeba0d5020cab?Expires=1699833600&Signature=kbbgxpPbt-Z3BEPO5yi-wY2Pp2Xs5MHhdSA3xCbhzagc9HHN~tcanWaY83xkBNAJQlE8HzfgMgj8AmDX4fZviFqLBiE1yAGltw2l6bhjsgLt140dFS89UeiigIWGiTpyNUce2cvvr7IDMxnrar9nOMLAcL3e5iGtr4I1PSvzeSqTEta~osnROm8wE9rsJgxMNdSezRQEhswtIeV7YjA3BIGWj1x-ClgPG~W3Ba7lGZUtYx5f1-1Mb1rtvXGHpuV-K-ORv-jcIOVS7D2SOEsMoVd2lArFYhteWMNnv2z-Tz6ZOmtlO6xuwOxwLRt8Sa1Tf9omVuFQCo21CHSg4ENLKQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4'),
+                                child: Image.asset('assets/Icons/image 60.png'),
                               )
                             ],
                           )

@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doc_search/Models/Appointment_Model.dart';
 import 'package:doc_search/Models/Doctor.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 class Doctor_Services {
@@ -56,7 +58,19 @@ class Doctor_Services {
 when the appointment is booked it should send notification to the respective
  doctor with doctorId and that slot of that date should be marked as booked*/
 
-  Future<void> BookAppointment(
+  void showToastMessage(String message) {
+    Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.black87,
+      textColor: Colors.white,
+      fontSize: 16.0,
+    );
+  }
+
+  Future<int> BookAppointment(
       context, String doc_category, Appointment_Model appointment) async {
     try {
       final firestore = FirebaseFirestore.instance;
@@ -77,6 +91,7 @@ when the appointment is booked it should send notification to the respective
         'slot': appointment.slot,
         'userId': appointment.userId,
         'timestamp': FieldValue.serverTimestamp(),
+        'bookedFor': appointment.name
       });
 
       // Get the appointment ID from the newly created document
@@ -100,8 +115,11 @@ when the appointment is booked it should send notification to the respective
             if (slot != null) {
               // Slot already booked, delete the appointment document
               await appointmentRef.delete();
+              // showToastMessage(
+              //     'This slot is booked by someone else\nPlease Select another slot');
               print(
                   'Slot already booked by someone. Appointment document deleted.');
+              return 0;
             } else {
               // Slot is available, add the appointment
               bookingMap[appointment.date_for_booking][appointment.slot] =
@@ -114,6 +132,7 @@ when the appointment is booked it should send notification to the respective
                 print(e);
               }
               print('Appointment booked successfully.');
+              return 1;
             }
           } else {
             // Slot not found for the given date, create a new slot
@@ -128,6 +147,7 @@ when the appointment is booked it should send notification to the respective
               print(e);
             }
             print('Appointment booked successfully.');
+            return 1;
           }
         } else {
           // 'Booking' field not found, create it and add the appointment
@@ -144,13 +164,16 @@ when the appointment is booked it should send notification to the respective
             print(e);
           }
           print('Appointment booked successfully.');
+          return 1;
         }
       } else {
         print('Dentist not found.');
       }
     } catch (e) {
       print('Error in Appointment Booking: $e');
+      return -1;
     }
+    return -1;
   }
 
   Future<void> addOrUpdateAppointment(

@@ -53,6 +53,7 @@ dependencies:
   fluttertoast: ^8.2.2
   shared_preferences: ^2.2.2
   carousel_slider: ^4.2.1
+  upi_india: ^3.0.1
 
 dev_dependencies:
   flutter_test:
@@ -88,6 +89,7 @@ flutter:
     - assets/DocSearch Android/
     - assets/DocSearch Android (1)/
     - assets/lottie/
+    - assets/Icons/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

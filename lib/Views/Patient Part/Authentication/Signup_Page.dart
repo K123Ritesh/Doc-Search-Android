@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 import '../../Doctor Part/Authentication/Signin_Page.dart';
@@ -32,6 +33,18 @@ class _Signup_PageState extends State<Signup_Page> {
   String _countryCode = '+91';
 
   bool isSelected = false;
+
+  void showToastMessage(String message) {
+    Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.black87,
+      textColor: Colors.white,
+      fontSize: 16.0,
+    );
+  }
 
   Future<void> _registerUser() async {
     try {
@@ -74,7 +87,15 @@ class _Signup_PageState extends State<Signup_Page> {
         'city': _cityController.text,
         'apointments': {
           'dummy_date': ['dummy appointment Id 1', 'dummy appointment Id 2'],
-        }
+        },
+        "address": '',
+        'age': '',
+        'bloodGroup': '',
+        'landmark': '',
+        'pincode': '',
+        'profession': '',
+        'gender': '',
+        'profile_pic': '',
       });
       print('User data saved successfully');
     } catch (e) {
@@ -205,6 +226,9 @@ class _Signup_PageState extends State<Signup_Page> {
                           BorderRadius.circular(20.0.r), // Rounded corners
                     ),
                     child: TextField(
+                      inputFormatters: [
+                        FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
+                      ],
                       controller: _firstNameController,
                       decoration: const InputDecoration(
                         hintText: 'First Name',
@@ -231,6 +255,9 @@ class _Signup_PageState extends State<Signup_Page> {
                     ),
                     child: TextField(
                       controller: _lastNameController,
+                      inputFormatters: [
+                        FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
+                      ],
                       decoration: const InputDecoration(
                         hintText: 'Last Name',
                         hintStyle:
@@ -255,6 +282,7 @@ class _Signup_PageState extends State<Signup_Page> {
                           BorderRadius.circular(20.0.r), // Rounded corners
                     ),
                     child: TextField(
+                      keyboardType: TextInputType.number,
                       controller: _mobileNumberController,
                       decoration: const InputDecoration(
                         hintText: 'Your Mobile Number',
@@ -281,6 +309,9 @@ class _Signup_PageState extends State<Signup_Page> {
                     ),
                     child: TextField(
                       controller: _cityController,
+                      inputFormatters: [
+                        FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
+                      ],
                       decoration: const InputDecoration(
                         hintText: 'Enter Your City',
                         hintStyle:
@@ -334,17 +365,33 @@ class _Signup_PageState extends State<Signup_Page> {
                 children: [
                   InkWell(
                     onTap: () {
-                      _registerUser();
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => OTP_Entering_Page(
-                            city: _cityController.text,
-                            firstName: _firstNameController.text,
-                            lastName: _lastNameController.text,
-                            mobileNumber: _mobileNumberController.text,
+                      if (_firstNameController.text == "") {
+                        showToastMessage('Please Enter all the Fields ');
+                      } else if (_lastNameController.text == "") {
+                        showToastMessage('Please Enter all the Fields ');
+                      } else if (_cityController.text == "") {
+                        showToastMessage('Please Enter all the Fields ');
+                      } else if (_mobileNumberController.text.length != 10) {
+                        showToastMessage('Please Enter valid Mobile Number ');
+                      } else if (isSelected == false) {
+                        showToastMessage('Accept Terms and Conditions');
+                      } else if (_mobileNumberController.text != "" &&
+                          _cityController.text != "" &&
+                          _firstNameController.text != "" &&
+                          _lastNameController.text != "" &&
+                          isSelected == true) {
+                        _registerUser();
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => OTP_Entering_Page(
+                              city: _cityController.text,
+                              firstName: _firstNameController.text,
+                              lastName: _lastNameController.text,
+                              mobileNumber: _mobileNumberController.text,
+                            ),
                           ),
-                        ),
-                      );
+                        );
+                      }
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -462,10 +509,10 @@ class _Signup_PageState extends State<Signup_Page> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Image.network(
+                          Image.asset(
                             height: 24.h,
                             width: 30.w,
-                            'https://s3-alpha-sig.figma.com/img/ee6b/3f48/b89ad3b69027b4448422cdfd225c0901?Expires=1699228800&Signature=figvoE9HfxYgq8ZV4WeXdw8yYThj2vFISwHnUm3ygv7pCOrcNgG3qQxi41jf7duyAjKpQ4qmqTXbw7gRy674qLf1kleOWiCZ7Ci8TVHqd0-yHto80ZKgof6snUOJRYvwO1GHemfSkco7Z7be-deVKazxUJlgfGmg0FK9Eu1puQfaIIuaCWNBXHopU4-dmglnLn04hLr17dLmIDRqpeo2lP9XEo1W39-WM9IxrguCHnFBR9XeF-7URLTLFqVYfZhZSArtvbaIjo8ay2e1J4shUqTRv8YzFZs~ZtHrY4IxZ2YYh8PVx0Ng5RYK7ig9IsDqLmUTjo-yTmA-XVj~ft6b~Q__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                            'assets/Icons/Facebook Logo.png',
                           ),
                           Text(
                             'Login with facebook',
@@ -497,13 +544,13 @@ class _Signup_PageState extends State<Signup_Page> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Image.network(
+                          Image.asset(
                             height: 24.h,
                             width: 30.w,
-                            'https://s3-alpha-sig.figma.com/img/0e8c/5336/ec40b19b6983a179020e0e933a042d6b?Expires=1699228800&Signature=B~1zFkzXaDodVf0zzDC9r2IBjoOsAIBd6WGx06wXjuS-Pl6OQXBNFSW12rrN8EEK6xuTfS6sb7xhPwItWTjdIIbg9yfZE9G2MuON6H9vRwj8JPUV9U81e24Fo4AL6fm2OH3NlK-CGOukuYygMQQXXHefm5yAnlyC~u-Ol72v~LCVmVcjzHaMVLBifqYd70RLq-Z3Hwm~4-GjfPKZRrQGcrO6PcHvCTn9QthNlBI7pqSPCrQ6sjb3COAhZrIr5FONCdZNpFoh50W~q~EYxY4sJJJqqex7RfYLQbmALHRQrfBRMlqN7mFxrKPcBkvY-Rq0QMIekVJshaFBHhFLOguN3w__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                            'assets/Icons/Google Logo.png',
                           ),
                           Text(
-                            'Login with Google',
+                            'Signup with Google',
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20.sp,
@@ -628,7 +675,7 @@ class _OTPInputState extends State<OTPInput> {
 
       // Now, you have access to the authenticated user
 
-      Navigator.of(context).push(
+      Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => HomePage(user: user),
         ),

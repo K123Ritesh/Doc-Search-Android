@@ -1,8 +1,10 @@
 import 'package:doc_search/Models/Appointment_Model.dart';
 import 'package:doc_search/Providers/Doctor_Provider.dart';
+import 'package:doc_search/Providers/User_Provider.dart';
 import 'package:doc_search/Views/Patient%20Part/Doctors/Appointment_Done_Page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import '../../../Bottom_Bar.dart';
 
@@ -35,9 +37,26 @@ class _Doctor_Category_Wise_FinalState
   bool isBlue1 = true;
   bool isBlue2 = false;
 
+  final TextEditingController _fullName = TextEditingController();
+  final TextEditingController _mobileNumber = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+
+  void showToastMessage(String message) {
+    Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.black87,
+      textColor: Colors.white,
+      fontSize: 16.0,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final DoctorProvider = Provider.of<Doctor_Provider>(context);
+    final userProvider = Provider.of<User_Provider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -48,10 +67,6 @@ class _Doctor_Category_Wise_FinalState
             color: Colors.black,
           ),
           onPressed: () {
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => const DoctorsDetails()),
-            // );
             Navigator.pop(context);
           },
         ),
@@ -88,7 +103,7 @@ class _Doctor_Category_Wise_FinalState
                         ),
                   ),
                   title: Text(
-                    "Dr. Priya Sharma",
+                    widget.doctor.name,
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                   ),
                   subtitle: Column(
@@ -123,7 +138,7 @@ class _Doctor_Category_Wise_FinalState
                                   width: 4,
                                 ),
                                 Text(
-                                  '4.7',
+                                  widget.doctor.rating,
                                   style: TextStyle(
                                     fontSize: 11,
                                     fontWeight: FontWeight.w600,
@@ -149,7 +164,7 @@ class _Doctor_Category_Wise_FinalState
                               ),
                               child: Center(
                                 child: Text(
-                                  "Surgical Onotology",
+                                  widget.doctor.specialization,
                                   style: TextStyle(
                                     fontSize: 10,
                                     color: Color(0xFF00B05B),
@@ -157,12 +172,12 @@ class _Doctor_Category_Wise_FinalState
                                 ),
                               ),
                             ),
-                            Text('Malviya Nagar, New Delhi',
+                            Text(widget.doctor.address,
                                 style: TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w400,
                                     color: Colors.black)),
-                            Text('15 years experience',
+                            Text('${widget.doctor.experience} years experience',
                                 style: TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w400,
@@ -195,7 +210,8 @@ class _Doctor_Category_Wise_FinalState
                       SizedBox(
                         width: 20,
                       ),
-                      Text('Tues & Thu',
+                      Text(
+                          '${widget.doctor.sitting_days[0]},${widget.doctor.sitting_days[1]}',
                           style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
@@ -203,7 +219,7 @@ class _Doctor_Category_Wise_FinalState
                       SizedBox(
                         width: 100,
                       ),
-                      Text('₹450',
+                      Text(widget.doctor.reg_fee,
                           style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
@@ -257,7 +273,7 @@ class _Doctor_Category_Wise_FinalState
                         ),
                         Center(
                             child: Text(
-                          '+91 123456789',
+                          '+91 990XXXX917',
                           style: TextStyle(color: Colors.white, fontSize: 15),
                         )),
                       ],
@@ -271,7 +287,7 @@ class _Doctor_Category_Wise_FinalState
                       color: const Color(0xFF1A6A83),
                       borderRadius: BorderRadius.circular(5),
                     ),
-                    child: const Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Icon(
@@ -281,7 +297,7 @@ class _Doctor_Category_Wise_FinalState
                         ),
                         Center(
                             child: Text(
-                          'Malviya Nagar, New Delhi',
+                          widget.doctor.address,
                           style: TextStyle(color: Colors.white, fontSize: 15),
                         )),
                       ],
@@ -324,97 +340,101 @@ class _Doctor_Category_Wise_FinalState
             SizedBox(
               height: 20,
             ),
-            Container(
-              width: 158,
-              height: 38,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: const Color(0xFFF1FDFF),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        if (isBlue1 == false) {
-                          isBlue1 = true;
-                          isBlue2 = false;
-                        }
-                      });
-                    },
-                    child: Container(
-                      width: 16,
-                      height: 18,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: isBlue1
-                            ? const Color(0xFF1A6A83)
-                            : Colors.transparent,
-                        border: Border.all(
-                          color: const Color(0xFF1A6A83),
-                          width: 2.0,
+            InkWell(
+              onTap: () {
+                setState(() {
+                  if (isBlue1 == false) {
+                    isBlue1 = true;
+                    isBlue2 = false;
+                  }
+                });
+              },
+              child: Container(
+                width: 158,
+                height: 38,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: const Color(0xFFF1FDFF),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    GestureDetector(
+                      child: Container(
+                        width: 16,
+                        height: 18,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: isBlue1
+                              ? const Color(0xFF1A6A83)
+                              : Colors.transparent,
+                          border: Border.all(
+                            color: const Color(0xFF1A6A83),
+                            width: 2.0,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Text(
-                    'Shiddhart sharma',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: const Color(0xFF1A6A83),
-                    ),
-                  )
-                ],
+                    Text(
+                      '${userProvider.user.firstName} ${userProvider.user.lastName}',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: const Color(0xFF1A6A83),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
             SizedBox(
               height: 10,
             ),
-            Container(
-              width: 158,
-              height: 38,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: const Color(0xFFF1FDFF),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        if (isBlue2 == false) {
-                          isBlue2 = true;
-                          isBlue1 = false;
-                        }
-                      });
-                    },
-                    child: Container(
-                      width: 16,
-                      height: 18,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: isBlue2
-                            ? const Color(0xFF1A6A83)
-                            : Colors.transparent,
-                        border: Border.all(
-                          color: const Color(0xFF1A6A83),
-                          width: 2.0,
+            InkWell(
+              onTap: () {
+                setState(() {
+                  if (isBlue2 == false) {
+                    isBlue2 = true;
+                    isBlue1 = false;
+                  }
+                });
+              },
+              child: Container(
+                width: 158,
+                height: 38,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: const Color(0xFFF1FDFF),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    GestureDetector(
+                      child: Container(
+                        width: 16,
+                        height: 18,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: isBlue2
+                              ? const Color(0xFF1A6A83)
+                              : Colors.transparent,
+                          border: Border.all(
+                            color: const Color(0xFF1A6A83),
+                            width: 2.0,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Text(
-                    'Someone else',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: const Color(0xFF1A6A83),
-                    ),
-                  )
-                ],
+                    Text(
+                      'Someone else',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: const Color(0xFF1A6A83),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
             SizedBox(
@@ -437,6 +457,7 @@ class _Doctor_Category_Wise_FinalState
                         child: Container(
                           margin: EdgeInsets.only(left: 10),
                           child: TextFormField(
+                            controller: _fullName,
                             decoration: InputDecoration(
                               labelText: 'Full Name',
                               // border: OutlineInputBorder(),
@@ -457,6 +478,7 @@ class _Doctor_Category_Wise_FinalState
                         child: Container(
                           margin: EdgeInsets.only(left: 10),
                           child: TextFormField(
+                            controller: _mobileNumber,
                             decoration: InputDecoration(
                               labelText: 'Mobile Number',
                               // border: OutlineInputBorder(),
@@ -474,6 +496,7 @@ class _Doctor_Category_Wise_FinalState
                         child: Container(
                           margin: EdgeInsets.only(left: 10),
                           child: TextFormField(
+                            controller: _email,
                             decoration: InputDecoration(
                               labelText: 'Email Address',
                               // border: OutlineInputBorder(),
@@ -517,27 +540,74 @@ class _Doctor_Category_Wise_FinalState
               // margin: EdgeInsets.only(top: 8),
               child: ElevatedButton(
                 onPressed: () {
-                  DoctorProvider.bookAppointment(
-                    context,
-                    Appointment_Model(
-                        doctor_address: widget.doctor.address,
-                        doctor_name: widget.doctor.name,
-                        doctor_qualification: 'MBBS , MS',
-                        date_for_booking: widget.date,
-                        mode_of_payment: 'online',
-                        self: true,
-                        reg_fee: '450',
-                        paid: true,
-                        doctorId: widget.doctor.email,
-                        slot: widget.slot,
-                        userId: user!.uid),
-                    widget.doc_Category,
-                  );
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const Appointment_Done_Page()),
-                  );
+                  if (isBlue2 == true) {
+                    if (_mobileNumber.text.length != 10 ||
+                        _email.text == "" ||
+                        _fullName.text == "") {
+                      showToastMessage('Please Enter The patient Details');
+                    } else if (isChecked == false) {
+                      showToastMessage('Please Accept T & C');
+                    } else {
+                      DoctorProvider.bookAppointment(
+                        context,
+                        Appointment_Model(
+                            name: _fullName.text,
+                            doctor_address: widget.doctor.address,
+                            doctor_name: widget.doctor.name,
+                            doctor_qualification: 'MBBS , MS',
+                            date_for_booking: widget.date,
+                            mode_of_payment: 'online',
+                            self: false,
+                            reg_fee: widget.doctor.reg_fee,
+                            paid: true,
+                            doctorId: widget.doctor.email,
+                            slot: widget.slot,
+                            userId: user!.uid),
+                        widget.doc_Category,
+                      );
+
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Appointment_Done_Page(
+                                  doctor: widget.doctor,
+                                  Status: DoctorProvider.status,
+                                )),
+                      );
+                    }
+                  } else {
+                    if (isChecked == false) {
+                      showToastMessage('Please Accept T & C');
+                    } else {
+                      DoctorProvider.bookAppointment(
+                        context,
+                        Appointment_Model(
+                            name:
+                                '${userProvider.user.firstName} ${userProvider.user.lastName}',
+                            doctor_address: widget.doctor.address,
+                            doctor_name: widget.doctor.name,
+                            doctor_qualification: 'MBBS , MS',
+                            date_for_booking: widget.date,
+                            mode_of_payment: 'online',
+                            self: true,
+                            reg_fee: widget.doctor.reg_fee,
+                            paid: true,
+                            doctorId: widget.doctor.email,
+                            slot: widget.slot,
+                            userId: user!.uid),
+                        widget.doc_Category,
+                      );
+
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Appointment_Done_Page(
+                                  doctor: widget.doctor,
+                                  Status: DoctorProvider.status,
+                                )),
+                      );
+                    }
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Color(0xFF1A6A83),

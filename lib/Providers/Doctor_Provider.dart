@@ -17,9 +17,11 @@ class Doctor_Provider with ChangeNotifier {
     notifyListeners();
   }
 
+  int status = -1;
+
   bookAppointment(
       context, Appointment_Model appointment, String doc_category) async {
-    await service.BookAppointment(context, doc_category, appointment);
+    status = await service.BookAppointment(context, doc_category, appointment);
     notifyListeners();
   }
 

@@ -56,8 +56,8 @@ class _Refer_And_Earn_PageState extends State<Refer_And_Earn_Page> {
                   SizedBox(
                     height: 10.h,
                   ),
-                  Image.network(
-                    "https://s3-alpha-sig.figma.com/img/dc9f/8c38/20c4e5b8a45e1599fc6fe5c6c04f4179?Expires=1699228800&Signature=EBXgb188NA2~ar9fVM8eWq2zZqYnc80aD4FVH8yp8yyeQcTroYMzfa5tRJNWNCe7qikLkQvGhXX9cU8uOP4VZ1iRYckzY69OcBIhFrdDcSqyzJfItH8jqT0cQR1vOozP1wHZFlCh6cJpmbi9f97ivBWDMsxAIeZmaTGVaM5GJULmJfFFi5~vbDi2ayYrzAvlipubE8OI2Mh7tyR5lHabAWPPyb4LeTDZ-45R3B9yY54u8Tb4Ar5NpDkqBoMvwqLz1Zp9ZfMCbNlV7P~6L2P999BnsordkpHxx6EtgvGYsbIR~5Uxm9FXar1XXESR3yNvLjTv0GoiWQwlBm5EGj0Zvw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4",
+                  Image.asset(
+                    "assets/Icons/image 59.png",
                     height: 270.h,
                     width: 298.w,
                   ),
@@ -117,10 +117,10 @@ class _Refer_And_Earn_PageState extends State<Refer_And_Earn_Page> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Image.network(
+                              Image.asset(
                                 height: 24.h,
                                 width: 30.w,
-                                'https://s3-alpha-sig.figma.com/img/fc39/822d/4f0d87c00046b984c9fbfc08eb3be9b6?Expires=1699228800&Signature=a5hFvuDmOq52eWJALNBvy5cOT1rvYru3UZOHBUN0eigKKHIn4vIzuQz2RNwFu0YP~~nbAZq4DCQ0~Py3YEZYvwVPbltMiNTyakxFAiljinBika5UT3cId~U8iOLuqmgVJvY9fUWfRnOoL50cFVg53HodXAJPE6qBnOh3v4v-Jp9n5sfIL-exD~UGmBdeyAlm5MCZ~uoPD9J79zwqsmiF5Tr33JQvQ4sH7J3B7vtKOXcfuq1tyI5avCs2V9n0FxD3cTWFKxVa-AvmNp6dLIYhJyjhpBN6kKdDkoYsfZcAWQlsN~gR3AAqV0cDYlGdXxUgyW0OGtGO5FmZEiM~1naJ4w__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                                'assets/Icons/image 57.png',
                               ),
                               Text(
                                 'Refer via Whatsapp',
@@ -166,10 +166,10 @@ class _Refer_And_Earn_PageState extends State<Refer_And_Earn_Page> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                Image.network(
+                                Image.asset(
                                   height: 24.h,
                                   width: 30.w,
-                                  'https://s3-alpha-sig.figma.com/img/ee6b/3f48/b89ad3b69027b4448422cdfd225c0901?Expires=1699228800&Signature=figvoE9HfxYgq8ZV4WeXdw8yYThj2vFISwHnUm3ygv7pCOrcNgG3qQxi41jf7duyAjKpQ4qmqTXbw7gRy674qLf1kleOWiCZ7Ci8TVHqd0-yHto80ZKgof6snUOJRYvwO1GHemfSkco7Z7be-deVKazxUJlgfGmg0FK9Eu1puQfaIIuaCWNBXHopU4-dmglnLn04hLr17dLmIDRqpeo2lP9XEo1W39-WM9IxrguCHnFBR9XeF-7URLTLFqVYfZhZSArtvbaIjo8ay2e1J4shUqTRv8YzFZs~ZtHrY4IxZ2YYh8PVx0Ng5RYK7ig9IsDqLmUTjo-yTmA-XVj~ft6b~Q__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                                  'assets/Icons/Facebook Logo.png',
                                 ),
                                 Text(
                                   'Refer via Facebook',

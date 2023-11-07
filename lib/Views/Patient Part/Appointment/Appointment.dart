@@ -1,6 +1,6 @@
 import 'package:doc_search/Bottom_Bar.dart';
-import 'package:doc_search/Providers/Doctor_Provider.dart';
-import 'package:doc_search/Providers/User_Provider.dart';
+import 'package:doc_search/Providers/User_Part_Provider/Doctor_Provider.dart';
+import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
 import 'package:doc_search/Views/Patient%20Part/Doctors/Doctors_Category_Wise.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Edit_Profile_LifeStyle.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Edit_User_Profile.dart';

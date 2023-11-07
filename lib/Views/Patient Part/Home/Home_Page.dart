@@ -14,7 +14,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
-import '../../../Providers/User_Provider.dart';
+import '../../../Providers/User_Part_Provider/User_Provider.dart';
 import '../Doctors/Doctors_Category_Wise.dart';
 import '../Profile/Profile_Page.dart';
 

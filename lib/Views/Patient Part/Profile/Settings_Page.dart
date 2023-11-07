@@ -1,5 +1,5 @@
 import 'package:doc_search/Bottom_Bar.dart';
-import 'package:doc_search/Providers/User_Provider.dart';
+import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
 import 'package:doc_search/Views/Not_Build_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Authentication/Login_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Change_PhoneNumber_Page.dart';

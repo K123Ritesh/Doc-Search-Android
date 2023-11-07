@@ -1,13 +1,7 @@
 import 'dart:io';
 
 import 'package:doc_search/Config/sizeConfig.dart';
-import 'package:doc_search/Providers/User_Provider.dart';
-import 'package:doc_search/Views/Patient%20Part/Profile/Activity_Level.dart';
-import 'package:doc_search/Views/Patient%20Part/Profile/Alcohol_Consumption.dart';
-import 'package:doc_search/Views/Patient%20Part/Profile/Chronic_Diseases.dart';
-import 'package:doc_search/Views/Patient%20Part/Profile/Food_Preference.dart';
-import 'package:doc_search/Views/Patient%20Part/Profile/Injuries.dart';
-import 'package:doc_search/Views/Patient%20Part/Profile/Occupation.dart';
+import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Profile_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Surgeries.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/current_medication.dart';
@@ -19,7 +13,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
+import 'Activity_Level.dart';
+import 'Alcohol_Consumption.dart';
 import 'Allergies.dart';
+import 'Chronic_Diseases.dart';
+import 'Food_Preference.dart';
+import 'Injuries.dart';
+import 'Occupation.dart';
 import 'Smoking.dart';
 import 'package:path/path.dart' as path;
 

@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:doc_search/Providers/User_Provider.dart';
+import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
 import 'package:doc_search/Views/Patient%20Part/Authentication/Login_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Home_Page.dart';
 
@@ -88,14 +88,14 @@ class _Signup_PageState extends State<Signup_Page> {
         'apointments': {
           'dummy_date': ['dummy appointment Id 1', 'dummy appointment Id 2'],
         },
-        "address": '',
-        'age': '',
-        'bloodGroup': '',
-        'landmark': '',
-        'pincode': '',
-        'profession': '',
-        'gender': '',
-        'profile_pic': '',
+        'address': ' ',
+        'age': ' ',
+        'bloodGroup': ' ',
+        'landmark': ' ',
+        'pincode': ' ',
+        'profession': ' ',
+        'gender': ' ',
+        'profile_pic': ' ',
       });
       print('User data saved successfully');
     } catch (e) {
@@ -597,7 +597,15 @@ class _OTPInputState extends State<OTPInput> {
         'city': widget.city,
         'apointments': {
           'dummy_date': ['dummy appointment Id 1', 'dummy appointment Id 2'],
-        }
+        },
+        'address': ' ',
+        'age': ' ',
+        'bloodGroup': ' ',
+        'landmark': ' ',
+        'pincode': ' ',
+        'profession': ' ',
+        'gender': ' ',
+        'profile_pic': ' ',
       });
       print('User data saved successfully');
     } catch (e) {

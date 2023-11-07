@@ -5,7 +5,7 @@ import 'package:doc_search/Models/User_Model.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'dart:core';
 
-import '../Models/Appointment_Model.dart';
+import '../../Models/Appointment_Model.dart';
 
 class UserServices {
   Future<PatientUser?> UserAllDetails(String uid) async {

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-import '../../../Providers/Doctor_Provider.dart';
+import '../../../Providers/User_Part_Provider/Doctor_Provider.dart';
 import 'Doctor_Category_Wise_Details.dart';
 
 class Doctors_Category_Wise extends StatefulWidget {

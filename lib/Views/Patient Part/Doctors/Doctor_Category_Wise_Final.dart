@@ -1,6 +1,6 @@
 import 'package:doc_search/Models/Appointment_Model.dart';
-import 'package:doc_search/Providers/Doctor_Provider.dart';
-import 'package:doc_search/Providers/User_Provider.dart';
+import 'package:doc_search/Providers/User_Part_Provider/Doctor_Provider.dart';
+import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
 import 'package:doc_search/Views/Patient%20Part/Doctors/Appointment_Done_Page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

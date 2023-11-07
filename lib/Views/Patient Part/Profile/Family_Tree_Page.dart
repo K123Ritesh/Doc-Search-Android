@@ -1,4 +1,4 @@
-import 'package:doc_search/Providers/User_Provider.dart';
+import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';

@@ -1,8 +1,8 @@
 import 'package:doc_search/Models/Appointment_Model.dart';
-import 'package:doc_search/Services/Doctor_Services.dart';
+import 'package:doc_search/Services/User_Part_Services/Doctor_Services.dart';
 import 'package:flutter/foundation.dart';
 
-import '../Models/Doctor.dart';
+import '../../Models/Doctor.dart';
 
 class Doctor_Provider with ChangeNotifier {
   List<Doctor>? acc_to_search = [];

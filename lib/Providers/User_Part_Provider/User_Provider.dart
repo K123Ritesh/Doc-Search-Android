@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:doc_search/Models/Appointment_Model.dart';
 import 'package:doc_search/Models/User_Model.dart';
-import 'package:doc_search/Services/User_Services.dart';
+import 'package:doc_search/Services/User_Part_Services/User_Services.dart';
 import 'package:flutter/material.dart';
 
 class User_Provider with ChangeNotifier {

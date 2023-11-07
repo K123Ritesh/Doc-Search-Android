@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:doc_search/Models/Medicine_Shop.dart';
-import 'package:doc_search/Services/Medicine_Shop_Services.dart';
+import 'package:doc_search/Services/User_Part_Services/Medicine_Shop_Services.dart';
 import 'package:flutter/material.dart';
 
 class Medicine_Shop_Provider with ChangeNotifier {

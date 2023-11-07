@@ -12,7 +12,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:path/path.dart' as path;
 import 'package:provider/provider.dart';
 
-import '../../../Providers/Medicine_Shop_Provider.dart';
+import '../../../Providers/User_Part_Provider/Medicine_Shop_Provider.dart';
 
 class Prescription_Upload_Page extends StatefulWidget {
   const Prescription_Upload_Page({super.key, required this.shopId});

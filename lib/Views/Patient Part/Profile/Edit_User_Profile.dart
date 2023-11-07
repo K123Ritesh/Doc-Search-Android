@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:doc_search/Config/sizeConfig.dart';
-import 'package:doc_search/Providers/User_Provider.dart';
+import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Profile_Page.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';

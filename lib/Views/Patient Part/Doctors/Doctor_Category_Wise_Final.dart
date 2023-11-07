@@ -340,97 +340,101 @@ class _Doctor_Category_Wise_FinalState
             SizedBox(
               height: 20,
             ),
-            Container(
-              width: 158,
-              height: 38,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: const Color(0xFFF1FDFF),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        if (isBlue1 == false) {
-                          isBlue1 = true;
-                          isBlue2 = false;
-                        }
-                      });
-                    },
-                    child: Container(
-                      width: 16,
-                      height: 18,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: isBlue1
-                            ? const Color(0xFF1A6A83)
-                            : Colors.transparent,
-                        border: Border.all(
-                          color: const Color(0xFF1A6A83),
-                          width: 2.0,
+            InkWell(
+              onTap: () {
+                setState(() {
+                  if (isBlue1 == false) {
+                    isBlue1 = true;
+                    isBlue2 = false;
+                  }
+                });
+              },
+              child: Container(
+                width: 158,
+                height: 38,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: const Color(0xFFF1FDFF),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    GestureDetector(
+                      child: Container(
+                        width: 16,
+                        height: 18,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: isBlue1
+                              ? const Color(0xFF1A6A83)
+                              : Colors.transparent,
+                          border: Border.all(
+                            color: const Color(0xFF1A6A83),
+                            width: 2.0,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Text(
-                    '${userProvider.user.firstName} ${userProvider.user.lastName}',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: const Color(0xFF1A6A83),
-                    ),
-                  )
-                ],
+                    Text(
+                      '${userProvider.user.firstName} ${userProvider.user.lastName}',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: const Color(0xFF1A6A83),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
             SizedBox(
               height: 10,
             ),
-            Container(
-              width: 158,
-              height: 38,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: const Color(0xFFF1FDFF),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        if (isBlue2 == false) {
-                          isBlue2 = true;
-                          isBlue1 = false;
-                        }
-                      });
-                    },
-                    child: Container(
-                      width: 16,
-                      height: 18,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: isBlue2
-                            ? const Color(0xFF1A6A83)
-                            : Colors.transparent,
-                        border: Border.all(
-                          color: const Color(0xFF1A6A83),
-                          width: 2.0,
+            InkWell(
+              onTap: () {
+                setState(() {
+                  if (isBlue2 == false) {
+                    isBlue2 = true;
+                    isBlue1 = false;
+                  }
+                });
+              },
+              child: Container(
+                width: 158,
+                height: 38,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: const Color(0xFFF1FDFF),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    GestureDetector(
+                      child: Container(
+                        width: 16,
+                        height: 18,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: isBlue2
+                              ? const Color(0xFF1A6A83)
+                              : Colors.transparent,
+                          border: Border.all(
+                            color: const Color(0xFF1A6A83),
+                            width: 2.0,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Text(
-                    'Someone else',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: const Color(0xFF1A6A83),
-                    ),
-                  )
-                ],
+                    Text(
+                      'Someone else',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: const Color(0xFF1A6A83),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
             SizedBox(
@@ -541,6 +545,8 @@ class _Doctor_Category_Wise_FinalState
                         _email.text == "" ||
                         _fullName.text == "") {
                       showToastMessage('Please Enter The patient Details');
+                    } else if (isChecked == false) {
+                      showToastMessage('Please Accept T & C');
                     } else {
                       DoctorProvider.bookAppointment(
                         context,
@@ -560,7 +566,7 @@ class _Doctor_Category_Wise_FinalState
                         widget.doc_Category,
                       );
 
-                      Navigator.push(
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                             builder: (context) => Appointment_Done_Page(
@@ -570,33 +576,37 @@ class _Doctor_Category_Wise_FinalState
                       );
                     }
                   } else {
-                    DoctorProvider.bookAppointment(
-                      context,
-                      Appointment_Model(
-                          name:
-                              '${userProvider.user.firstName} ${userProvider.user.lastName}',
-                          doctor_address: widget.doctor.address,
-                          doctor_name: widget.doctor.name,
-                          doctor_qualification: 'MBBS , MS',
-                          date_for_booking: widget.date,
-                          mode_of_payment: 'online',
-                          self: true,
-                          reg_fee: widget.doctor.reg_fee,
-                          paid: true,
-                          doctorId: widget.doctor.email,
-                          slot: widget.slot,
-                          userId: user!.uid),
-                      widget.doc_Category,
-                    );
+                    if (isChecked == false) {
+                      showToastMessage('Please Accept T & C');
+                    } else {
+                      DoctorProvider.bookAppointment(
+                        context,
+                        Appointment_Model(
+                            name:
+                                '${userProvider.user.firstName} ${userProvider.user.lastName}',
+                            doctor_address: widget.doctor.address,
+                            doctor_name: widget.doctor.name,
+                            doctor_qualification: 'MBBS , MS',
+                            date_for_booking: widget.date,
+                            mode_of_payment: 'online',
+                            self: true,
+                            reg_fee: widget.doctor.reg_fee,
+                            paid: true,
+                            doctorId: widget.doctor.email,
+                            slot: widget.slot,
+                            userId: user!.uid),
+                        widget.doc_Category,
+                      );
 
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => Appointment_Done_Page(
-                                doctor: widget.doctor,
-                                Status: DoctorProvider.status,
-                              )),
-                    );
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Appointment_Done_Page(
+                                  doctor: widget.doctor,
+                                  Status: DoctorProvider.status,
+                                )),
+                      );
+                    }
                   }
                 },
                 style: ElevatedButton.styleFrom(

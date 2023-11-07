@@ -1,5 +1,6 @@
 import 'package:doc_search/Bottom_Bar.dart';
 import 'package:doc_search/Providers/Doctor_Provider.dart';
+import 'package:doc_search/Providers/User_Provider.dart';
 import 'package:doc_search/Views/Patient%20Part/Doctors/Doctors_Category_Wise.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Edit_Profile_LifeStyle.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Edit_User_Profile.dart';
@@ -18,13 +19,16 @@ class Appointment1 extends StatefulWidget {
 }
 
 class _Appointment1State extends State<Appointment1> {
-  TextEditingController city = TextEditingController(text: 'Kolkata');
   TextEditingController specialization = TextEditingController(text: 'Dentist');
   int selectedOption = -1;
 
   List<String> options = ['Morning', 'Evening', 'Night'];
   @override
   Widget build(BuildContext context) {
+    final UserProvider = Provider.of<User_Provider>(context);
+    TextEditingController city =
+        TextEditingController(text: UserProvider.user.city);
+    final userProvider = Provider.of<User_Provider>(context);
     final DoctorProvider = Provider.of<Doctor_Provider>(context);
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Color(0xFF1A6A83),
@@ -40,11 +44,7 @@ class _Appointment1State extends State<Appointment1> {
             color: Colors.white,
           ),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => Profile_Page_Doc_Search()),
-            );
+            Navigator.pop(context);
           },
         ),
         title: Container(
@@ -447,9 +447,10 @@ class _Appointment1State extends State<Appointment1> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const Doctors(
-                                      doc_Category: '',
-                                    )),
+                                builder: (context) => Doctors_Category_Wise(
+                                    title: 'Doctors',
+                                    doc_Category: 'Dentist',
+                                    default_city: userProvider.user.city)),
                           );
                         },
                         style: ElevatedButton.styleFrom(

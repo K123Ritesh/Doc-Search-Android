@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../Bottom_Bar.dart';
+import '../Home/Home_Page.dart';
 
 class Appointment_Done_Page extends StatefulWidget {
   const Appointment_Done_Page(
@@ -33,6 +34,19 @@ class _Appointment_Done_PageState extends State<Appointment_Done_Page> {
     "November",
     "December"
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(seconds: 6), () {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => HomePage(),
+        ),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -194,8 +208,20 @@ class _Appointment_Done_PageState extends State<Appointment_Done_Page> {
                             );
                           },
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
+                              Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15.r),
+                                      color: Color.fromRGBO(0, 84, 115, 1)),
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10.0.w, vertical: 6.0.h),
+                                    child: Text(
+                                      "+91 9905411917",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  )),
                               Container(
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(15.r),

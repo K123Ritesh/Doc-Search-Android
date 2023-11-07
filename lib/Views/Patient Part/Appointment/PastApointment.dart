@@ -93,28 +93,39 @@ class _PastAppointmentState extends State<PastAppointment>
           )),
       bottomNavigationBar: Bottombar(SelectedIndex: 1),
       backgroundColor: const Color(0xFF1A6A83),
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF1A6A83),
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => Profile_Page_Doc_Search()),
-            );
-          },
-        ),
-        title: Container(
-            margin: EdgeInsets.only(left: 75.fw),
-            child: const Text(
-              'Appointments',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-            )),
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: const Color(0xFF1A6A83),
+      //   elevation: 0,
+      //   // leading: IconButton(
+      //   //   icon: const Icon(Icons.arrow_back_ios_new),
+      //   //   onPressed: () {
+      //   //     Navigator.push(
+      //   //       context,
+      //   //       MaterialPageRoute(
+      //   //           builder: (context) => Profile_Page_Doc_Search()),
+      //   //     );
+      //   //   },
+      //   // ),
+      //   title:
+      // ),
       body: Column(
         children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                  margin: EdgeInsets.only(
+                    top: 40.h,
+                  ),
+                  child: const Text(
+                    'Appointments',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600),
+                  )),
+            ],
+          ),
           Container(
             margin: EdgeInsets.only(top: 30),
             height: 25,

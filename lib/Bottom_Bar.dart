@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'Views/Patient Part/Appointment/PastApointment.dart';
+import 'Views/Patient Part/Profile/Appointments_Page.dart';
 
 class Bottombar extends StatefulWidget {
   @override
@@ -61,20 +62,23 @@ class _BottombarState extends State<Bottombar> {
           );
           break;
         case 1:
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => PastAppointment()),
-          );
+          Navigator.of(context).pushReplacement(MaterialPageRoute(
+              builder: (context) =>
+                  (userProvider.todayAppointmentModel.length == 0 &&
+                          userProvider.todayAppointmentModel.length == 0 &&
+                          userProvider.todayAppointmentModel.length == 0)
+                      ? Appointments_Page()
+                      : PastAppointment()));
           break;
         case 2:
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(
                 builder: (context) => Not_Build_Page(selectedIndex: 2)),
           );
           break;
         case 3:
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => Profile_Page_Doc_Search()),
           );

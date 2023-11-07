@@ -1,10 +1,12 @@
 import 'package:doc_search/Bottom_Bar.dart';
+import 'package:doc_search/Providers/User_Provider.dart';
 import 'package:doc_search/Views/Not_Build_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Change_PhoneNumber_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Feedback_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Privacy_Policy_Page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class Settings_Page extends StatefulWidget {
   const Settings_Page({super.key});
@@ -16,6 +18,7 @@ class Settings_Page extends StatefulWidget {
 class _Settings_PageState extends State<Settings_Page> {
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<User_Provider>(context);
     return Scaffold(
       bottomNavigationBar: Bottombar(SelectedIndex: 3),
       body: Container(
@@ -44,37 +47,50 @@ class _Settings_PageState extends State<Settings_Page> {
                 SizedBox(
                   height: 10.h,
                 ),
-                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  SizedBox(
-                    width: 20.w,
-                  ),
-                  Column(
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      CircleAvatar(
-                        child: Icon(Icons.person, size: 90),
-                        maxRadius: 50.r,
-                        backgroundColor: Colors.white,
-                      ),
                       SizedBox(
-                        height: 10.h,
+                        width: 20.w,
                       ),
-                      Text(
-                        "Ritesh Kumar",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 23.sp,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        "ritkumar@gmail.com | +91 9905411917",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18.sp,
-                            fontWeight: FontWeight.w400),
+                      Column(
+                        children: [
+                          CircleAvatar(
+                            child: userProvider.user.profilePicUrl == ''
+                                ? Icon(Icons.person,
+                                    color: Colors.blue, size: 90)
+                                : ClipOval(
+                                    child: Image.network(
+                                      userProvider.user.profilePicUrl,
+                                      width: 95.0.w,
+                                      height: 95.0.h,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                            maxRadius: 50.r,
+                            backgroundColor: Colors.white,
+                          ),
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          Text(
+                            "${userProvider.user.firstName} ${userProvider.user.lastName}",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 23.sp,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            "${userProvider.user.city} | ${userProvider.user.mobileNo}",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.w400),
+                          )
+                        ],
                       )
-                    ],
-                  )
-                ]),
+                    ]),
                 SizedBox(
                   height: 20.h,
                 ),

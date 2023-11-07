@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Doctors_Category_WiseDetails extends StatefulWidget {
   const Doctors_Category_WiseDetails(
@@ -544,7 +545,7 @@ class _Doctors_Category_WiseDetailsState
                         } else {
                           day = '${selectedOption + 1}';
                         }
-                        Navigator.push(
+                        Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) => Doctor_Category_Wise_Final(
@@ -566,34 +567,47 @@ class _Doctors_Category_WiseDetailsState
                 ),
                 Column(
                   children: [
-                    Container(
-                      height: 26,
-                      width: 182,
-                      margin: const EdgeInsets.only(top: 15),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF1A6A83),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: const Row(
-                        // mainAxisAlignment: MainAxisAlignment.,
-                        children: [
-                          SizedBox(
-                            width: 12,
-                          ),
-                          Icon(
-                            Icons.call,
-                            size: 12,
-                            color: Colors.white,
-                          ),
-                          SizedBox(
-                            width: 12,
-                          ),
-                          Center(
-                              child: Text(
-                            '+91 8796206025',
-                            style: TextStyle(color: Colors.white, fontSize: 12),
-                          )),
-                        ],
+                    InkWell(
+                      onTap: () async {
+                        final phoneNumber = "+918809149036";
+                        final url = "tel:$phoneNumber";
+
+                        if (await canLaunch(url)) {
+                          await launch(url);
+                        } else {
+                          print("Could not launch $url");
+                        }
+                      },
+                      child: Container(
+                        height: 26,
+                        width: 182,
+                        margin: const EdgeInsets.only(top: 15),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF1A6A83),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: const Row(
+                          // mainAxisAlignment: MainAxisAlignment.,
+                          children: [
+                            SizedBox(
+                              width: 12,
+                            ),
+                            Icon(
+                              Icons.call,
+                              size: 12,
+                              color: Colors.white,
+                            ),
+                            SizedBox(
+                              width: 12,
+                            ),
+                            Center(
+                                child: Text(
+                              '+91 8809149036',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 12),
+                            )),
+                          ],
+                        ),
                       ),
                     ),
                     Container(

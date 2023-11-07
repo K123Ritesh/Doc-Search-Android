@@ -54,8 +54,8 @@ class _Online_Consultations_PageState extends State<Online_Consultations_Page> {
                 SizedBox(
                   height: 50,
                 ),
-                Image.network(
-                  "https://s3-alpha-sig.figma.com/img/65d9/3189/09befb905ffe5770fc0e0866c30c7471?Expires=1699833600&Signature=SWUEpyXCJcWZbTG3maemn5JuNZPu-GxYd1mea5vYIfbFneYOYRdkKjeYD6uyBOxDjEzeNRRC1E1xPsJvr~eIbdurQc202SxOgkDeVoTvED3I4DEFZqK5P~bLtledPzutAppNcEDRwJoRhgMuMtD2m1iU~SKm-cSl~ij5jW~0gvfuOn31Bu1psatYWIkB12oCPWcVC~aaiherRxXH0zvVVd247bCICfli2W5-1zenGk3oH~hsCyHE-IFZ~4wcyo2pm7yJLTXv-UFY0~T830cOo2eUUGmysoO5XN8HyaXmutuOfIgopnHEEqH4ggWSuLn-9lzpUIzFgyzmkhl9~5OZqA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4",
+                Image.asset(
+                  "assets/Icons/Video call-bro 1.png",
                   height: 298,
                   width: 298,
                 ),

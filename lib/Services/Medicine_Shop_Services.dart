@@ -77,12 +77,6 @@ class Medicine_Shop_Services {
   Future<String?> uploadPrescriptionToFirebaseStorage(
       context, File file, String userId) async {
     try {
-      // final currentUser = FirebaseAuth.instance.currentUser;
-      // if (currentUser == null) {
-      //   // User not signed in.
-      //   return null;
-      // }
-
       final folderPath = 'Users/$userId/orders';
       final fileName = DateTime.now().millisecondsSinceEpoch.toString();
       final storageReference =

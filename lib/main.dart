@@ -61,7 +61,7 @@ class _SplashScreenState extends State<SplashScreen> {
     bool isLoggedIn = await isUserLoggedIn();
 
     // Delayed navigation based on login status
-    Future.delayed(Duration(seconds: 5), () {
+    Future.delayed(Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => isLoggedIn ? HomePage() : Login_Page(),

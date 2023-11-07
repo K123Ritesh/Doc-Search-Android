@@ -115,8 +115,8 @@ when the appointment is booked it should send notification to the respective
             if (slot != null) {
               // Slot already booked, delete the appointment document
               await appointmentRef.delete();
-              showToastMessage(
-                  'This slot is booked by someone else\nPlease Select another slot');
+              // showToastMessage(
+              //     'This slot is booked by someone else\nPlease Select another slot');
               print(
                   'Slot already booked by someone. Appointment document deleted.');
               return 0;

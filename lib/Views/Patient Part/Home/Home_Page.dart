@@ -10,6 +10,7 @@ import 'package:doc_search/Views/Patient%20Part/Home/Wallet_Page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Providers/User_Provider.dart';
@@ -69,6 +70,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<User_Provider>(context);
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.white));
     SizeConfig().init(context);
@@ -99,7 +101,16 @@ class _HomePageState extends State<HomePage> {
                       // margin: EdgeInsets.only(left: 10),
                       height: 45.fh,
                       width: 50.fw,
-                      child: Icon(Icons.person, color: Colors.blue, size: 39),
+                      child: userProvider.user.profilePicUrl == ''
+                          ? Icon(Icons.person, color: Colors.blue, size: 39)
+                          : ClipOval(
+                              child: Image.network(
+                                userProvider.user.profilePicUrl,
+                                width: 60.0.w,
+                                height: 60.0.h,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100.fh),
                         color: const Color.fromARGB(255, 111, 170, 219),
@@ -422,7 +433,7 @@ class _HomePageState extends State<HomePage> {
                           builder: (context) => Doctors_Category_Wise(
                                 title: 'Dentist',
                                 doc_Category: 'Dentist',
-                                default_city: 'Kolkata',
+                                default_city: userProvider.user.city,
                               )));
                     },
                     child: Container(
@@ -455,7 +466,7 @@ class _HomePageState extends State<HomePage> {
                           builder: (context) => Doctors_Category_Wise(
                                 title: 'Orthopedic',
                                 doc_Category: 'Orthopedic',
-                                default_city: 'Kolkata',
+                                default_city: userProvider.user.city,
                               )));
                     },
                     child: Container(
@@ -488,7 +499,7 @@ class _HomePageState extends State<HomePage> {
                           builder: (context) => Doctors_Category_Wise(
                                 title: 'Oncology',
                                 doc_Category: 'Oncology',
-                                default_city: 'Kolkata',
+                                default_city: userProvider.user.city,
                               )));
                     },
                     child: Container(
@@ -521,7 +532,7 @@ class _HomePageState extends State<HomePage> {
                           builder: (context) => Doctors_Category_Wise(
                                 title: 'Dermatology',
                                 doc_Category: 'Dermatology',
-                                default_city: 'Kolkata',
+                                default_city: userProvider.user.city,
                               )));
                     },
                     child: Container(
@@ -564,7 +575,7 @@ class _HomePageState extends State<HomePage> {
                             builder: (context) => Doctors_Category_Wise(
                                   title: 'Cardiology',
                                   doc_Category: 'Cardiology',
-                                  default_city: 'Kolkata',
+                                  default_city: userProvider.user.city,
                                 )));
                       },
                       child: Container(
@@ -596,7 +607,7 @@ class _HomePageState extends State<HomePage> {
                             builder: (context) => Doctors_Category_Wise(
                                   title: 'Gastrology',
                                   doc_Category: 'Gastrology',
-                                  default_city: 'Kolkata',
+                                  default_city: userProvider.user.city,
                                 )));
                       },
                       child: Container(
@@ -628,7 +639,7 @@ class _HomePageState extends State<HomePage> {
                             builder: (context) => Doctors_Category_Wise(
                                   title: 'Neurology',
                                   doc_Category: 'Neurology',
-                                  default_city: 'Kolkata',
+                                  default_city: userProvider.user.city,
                                 )));
                       },
                       child: Container(
@@ -660,7 +671,7 @@ class _HomePageState extends State<HomePage> {
                             builder: (context) => Doctors_Category_Wise(
                                   title: 'Pediatrics',
                                   doc_Category: 'Pediatrics',
-                                  default_city: 'Kolkata',
+                                  default_city: userProvider.user.city,
                                 )));
                       },
                       child: Container(

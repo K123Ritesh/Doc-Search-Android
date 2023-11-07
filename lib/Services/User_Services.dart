@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doc_search/Models/User_Model.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'dart:core';
 
 import '../Models/Appointment_Model.dart';
@@ -20,6 +23,14 @@ class UserServices {
           mobileNo: data['mobileNumber'],
           city: data['city'],
           appointments: data['apointments'],
+          profilePicUrl: data['profile_pic'],
+          address: data['address'],
+          age: data['age'],
+          bloodGrp: data['bloodGroup'],
+          landmark: data['landmark'],
+          pincode: data['pincode'],
+          profession: data['profession'],
+          gender: data['gender'],
         );
 
         print(user.appointments);
@@ -27,6 +38,7 @@ class UserServices {
         print(user.email);
         print(user.mobileNo);
         print('${user.firstName} ${user.lastName}');
+        print(user.profilePicUrl);
 
         return user;
       } else {
@@ -137,5 +149,58 @@ class UserServices {
       print('Error in Getting Appointment Details: $e');
     }
     return ans_list;
+  }
+
+  Future<void> createOrUpdateFields(
+      context, String userId, Map<String, dynamic> updatedData) async {
+    try {
+      CollectionReference collectionRef =
+          FirebaseFirestore.instance.collection('Users');
+      DocumentReference docRef = collectionRef.doc(userId);
+
+      await docRef.set(updatedData, SetOptions(merge: true));
+      print('Updated the data');
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> uploadProfilePic(context, File file, String userId) async {
+    try {
+      final folderPath = 'Users/$userId/image';
+
+      // List the items in the folder
+      final reference = FirebaseStorage.instance.ref(folderPath);
+      ListResult listResult = await reference.list();
+
+      // Check if there is exactly one item in the folder
+      if (listResult.items.length == 1) {
+        // Delete the existing file
+        await listResult.items[0].delete();
+      }
+
+      // Upload the new file
+      final fileName = DateTime.now().millisecondsSinceEpoch.toString();
+      final storageReference =
+          FirebaseStorage.instance.ref('$folderPath/$fileName');
+
+      UploadTask uploadTask = storageReference.putFile(file);
+
+      TaskSnapshot taskSnapshot = await uploadTask.whenComplete(() => {});
+
+      if (taskSnapshot.state == TaskState.success) {
+        final downloadURL = await storageReference.getDownloadURL();
+        final userRef =
+            FirebaseFirestore.instance.collection('Users').doc(userId);
+        await userRef.update({'profile_pic': downloadURL});
+
+        return;
+      } else {
+        throw 'Failed to upload file.';
+      }
+    } catch (e) {
+      print('Error uploading file and saving to Firestore: $e');
+      throw e;
+    }
   }
 }

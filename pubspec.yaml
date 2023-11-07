@@ -88,6 +88,7 @@ flutter:
     - assets/DocSearch Android/
     - assets/DocSearch Android (1)/
     - assets/lottie/
+    - assets/Icons/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

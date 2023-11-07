@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:doc_search/Models/Appointment_Model.dart';
 import 'package:doc_search/Models/User_Model.dart';
 import 'package:doc_search/Services/User_Services.dart';
@@ -10,12 +12,21 @@ class User_Provider with ChangeNotifier {
   List<String> pastAppointmentId = [];
   List<String> upcomingAppointmentId = [];
   PatientUser user = PatientUser(
-      email: '',
-      firstName: 'firstName',
-      lastName: 'lastName',
-      mobileNo: 'mobileNo',
-      city: 'city',
-      appointments: {});
+    email: '',
+    firstName: 'firstName',
+    lastName: 'lastName',
+    mobileNo: 'mobileNo',
+    city: 'city',
+    profilePicUrl: '',
+    appointments: {},
+    address: '',
+    age: '',
+    bloodGrp: '',
+    landmark: '',
+    pincode: '',
+    profession: '',
+    gender: '',
+  );
   bool isLoadingDetails = false;
 
   getUserDetails(context, String uid) async {
@@ -73,6 +84,18 @@ class User_Provider with ChangeNotifier {
     upcomingAppointmentModel =
         await userServices.AppointmentsList(context, upcomingAppointmentId);
     isLoadingUpcomingAppointmentModel = false;
+    notifyListeners();
+  }
+
+  // String? profilePicUrl;
+  uploadImage(context, File file, String userId) async {
+    await userServices.uploadProfilePic(context, file, userId);
+    notifyListeners();
+  }
+
+  updateProfile(
+      context, String userId, Map<String, dynamic> updatedData) async {
+    await userServices.createOrUpdateFields(context, userId, updatedData);
     notifyListeners();
   }
 }

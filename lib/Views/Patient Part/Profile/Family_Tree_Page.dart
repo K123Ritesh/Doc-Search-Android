@@ -1,5 +1,7 @@
+import 'package:doc_search/Providers/User_Provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class Family_Tree_Page extends StatefulWidget {
   const Family_Tree_Page({super.key});
@@ -12,6 +14,7 @@ class _Family_Tree_PageState extends State<Family_Tree_Page> {
   int n = 1;
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<User_Provider>(context);
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(0xFF1A6A83),
@@ -40,16 +43,25 @@ class _Family_Tree_PageState extends State<Family_Tree_Page> {
                   height: 85.h,
                   width: 85.w,
                   child: CircleAvatar(
-                    backgroundColor: Colors.blue,
-                    // You can add the image here
-                    // backgroundImage: NetworkImage('URL'),
+                    child: userProvider.user.profilePicUrl == ''
+                        ? Icon(Icons.person, color: Colors.blue, size: 90)
+                        : ClipOval(
+                            child: Image.network(
+                              userProvider.user.profilePicUrl,
+                              width: 95.0.w,
+                              height: 95.0.h,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                    maxRadius: 50.r,
+                    backgroundColor: Colors.white,
                   ),
                 ),
                 SizedBox(
                   height: 5.h,
                 ),
                 Text(
-                  'Vivek Sharma',
+                  '${userProvider.user.firstName} ${userProvider.user.lastName}',
                   style: TextStyle(
                       fontSize: 20.sp,
                       fontWeight: FontWeight.w500,
@@ -59,7 +71,7 @@ class _Family_Tree_PageState extends State<Family_Tree_Page> {
                   height: 5.h,
                 ),
                 Text(
-                  '27 Years',
+                  '${userProvider.user.age} Years',
                   style: TextStyle(
                       fontSize: 17.sp,
                       fontWeight: FontWeight.w500,
@@ -69,7 +81,7 @@ class _Family_Tree_PageState extends State<Family_Tree_Page> {
                   height: 5.h,
                 ),
                 Text(
-                  'B-9 Vasnat Kunj New Delhi',
+                  '${userProvider.user.address}',
                   style: TextStyle(
                       fontSize: 17.sp,
                       fontWeight: FontWeight.w500,
@@ -79,7 +91,7 @@ class _Family_Tree_PageState extends State<Family_Tree_Page> {
                   height: 5.h,
                 ),
                 Text(
-                  '+91 9876543210',
+                  '${userProvider.user.mobileNo}',
                   style: TextStyle(
                       fontSize: 17.sp,
                       fontWeight: FontWeight.w500,
@@ -135,7 +147,9 @@ class _Family_Tree_PageState extends State<Family_Tree_Page> {
                 InkWell(
                   onTap: () {
                     setState(() {
-                      n++;
+                      if (n <= 5) {
+                        n++;
+                      }
                     });
                   },
                   child: Container(
@@ -159,7 +173,9 @@ class _Family_Tree_PageState extends State<Family_Tree_Page> {
                   ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
                   child: Container(
                     decoration: BoxDecoration(
                         color: Color.fromARGB(255, 15, 79, 131),
@@ -193,15 +209,15 @@ class _Family_Tree_PageState extends State<Family_Tree_Page> {
 }
 
 class Person_Details extends StatelessWidget {
-  const Person_Details({super.key, required this.n});
+  Person_Details({super.key, required this.n});
   final int n;
-
+  List<String> suffix = ['st', 'nd', 'rd', 'th', 'th', 'th'];
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Text(
-          '${n + 1} Person',
+          '${n + 1}${suffix[n]} Person',
           style: TextStyle(
               color: Colors.white,
               fontSize: 21.sp,
@@ -214,7 +230,7 @@ class Person_Details extends StatelessWidget {
         SizedBox(
           height: 15.h,
         ),
-        RoundedTextField(hintText: 'Full Name'),
+        RoundedTextField(hintText: 'Aadhar Number'),
         SizedBox(
           height: 15.h,
         ),
@@ -278,6 +294,28 @@ class _RoundedDropdownFieldState extends State<RoundedDropdownField> {
         borderRadius: BorderRadius.circular(10.0.r),
       ),
       child: TextField(
+        readOnly: true,
+        onTap: () {
+          showModalBottomSheet(
+            context: context,
+            builder: (context) {
+              return ListView(
+                children: widget.items.map((item) {
+                  return ListTile(
+                    title: Text(item),
+                    onTap: () {
+                      setState(() {
+                        _selectedItem = item;
+                        text.text = item;
+                      });
+                      Navigator.pop(context);
+                    },
+                  );
+                }).toList(),
+              );
+            },
+          );
+        },
         controller: text,
         decoration: InputDecoration(
           suffixIcon: IconButton(

@@ -1,6 +1,7 @@
 import 'package:doc_search/Models/Doctor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../Bottom_Bar.dart';
@@ -198,19 +199,21 @@ class _Appointment_Done_PageState extends State<Appointment_Done_Page> {
                         SizedBox(
                           height: 15.h,
                         ),
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      MapWebView(place: widget.doctor.address)),
-                            );
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            InkWell(
+                              onTap: () async {
+                                final phoneNumber = "+919905411917";
+                                final url = "tel:$phoneNumber";
+
+                                if (await canLaunch(url)) {
+                                  await launch(url);
+                                } else {
+                                  print("Could not launch $url");
+                                }
+                              },
+                              child: Container(
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(15.r),
                                       color: Color.fromRGBO(0, 84, 115, 1)),
@@ -222,7 +225,17 @@ class _Appointment_Done_PageState extends State<Appointment_Done_Page> {
                                       style: TextStyle(color: Colors.white),
                                     ),
                                   )),
-                              Container(
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => MapWebView(
+                                          place: widget.doctor.address)),
+                                );
+                              },
+                              child: Container(
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(15.r),
                                       color: Color.fromRGBO(0, 84, 115, 1)),
@@ -234,8 +247,8 @@ class _Appointment_Done_PageState extends State<Appointment_Done_Page> {
                                       style: TextStyle(color: Colors.white),
                                     ),
                                   )),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ],
                     ),

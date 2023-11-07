@@ -446,7 +446,7 @@ class _EditUserProfileState extends State<EditUserProfile>
                               },
                               inputFormatters: [
                                 FilteringTextInputFormatter.allow(
-                                    RegExp(r'[a-zA-Z]')),
+                                    RegExp(r'[ a-zA-Z]')),
                               ],
                               decoration: InputDecoration(
                                   prefixIcon: Icon(Icons.landscape),

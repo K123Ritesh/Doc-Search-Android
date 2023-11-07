@@ -359,7 +359,7 @@ class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
                 InkWell(
                   onTap: () async {
                     await _auth.signOut();
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => Login_Page()),
                     );

@@ -93,7 +93,7 @@ class _Login_PageState extends State<Login_Page> {
         },
         codeSent: (String verificationId, int? resendToken) {
           Login_Page.verify = verificationId;
-          Navigator.of(context).push(MaterialPageRoute(
+          Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: (context) => OTP_Entering_Page(phoneNo: fullPhoneNumber),
           ));
         },

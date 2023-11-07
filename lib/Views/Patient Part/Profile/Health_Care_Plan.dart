@@ -24,8 +24,22 @@ class _Health_Care_PlanState extends State<Health_Care_Plan> {
   List<String> premium_type = [
     'Bronze Plan(Yearly)',
     'Silver Plan(Yearly)',
-    'Golden Plan(Yearly)',
-    'Diamond Plan(Yearly)'
+    'Gold Plan(Yearly)',
+    'Platinum Plan(Yearly)'
+  ];
+
+  List<String> person_type = [
+    'Single Person',
+    'Couples',
+    'Couple + Kids',
+    'Gold Plan + Parents'
+  ];
+
+  List<Widget> page_to_open = [
+    Bronze_Plan_Detailed(),
+    Silver_Plan_detailed(),
+    Gold_Plan_Detailed(),
+    Platinum_Plan_Detailed()
   ];
 
   List<String> amount = ['₹999/Year', '₹1999/Year', '₹2999/Year', '₹3999/Year'];
@@ -161,21 +175,25 @@ class _Health_Care_PlanState extends State<Health_Care_Plan> {
               CarouselSlider(
                 items: [
                   Container_for_Premium(
+                    person_type: person_type[selectedIndex],
                     details: details[selectedIndex],
                     isSelected: selectedIndex == 0,
                     type: premium_type[selectedIndex],
                   ),
                   Container_for_Premium(
+                    person_type: person_type[selectedIndex],
                     details: details[selectedIndex],
                     isSelected: selectedIndex == 1,
                     type: premium_type[selectedIndex],
                   ),
                   Container_for_Premium(
+                    person_type: person_type[selectedIndex],
                     details: details[selectedIndex],
                     isSelected: selectedIndex == 2,
                     type: premium_type[selectedIndex],
                   ),
                   Container_for_Premium(
+                    person_type: person_type[selectedIndex],
                     details: details[selectedIndex],
                     isSelected: selectedIndex == 3,
                     type: premium_type[selectedIndex],
@@ -199,26 +217,6 @@ class _Health_Care_PlanState extends State<Health_Care_Plan> {
                   },
                 ),
               ),
-              // SingleChildScrollView(
-              //   scrollDirection: Axis.horizontal,
-              //   child: Row(
-              //     children: [
-              //       for (int i = 0; i < 4; i++)
-              //         InkWell(
-              //           onTap: () {
-              //             setState(() {
-              //               selectedIndex = i;
-              //             });
-              //           },
-              //           child: Container_for_Premium(
-              //             details: details[i],
-              //             isSelected: i == selectedIndex,
-              //             type: premium_type[i],
-              //           ),
-              //         )
-              //     ],
-              //   ),
-              // ),
               SizedBox(
                 height: 20.h,
               ),
@@ -279,8 +277,7 @@ class _Health_Care_PlanState extends State<Health_Care_Plan> {
                 child: InkWell(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>
-                            Health_Care_Plan_Detailed_Page()));
+                        builder: (context) => page_to_open[selectedIndex]));
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -325,11 +322,14 @@ class Container_for_Premium extends StatelessWidget {
       {super.key,
       required this.details,
       required this.type,
-      required this.isSelected});
+      required this.isSelected,
+      required this.person_type});
 
   final String details;
   final String type;
   final bool isSelected;
+
+  final String person_type;
 
   @override
   Widget build(BuildContext context) {
@@ -376,7 +376,7 @@ class Container_for_Premium extends StatelessWidget {
                               width: 20.w,
                             ),
                             Text(
-                              '(Single Person',
+                              '($person_type',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20.sp,

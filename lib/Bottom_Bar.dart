@@ -2,6 +2,7 @@ import 'package:doc_search/Providers/User_Provider.dart';
 import 'package:doc_search/Views/Final_Home_Page.dart';
 import 'package:doc_search/Views/Not_Build_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Home_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Home/Wallet_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Profile_Page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -73,8 +74,7 @@ class _BottombarState extends State<Bottombar> {
         case 2:
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(
-                builder: (context) => Not_Build_Page(selectedIndex: 2)),
+            MaterialPageRoute(builder: (context) => Wallet()),
           );
           break;
         case 3:
@@ -115,8 +115,8 @@ class _BottombarState extends State<Bottombar> {
             label: 'Appointment',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            label: 'Chats',
+            icon: Icon(Icons.wallet),
+            label: 'Wallet',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),

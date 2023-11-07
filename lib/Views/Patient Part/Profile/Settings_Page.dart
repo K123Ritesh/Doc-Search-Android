@@ -1,9 +1,11 @@
 import 'package:doc_search/Bottom_Bar.dart';
 import 'package:doc_search/Providers/User_Provider.dart';
 import 'package:doc_search/Views/Not_Build_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Authentication/Login_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Change_PhoneNumber_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Feedback_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Privacy_Policy_Page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -196,26 +198,36 @@ class _Settings_PageState extends State<Settings_Page> {
                 SizedBox(
                   height: 220.h,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          color: Colors.black,
-                          borderRadius: BorderRadius.circular(10.r)),
-                      height: 40.h,
-                      width: 230.w,
-                      child: Center(
-                        child: Text(
-                          'Log Out',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 22.sp,
-                              fontWeight: FontWeight.w400),
+                InkWell(
+                  onTap: () async {
+                    final FirebaseAuth _auth = FirebaseAuth.instance;
+                    await _auth.signOut();
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => Login_Page()),
+                    );
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(10.r)),
+                        height: 40.h,
+                        width: 230.w,
+                        child: Center(
+                          child: Text(
+                            'Log Out',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 22.sp,
+                                fontWeight: FontWeight.w400),
+                          ),
                         ),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 )
               ],
             ),

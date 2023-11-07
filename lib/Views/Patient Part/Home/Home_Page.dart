@@ -11,6 +11,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Providers/User_Provider.dart';
@@ -119,7 +120,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   SizedBox(
-                    width: 195.fw,
+                    width: 215.fw,
                   ),
                   InkWell(
                     onTap: () {
@@ -129,24 +130,21 @@ class _HomePageState extends State<HomePage> {
                       );
                     },
                     child: Container(
-                      decoration: BoxDecoration(
-                          color: Color(0XFFECFAFC),
-                          borderRadius: BorderRadius.circular(6.fh)),
+                      // decoration: BoxDecoration(
+                      // color: Color(0XFFECFAFC),
+                      // borderRadius: BorderRadius.circular(6.fh)),
                       child: Padding(
                         padding: EdgeInsets.all(2.fh),
                         child: Row(
                           children: [
-                            Icon(
-                              Icons.account_balance_wallet,
-                              color: Color(0xFF005473),
-                              size: 25.fh,
-                            ),
-                            SizedBox(width: 5.fw),
-                            Text(
-                              '100',
-                              style: TextStyle(
-                                  fontSize: 18.fh, color: Colors.black),
-                            ),
+                            Lottie.asset('assets/lottie/Notification.json',
+                                height: 50.h, width: 50.w, fit: BoxFit.fill),
+                            // SizedBox(width: 5.fw),
+                            // Text(
+                            //   '100',
+                            //   style: TextStyle(
+                            //       fontSize: 18.fh, color: Colors.black),
+                            // ),
                           ],
                         ),
                       ),

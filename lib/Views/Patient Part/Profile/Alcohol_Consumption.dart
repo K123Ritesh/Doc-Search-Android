@@ -1,20 +1,20 @@
+import 'package:doc_search/Views/Patient%20Part/Profile/Edit_User_Profile.dart';
+import 'package:doc_search/Views/Patient%20Part/Profile/Profile_Page.dart';
 import 'package:flutter/material.dart';
 
-import 'Edit_User_Profile.dart';
-import 'Profile_Page.dart';
-
-class SmokingHabbit extends StatefulWidget {
-  const SmokingHabbit({super.key});
+class Alcohol_Consumption extends StatefulWidget {
+  const Alcohol_Consumption({super.key});
 
   @override
-  State<SmokingHabbit> createState() => _SmokingHabbitState();
+  State<Alcohol_Consumption> createState() => _Alcohol_ConsumptionState();
 }
 
-class _SmokingHabbitState extends State<SmokingHabbit> {
+class _Alcohol_ConsumptionState extends State<Alcohol_Consumption> {
   bool isBlueNo = false;
-  bool isBlueUsedToQuit = false;
-  bool isBlue5LessPerDay = false;
-  bool isBlue5MorePerDay = false;
+  bool AddAllergy = false;
+  bool AddSocial = false;
+  bool AddRegular = false;
+  bool AddHeavy = false;
 
   void toggleColorNo() {
     setState(() {
@@ -22,21 +22,24 @@ class _SmokingHabbitState extends State<SmokingHabbit> {
     });
   }
 
-  void toggleColorUsedToQuit() {
+  void toggleColorAddAllergy() {
     setState(() {
-      isBlueUsedToQuit = !isBlueUsedToQuit;
+      AddAllergy = !AddAllergy;
     });
   }
-
-  void toggleColor5LessPerDay() {
+  void toggleColorAddSocial() {
     setState(() {
-      isBlue5LessPerDay = !isBlue5LessPerDay;
+      AddSocial = !AddSocial;
     });
   }
-
-  void toggleColor5MorePerDay() {
+  void toggleColorAddRegular() {
     setState(() {
-      isBlue5MorePerDay = !isBlue5MorePerDay;
+      AddRegular = !AddRegular;
+    });
+  }
+  void toggleColorAddHeavy() {
+    setState(() {
+      AddHeavy = !AddHeavy;
     });
   }
 
@@ -58,7 +61,7 @@ class _SmokingHabbitState extends State<SmokingHabbit> {
         title: Container(
             margin: EdgeInsets.only(left: 80),
             child: Text(
-              'Smoking Habits',
+              'Alcohol Consumption',
               style: TextStyle(
                   color: Colors.black,
                   fontSize: 18,
@@ -68,12 +71,12 @@ class _SmokingHabbitState extends State<SmokingHabbit> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-              margin: EdgeInsets.only(left: 48),
-              child: Text(
-                'Do you smoke?',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-              )),
+          // Container(
+          //     margin: EdgeInsets.only(left: 48),
+          //     child: Text(
+          //       'Are you allergic to anything?',
+          //       style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+          //     )),
           Center(
             child: Column(
               children: [
@@ -91,7 +94,7 @@ class _SmokingHabbitState extends State<SmokingHabbit> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
-                          'No',
+                          'Non-Drinker',
                           style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w400,
@@ -143,18 +146,18 @@ class _SmokingHabbitState extends State<SmokingHabbit> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
-                          'I used to, but I’ve quit',
+                          'Rare',
                           style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w400,
                               color: Colors.white),
                         ),
                         InkWell(
-                          onTap: toggleColorUsedToQuit,
+                          onTap: toggleColorAddAllergy,
                           child: Container(
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              gradient: isBlueUsedToQuit
+                              gradient: AddAllergy
                                   ? LinearGradient(
                                       colors: [
                                         Color(0xFF0059C8),
@@ -195,18 +198,18 @@ class _SmokingHabbitState extends State<SmokingHabbit> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
-                          '5 < day',
+                          'Social',
                           style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w400,
                               color: Colors.white),
                         ),
                         InkWell(
-                          onTap: toggleColor5LessPerDay,
+                          onTap: toggleColorAddSocial,
                           child: Container(
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              gradient: isBlue5LessPerDay
+                              gradient: AddSocial
                                   ? LinearGradient(
                                       colors: [
                                         Color(0xFF0059C8),
@@ -247,18 +250,18 @@ class _SmokingHabbitState extends State<SmokingHabbit> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
-                          '5 > day',
+                          'Regular',
                           style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w400,
                               color: Colors.white),
                         ),
                         InkWell(
-                          onTap: toggleColor5MorePerDay,
+                          onTap: toggleColorAddRegular,
                           child: Container(
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              gradient: isBlue5MorePerDay
+                              gradient: AddRegular
                                   ? LinearGradient(
                                       colors: [
                                         Color(0xFF0059C8),
@@ -285,6 +288,59 @@ class _SmokingHabbitState extends State<SmokingHabbit> {
                     ),
                   ),
                 ),
+                Container(
+                  margin: const EdgeInsets.only(top: 20),
+                  height: 50,
+                  width: 320,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: const Color(0xFF1A6A83),
+                  ),
+                  child: Container(
+                    margin: const EdgeInsets.only(left: 20, right: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Heavy',
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white),
+                        ),
+                        InkWell(
+                          onTap: toggleColorAddHeavy,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              gradient: AddHeavy
+                                  ? LinearGradient(
+                                      colors: [
+                                        Color(0xFF0059C8),
+                                        Color(0xFF0059C8)
+                                      ],
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                    )
+                                  : LinearGradient(
+                                      colors: [
+                                        Color(0xFFFFFFFF),
+                                        Color(0xFFFFFFFF)
+                                      ],
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                    ),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                
               ],
             ),
           ),

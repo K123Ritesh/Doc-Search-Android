@@ -2,14 +2,14 @@ import 'package:doc_search/Views/Patient%20Part/Profile/Edit_User_Profile.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Profile_Page.dart';
 import 'package:flutter/material.dart';
 
-class Allergies extends StatefulWidget {
-  const Allergies({super.key});
+class Current_Medication extends StatefulWidget {
+  const Current_Medication({super.key});
 
   @override
-  State<Allergies> createState() => _AllergiesState();
+  State<Current_Medication> createState() => _Current_MedicationState();
 }
 
-class _AllergiesState extends State<Allergies> {
+class _Current_MedicationState extends State<Current_Medication> {
   bool isBlueNo = false;
   bool isBlueAddAllergy = false;
 
@@ -37,16 +37,13 @@ class _AllergiesState extends State<Allergies> {
             color: Colors.black,
           ),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => EditUserProfile()),
-            );
+            Navigator.pop(context);
           },
         ),
         title: Container(
             margin: EdgeInsets.only(left: 80),
             child: Text(
-              'Allergies',
+              'Current Medication',
               style: TextStyle(
                   color: Colors.black,
                   fontSize: 18,
@@ -59,7 +56,7 @@ class _AllergiesState extends State<Allergies> {
           Container(
               margin: EdgeInsets.only(left: 48),
               child: Text(
-                'Are you allergic to anything?',
+                'Are you taking any medicine at a moment?',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               )),
           Center(
@@ -131,7 +128,7 @@ class _AllergiesState extends State<Allergies> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
-                          'Add an allergy',
+                          'Add a medication',
                           style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w400,

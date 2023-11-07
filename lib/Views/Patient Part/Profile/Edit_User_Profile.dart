@@ -2,7 +2,16 @@ import 'dart:io';
 
 import 'package:doc_search/Config/sizeConfig.dart';
 import 'package:doc_search/Providers/User_Provider.dart';
+import 'package:doc_search/Views/Patient%20Part/Profile/Activity_Level.dart';
+import 'package:doc_search/Views/Patient%20Part/Profile/Alcohol_Consumption.dart';
+import 'package:doc_search/Views/Patient%20Part/Profile/Chronic_Diseases.dart';
+import 'package:doc_search/Views/Patient%20Part/Profile/Food_Preference.dart';
+import 'package:doc_search/Views/Patient%20Part/Profile/Injuries.dart';
+import 'package:doc_search/Views/Patient%20Part/Profile/Occupation.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Profile_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Profile/Surgeries.dart';
+import 'package:doc_search/Views/Patient%20Part/Profile/current_medication.dart';
+import 'package:doc_search/Views/Patient%20Part/Profile/past_medication.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -671,7 +680,13 @@ class _EditUserProfileState extends State<EditUserProfile>
                                       fontWeight: FontWeight.w400),
                                 ),
                                 GestureDetector(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Current_Medication()),
+                                    );
+                                  },
                                   child: const Text(
                                     'add',
                                     style: TextStyle(
@@ -704,7 +719,13 @@ class _EditUserProfileState extends State<EditUserProfile>
                                       fontWeight: FontWeight.w400),
                                 ),
                                 GestureDetector(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Pass_Medication()),
+                                    );
+                                  },
                                   child: const Text(
                                     'add',
                                     style: TextStyle(
@@ -737,7 +758,13 @@ class _EditUserProfileState extends State<EditUserProfile>
                                       fontWeight: FontWeight.w400),
                                 ),
                                 GestureDetector(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Chronic_Diseases()),
+                                    );
+                                  },
                                   child: const Text(
                                     'add',
                                     style: TextStyle(
@@ -770,7 +797,13 @@ class _EditUserProfileState extends State<EditUserProfile>
                                       fontWeight: FontWeight.w400),
                                 ),
                                 GestureDetector(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Injuries()),
+                                    );
+                                  },
                                   child: const Text(
                                     'add',
                                     style: TextStyle(
@@ -803,7 +836,13 @@ class _EditUserProfileState extends State<EditUserProfile>
                                       fontWeight: FontWeight.w400),
                                 ),
                                 GestureDetector(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Surgeries()),
+                                    );
+                                  },
                                   child: const Text(
                                     'add',
                                     style: TextStyle(
@@ -884,7 +923,13 @@ class _EditUserProfileState extends State<EditUserProfile>
                                       fontWeight: FontWeight.w400),
                                 ),
                                 GestureDetector(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Alcohol_Consumption()),
+                                    );
+                                  },
                                   child: const Text(
                                     'add',
                                     style: TextStyle(
@@ -917,7 +962,13 @@ class _EditUserProfileState extends State<EditUserProfile>
                                       fontWeight: FontWeight.w400),
                                 ),
                                 GestureDetector(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Activity_Level()),
+                                    );
+                                  },
                                   child: const Text(
                                     'add',
                                     style: TextStyle(
@@ -950,7 +1001,13 @@ class _EditUserProfileState extends State<EditUserProfile>
                                       fontWeight: FontWeight.w400),
                                 ),
                                 GestureDetector(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Food_Preference()),
+                                    );
+                                  },
                                   child: const Text(
                                     'add',
                                     style: TextStyle(
@@ -983,7 +1040,13 @@ class _EditUserProfileState extends State<EditUserProfile>
                                       fontWeight: FontWeight.w400),
                                 ),
                                 GestureDetector(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Occupation()),
+                                    );
+                                  },
                                   child: const Text(
                                     'add',
                                     style: TextStyle(

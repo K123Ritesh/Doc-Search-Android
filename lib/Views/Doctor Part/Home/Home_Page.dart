@@ -1,4 +1,3 @@
-import 'package:doc_search/Bottom_Bar.dart';
 import 'package:doc_search/Views/Doctor%20Part/Home/Appointment_Patient_Details_Page.dart';
 import 'package:doc_search/Views/Doctor%20Part/Profile/Online_Consultations_Page.dart';
 import 'package:doc_search/Views/Doctor%20Part/Profile/Profile_Page.dart';
@@ -9,6 +8,8 @@ import 'package:doc_search/Views/Patient%20Part/Profile/Health_Care_Plan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../Doctor_bottomBar.dart';
 
 class Doctor_Home_Page extends StatefulWidget {
   const Doctor_Home_Page({super.key});
@@ -399,7 +400,7 @@ class _Doctor_Home_PageState extends State<Doctor_Home_Page> {
           AppointmentId_Searched()
         ],
       ),
-      bottomNavigationBar: Bottombar(
+      bottomNavigationBar: DoctorBottombar(
         SelectedIndex: 0,
       ),
     );
@@ -420,7 +421,7 @@ class AppointmentId_Searched extends StatelessWidget {
         },
         child: Container(
           decoration: BoxDecoration(
-              color: const Color(0xFF155467),
+              color: const Color(0xFF1B6A85),
               borderRadius: BorderRadius.circular(15.r)),
           child: Row(
             children: [

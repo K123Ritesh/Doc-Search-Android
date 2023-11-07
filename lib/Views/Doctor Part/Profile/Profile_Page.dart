@@ -1,11 +1,9 @@
 import 'package:doc_search/Views/Doctor%20Part/Profile/Online_Consultations_Page.dart';
 import 'package:doc_search/Views/Doctor%20Part/Profile/Settings_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Refer_And_Earn_Page.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import '../../../Bottom_Bar.dart';
+import '../../../Doctor_bottomBar.dart';
 
 class Doctor_Profile_Page extends StatelessWidget {
   @override
@@ -14,7 +12,7 @@ class Doctor_Profile_Page extends StatelessWidget {
       statusBarColor: const Color(0xFF155467),
     ));
     return Scaffold(
-      bottomNavigationBar: Bottombar(SelectedIndex: 3),
+      bottomNavigationBar: DoctorBottombar(SelectedIndex: 3),
       body: Container(
           decoration: BoxDecoration(
             color: const Color(0xFF155467),
@@ -43,10 +41,11 @@ class Doctor_Profile_Page extends StatelessWidget {
                   Column(
                     children: [
                       InkWell(
-                          // onTap: () {
+                          onTap: () {
+                            Navigator.pop(context);
                           //   Navigator.of(context).push(MaterialPageRoute(
                           //       builder: (context) => EditUserProfile()));
-                          // },
+                          },
                           child: Stack(
                         children: <Widget>[
                           CircleAvatar(

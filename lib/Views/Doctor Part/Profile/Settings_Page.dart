@@ -1,4 +1,4 @@
-import 'package:doc_search/Bottom_Bar.dart';
+import 'package:doc_search/Doctor_bottomBar.dart';
 import 'package:doc_search/Views/Doctor%20Part/Profile/Change_Password.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Privacy_Policy_Page.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +14,7 @@ class _Doctors_Setting_PageState extends State<Doctors_Setting_Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Bottombar(SelectedIndex: 3),
+      bottomNavigationBar: DoctorBottombar(SelectedIndex: 3),
       body: Container(
           decoration: BoxDecoration(
             color: const Color(0xFF155467),

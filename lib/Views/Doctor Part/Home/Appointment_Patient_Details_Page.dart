@@ -1,3 +1,4 @@
+import 'package:doc_search/Views/Doctor%20Part/Home/Appointment_Prescription.dart';
 import 'package:doc_search/Views/Doctor%20Part/Home/Home_Page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,7 @@ class _Appointment_Patient_Details_PageState
       ),
       body: Container(
           decoration: BoxDecoration(
-            color: const Color(0xFF155467),
+            color: const Color(0xFF1B6A85),
           ),
           child: Padding(
             padding: EdgeInsets.all(8.0.w),
@@ -60,33 +61,6 @@ class _Appointment_Patient_Details_PageState
                 height: 10.h,
               ),
               AppointmentId_Searched(),
-              SizedBox(
-                height: 20.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(10.r)),
-                    height: 40.h,
-                    width: 200.w,
-                    child: Center(
-                      child: Text(
-                        'Prescription',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.sp,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
               Padding(
                 padding: EdgeInsets.all(8.0.w),
                 child: Container(
@@ -311,7 +285,37 @@ class _Appointment_Patient_Details_PageState
                 ),
               ),
               SizedBox(
-                height: 30.h,
+                height: 10.h,
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => Appointment_Prescription()));
+                },
+                child: Container(
+                  margin: EdgeInsets.only(right: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(10.r)),
+                        height: 28.h,
+                        width: 77.w,
+                        child: Center(
+                          child: Text(
+                            'Proceed',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14.h,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
               )
             ]),
           )),

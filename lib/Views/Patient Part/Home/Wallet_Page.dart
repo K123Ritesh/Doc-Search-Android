@@ -55,12 +55,7 @@ class _WalletState extends State<Wallet> with SingleTickerProviderStateMixin {
                               color: Colors.black,
                             ),
                             onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const HomePage(),
-                                ),
-                              );
+                              Navigator.pop(context);
                             },
                           ),
                           Container(

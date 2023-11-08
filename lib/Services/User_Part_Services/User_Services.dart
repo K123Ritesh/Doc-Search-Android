@@ -17,21 +17,30 @@ class UserServices {
         Map<dynamic, dynamic> data =
             documentSnapshot.data() as Map<String, dynamic>;
         PatientUser user = PatientUser(
-          email: data['email'],
-          firstName: data['firstName'],
-          lastName: data['lastName'],
-          mobileNo: data['mobileNumber'],
-          city: data['city'],
-          appointments: data['apointments'],
-          profilePicUrl: data['profile_pic'],
-          address: data['address'],
-          age: data['age'],
-          bloodGrp: data['bloodGroup'],
-          landmark: data['landmark'],
-          pincode: data['pincode'],
-          profession: data['profession'],
-          gender: data['gender'],
-        );
+            email: data['email'],
+            firstName: data['firstName'],
+            lastName: data['lastName'],
+            mobileNo: data['mobileNumber'],
+            city: data['city'],
+            appointments: data['apointments'],
+            profilePicUrl: data['profile_pic'],
+            address: data['address'],
+            age: data['age'],
+            bloodGrp: data['bloodGroup'],
+            landmark: data['landmark'],
+            pincode: data['pincode'],
+            profession: data['profession'],
+            gender: data['gender'],
+            activity_level: data['activity_level'],
+            alcohol_consumption: data['alcohol_consumption'],
+            allergies: data['allergies'],
+            chronic_diseases: data['chronic_diseases'],
+            current_medictaion: data['current_medication'],
+            food_prefrencce: data['food_prefrence'],
+            injuries: data['injuries'],
+            past_medication: data['past_medication'],
+            smoking_habits: data['smoking_habits'],
+            surgeries: data['surgeries']);
 
         print(user.appointments);
         print(user.city);
@@ -46,7 +55,7 @@ class UserServices {
         return null;
       }
     } catch (e) {
-      print('Error: $e');
+      print('Error in this: $e');
       return null;
     }
   }
@@ -174,8 +183,10 @@ class UserServices {
       ListResult listResult = await reference.list();
 
       // Check if there is exactly one item in the folder
-      if (listResult.items.length == 1) {
-        // Delete the existing file
+      // if (listResult.items.length == 1) {
+      //   // Delete the existing file
+      // }
+      for (int i = 0; i < listResult.items.length; i++) {
         await listResult.items[0].delete();
       }
 

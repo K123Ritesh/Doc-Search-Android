@@ -43,7 +43,7 @@ class _Family_Tree_PageState extends State<Family_Tree_Page> {
                   height: 85.h,
                   width: 85.w,
                   child: CircleAvatar(
-                    child: userProvider.user.profilePicUrl == ''
+                    child: userProvider.user.profilePicUrl == ' '
                         ? Icon(Icons.person, color: Colors.blue, size: 90)
                         : ClipOval(
                             child: Image.network(

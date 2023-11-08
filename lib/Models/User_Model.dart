@@ -14,10 +14,30 @@ class PatientUser {
   final String address;
   final String landmark;
   final String pincode;
+  final String? allergies;
+  final String? current_medictaion;
+  final String? past_medication;
+  final String? chronic_diseases;
+  final String? injuries;
+  final String? smoking_habits;
+  final String? alcohol_consumption;
+  final String? activity_level;
+  final String? food_prefrencce;
+  final String? surgeries;
 
   Map<String, dynamic> appointments;
 
   PatientUser({
+    required this.surgeries,
+    required this.allergies,
+    required this.current_medictaion,
+    required this.past_medication,
+    required this.chronic_diseases,
+    required this.injuries,
+    required this.smoking_habits,
+    required this.alcohol_consumption,
+    required this.activity_level,
+    required this.food_prefrencce,
     required this.profilePicUrl,
     required this.email,
     required this.firstName,

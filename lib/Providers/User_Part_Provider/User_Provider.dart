@@ -12,26 +12,35 @@ class User_Provider with ChangeNotifier {
   List<String> pastAppointmentId = [];
   List<String> upcomingAppointmentId = [];
   PatientUser user = PatientUser(
-    email: '',
-    firstName: 'firstName',
-    lastName: 'lastName',
-    mobileNo: 'mobileNo',
-    city: 'city',
-    profilePicUrl: '',
-    appointments: {},
-    address: '',
-    age: '',
-    bloodGrp: '',
-    landmark: '',
-    pincode: '',
-    profession: '',
-    gender: '',
-  );
+      email: '',
+      firstName: 'firstName',
+      lastName: 'lastName',
+      mobileNo: 'mobileNo',
+      city: 'city',
+      profilePicUrl: ' ',
+      appointments: {},
+      address: ' ',
+      age: ' ',
+      bloodGrp: ' ',
+      landmark: ' ',
+      pincode: ' ',
+      profession: ' ',
+      gender: ' ',
+      activity_level: ' ',
+      alcohol_consumption: ' ',
+      allergies: ' ',
+      chronic_diseases: ' ',
+      current_medictaion: ' ',
+      food_prefrencce: ' ',
+      injuries: ' ',
+      past_medication: ' ',
+      smoking_habits: ' ',
+      surgeries: ' ');
   bool isLoadingDetails = false;
 
   getUserDetails(context, String uid) async {
     isLoadingDetails = true;
-    user = (await userServices.UserAllDetails(uid))!;
+    user = await userServices.UserAllDetails(uid) ?? user;
     isLoadingDetails = false;
 
     notifyListeners();

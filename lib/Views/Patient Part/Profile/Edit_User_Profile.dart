@@ -139,7 +139,7 @@ class _EditUserProfileState extends State<EditUserProfile>
                   },
                   child: CircleAvatar(
                       radius: 40,
-                      child: userProvider.user.profilePicUrl == ""
+                      child: userProvider.user.profilePicUrl == " "
                           ? Icon(Icons.add_photo_alternate_rounded, size: 40)
                           : ClipOval(
                               child: Image.network(
@@ -277,7 +277,8 @@ class _EditUserProfileState extends State<EditUserProfile>
                               onChanged: (value) {
                                 setState(() {
                                   if (value.length == 0) {
-                                    profession = '';
+                                    profession =
+                                        '${userProvider.user.profession}';
                                   } else {
                                     profession = value;
                                   }
@@ -316,7 +317,7 @@ class _EditUserProfileState extends State<EditUserProfile>
                                       onChanged: (value) {
                                         setState(() {
                                           if (value.length == 0) {
-                                            age = '';
+                                            age = '${userProvider.user.age}';
                                           } else {
                                             age = value;
                                           }
@@ -388,7 +389,7 @@ class _EditUserProfileState extends State<EditUserProfile>
                               onChanged: (value) {
                                 setState(() {
                                   if (value.length == 0) {
-                                    bloodGrp = '';
+                                    bloodGrp = '${userProvider.user.bloodGrp}';
                                   } else {
                                     bloodGrp = value;
                                   }
@@ -415,7 +416,7 @@ class _EditUserProfileState extends State<EditUserProfile>
                               onChanged: (value) {
                                 setState(() {
                                   if (value.length == 0) {
-                                    address = '';
+                                    address = '${userProvider.user.address}';
                                   } else {
                                     address = value;
                                   }
@@ -446,7 +447,7 @@ class _EditUserProfileState extends State<EditUserProfile>
                               onChanged: (value) {
                                 setState(() {
                                   if (value.length == 0) {
-                                    landmark = '';
+                                    landmark = '${userProvider.user.landmark}';
                                   } else {
                                     landmark = value;
                                   }
@@ -472,7 +473,6 @@ class _EditUserProfileState extends State<EditUserProfile>
                           child: Padding(
                             padding: EdgeInsets.only(left: 10),
                             child: TextFormField(
-                              // initialValue: '${userProvider.user.city}',
                               onChanged: (value) {
                                 setState(() {
                                   if (value.length == 0) {
@@ -507,7 +507,7 @@ class _EditUserProfileState extends State<EditUserProfile>
                               onChanged: (value) {
                                 setState(() {
                                   if (value.length == 0) {
-                                    pincode = '';
+                                    pincode = '${userProvider.user.pincode}';
                                   } else {
                                     pincode = value;
                                   }
@@ -571,17 +571,33 @@ class _EditUserProfileState extends State<EditUserProfile>
                                       ? '${userProvider.user.firstName} ${userProvider.user.lastName}'
                                       : name,
                                   'lastName': '',
-                                  'email': email,
-                                  'profession': profession,
-                                  'age': age,
-                                  'gender': gender,
-                                  'bloodGroup': bloodGrp,
-                                  'address': address,
-                                  'landmark': landmark,
+                                  'email': email.length == 0
+                                      ? '${userProvider.user.email}'
+                                      : email,
+                                  'profession': profession.length == 0
+                                      ? '${userProvider.user.profession}'
+                                      : profession,
+                                  'age': age.length == 0
+                                      ? '${userProvider.user.age}'
+                                      : age,
+                                  'gender': gender.length == 0
+                                      ? '${userProvider.user.gender}'
+                                      : gender,
+                                  'bloodGroup': bloodGrp.length == 0
+                                      ? '${userProvider.user.bloodGrp}'
+                                      : bloodGrp,
+                                  'address': address.length == 0
+                                      ? '${userProvider.user.address}'
+                                      : address,
+                                  'landmark': landmark.length == 0
+                                      ? '${userProvider.user.landmark}'
+                                      : landmark,
                                   'city': city.length == 0
                                       ? '${userProvider.user.city}'
                                       : city,
-                                  'pincode': pincode,
+                                  'pincode': pincode.length == 0
+                                      ? '${userProvider.user.pincode}'
+                                      : pincode,
                                 });
                                 userProvider.getUserDetails(
                                     context, user.currentUser!.uid);
@@ -684,7 +700,8 @@ class _EditUserProfileState extends State<EditUserProfile>
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Current_Medication()),
+                                          builder: (context) =>
+                                              Current_Medication()),
                                     );
                                   },
                                   child: const Text(
@@ -723,7 +740,8 @@ class _EditUserProfileState extends State<EditUserProfile>
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Pass_Medication()),
+                                          builder: (context) =>
+                                              Pass_Medication()),
                                     );
                                   },
                                   child: const Text(
@@ -762,7 +780,8 @@ class _EditUserProfileState extends State<EditUserProfile>
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Chronic_Diseases()),
+                                          builder: (context) =>
+                                              Chronic_Diseases()),
                                     );
                                   },
                                   child: const Text(
@@ -927,7 +946,8 @@ class _EditUserProfileState extends State<EditUserProfile>
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Alcohol_Consumption()),
+                                          builder: (context) =>
+                                              Alcohol_Consumption()),
                                     );
                                   },
                                   child: const Text(
@@ -966,7 +986,8 @@ class _EditUserProfileState extends State<EditUserProfile>
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Activity_Level()),
+                                          builder: (context) =>
+                                              Activity_Level()),
                                     );
                                   },
                                   child: const Text(
@@ -1005,7 +1026,8 @@ class _EditUserProfileState extends State<EditUserProfile>
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Food_Preference()),
+                                          builder: (context) =>
+                                              Food_Preference()),
                                     );
                                   },
                                   child: const Text(

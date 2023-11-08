@@ -59,7 +59,7 @@ class _Settings_PageState extends State<Settings_Page> {
                       Column(
                         children: [
                           CircleAvatar(
-                            child: userProvider.user.profilePicUrl == ''
+                            child: userProvider.user.profilePicUrl == ' '
                                 ? Icon(Icons.person,
                                     color: Colors.blue, size: 90)
                                 : ClipOval(

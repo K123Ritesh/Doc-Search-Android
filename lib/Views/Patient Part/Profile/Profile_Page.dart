@@ -64,7 +64,7 @@ class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
                         child: Stack(
                           children: <Widget>[
                             CircleAvatar(
-                              child: userProvider.user.profilePicUrl == ''
+                              child: userProvider.user.profilePicUrl == ' '
                                   ? Icon(Icons.person,
                                       color: Colors.blue, size: 90)
                                   : ClipOval(

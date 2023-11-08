@@ -102,7 +102,7 @@ class _HomePageState extends State<HomePage> {
                       // margin: EdgeInsets.only(left: 10),
                       height: 45.fh,
                       width: 50.fw,
-                      child: userProvider.user.profilePicUrl == ''
+                      child: userProvider.user.profilePicUrl == ' '
                           ? Icon(Icons.person, color: Colors.blue, size: 39)
                           : ClipOval(
                               child: Image.network(
@@ -124,10 +124,10 @@ class _HomePageState extends State<HomePage> {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Wallet()),
-                      );
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(builder: (context) => Wallet()),
+                      // );
                     },
                     child: Container(
                       // decoration: BoxDecoration(

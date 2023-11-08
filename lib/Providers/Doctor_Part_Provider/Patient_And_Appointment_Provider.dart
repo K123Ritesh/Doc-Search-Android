@@ -12,5 +12,18 @@ class Patient_And_Appointment_Provider with ChangeNotifier {
     notifyListeners();
   }
 
-  getAcctoSearch(context, String input) {}
+  String acc_to_search = '';
+
+  getAcctoSearch(context, String input) {
+    for (int i = 0; i < allAppoitmentList.length; i++) {
+      if (input == allAppoitmentList[i]) {
+        acc_to_search = input;
+      }
+    }
+    notifyListeners();
+  }
+
+  getApointmentDetail(context) {}
+  String? uid;
+  getUserDetails(context) {}
 }

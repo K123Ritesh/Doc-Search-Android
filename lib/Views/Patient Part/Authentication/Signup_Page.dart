@@ -2,14 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
 import 'package:doc_search/Views/Patient%20Part/Authentication/Login_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Home_Page.dart';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
-
 import '../../Doctor Part/Authentication/Signin_Page.dart';
 
 class Signup_Page extends StatefulWidget {
@@ -96,6 +94,16 @@ class _Signup_PageState extends State<Signup_Page> {
         'profession': ' ',
         'gender': ' ',
         'profile_pic': ' ',
+        'activity_level': '',
+        'alcohol_consumption': '',
+        'allergies': '',
+        'chronic_diseases': '',
+        'current_medictaion': '',
+        'food_prefrencce': '',
+        'injuries': '',
+        'past_medication': '',
+        'smoking_habits': '',
+        'surgeries': ''
       });
       print('User data saved successfully');
     } catch (e) {
@@ -605,7 +613,17 @@ class _OTPInputState extends State<OTPInput> {
         'pincode': ' ',
         'profession': ' ',
         'gender': ' ',
-        'profile_pic': '',
+        'profile_pic': ' ',
+        'activity_level': ' ',
+        'alcohol_consumption': ' ',
+        'allergies': ' ',
+        'chronic_diseases': ' ',
+        'current_medictaion': ' ',
+        'food_prefrencce': ' ',
+        'injuries': ' ',
+        'past_medication': ' ',
+        'smoking_habits': ' ',
+        'surgeries': ' '
       });
       print('User data saved successfully');
     } catch (e) {

@@ -1,9 +1,13 @@
+import 'package:doc_search/Views/Doctor%20Part/Profile/Community.dart';
+import 'package:doc_search/Views/Doctor%20Part/Profile/Doctor_MedicalRecords.dart';
 import 'package:doc_search/Views/Doctor%20Part/Profile/Online_Consultations_Page.dart';
 import 'package:doc_search/Views/Doctor%20Part/Profile/Settings_Page.dart';
+import 'package:doc_search/Views/Doctor%20Part/Profile/payment.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Refer_And_Earn_Page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../../Doctor_bottomBar.dart';
+import 'Appointments.dart';
 
 class Doctor_Profile_Page extends StatelessWidget {
   @override
@@ -43,33 +47,33 @@ class Doctor_Profile_Page extends StatelessWidget {
                       InkWell(
                           onTap: () {
                             Navigator.pop(context);
-                          //   Navigator.of(context).push(MaterialPageRoute(
-                          //       builder: (context) => EditUserProfile()));
+                            //   Navigator.of(context).push(MaterialPageRoute(
+                            //       builder: (context) => EditUserProfile()));
                           },
                           child: Stack(
-                        children: <Widget>[
-                          CircleAvatar(
-                            child: Icon(Icons.person, size: 90),
-                            maxRadius: 50,
-                            backgroundColor: Colors.white,
-                          ),
-                          Positioned(
-                            bottom: 0,
-                            right: 0,
-                            child: Container(
-                              padding: EdgeInsets.all(4),
-                              decoration: BoxDecoration(
-                                color: Colors.blue,
-                                shape: BoxShape.circle,
+                            children: <Widget>[
+                              CircleAvatar(
+                                child: Icon(Icons.person, size: 90),
+                                maxRadius: 50,
+                                backgroundColor: Colors.white,
                               ),
-                              child: Icon(
-                                Icons.edit,
-                                color: Colors.white,
+                              Positioned(
+                                bottom: 0,
+                                right: 0,
+                                child: Container(
+                                  padding: EdgeInsets.all(4),
+                                  decoration: BoxDecoration(
+                                    color: Colors.blue,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Icon(
+                                    Icons.edit,
+                                    color: Colors.white,
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                        ],
-                      )),
+                            ],
+                          )),
                       SizedBox(
                         height: 10,
                       ),
@@ -98,10 +102,10 @@ class Doctor_Profile_Page extends StatelessWidget {
                   child: Column(
                     children: [
                       InkWell(
-                        // onTap: () {
-                        //   Navigator.of(context).push(MaterialPageRoute(
-                        //       builder: (context) => Appointments_Page()));
-                        // },
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => Doctor_appointments()));
+                        },
                         child: ListTile(
                           title: Text(
                             "Appointments",
@@ -111,10 +115,10 @@ class Doctor_Profile_Page extends StatelessWidget {
                                 fontWeight: FontWeight.w400),
                           ),
                           trailing: InkWell(
-                            // onTap: () {
-                            //   Navigator.of(context).push(MaterialPageRoute(
-                            //       builder: (context) => Appointments_Page()));
-                            // },
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => Doctor_appointments()));
+                            },
                             child: Icon(Icons.arrow_forward_ios,
                                 size: 20, color: Colors.white),
                           ),
@@ -149,29 +153,46 @@ class Doctor_Profile_Page extends StatelessWidget {
                         trailing: Icon(Icons.arrow_forward_ios,
                             size: 20, color: Colors.white),
                       ),
-                      ListTile(
-                        title: Text(
-                          "Payments",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w400),
+                      InkWell(
+                        onTap: () {
+                         Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  Payment())); 
+                        },
+                        child: ListTile(
+                          title: Text(
+                            "Payments",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w400),
+                          ),
+                          trailing: Icon(Icons.arrow_forward_ios,
+                              size: 20, color: Colors.white),
                         ),
-                        trailing: Icon(Icons.arrow_forward_ios,
-                            size: 20, color: Colors.white),
-                      ),
-                      ListTile(
-                        title: Text(
-                          "Community",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w400),
-                        ),
-                        trailing: Icon(Icons.arrow_forward_ios,
-                            size: 20, color: Colors.white),
                       ),
                       InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => Community()));
+                        },
+                        child: ListTile(
+                          title: Text(
+                            "Community",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w400),
+                          ),
+                          trailing: Icon(Icons.arrow_forward_ios,
+                              size: 20, color: Colors.white),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => Doctor_MedicalRecord()));
+                        },
                         child: ListTile(
                           title: Text(
                             "Medical Order",
@@ -208,10 +229,10 @@ class Doctor_Profile_Page extends StatelessWidget {
                         ),
                       ),
                       InkWell(
-                        // onTap: () {
-                        //   Navigator.of(context).push(MaterialPageRoute(
-                        //       builder: (context) => Settings_Page()));
-                        // },
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => Doctors_Setting_Page()));
+                        },
                         child: ListTile(
                           title: Text(
                             "Settings",

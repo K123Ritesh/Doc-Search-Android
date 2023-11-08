@@ -354,7 +354,7 @@ class _EditUserProfileState extends State<EditUserProfile>
                                   items: [
                                     DropdownMenuItem<String>(
                                       value: 'zero',
-                                      child: Text('Select your Gender'),
+                                      child: Text('Select Gender'),
                                     ),
                                     DropdownMenuItem<String>(
                                       value: 'one',

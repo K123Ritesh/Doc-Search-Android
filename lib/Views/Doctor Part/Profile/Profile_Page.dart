@@ -247,7 +247,9 @@ class Doctor_Profile_Page extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => Doctors_Setting_Page()));
+                              builder: (context) => Doctors_Setting_Page(
+                                    docCategory: docCategory,
+                                  )));
                         },
                         child: ListTile(
                           title: Text(

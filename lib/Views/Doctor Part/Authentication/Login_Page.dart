@@ -1,15 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
 import 'package:doc_search/Views/Doctor%20Part/Authentication/Signin_Page.dart';
 import 'package:doc_search/Views/Doctor%20Part/Home/Home_Page.dart';
-import 'package:doc_search/Views/Patient%20Part/Home/Home_Page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:pinput/pinput.dart';
-import 'package:provider/provider.dart';
 
 class Doctor_Login_Page extends StatefulWidget {
   const Doctor_Login_Page({Key? key}) : super(key: key);
@@ -31,15 +27,32 @@ class _Doctor_Login_PageState extends State<Doctor_Login_Page> {
   }
 
   final _formKey = GlobalKey<FormState>();
+  String docCategory = '';
 
   Future<bool> isPhoneNumberInUsersCollection(String phoneNumber) async {
     try {
-      final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-          .collection('doctors')
+      final QuerySnapshot Dentist = await FirebaseFirestore.instance
+          .collection('Dentist')
           .where('mobileNumber', isEqualTo: phoneNumber)
           .get();
-
-      return querySnapshot.docs.isNotEmpty;
+      final QuerySnapshot Orthopedic = await FirebaseFirestore.instance
+          .collection('Orthopedic')
+          .where('mobileNumber', isEqualTo: phoneNumber)
+          .get();
+      final QuerySnapshot Neurology = await FirebaseFirestore.instance
+          .collection('Neurology')
+          .where('mobileNumber', isEqualTo: phoneNumber)
+          .get();
+      if (Dentist.docs.isNotEmpty) {
+        docCategory = 'Dentist';
+      } else if (Orthopedic.docs.isNotEmpty) {
+        docCategory = 'Orthopedic';
+      } else if (Neurology.docs.isNotEmpty) {
+        docCategory = 'Neurology';
+      }
+      return Dentist.docs.isNotEmpty ||
+          Neurology.docs.isNotEmpty ||
+          Orthopedic.docs.isNotEmpty;
     } catch (e) {
       print('Error checking phone number in Users collection: $e');
       return false; // Return false if an error occurs
@@ -94,7 +107,8 @@ class _Doctor_Login_PageState extends State<Doctor_Login_Page> {
         codeSent: (String verificationId, int? resendToken) {
           Doctor_Login_Page.verify = verificationId;
           Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => OTP_Entering_Page(phoneNo: fullPhoneNumber),
+            builder: (context) => OTP_Entering_Page(
+                phoneNo: fullPhoneNumber, docCategory: docCategory),
           ));
         },
         codeAutoRetrievalTimeout: (String verificationId) {},
@@ -379,9 +393,12 @@ class _Doctor_Login_PageState extends State<Doctor_Login_Page> {
 }
 
 class OTP_Entering_Page extends StatefulWidget {
-  const OTP_Entering_Page({Key? key, required this.phoneNo}) : super(key: key);
+  const OTP_Entering_Page(
+      {Key? key, required this.docCategory, required this.phoneNo})
+      : super(key: key);
 
   final String phoneNo;
+  final String docCategory;
 
   @override
   State<OTP_Entering_Page> createState() => _OTP_Entering_PageState();
@@ -531,9 +548,11 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
 
                           await auth.signInWithCredential(credential);
 
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) => Doctor_Home_Page()));
+                          Navigator.of(context)
+                              .pushReplacement(MaterialPageRoute(
+                                  builder: (context) => Doctor_Home_Page(
+                                        docCategory: widget.docCategory,
+                                      )));
                         } catch (e) {
                           print('wrong OTP');
                         }

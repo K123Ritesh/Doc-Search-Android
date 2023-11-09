@@ -236,10 +236,8 @@ class Person_Details extends StatelessWidget {
         ),
         RoundedDropdownField(
             labelText: 'Relation',
-            items: ['Mother', 'Father', 'Wife', 'Brother', 'Sister']),
-        SizedBox(
-          height: 15.h,
-        ),
+            items: ['Mother', 'Father', 'Wife', 'Brother', 'Sister', 'Child']),
+        SizedBox(),
       ],
     );
   }

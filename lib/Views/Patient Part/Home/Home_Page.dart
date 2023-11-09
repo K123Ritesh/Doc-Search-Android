@@ -1,7 +1,9 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:doc_search/Bottom_Bar.dart';
 import 'package:doc_search/Config/sizeConfig.dart';
 import 'package:doc_search/Views/Patient%20Part/Appointment/Appointment.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Consultancy_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Home/Hospitals_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Medical_Labs_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Medicine_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Search_Tapped_Page.dart';
@@ -29,6 +31,8 @@ class _HomePageState extends State<HomePage> {
   bool showAllContainers = false;
 
   int currentIndex = 0;
+
+  int selectedIndex = 0;
 
   void onTabTapped(int index) {
     setState(() {
@@ -178,234 +182,179 @@ class _HomePageState extends State<HomePage> {
               ),
               Container(
                 margin: const EdgeInsets.only(left: 10, right: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const Appointment1()));
-                      },
-                      child: Column(
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const Appointment1()));
+                        },
+                        child: Column(
+                          children: [
+                            Container(
+                                width: 40,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Color(0xFF5793A8)),
+                                  borderRadius: BorderRadius.circular(3),
+                                ),
+                                child: Image.asset(
+                                    'assets/DocSearch Android/Group.png')),
+                            const SizedBox(
+                              height: 12,
+                            ),
+                            const Text("Doctor"),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: 15.h,
+                      ),
+                      Column(
                         children: [
-                          Container(
-                              width: 40,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Color(0xFF5793A8)),
-                                borderRadius: BorderRadius.circular(3),
-                              ),
-                              child: Image.asset(
-                                  'assets/DocSearch Android/Group.png')),
+                          InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => Consultancy_Page()));
+                            },
+                            child: Container(
+                                width: 40,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Color(0xFF5793A8)),
+                                  borderRadius: BorderRadius.circular(3),
+                                ),
+                                child: Image.asset(
+                                    'assets/DocSearch Android/Group 2412.png')),
+                          ),
                           const SizedBox(
                             height: 12,
                           ),
-                          const Text("Doctor"),
+                          const Text("Consultancy"),
                         ],
                       ),
-                    ),
-                    Column(
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => Consultancy_Page()));
-                          },
-                          child: Container(
-                              width: 40,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Color(0xFF5793A8)),
-                                borderRadius: BorderRadius.circular(3),
-                              ),
-                              child: Image.asset(
-                                  'assets/DocSearch Android/Group 2412.png')),
-                        ),
-                        const SizedBox(
-                          height: 12,
-                        ),
-                        const Text("Consultancy"),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Medicine_Page()),
-                            );
-                          },
-                          child: Container(
-                              width: 40,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Color(0xFF5793A8)),
-                                borderRadius: BorderRadius.circular(3),
-                              ),
-                              child: Image.asset(
-                                  'assets/DocSearch Android/Group-1.png')),
-                        ),
-                        const SizedBox(
-                          height: 12,
-                        ),
-                        const Text("Medicines"),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Medical_Labs_Page()),
-                            );
-                          },
-                          child: Container(
-                              width: 40,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Color(0xFF5793A8)),
-                                borderRadius: BorderRadius.circular(3),
-                              ),
-                              child: Image.asset(
-                                  'assets/DocSearch Android/Group 2420.png')),
-                        ),
-                        const SizedBox(
-                          height: 12,
-                        ),
-                        const Text("Lab Test"),
-                      ],
-                    ),
-                  ],
+                      SizedBox(
+                        width: 15.h,
+                      ),
+                      Column(
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Medicine_Page()),
+                              );
+                            },
+                            child: Container(
+                                width: 40,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Color(0xFF5793A8)),
+                                  borderRadius: BorderRadius.circular(3),
+                                ),
+                                child: Image.asset(
+                                    'assets/DocSearch Android/Group-1.png')),
+                          ),
+                          const SizedBox(
+                            height: 12,
+                          ),
+                          const Text("Medicines"),
+                        ],
+                      ),
+                      SizedBox(
+                        width: 15.h,
+                      ),
+                      Column(
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Medical_Labs_Page()),
+                              );
+                            },
+                            child: Container(
+                                width: 40,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Color(0xFF5793A8)),
+                                  borderRadius: BorderRadius.circular(3),
+                                ),
+                                child: Image.asset(
+                                    'assets/DocSearch Android/Group 2420.png')),
+                          ),
+                          const SizedBox(
+                            height: 12,
+                          ),
+                          const Text("Lab Test"),
+                        ],
+                      ),
+                      SizedBox(
+                        width: 15.h,
+                      ),
+                      Column(
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => Hospitals_Page()));
+                            },
+                            child: Container(
+                                width: 40,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Color(0xFF5793A8)),
+                                  borderRadius: BorderRadius.circular(3),
+                                ),
+                                child: Image.asset(
+                                    width: 40,
+                                    height: 40,
+                                    fit: BoxFit.fill,
+                                    'assets/DocSearch Android/Hospital.jpg')),
+                          ),
+                          const SizedBox(
+                            height: 12,
+                          ),
+                          const Text("Hospitals"),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(
                 height: 20,
               ),
-              Container(
-                height: 130.fh,
-                decoration: BoxDecoration(
-                  color: const Color(0xFFECFAFC),
-                  borderRadius: BorderRadius.circular(16),
-                  // border: Border.all(color: Color(0xFF5793A8)),
+              CarouselSlider(
+                items: [
+                  Banner(color: const Color(0xFFECFAFC), isfirst: true),
+                  Banner(
+                    color: Color.fromRGBO(30, 94, 118, 1),
+                    isfirst: false,
+                  )
+                ],
+                options: CarouselOptions(
+                  height: 160.0.h, // Adjust the height as needed
+                  // aspectRatio: 1, // Adjust the aspect ratio as needed
+                  viewportFraction:
+                      1, // Adjust the visible portion of each widget
+                  initialPage: selectedIndex,
+                  enableInfiniteScroll: true,
+                  reverse: false,
+                  autoPlay: true, // Disable auto-play
+                  enlargeCenterPage: false,
+                  scrollDirection: Axis.horizontal,
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      selectedIndex = index; // Store the current active index
+                    });
+                  },
                 ),
-                child:
-                    Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                  Column(
-                    children: [
-                      Container(
-                          margin: EdgeInsets.only(top: 15.fh),
-                          child: RichText(
-                            text: TextSpan(
-                              children: <TextSpan>[
-                                TextSpan(
-                                  text: 'We are ',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 12.fh,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                TextSpan(
-                                  text: 'providing',
-                                  style: TextStyle(
-                                      color: Colors.yellow,
-                                      fontSize: 12.fh,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                TextSpan(
-                                  text: ' the ',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 12.fh,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                TextSpan(
-                                  text: '\nbest ',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 12.fh,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                TextSpan(
-                                  text: 'health',
-                                  style: TextStyle(
-                                      color: Color(0xFF5793A8),
-                                      fontSize: 12.fh,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                TextSpan(
-                                  text: ' services',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 12.fh,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                          )),
-                      Container(
-                          margin: EdgeInsets.only(
-                            left: 20.fw,
-                            top: 10.fh,
-                          ),
-                          child: Text(
-                            'Always caring about your health, \nFind your doctors and make an \nappointment',
-                            style: TextStyle(
-                                fontSize: 9.fh,
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xFF1B3033)),
-                          )),
-                      Container(
-                        height: 23.fh,
-                        width: 68.fw,
-                        margin: EdgeInsets.only(top: 10.fh, right: 60.fw),
-                        child: Material(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(50),
-                          child: Ink(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(50),
-                              border: Border.all(
-                                  color: Color(0xFF005473), width: 2),
-                            ),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Appointment1()),
-                                );
-                              },
-                              child: Center(
-                                child: Text(
-                                  'Register Now',
-                                  style: TextStyle(
-                                    fontSize: 8.fh,
-                                    color: Color(0xFF005473),
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  Spacer(),
-                  Container(
-                    margin: EdgeInsets.only(top: 30.fh),
-                    height: 118.fh,
-                    // width: 158.fw,
-                    child: Image.asset(
-                      'assets/image 34.png',
-                    ),
-                  ),
-                ]),
               ),
               const SizedBox(
                 height: 20,
@@ -832,6 +781,149 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       bottomNavigationBar: Bottombar(SelectedIndex: 0),
+    );
+  }
+}
+
+class Banner extends StatelessWidget {
+  Banner({super.key, required this.color, required this.isfirst});
+
+  final Color color;
+  final bool isfirst;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(left: 10.w),
+      child: Container(
+        height: 130.fh,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(16),
+          // border: Border.all(color: Color(0xFF5793A8)),
+        ),
+        child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+          Column(
+            children: [
+              Container(
+                  margin: EdgeInsets.only(top: 15.fh),
+                  child: RichText(
+                    text: TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: 'We are ',
+                          style: TextStyle(
+                              color:
+                                  isfirst == true ? Colors.black : Colors.white,
+                              fontSize: 12.fh,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        TextSpan(
+                          text: 'providing',
+                          style: TextStyle(
+                              color: Colors.yellow,
+                              fontSize: 12.fh,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        TextSpan(
+                          text: ' the ',
+                          style: TextStyle(
+                              color:
+                                  isfirst == true ? Colors.black : Colors.white,
+                              fontSize: 12.fh,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        TextSpan(
+                          text: '\nbest ',
+                          style: TextStyle(
+                              color:
+                                  isfirst == true ? Colors.black : Colors.white,
+                              fontSize: 12.fh,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        TextSpan(
+                          text: 'health',
+                          style: TextStyle(
+                              color: Color(0xFF5793A8),
+                              fontSize: 12.fh,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        TextSpan(
+                          text: ' services',
+                          style: TextStyle(
+                              color:
+                                  isfirst == true ? Colors.black : Colors.white,
+                              fontSize: 12.fh,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  )),
+              Container(
+                  margin: EdgeInsets.only(
+                    left: 20.fw,
+                    top: 10.fh,
+                  ),
+                  child: Text(
+                    'Always caring about your health, \nFind your doctors and make an \nappointment',
+                    style: TextStyle(
+                      fontSize: 9.fh,
+                      fontWeight: FontWeight.w400,
+                      color: isfirst == true ? Colors.black : Colors.white,
+                    ),
+                  )),
+              Container(
+                height: 23.fh,
+                width: 68.fw,
+                margin: EdgeInsets.only(top: 10.fh, right: 60.fw),
+                child: Material(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(50),
+                  child: Ink(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(50),
+                      border: Border.all(
+                          color: isfirst == true
+                              ? Color(0xFF005473)
+                              : Colors.black,
+                          width: 2),
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Appointment1()),
+                        );
+                      },
+                      child: Center(
+                        child: Text(
+                          'Register Now',
+                          style: TextStyle(
+                            fontSize: 8.fh,
+                            color: Color(0xFF005473),
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+          Spacer(),
+          Container(
+            margin: EdgeInsets.only(top: 30.fh),
+            height: 118.fh,
+            // width: 158.fw,
+            child: Image.asset(
+              'assets/image 34.png',
+            ),
+          ),
+        ]),
+      ),
     );
   }
 }

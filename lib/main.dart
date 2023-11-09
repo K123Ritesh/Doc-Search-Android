@@ -1,6 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:doc_search/Models/Models_For_Patient_Part/Doctor.dart';
-import 'package:doc_search/Models/Models_For_Patient_Part/User_Model.dart';
 import 'package:doc_search/Providers/User_Part_Provider/Doctor_Provider.dart';
 import 'package:doc_search/Providers/User_Part_Provider/Medicine_Shop_Provider.dart';
 import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
@@ -35,7 +32,7 @@ void main() async {
       builder: (_, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: SplashScreen(),
+          home: Doctor_Login_Page(),
         );
       },
     ),

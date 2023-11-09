@@ -13,7 +13,8 @@ import 'package:provider/provider.dart';
 import '../../../Doctor_bottomBar.dart';
 
 class Doctor_Home_Page extends StatefulWidget {
-  const Doctor_Home_Page({super.key, User? user});
+  const Doctor_Home_Page({super.key, User? user, required this.docCategory});
+  final String docCategory;
 
   @override
   State<Doctor_Home_Page> createState() => _Doctor_Home_PageState();
@@ -24,13 +25,14 @@ class _Doctor_Home_PageState extends State<Doctor_Home_Page> {
   void initState() {
     super.initState();
     Provider.of<Patient_And_Appointment_Provider>(context, listen: false)
-        .getMyDetails(context, 'Dentist');
+        .getMyDetails(context, widget.docCategory);
   }
 
   final TextEditingController idController =
       TextEditingController(text: '583694');
   @override
   Widget build(BuildContext context) {
+    final myDetails = Provider.of<Patient_And_Appointment_Provider>(context);
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.white));
 
@@ -49,14 +51,26 @@ class _Doctor_Home_PageState extends State<Doctor_Home_Page> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => Doctor_Profile_Page()),
+                        builder: (context) => Doctor_Profile_Page(
+                              docCategory: widget.docCategory,
+                            )),
                   );
                 },
                 child: Container(
                   // margin: EdgeInsets.only(left: 10),
                   height: 50.h,
                   width: 50.w,
-                  child: Icon(Icons.person, color: Colors.blue, size: 39),
+                  child: myDetails.myDetails!.profile_pic == ' '
+                      ? Icon(Icons.person, color: Colors.blue, size: 39)
+                      : ClipOval(
+                          child: Image.network(
+                            myDetails.myDetails!.profile_pic,
+                            width: 50.0.w,
+                            height: 50.0.h,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100.r),
                     color: const Color.fromARGB(255, 111, 170, 219),
@@ -390,10 +404,14 @@ class _Doctor_Home_PageState extends State<Doctor_Home_Page> {
                   borderRadius: BorderRadius.circular(50.r)),
               child: TextField(
                 controller: idController,
-                // onTap: () {
-                //   Navigator.of(context).push(MaterialPageRoute(
-                //       builder: (context) => Search_Tapped_Page()));
-                // },
+                onChanged: (value) {
+                  myDetails.getDetailsOfAppointment(context, value);
+                  myDetails.getUserDetailsforAppointment(context);
+                },
+                onSubmitted: (value) {
+                  myDetails.getDetailsOfAppointment(context, value);
+                  myDetails.getUserDetailsforAppointment(context);
+                },
                 decoration: InputDecoration(
                   border: InputBorder.none, // Remove the default border
                   prefixIcon: Icon(Icons.search),
@@ -409,6 +427,7 @@ class _Doctor_Home_PageState extends State<Doctor_Home_Page> {
         ],
       ),
       bottomNavigationBar: DoctorBottombar(
+        docCategory: widget.docCategory,
         SelectedIndex: 0,
       ),
     );
@@ -420,125 +439,133 @@ class AppointmentId_Searched extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: InkWell(
-        onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => Appointment_Patient_Details_Page()));
-        },
-        child: Container(
-          decoration: BoxDecoration(
-              color: const Color(0xFF1B6A85),
-              borderRadius: BorderRadius.circular(15.r)),
-          child: Row(
-            children: [
-              Center(
-                child: Padding(
-                  padding: EdgeInsets.all(14.0.w),
-                  child: CircleAvatar(
-                      backgroundColor: Colors.white,
-                      maxRadius: 50.r,
-                      child: Icon(
-                        Icons.person,
-                        color: Colors.red,
-                        size: 70,
-                      )),
+    final myDetails = Provider.of<Patient_And_Appointment_Provider>(context);
+
+    return myDetails.appointmentedUser == null
+        ? Text('Wrong Id')
+        : Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => Appointment_Patient_Details_Page()));
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                    color: const Color(0xFF1B6A85),
+                    borderRadius: BorderRadius.circular(15.r)),
+                child: Row(
+                  children: [
+                    Center(
+                      child: Padding(
+                        padding: EdgeInsets.all(14.0.w),
+                        child: CircleAvatar(
+                            backgroundColor: Colors.white,
+                            maxRadius: 50.r,
+                            child: Icon(
+                              Icons.person,
+                              color: Colors.red,
+                              size: 70,
+                            )),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10.w,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(8.0.w),
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Id Number - ',
+                                  style: TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 18.sp,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  '583694             ',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18.sp,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  child: Text(
+                                    'Name - ',
+                                    style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 18.sp,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                Container(
+                                  child: Text(
+                                    '${myDetails.appointmentedUser!.firstName}      ',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18.sp,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Age - ',
+                                  style: TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 18.sp,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  '28                                  ',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18.sp,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Address - ',
+                                  style: TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 18.sp,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  'Katihar ,Bihar      ',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18.sp,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               ),
-              SizedBox(
-                width: 10.w,
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0.w),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Id Number - ',
-                            style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 18.sp,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            '583694             ',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18.sp,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Name - ',
-                            style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 18.sp,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            'Ritesh Kumar           ',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18.sp,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Age - ',
-                            style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 18.sp,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            '18                                  ',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18.sp,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Address - ',
-                            style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 18.sp,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            'Darbhanga ,Bihar',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18.sp,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
+            ),
+          );
   }
 }

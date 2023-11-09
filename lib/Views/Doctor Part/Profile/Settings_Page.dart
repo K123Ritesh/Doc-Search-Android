@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 import '../Authentication/Login_Page.dart';
 
 class Doctors_Setting_Page extends StatefulWidget {
-  const Doctors_Setting_Page({super.key});
+  const Doctors_Setting_Page({super.key, required this.docCategory});
+  final String docCategory;
 
   @override
   State<Doctors_Setting_Page> createState() => _Doctors_Setting_PageState();
@@ -17,7 +18,8 @@ class _Doctors_Setting_PageState extends State<Doctors_Setting_Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: DoctorBottombar(SelectedIndex: 3),
+      bottomNavigationBar:
+          DoctorBottombar(docCategory: widget.docCategory, SelectedIndex: 3),
       body: Container(
           decoration: BoxDecoration(
             color: const Color(0xFF155467),

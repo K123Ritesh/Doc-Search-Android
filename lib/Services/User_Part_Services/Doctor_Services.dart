@@ -19,6 +19,7 @@ class Doctor_Services {
         accToSearch.assignAll(
           querySnapshot.docs
               .map((doctor) => Doctor(
+                  uid: doctor['uid'],
                   specialization: doctor['specialization'],
                   email: doctor['email'],
                   rating: doctor['rating'],
@@ -97,9 +98,9 @@ when the appointment is booked it should send notification to the respective
       final appointmentId = appointmentRef.id;
 
       // Check availability in the 'Dentists' Collection
-      final dentistRef =
+      final doctorRef =
           firestore.collection(doc_category).doc(appointment.doctorId);
-      final dentistDoc = await dentistRef.get();
+      final dentistDoc = await doctorRef.get();
 
       if (dentistDoc.exists) {
         final dentistData = dentistDoc.data();
@@ -123,7 +124,7 @@ when the appointment is booked it should send notification to the respective
               // Slot is available, add the appointment
               bookingMap[appointment.date_for_booking][appointment.slot] =
                   appointmentId;
-              await dentistRef.update({'Bookings': bookingMap});
+              await doctorRef.update({'Bookings': bookingMap});
               try {
                 await addOrUpdateAppointment(appointment.userId,
                     appointment.date_for_booking, appointmentId);
@@ -138,7 +139,7 @@ when the appointment is booked it should send notification to the respective
             bookingMap[appointment.date_for_booking] = {
               appointment.slot: appointmentId
             };
-            await dentistRef.update({'Bookings': bookingMap});
+            await doctorRef.update({'Bookings': bookingMap});
             try {
               await addOrUpdateAppointment(appointment.userId,
                   appointment.date_for_booking, appointmentId);
@@ -153,7 +154,7 @@ when the appointment is booked it should send notification to the respective
           final newBooking = {
             appointment.date_for_booking: {appointment.slot: appointmentId},
           };
-          await dentistRef
+          await doctorRef
               .set({'Bookings': newBooking}, SetOptions(merge: true));
 
           try {

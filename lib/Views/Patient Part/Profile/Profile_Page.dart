@@ -216,7 +216,7 @@ class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
                         },
                         child: ListTile(
                           title: Text(
-                            "Medical Order",
+                            "Medical Records",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20.sp,

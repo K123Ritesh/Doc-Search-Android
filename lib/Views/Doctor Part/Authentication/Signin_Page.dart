@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
 import 'package:doc_search/Views/Patient%20Part/Authentication/Login_Page.dart';
-import 'package:doc_search/Views/Patient%20Part/Home/Home_Page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -25,6 +24,9 @@ class _Doctor_Signup_PageState extends State<Doctor_Signup_Page> {
   final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _mobileNumberController = TextEditingController();
   final TextEditingController _cityController = TextEditingController();
+  final TextEditingController _docCategoryController = TextEditingController();
+  List<String> items = ['Dentist', 'Orthopedic', 'Neurology'];
+  String _selectedItem = ' ';
 
   int _resendToken = 0;
   String _countryCode = '+91';
@@ -74,21 +76,30 @@ class _Doctor_Signup_PageState extends State<Doctor_Signup_Page> {
   Future<void> _saveUserData(String uid) async {
     try {
       String formattedMobileNumber = '+91${_mobileNumberController.text}';
-      await _firestore.collection('Dentist').doc(uid).set({
+      await _firestore.collection(_selectedItem).doc(uid).set({
         'Bookings': {
           'dummy_date': {'dummy_slot': 'dummyId'}
         },
         'mobileNumber': formattedMobileNumber,
         'address': ' ',
         'city': _cityController.text,
-        'email': "drnk@gmail.com",
-        'experience': "0",
-        'name': "Dr. Rahul Kumar",
-        'pin_code': "846001",
-        'rating': "4.8",
-        'reg_fee': "500",
+        'email': " ",
+        'experience': " ",
+        'name': "${_firstNameController.text} ${_lastNameController.text}",
+        'pin_code': " ",
+        'rating': " ",
+        'reg_fee': " ",
         'sitting_days': [' ', ' '],
-        'specialization': "Speacialist Surgeon"
+        'specialization': " ",
+        'profile_pic': ' ',
+        'accountHolderName': ' ',
+        'accountNumber': ' ',
+        'age': ' ',
+        'bankName': ' ',
+        'bloodGroup': ' ',
+        'ifscCode': ' ',
+        'qualification': ' ',
+        'state': ' '
       });
       print('User data saved successfully');
     } catch (e) {
@@ -318,6 +329,53 @@ class _Doctor_Signup_PageState extends State<Doctor_Signup_Page> {
                   ),
                 ),
               ),
+              Padding(
+                padding:
+                    EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 8.h),
+                child: Center(
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 16.0.w),
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200], // Background color
+                      borderRadius:
+                          BorderRadius.circular(20.0.r), // Rounded corners
+                    ),
+                    child: TextField(
+                      readOnly: true,
+                      onTap: () {
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (context) {
+                            return ListView(
+                              children: items.map((item) {
+                                return ListTile(
+                                  title: Text(item),
+                                  onTap: () {
+                                    setState(() {
+                                      _selectedItem = item;
+                                      _docCategoryController.text = item;
+                                    });
+                                    Navigator.pop(context);
+                                  },
+                                );
+                              }).toList(),
+                            );
+                          },
+                        );
+                      },
+                      controller: _docCategoryController,
+                      decoration: const InputDecoration(
+                        hintText: 'Select Your Specialization',
+                        hintStyle:
+                            TextStyle(color: Color.fromARGB(255, 82, 78, 78)),
+                        prefixIcon:
+                            Icon(Icons.phone_android, color: Colors.black),
+                        border: InputBorder.none, // Remove default underline
+                      ),
+                    ),
+                  ),
+                ),
+              ),
               SizedBox(
                 height: 15.h,
               ),
@@ -367,6 +425,8 @@ class _Doctor_Signup_PageState extends State<Doctor_Signup_Page> {
                         showToastMessage('Please Enter all the Fields ');
                       } else if (_mobileNumberController.text.length != 10) {
                         showToastMessage('Please Enter valid Mobile Number ');
+                      } else if (_selectedItem == ' ') {
+                        showToastMessage('Select Your Specialization');
                       } else if (isSelected == false) {
                         showToastMessage('Accept Terms and Conditions');
                       } else if (_mobileNumberController.text != "" &&
@@ -378,6 +438,7 @@ class _Doctor_Signup_PageState extends State<Doctor_Signup_Page> {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => OTP_Entering_Page(
+                              docCategory: _selectedItem,
                               city: _cityController.text,
                               firstName: _firstNameController.text,
                               lastName: _lastNameController.text,
@@ -567,13 +628,15 @@ class OTPInput extends StatefulWidget {
   final String firstName;
   final String lastName;
   final String city;
+  final String docCategory;
 
   const OTPInput(
       {super.key,
       required this.mobileNumber,
       required this.firstName,
       required this.lastName,
-      required this.city});
+      required this.city,
+      required this.docCategory});
   @override
   _OTPInputState createState() => _OTPInputState();
 }
@@ -582,39 +645,60 @@ class _OTPInputState extends State<OTPInput> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   Future<void> _saveUserData(String uid) async {
     try {
+      FirebaseAuth auth = FirebaseAuth.instance;
       String formattedMobileNumber = '+91${widget.mobileNumber}';
-      await _firestore.collection('Dentist').doc(uid).set({
+      await _firestore.collection(widget.docCategory).doc(uid).set({
         'Bookings': {
           'dummy_date': {'dummy_slot': 'dummyId'}
         },
         'mobileNumber': formattedMobileNumber,
         'address': ' ',
         'city': widget.city,
-        'email': "drnk@gmail.com",
-        'experience': "0",
+        'email': " ",
+        'experience': " ",
         'name': "${widget.firstName} ${widget.lastName}",
-        'pin_code': "846001",
-        'rating': "4.8",
-        'reg_fee': "500",
+        'pin_code': " ",
+        'rating': " ",
+        'reg_fee': " ",
         'sitting_days': [' ', ' '],
-        'specialization': "Speacialist Surgeon"
+        'specialization': " ",
+        'profile_pic': ' ',
+        'accountHolderName': ' ',
+        'accountNumber': ' ',
+        'age': ' ',
+        'bankName': ' ',
+        'bloodGroup': ' ',
+        'ifscCode': ' ',
+        'qualification': ' ',
+        'state': ' ',
+        'uid': auth.currentUser!.uid
       });
-      await _firestore.collection('doctors').doc(uid).set({
-        'Bookings': {
-          'dummy_date': {'dummy_slot': 'dummyId'}
-        },
-        'mobileNumber': formattedMobileNumber,
-        'address': ' ',
-        'city': widget.city,
-        'email': "drnk@gmail.com",
-        'experience': "0",
-        'name': "${widget.firstName} ${widget.lastName}",
-        'pin_code': "846001",
-        'rating': "4.8",
-        'reg_fee': "500",
-        'sitting_days': [' ', ' '],
-        'specialization': "Speacialist Surgeon"
-      });
+      // await _firestore.collection('doctors').doc(uid).set({
+      //   'Bookings': {
+      //     'dummy_date': {'dummy_slot': 'dummyId'}
+      //   },
+      //   'mobileNumber': formattedMobileNumber,
+      //   'address': ' ',
+      //   'city': widget.city,
+      //   'email': " ",
+      //   'experience': " ",
+      //   'name': "${widget.firstName} ${widget.lastName}",
+      //   'pin_code': " ",
+      //   'rating': " ",
+      //   'reg_fee': " ",
+      //   'sitting_days': [' ', ' '],
+      //   'specialization': " ",
+      //   'profile_pic': ' ',
+      //   'accountHolderName': ' ',
+      //   'accountNumber': ' ',
+      //   'age': ' ',
+      //   'bankName': ' ',
+      //   'bloodGroup': ' ',
+      //   'ifscCode': ' ',
+      //   'qualification': ' ',
+      //   'state': ' ',
+      //   'doctorId':auth.currentUser!.uid
+      // });
       print('User data saved successfully');
     } catch (e) {
       print('Error saving user data: $e');
@@ -694,6 +778,7 @@ class _OTPInputState extends State<OTPInput> {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => Doctor_Home_Page(
+            docCategory: widget.docCategory,
             user: user,
           ),
         ),
@@ -711,12 +796,14 @@ class OTP_Entering_Page extends StatefulWidget {
   final String firstName;
   final String lastName;
   final String city;
+  final String docCategory;
 
   OTP_Entering_Page(
       {required this.mobileNumber,
       required this.firstName,
       required this.lastName,
-      required this.city});
+      required this.city,
+      required this.docCategory});
 
   @override
   State<OTP_Entering_Page> createState() => _OTP_Entering_PageState();
@@ -805,10 +892,12 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
                 height: 25.h,
               ),
               OTPInput(
-                  city: widget.city,
-                  firstName: widget.firstName,
-                  lastName: widget.lastName,
-                  mobileNumber: widget.mobileNumber),
+                city: widget.city,
+                firstName: widget.firstName,
+                lastName: widget.lastName,
+                mobileNumber: widget.mobileNumber,
+                docCategory: widget.docCategory,
+              ),
               SizedBox(
                 height: 19.h,
               ),
@@ -854,7 +943,8 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
                         // OTP verification succeeded, navigate to the home page
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => const Doctor_Home_Page(),
+                            builder: (context) => Doctor_Home_Page(
+                                docCategory: widget.docCategory),
                           ),
                         );
                       } catch (e) {

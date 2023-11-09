@@ -8,6 +8,7 @@ import 'package:doc_search/Views/Patient%20Part/Profile/Refer_And_Earn_Page.dart
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import '../../../Doctor_bottomBar.dart';
 import 'Appointments.dart';
@@ -15,6 +16,8 @@ import 'Community.dart';
 import 'Doctor_MedicalRecords.dart';
 
 class Doctor_Profile_Page extends StatelessWidget {
+  Doctor_Profile_Page({required this.docCategory});
+  final String docCategory;
   @override
   Widget build(BuildContext context) {
     final myDetails = Provider.of<Patient_And_Appointment_Provider>(context);
@@ -22,7 +25,8 @@ class Doctor_Profile_Page extends StatelessWidget {
       statusBarColor: const Color(0xFF155467),
     ));
     return Scaffold(
-      bottomNavigationBar: DoctorBottombar(SelectedIndex: 3),
+      bottomNavigationBar:
+          DoctorBottombar(docCategory: docCategory, SelectedIndex: 3),
       body: Container(
           decoration: BoxDecoration(
             color: const Color(0xFF155467),
@@ -59,10 +63,17 @@ class Doctor_Profile_Page extends StatelessWidget {
                           child: Stack(
                             children: <Widget>[
                               CircleAvatar(
-                                child: Icon(Icons.person, size: 90),
-                                maxRadius: 50,
-                                backgroundColor: Colors.white,
-                              ),
+                                  maxRadius: 50.r,
+                                  child: myDetails.myDetails!.profile_pic == ' '
+                                      ? Icon(Icons.person, size: 90)
+                                      : ClipOval(
+                                          child: Image.network(
+                                            myDetails.myDetails!.profile_pic,
+                                            width: 95.0.w,
+                                            height: 95.0.h,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        )),
                               Positioned(
                                 bottom: 0,
                                 right: 0,
@@ -91,7 +102,7 @@ class Doctor_Profile_Page extends StatelessWidget {
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        "${myDetails.myDetails!.city}| +91 9905411917",
+                        "${myDetails.myDetails!.city}| ${myDetails.myDetails!.mobileNumber}",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
@@ -249,8 +260,9 @@ class Doctor_Profile_Page extends StatelessWidget {
                           trailing: InkWell(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) =>
-                                      Doctors_Setting_Page()));
+                                  builder: (context) => Doctors_Setting_Page(
+                                        docCategory: docCategory,
+                                      )));
                             },
                             child: Icon(Icons.arrow_forward_ios,
                                 size: 20, color: Colors.white),

@@ -548,6 +548,7 @@ class _Doctor_Category_Wise_FinalState
                     } else if (isChecked == false) {
                       showToastMessage('Please Accept T & C');
                     } else {
+                      print(widget.doctor.uid);
                       DoctorProvider.bookAppointment(
                         context,
                         Appointment_Model(
@@ -560,7 +561,7 @@ class _Doctor_Category_Wise_FinalState
                             self: false,
                             reg_fee: widget.doctor.reg_fee,
                             paid: true,
-                            doctorId: widget.doctor.email,
+                            doctorId: widget.doctor.uid,
                             slot: widget.slot,
                             userId: user!.uid),
                         widget.doc_Category,
@@ -579,6 +580,7 @@ class _Doctor_Category_Wise_FinalState
                     if (isChecked == false) {
                       showToastMessage('Please Accept T & C');
                     } else {
+                      print(widget.doctor.uid);
                       DoctorProvider.bookAppointment(
                         context,
                         Appointment_Model(
@@ -592,7 +594,7 @@ class _Doctor_Category_Wise_FinalState
                             self: true,
                             reg_fee: widget.doctor.reg_fee,
                             paid: true,
-                            doctorId: widget.doctor.email,
+                            doctorId: widget.doctor.uid,
                             slot: widget.slot,
                             userId: user!.uid),
                         widget.doc_Category,

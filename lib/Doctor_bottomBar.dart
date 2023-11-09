@@ -7,8 +7,10 @@ import 'Views/Patient Part/Appointment/PastApointment.dart';
 class DoctorBottombar extends StatefulWidget {
   @override
   final int SelectedIndex;
+  final String docCategory;
 
-  const DoctorBottombar({super.key, required this.SelectedIndex});
+  const DoctorBottombar(
+      {super.key, required this.docCategory, required this.SelectedIndex});
   State<DoctorBottombar> createState() => _DoctorBottombarState();
 }
 
@@ -25,7 +27,10 @@ class _DoctorBottombarState extends State<DoctorBottombar> {
         case 0:
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => Doctor_Home_Page()),
+            MaterialPageRoute(
+                builder: (context) => Doctor_Home_Page(
+                      docCategory: widget.docCategory,
+                    )),
           );
           break;
         case 1:
@@ -44,7 +49,10 @@ class _DoctorBottombarState extends State<DoctorBottombar> {
         case 3:
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => Doctor_Profile_Page()),
+            MaterialPageRoute(
+                builder: (context) => Doctor_Profile_Page(
+                      docCategory: widget.docCategory,
+                    )),
           );
           break;
         // Add more cases for additional pages if needed

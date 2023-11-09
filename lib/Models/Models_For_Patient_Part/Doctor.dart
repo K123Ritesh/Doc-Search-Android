@@ -8,10 +8,12 @@ class Doctor {
   final String reg_fee;
   final String specialization;
   final String email;
+  final String uid;
   final List<dynamic> sitting_days;
 
   Doctor(
-      {required this.specialization,
+      {required this.uid,
+      required this.specialization,
       required this.rating,
       required this.reg_fee,
       required this.sitting_days,

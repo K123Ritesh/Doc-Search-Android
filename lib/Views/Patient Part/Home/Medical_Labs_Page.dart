@@ -233,8 +233,8 @@ class Container_For_Medicine_Store extends StatelessWidget {
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(15.r),
                       bottomLeft: Radius.circular(15.r)),
-                  child: Image.network(
-                    'https://s3-alpha-sig.figma.com/img/add4/3804/9d594a6362be8d398b62e1a3b17c03e2?Expires=1699228800&Signature=Ds1tC7xXjhangAZwlZRbcKyYZSHznK6eeq6UkVkiC~mF9Rtmf4VLlhNHXc5EWVT3Ka-8nw1OQV83WTBCvu3eyACPVT1AYMMptJuXgvoeRqM-cxGtzvsiVMZOXC4ps9hBZsDhtD~CKVpophD2BKIVfOP6NC3arKsgd3rsqOxZVLI6VKXt0TfFoerkRn3PNbqOIQ5G5sP0-5QHjEjSX1ibgJKo5Q-83wNn-0vjDmScGmshD-Pab8pFM9OoQ8DjxHkq2eOHBxL8hyyf34GhpLB8zqJt3shLOk3lmhmTP4Voh7byBdwkdzoF79IVFrfjz847gjjCd-diUWoq8lkSK~4mIg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                  child: Image.asset(
+                    'assets/Images/MedicalLab.png',
                     width: 150.w,
                     height: 150.h,
                     fit: BoxFit.fill,
@@ -262,10 +262,8 @@ class Container_For_Medicine_Store extends StatelessWidget {
                                   horizontal: 14.0.w, vertical: 4.h),
                               child: Row(
                                 children: [
-                                  Image.network(
-                                      'https://s3-alpha-sig.figma.com/img/6b44/dfe8/5c57af73afca6dcfe03f4edefe50e0d8?Expires=1699228800&Signature=Lr3Xoqc42oUgyw5W-edowlsanrCojTS6AGSLTprSiVaLqanRw6UMsk33zhZeJFeEmHw7fcp9m9hu2xA0iiPAxg2XmR2qWDEp8DyTMw0uSL3NwdSspGPq69NY1a-5xCBdWmFnRGRd1g-nx-83Gjc7zKmiBLShElK6UObuPx9K3nnsvLd8TCAt4E23Y3pdzDtmiT5jJri5n55E7kHO6etZGfoVryhiWEH7jHL8cEP-qoRrKx4in8xm8AZts6XBM7k2DgCSXmrUmI6X5YGwMwGpGG6Z74Pfc8TKgzFv5bp2ilKmulUbag0ID37DphiT2G2lpPExL2r-xAkR3dffovWEZA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
-                                      height: 15.h,
-                                      width: 15.w),
+                                  Image.asset('assets/Icons/star.png',
+                                      height: 15.h, width: 15.w),
                                   Text('4.5',
                                       style: TextStyle(color: Colors.white))
                                 ],

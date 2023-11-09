@@ -1,10 +1,13 @@
 import 'dart:io';
 import 'package:doc_search/Config/sizeConfig.dart';
+import 'package:doc_search/Providers/Doctor_Part_Provider/Patient_And_Appointment_Provider.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:path/path.dart' as path;
+import 'package:provider/provider.dart';
 
 class EditDoctorProfile extends StatefulWidget {
   const EditDoctorProfile({super.key});
@@ -73,17 +76,25 @@ class _EditDoctorProfileState extends State<EditDoctorProfile>
 
   String name = '';
   String email = '';
-  String profession = '';
+  String qualification = '';
+  String experience = '';
   String age = '';
   String gender = 'zero';
-  String bloodGrp = '';
+  String bloodGroup = '';
   String address = '';
-  String landmark = '';
   String city = '';
+  String state = '';
   String pincode = '';
+
+  String bankName = '';
+  String accountHolderName = '';
+  String accountNumber = '';
+  String ifscCode = '';
 
   @override
   Widget build(BuildContext context) {
+    final updateProfile =
+        Provider.of<Patient_And_Appointment_Provider>(context);
     SizeConfig().init(context);
     return Scaffold(
       backgroundColor: const Color(0xFF1A6A83),
@@ -117,16 +128,16 @@ class _EditDoctorProfileState extends State<EditDoctorProfile>
                   },
                   child: CircleAvatar(
                       radius: 40,
-                      child: Icon(Icons.add_photo_alternate_rounded, size: 40)
-                      // : ClipOval(
-                      //     child: Image.network(
-                      //       userProvider.user.profilePicUrl,
-                      //       width: 80.0.w,
-                      //       height: 80.0.h,
-                      //       fit: BoxFit.cover,
-                      //
-                      // ),
-                      ),
+                      child: updateProfile.myDetails!.profile_pic == ' '
+                          ? Icon(Icons.add_photo_alternate_rounded, size: 40)
+                          : ClipOval(
+                              child: Image.network(
+                                updateProfile.myDetails!.profile_pic,
+                                width: 80.0.w,
+                                height: 80.0.h,
+                                fit: BoxFit.cover,
+                              ),
+                            )),
                 ),
               ),
             ),
@@ -172,15 +183,10 @@ class _EditDoctorProfileState extends State<EditDoctorProfile>
                           child: Padding(
                             padding: EdgeInsets.only(left: 10),
                             child: TextFormField(
-                              // initialValue: '${userProvider.user.firstName}',
+                              initialValue: '${updateProfile.myDetails!.name}',
                               onChanged: (value) {
                                 setState(() {
-                                  if (value.length == 0) {
-                                    // name =
-                                    //     '${userProvider.user.firstName} ${userProvider.user.lastName}';
-                                  } else {
-                                    name = value;
-                                  }
+                                  name = value;
                                 });
                                 print('Name:-$value');
                               },
@@ -190,7 +196,7 @@ class _EditDoctorProfileState extends State<EditDoctorProfile>
                               ],
                               decoration: InputDecoration(
                                   prefixIcon: Icon(Icons.person),
-                                  hintText: '',
+                                  hintText: 'Enter Your Name',
                                   hintStyle: TextStyle(
                                       color: const Color.fromARGB(
                                           255, 46, 43, 43)),
@@ -209,7 +215,8 @@ class _EditDoctorProfileState extends State<EditDoctorProfile>
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
                                   prefixIcon: Icon(Icons.phone_android),
-                                  // hintText: userProvider.user.mobileNo,
+                                  hintText:
+                                      updateProfile.myDetails!.mobileNumber,
                                   hintStyle: TextStyle(
                                       color: const Color.fromARGB(
                                           255, 72, 66, 66)),
@@ -224,14 +231,10 @@ class _EditDoctorProfileState extends State<EditDoctorProfile>
                           child: Padding(
                             padding: EdgeInsets.only(left: 10),
                             child: TextFormField(
-                              // initialValue: '${userProvider.user.email}',
+                              initialValue: '${updateProfile.myDetails!.email}',
                               onChanged: (value) {
                                 setState(() {
-                                  if (value.length == 0) {
-                                    // email = '${userProvider.user.email}';
-                                  } else {
-                                    email = value;
-                                  }
+                                  email = value;
                                 });
                                 print('Email:-$value');
                               },
@@ -250,25 +253,21 @@ class _EditDoctorProfileState extends State<EditDoctorProfile>
                           child: Padding(
                             padding: EdgeInsets.only(left: 10),
                             child: TextFormField(
-                              // initialValue: '${userProvider.user.profession}',
+                              initialValue:
+                                  '${updateProfile.myDetails!.qualification}',
                               onChanged: (value) {
                                 setState(() {
-                                  if (value.length == 0) {
-                                    // profession =
-                                    // '${userProvider.user.profession}';
-                                  } else {
-                                    profession = value;
-                                  }
+                                  qualification = value;
                                 });
-                                print('profession:-$value');
+                                print('Qualification:-$value');
                               },
                               inputFormatters: [
                                 FilteringTextInputFormatter.allow(
-                                    RegExp(r'[a-zA-Z]')),
+                                    RegExp(r'[ .a-zA-Z]')),
                               ],
                               decoration: InputDecoration(
                                   prefixIcon: Icon(Icons.engineering),
-                                  hintText: "Profession",
+                                  hintText: "Qualification",
                                   hintStyle: TextStyle(color: Colors.grey),
                                   border: InputBorder.none),
                             ),
@@ -277,10 +276,31 @@ class _EditDoctorProfileState extends State<EditDoctorProfile>
                         SizedBox(
                           height: 15,
                         ),
-
-                        // SizedBox(
-                        //   height: 15,
-                        // ),
+                        Card(
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 10),
+                            child: TextFormField(
+                              keyboardType: TextInputType.number,
+                              initialValue:
+                                  '${updateProfile.myDetails!.experience}',
+                              onChanged: (value) {
+                                setState(() {
+                                  experience = value;
+                                });
+                                print('Experience:-$value');
+                              },
+                              // maxLength: 2,
+                              decoration: InputDecoration(
+                                  prefixIcon: Icon(Icons.bloodtype),
+                                  hintText: "Experience",
+                                  hintStyle: TextStyle(color: Colors.grey),
+                                  border: InputBorder.none),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
                         Card(
                           child: Row(
                             children: [
@@ -290,21 +310,17 @@ class _EditDoctorProfileState extends State<EditDoctorProfile>
                                   child: Padding(
                                     padding: EdgeInsets.only(left: 10),
                                     child: TextFormField(
-                                      // initialValue: '${userProvider.user.age}',
+                                      initialValue:
+                                          '${updateProfile.myDetails!.age}',
                                       onChanged: (value) {
                                         setState(() {
-                                          if (value.length == 0) {
-                                            // age = '${userProvider.user.age}';
-                                          } else {
-                                            age = value;
-                                          }
+                                          age = value;
                                         });
                                         print('Age:-$value');
                                       },
-                                      // maxLength: 2,
                                       keyboardType: TextInputType.number,
                                       decoration: InputDecoration(
-                                          hintText: "  Age (in Years)",
+                                          hintText: "Age",
                                           hintStyle:
                                               TextStyle(color: Colors.grey),
                                           border: InputBorder.none),
@@ -340,11 +356,11 @@ class _EditDoctorProfileState extends State<EditDoctorProfile>
                                     ),
                                     DropdownMenuItem<String>(
                                       value: 'Two',
-                                      child: Text('FeMale'),
+                                      child: Text('Female'),
                                     ),
                                     DropdownMenuItem<String>(
                                       value: 'Three',
-                                      child: Text('Others'),
+                                      child: Text('None'),
                                     ),
                                   ],
                                 ),
@@ -355,21 +371,15 @@ class _EditDoctorProfileState extends State<EditDoctorProfile>
                         SizedBox(
                           height: 15,
                         ),
-                        SizedBox(
-                          height: 15,
-                        ),
                         Card(
                           child: Padding(
                             padding: EdgeInsets.only(left: 10),
                             child: TextFormField(
-                              // initialValue: '${userProvider.user.bloodGrp}',
+                              initialValue:
+                                  '${updateProfile.myDetails!.bloodGroup}',
                               onChanged: (value) {
                                 setState(() {
-                                  if (value.length == 0) {
-                                    // bloodGrp = '${userProvider.user.bloodGrp}';
-                                  } else {
-                                    bloodGrp = value;
-                                  }
+                                  bloodGroup = value;
                                 });
                                 print('Blood Group:-$value');
                               },
@@ -389,12 +399,11 @@ class _EditDoctorProfileState extends State<EditDoctorProfile>
                           child: Padding(
                             padding: EdgeInsets.only(left: 10),
                             child: TextFormField(
+                              initialValue:
+                                  '${updateProfile.myDetails!.address}',
                               onChanged: (value) {
                                 setState(() {
-                                  if (value.length == 0) {
-                                  } else {
-                                    address = value;
-                                  }
+                                  address = value;
                                 });
                                 print('Address:-$value');
                               },
@@ -418,43 +427,10 @@ class _EditDoctorProfileState extends State<EditDoctorProfile>
                           child: Padding(
                             padding: EdgeInsets.only(left: 10),
                             child: TextFormField(
-                              // initialValue: '${userProvider.user.landmark}',
+                              initialValue: '${updateProfile.myDetails!.city}',
                               onChanged: (value) {
                                 setState(() {
-                                  if (value.length == 0) {
-                                    // landmark = '${userProvider.user.landmark}';
-                                  } else {
-                                    landmark = value;
-                                  }
-                                });
-                                print('Landmark:-$value');
-                              },
-                              inputFormatters: [
-                                FilteringTextInputFormatter.allow(
-                                    RegExp(r'[ a-zA-Z]')),
-                              ],
-                              decoration: InputDecoration(
-                                  prefixIcon: Icon(Icons.landscape),
-                                  hintText: "Landmark",
-                                  hintStyle: TextStyle(color: Colors.grey),
-                                  border: InputBorder.none),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Card(
-                          child: Padding(
-                            padding: EdgeInsets.only(left: 10),
-                            child: TextFormField(
-                              onChanged: (value) {
-                                setState(() {
-                                  if (value.length == 0) {
-                                    // city = '${userProvider.user.city}';
-                                  } else {
-                                    city = value;
-                                  }
+                                  city = value;
                                 });
                                 print('City:-$value');
                               },
@@ -477,12 +453,37 @@ class _EditDoctorProfileState extends State<EditDoctorProfile>
                           child: Padding(
                             padding: EdgeInsets.only(left: 10),
                             child: TextFormField(
+                              initialValue: '${updateProfile.myDetails!.state}',
                               onChanged: (value) {
                                 setState(() {
-                                  if (value.length == 0) {
-                                  } else {
-                                    pincode = value;
-                                  }
+                                  state = value;
+                                });
+                                print('State:-$value');
+                              },
+                              inputFormatters: [
+                                FilteringTextInputFormatter.allow(
+                                    RegExp(r'[ a-zA-Z]')),
+                              ],
+                              decoration: InputDecoration(
+                                  prefixIcon: Icon(Icons.landscape),
+                                  hintText: "State",
+                                  hintStyle: TextStyle(color: Colors.grey),
+                                  border: InputBorder.none),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Card(
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 10),
+                            child: TextFormField(
+                              initialValue:
+                                  '${updateProfile.myDetails!.pincode}',
+                              onChanged: (value) {
+                                setState(() {
+                                  pincode = value;
                                 });
                                 print('Pincode:-$value');
                               },
@@ -526,6 +527,54 @@ class _EditDoctorProfileState extends State<EditDoctorProfile>
                             ),
                             InkWell(
                               onTap: () {
+                                FirebaseAuth user = FirebaseAuth.instance;
+
+                                if (selectedFile != null) {
+                                  updateProfile.uploadImage(
+                                      context,
+                                      selectedFile!,
+                                      user.currentUser!.uid,
+                                      'Dentist');
+                                } else {
+                                  setState(() {
+                                    selectedFile = null;
+                                  });
+                                }
+                                updateProfile.updateProfile(
+                                    context, 'Dentist', user.currentUser!.uid, {
+                                  'name': name.length == 0
+                                      ? '${updateProfile.myDetails!.name}'
+                                      : name,
+                                  'email': email.length == 0
+                                      ? '${updateProfile.myDetails!.email}'
+                                      : email,
+                                  'qualification': qualification.length == 0
+                                      ? '${updateProfile.myDetails!.qualification}'
+                                      : qualification,
+                                  'experience': experience.length == 0
+                                      ? '${updateProfile.myDetails!.experience}'
+                                      : experience,
+                                  'age': age.length == 0
+                                      ? '${updateProfile.myDetails!.age}'
+                                      : age,
+                                  'bloodGroup': bloodGroup.length == 0
+                                      ? '${updateProfile.myDetails!.bloodGroup}'
+                                      : bloodGroup,
+                                  'address': address.length == 0
+                                      ? '${updateProfile.myDetails!.address}'
+                                      : address,
+                                  'city': city.length == 0
+                                      ? '${updateProfile.myDetails!.city}'
+                                      : city,
+                                  'pin_code': pincode.length == 0
+                                      ? '${updateProfile.myDetails!.pincode}'
+                                      : pincode,
+                                  'state': state.length == 0
+                                      ? '${updateProfile.myDetails!.state}'
+                                      : state,
+                                });
+                                updateProfile.getMyDetails(context, 'Dentist');
+
                                 Navigator.pop(context);
                               },
                               child: Container(
@@ -539,7 +588,7 @@ class _EditDoctorProfileState extends State<EditDoctorProfile>
                                     vertical: 8.h,
                                   ),
                                   child: Text(
-                                    'update',
+                                    'Update',
                                     style: TextStyle(
                                         fontSize: 20.sp,
                                         color: Colors.white,
@@ -566,22 +615,20 @@ class _EditDoctorProfileState extends State<EditDoctorProfile>
                           child: Padding(
                             padding: EdgeInsets.only(left: 10),
                             child: TextFormField(
+                              initialValue: updateProfile.myDetails!.bankName,
                               onChanged: (value) {
                                 setState(() {
-                                  if (value.length == 0) {
-                                  } else {
-                                    name = value;
-                                  }
+                                  bankName = value;
                                 });
-                                print('Name:-$value');
+                                print('Bank Name:-$value');
                               },
                               inputFormatters: [
                                 FilteringTextInputFormatter.allow(
                                     RegExp(r'[ a-zA-Z]')),
                               ],
                               decoration: InputDecoration(
-                                  prefixIcon: Icon(Icons.person),
-                                  hintText: '',
+                                  prefixIcon: Icon(Icons.food_bank),
+                                  hintText: 'Bank Name',
                                   hintStyle: TextStyle(
                                       color: const Color.fromARGB(
                                           255, 46, 43, 43)),
@@ -596,147 +643,27 @@ class _EditDoctorProfileState extends State<EditDoctorProfile>
                           child: Padding(
                             padding: EdgeInsets.only(left: 10),
                             child: TextFormField(
-                              readOnly: true,
-                              keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
-                                  prefixIcon: Icon(Icons.phone_android),
-                                  hintStyle: TextStyle(
-                                      color: const Color.fromARGB(
-                                          255, 72, 66, 66)),
-                                  border: InputBorder.none),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Card(
-                          child: Padding(
-                            padding: EdgeInsets.only(left: 10),
-                            child: TextFormField(
+                              initialValue:
+                                  updateProfile.myDetails!.accountHolderName,
                               onChanged: (value) {
                                 setState(() {
-                                  if (value.length == 0) {
-                                  } else {
-                                    email = value;
-                                  }
+                                  accountHolderName = value;
                                 });
-                                print('Email:-$value');
-                              },
-                              decoration: InputDecoration(
-                                  prefixIcon: Icon(Icons.email),
-                                  hintText: "Email",
-                                  hintStyle: TextStyle(color: Colors.grey),
-                                  border: InputBorder.none),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Card(
-                          child: Padding(
-                            padding: EdgeInsets.only(left: 10),
-                            child: TextFormField(
-                              onChanged: (value) {
-                                setState(() {
-                                  if (value.length == 0) {
-                                  } else {
-                                    profession = value;
-                                  }
-                                });
-                                print('profession:-$value');
+                                print('Account Holder Name:-$value');
                               },
                               inputFormatters: [
                                 FilteringTextInputFormatter.allow(
-                                    RegExp(r'[a-zA-Z]')),
+                                    RegExp(r'[ a-zA-Z]')),
                               ],
                               decoration: InputDecoration(
-                                  prefixIcon: Icon(Icons.engineering),
-                                  hintText: "Profession",
-                                  hintStyle: TextStyle(color: Colors.grey),
+                                  prefixIcon: Icon(Icons.person),
+                                  hintText: 'Account Holder Name',
+                                  hintStyle: TextStyle(
+                                      color: const Color.fromARGB(
+                                          255, 46, 43, 43)),
                                   border: InputBorder.none),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-
-                        // SizedBox(
-                        //   height: 15,
-                        // ),
-                        Card(
-                          child: Row(
-                            children: [
-                              Container(
-                                width: 130.w,
-                                child: Card(
-                                  child: Padding(
-                                    padding: EdgeInsets.only(left: 10),
-                                    child: TextFormField(
-                                      onChanged: (value) {
-                                        setState(() {
-                                          if (value.length == 0) {
-                                          } else {
-                                            age = value;
-                                          }
-                                        });
-                                        print('Age:-$value');
-                                      },
-                                      // maxLength: 2,
-                                      keyboardType: TextInputType.number,
-                                      decoration: InputDecoration(
-                                          hintText: "  Age (in Years)",
-                                          hintStyle:
-                                              TextStyle(color: Colors.grey),
-                                          border: InputBorder.none),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 50.fw,
-                              ),
-                              Divider(
-                                height: 20,
-                                color: Colors.black,
-                              ),
-                              Center(
-                                child: DropdownButton<String>(
-                                  elevation: 0,
-                                  value: gender,
-                                  icon: Icon(Icons.arrow_drop_down),
-                                  onChanged: (String? newValue) {
-                                    setState(() {
-                                      gender = newValue!;
-                                    });
-                                  },
-                                  items: [
-                                    DropdownMenuItem<String>(
-                                      value: 'zero',
-                                      child: Text('Select your Gender'),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: 'one',
-                                      child: Text('Male'),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: 'Two',
-                                      child: Text('FeMale'),
-                                    ),
-                                    DropdownMenuItem<String>(
-                                      value: 'Three',
-                                      child: Text('Others'),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 15,
                         ),
                         SizedBox(
                           height: 15,
@@ -745,32 +672,53 @@ class _EditDoctorProfileState extends State<EditDoctorProfile>
                           child: Padding(
                             padding: EdgeInsets.only(left: 10),
                             child: TextFormField(
+                              initialValue:
+                                  updateProfile.myDetails!.accountNumber,
                               onChanged: (value) {
                                 setState(() {
-                                  if (value.length == 0) {
-                                  } else {
-                                    bloodGrp = value;
-                                  }
+                                  accountNumber = value;
                                 });
-                                print('Blood Group:-$value');
+                                print('Account Number:-$value');
                               },
-                              // maxLength: 2,
+                              keyboardType: TextInputType.number,
                               decoration: InputDecoration(
-                                  prefixIcon: Icon(Icons.bloodtype),
-                                  hintText: "Blood Group",
-                                  hintStyle: TextStyle(color: Colors.grey),
+                                  prefixIcon: Icon(Icons.person),
+                                  hintText: 'Account Number',
+                                  hintStyle: TextStyle(
+                                      color: const Color.fromARGB(
+                                          255, 46, 43, 43)),
                                   border: InputBorder.none),
                             ),
                           ),
                         ),
                         SizedBox(
-                          height: 15.h,
-                        ),
-
-                        SizedBox(
                           height: 15,
                         ),
-
+                        Card(
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 10),
+                            child: TextFormField(
+                              initialValue: updateProfile.myDetails!.ifscCode,
+                              onChanged: (value) {
+                                setState(() {
+                                  ifscCode = value;
+                                });
+                                print('IFSC Code:-$value');
+                              },
+                              inputFormatters: [
+                                FilteringTextInputFormatter.allow(
+                                    RegExp(r'[ a-zA-Z]')),
+                              ],
+                              decoration: InputDecoration(
+                                  prefixIcon: Icon(Icons.person),
+                                  hintText: 'IFSC Code',
+                                  hintStyle: TextStyle(
+                                      color: const Color.fromARGB(
+                                          255, 46, 43, 43)),
+                                  border: InputBorder.none),
+                            ),
+                          ),
+                        ),
                         SizedBox(
                           height: 15,
                         ),
@@ -801,6 +749,25 @@ class _EditDoctorProfileState extends State<EditDoctorProfile>
                             ),
                             InkWell(
                               onTap: () {
+                                FirebaseAuth user = FirebaseAuth.instance;
+                                updateProfile.updateProfile(
+                                    context, 'Dentist', user.currentUser!.uid, {
+                                  'bankName': bankName.length == 0
+                                      ? updateProfile.myDetails!.bankName
+                                      : bankName,
+                                  'accountHolderName':
+                                      accountHolderName.length == 0
+                                          ? updateProfile
+                                              .myDetails!.accountHolderName
+                                          : accountHolderName,
+                                  'accountNumber': accountNumber.length == 0
+                                      ? updateProfile.myDetails!.accountNumber
+                                      : accountNumber,
+                                  'ifscCode': ifscCode.length == 0
+                                      ? updateProfile.myDetails!.ifscCode
+                                      : ifscCode,
+                                });
+                                updateProfile.getMyDetails(context, 'Dentist');
                                 Navigator.pop(context);
                               },
                               child: Container(

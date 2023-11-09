@@ -6,8 +6,7 @@ class Prescription_Done extends StatefulWidget {
   const Prescription_Done({super.key});
 
   @override
-  State<Prescription_Done> createState() =>
-      _Prescription_DoneState();
+  State<Prescription_Done> createState() => _Prescription_DoneState();
 }
 
 class _Prescription_DoneState extends State<Prescription_Done> {
@@ -43,15 +42,30 @@ class _Prescription_DoneState extends State<Prescription_Done> {
         child: Center(
           child: Column(
             children: [
-              SizedBox(height: 250,),
-              Text('DONE!',style: TextStyle(fontSize: 32,color: Colors.white,fontWeight: FontWeight.bold),),
-              SizedBox(height: 20,),
-              Text('The Prescription was successfully uploaded.',style: TextStyle(fontSize: 16,color: Colors.white),),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 250,
+              ),
+              Text(
+                'DONE!',
+                style: TextStyle(
+                    fontSize: 32,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                'The Prescription was successfully uploaded.',
+                style: TextStyle(fontSize: 16, color: Colors.white),
+              ),
+              SizedBox(
+                height: 20,
+              ),
               InkWell(
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => Doctor_Home_Page()));
+                  Navigator.pop(context);
+                  Navigator.pop(context);
                 },
                 child: Container(
                   decoration: BoxDecoration(

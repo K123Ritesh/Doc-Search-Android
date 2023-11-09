@@ -51,6 +51,12 @@ class _Prescription_Upload_PageState extends State<Prescription_Upload_Page> {
         selectedFile = file;
         print("Selected file: ${file.path}");
         fileName = path.basename(file.path).toString();
+        for (int i = 0; i < files_list.length; i++) {
+          if (files_list[i] == fileName) {
+            showToastMessage('You have already Selected this file once');
+            return;
+          }
+        }
         setState(() {
           files_list.add(fileName);
         });
@@ -125,8 +131,8 @@ class _Prescription_Upload_PageState extends State<Prescription_Upload_Page> {
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(15),
-                        child: Image.network(
-                          'https://s3-alpha-sig.figma.com/img/794b/f823/888e96939d2cdc3a020b483113f691e6?Expires=1699228800&Signature=VseIWQAWN33pNICILnj70LXfeN6memzt6Z-OCXz6IAqpv3V~87ADxWi0O7vHJtwfhjhkrltSjReikFhEgjMl~USyfilpabpN4cKIfJPdqz6rKUTFw6Qk2HWsT8cSirCOmPcHzmnLGUhhTSeqraR-UfUmkb79IWvL9JWFl~HPNllntFDok0nUHs0fa0brCyv6Lu55KKensPkenhRfCW1nUc8p0tj3iqELCd5UdakJFKdrTrbM7qaXJpLWyJcCZpn5f42QSfRlqAJj6v6s5KMxzU0T48DiJI241aPBbYr0iwzGHnK9ySVa7PB3iUC1vBlOBkgn3W33ueEpxWIjrH~8Jg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                        child: Image.asset(
+                          'assets/Images/MedicineStore.png',
                           height: 150.h,
                           width: 400.w,
                           fit: BoxFit.fill,
@@ -161,10 +167,8 @@ class _Prescription_Upload_PageState extends State<Prescription_Upload_Page> {
                                         horizontal: 14.0.w, vertical: 4.h),
                                     child: Row(
                                       children: [
-                                        Image.network(
-                                            'https://s3-alpha-sig.figma.com/img/6b44/dfe8/5c57af73afca6dcfe03f4edefe50e0d8?Expires=1699228800&Signature=Lr3Xoqc42oUgyw5W-edowlsanrCojTS6AGSLTprSiVaLqanRw6UMsk33zhZeJFeEmHw7fcp9m9hu2xA0iiPAxg2XmR2qWDEp8DyTMw0uSL3NwdSspGPq69NY1a-5xCBdWmFnRGRd1g-nx-83Gjc7zKmiBLShElK6UObuPx9K3nnsvLd8TCAt4E23Y3pdzDtmiT5jJri5n55E7kHO6etZGfoVryhiWEH7jHL8cEP-qoRrKx4in8xm8AZts6XBM7k2DgCSXmrUmI6X5YGwMwGpGG6Z74Pfc8TKgzFv5bp2ilKmulUbag0ID37DphiT2G2lpPExL2r-xAkR3dffovWEZA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
-                                            height: 15.h,
-                                            width: 15.w),
+                                        Image.asset('assets/Icons/star.png',
+                                            height: 15.h, width: 15.w),
                                         Text('4.5',
                                             style:
                                                 TextStyle(color: Colors.white))

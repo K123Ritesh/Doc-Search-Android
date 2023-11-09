@@ -1,5 +1,5 @@
 import 'package:doc_search/Bottom_Bar.dart';
-import 'package:doc_search/Models/Doctor.dart';
+import 'package:doc_search/Models/Models_For_Patient_Part/Doctor.dart';
 
 import 'package:doc_search/Views/Patient%20Part/Doctors/Doctor_Category_Wise_Final.dart';
 import 'package:flutter/material.dart';

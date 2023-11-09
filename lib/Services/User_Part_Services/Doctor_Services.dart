@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:doc_search/Models/Appointment_Model.dart';
-import 'package:doc_search/Models/Doctor.dart';
+import 'package:doc_search/Models/Models_For_Patient_Part/Appointment_Model.dart';
+import 'package:doc_search/Models/Models_For_Patient_Part/Doctor.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';

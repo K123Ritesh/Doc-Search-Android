@@ -1,22 +1,32 @@
+import 'package:doc_search/Providers/Doctor_Part_Provider/Patient_And_Appointment_Provider.dart';
 import 'package:doc_search/Views/Doctor%20Part/Home/Appointment_Patient_Details_Page.dart';
 import 'package:doc_search/Views/Doctor%20Part/Profile/Online_Consultations_Page.dart';
 import 'package:doc_search/Views/Doctor%20Part/Profile/Profile_Page.dart';
 import 'package:doc_search/Views/Not_Build_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Wallet_Page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 import '../../../Doctor_bottomBar.dart';
 
 class Doctor_Home_Page extends StatefulWidget {
-  const Doctor_Home_Page({super.key});
+  const Doctor_Home_Page({super.key, User? user});
 
   @override
   State<Doctor_Home_Page> createState() => _Doctor_Home_PageState();
 }
 
 class _Doctor_Home_PageState extends State<Doctor_Home_Page> {
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<Patient_And_Appointment_Provider>(context, listen: false)
+        .getMyDetails(context, 'Dentist');
+  }
+
   final TextEditingController idController =
       TextEditingController(text: '583694');
   @override

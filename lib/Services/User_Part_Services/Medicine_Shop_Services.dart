@@ -4,7 +4,7 @@ import 'package:path/path.dart' as path;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
-import '../../Models/Medicine_Shop.dart';
+import '../../Models/Models_For_Patient_Part/Medicine_Shop.dart';
 
 class Medicine_Shop_Services {
   Future<List<MedicineShop>?> getMedicineShopsByPincode(

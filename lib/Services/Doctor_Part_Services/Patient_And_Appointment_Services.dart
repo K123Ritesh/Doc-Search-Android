@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:doc_search/Models/Doctor.dart';
+import 'package:doc_search/Models/Models_For_Patient_Part/Doctor.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class Patient_And_Appointment_Services {

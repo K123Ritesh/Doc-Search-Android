@@ -1,3 +1,4 @@
+import 'package:doc_search/Models/Models_For_Patient_Part/Doctor.dart';
 import 'package:doc_search/Services/Doctor_Part_Services/Patient_And_Appointment_Services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -23,7 +24,14 @@ class Patient_And_Appointment_Provider with ChangeNotifier {
     notifyListeners();
   }
 
-  getApointmentDetail(context) {}
-  String? uid;
-  getUserDetails(context) {}
+  Doctor? myDetails;
+
+  getMyDetails(context, String doctor_type) async {
+    myDetails = await service.DoctorsDetails(context, doctor_type);
+    notifyListeners();
+  }
+
+  // getApointmentDetail(context) {}
+  // String? uid;
+  // getUserDetails(context) {}
 }

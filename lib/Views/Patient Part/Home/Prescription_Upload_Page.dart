@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doc_search/Bottom_Bar.dart';
-import 'package:doc_search/Models/Medicine_Shop.dart';
+import 'package:doc_search/Models/Models_For_Patient_Part/Medicine_Shop.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Order_Done_Page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

@@ -1,30 +1,124 @@
-import 'package:doc_search/Views/Doctor%20Part/Authentication/Login_Page.dart';
-import 'package:doc_search/Views/Doctor%20Part/Home/Home_Page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
+import 'package:doc_search/Views/Patient%20Part/Authentication/Login_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Home/Home_Page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
 
-import '../../Patient Part/Authentication/Signup_Page.dart';
+import '../Home/Home_Page.dart';
 
 class Doctor_Signup_Page extends StatefulWidget {
   const Doctor_Signup_Page({super.key});
-
+  static String verify = "";
   @override
   State<Doctor_Signup_Page> createState() => _Doctor_Signup_PageState();
 }
 
 class _Doctor_Signup_PageState extends State<Doctor_Signup_Page> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _mobileNumberController = TextEditingController();
+  final TextEditingController _cityController = TextEditingController();
+
+  int _resendToken = 0;
+  String _countryCode = '+91';
+
+  bool isSelected = false;
+
+  void showToastMessage(String message) {
+    Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.black87,
+      textColor: Colors.white,
+      fontSize: 16.0,
+    );
+  }
+
+  Future<void> _registerUser() async {
+    try {
+      await _auth.verifyPhoneNumber(
+        phoneNumber: '$_countryCode${_mobileNumberController.text}',
+        timeout: const Duration(minutes: 2),
+        verificationCompleted: (PhoneAuthCredential credential) async {
+          // Auto-verify the code
+          await _auth.signInWithCredential(credential);
+
+          String uid = getCurrentUserUid();
+          await _saveUserData(uid);
+        },
+        verificationFailed: (FirebaseAuthException e) {
+          print('Error sending OTP: $e');
+        },
+        codeSent: (String verificationId, int? resendToken) {
+          Doctor_Signup_Page.verify = verificationId;
+          _resendToken = resendToken!;
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {
+          print('Auto-retrieval timed out');
+        },
+      );
+    } catch (e) {
+      print('Error during user registration: $e');
+    }
+  }
+
+  Future<void> _saveUserData(String uid) async {
+    try {
+      String formattedMobileNumber = '+91${_mobileNumberController.text}';
+      await _firestore.collection('Dentist').doc(uid).set({
+        'Bookings': {
+          'dummy_date': {'dummy_slot': 'dummyId'}
+        },
+        'mobileNumber': formattedMobileNumber,
+        'address': ' ',
+        'city': _cityController.text,
+        'email': "drnk@gmail.com",
+        'experience': "0",
+        'name': "Dr. Rahul Kumar",
+        'pin_code': "846001",
+        'rating': "4.8",
+        'reg_fee': "500",
+        'sitting_days': [' ', ' '],
+        'specialization': "Speacialist Surgeon"
+      });
+      print('User data saved successfully');
+    } catch (e) {
+      print('Error saving user data: $e');
+    }
+  }
+
+  String getCurrentUserUid() {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user = auth.currentUser;
+
+    if (user != null) {
+      String uid = user.uid;
+      return uid;
+    } else {
+      return "User not authenticated";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    bool isSelected = false;
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: const Color(0xFF155467),
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: const Color(0xFF1A6A83),
     ));
     return SafeArea(
         child: Scaffold(
+      backgroundColor: const Color(0xFF1A6A83),
       body: Container(
-          decoration: BoxDecoration(
-            color: const Color(0xFF155467),
+          decoration: const BoxDecoration(
+            color: const Color(0xFF1A6A83),
           ),
           child: Padding(
             padding: EdgeInsets.all(8.0.w),
@@ -41,10 +135,12 @@ class _Doctor_Signup_PageState extends State<Doctor_Signup_Page> {
                     onTap: () {
                       Navigator.pop(context);
                     },
-                    child: Icon(Icons.arrow_back_ios_new,
+                    child: const Icon(Icons.arrow_back_ios_new,
                         color: Colors.white, size: 26),
                   ),
-                  SizedBox(width: 60.w),
+                  SizedBox(
+                    width: 60.w,
+                  ),
                   Text(
                     'Join ',
                     style: TextStyle(
@@ -69,10 +165,7 @@ class _Doctor_Signup_PageState extends State<Doctor_Signup_Page> {
                 ],
               ),
               SizedBox(
-                height: 30.h,
-              ),
-              SizedBox(
-                height: 15.h,
+                height: 45.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -94,11 +187,12 @@ class _Doctor_Signup_PageState extends State<Doctor_Signup_Page> {
                             fontWeight: FontWeight.w400),
                       ),
                       InkWell(
-                        onTap: () {
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) => Signup_Page()));
-                        },
+                        // onTap: () {
+                        //   Navigator.of(context).pushReplacement(
+                        //       MaterialPageRoute(
+                        //           builder: (context) =>
+                        //               Doctor_Doctor_Signup_Page()));
+                        // },
                         child: Text(
                           'Register here ',
                           style: TextStyle(
@@ -126,10 +220,14 @@ class _Doctor_Signup_PageState extends State<Doctor_Signup_Page> {
                           BorderRadius.circular(20.0.r), // Rounded corners
                     ),
                     child: TextField(
-                      decoration: InputDecoration(
+                      inputFormatters: [
+                        FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
+                      ],
+                      controller: _firstNameController,
+                      decoration: const InputDecoration(
                         hintText: 'First Name',
-                        hintStyle: TextStyle(
-                            color: const Color.fromARGB(255, 82, 78, 78)),
+                        hintStyle:
+                            TextStyle(color: Color.fromARGB(255, 82, 78, 78)),
                         prefixIcon:
                             Icon(Icons.person_2_outlined, color: Colors.black),
                         border: InputBorder.none, // Remove default underline
@@ -150,10 +248,14 @@ class _Doctor_Signup_PageState extends State<Doctor_Signup_Page> {
                           BorderRadius.circular(20.0.r), // Rounded corners
                     ),
                     child: TextField(
-                      decoration: InputDecoration(
+                      controller: _lastNameController,
+                      inputFormatters: [
+                        FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
+                      ],
+                      decoration: const InputDecoration(
                         hintText: 'Last Name',
-                        hintStyle: TextStyle(
-                            color: const Color.fromARGB(255, 82, 78, 78)),
+                        hintStyle:
+                            TextStyle(color: Color.fromARGB(255, 82, 78, 78)),
                         prefixIcon:
                             Icon(Icons.person_2_outlined, color: Colors.black),
                         border: InputBorder.none, // Remove default underline
@@ -174,10 +276,12 @@ class _Doctor_Signup_PageState extends State<Doctor_Signup_Page> {
                           BorderRadius.circular(20.0.r), // Rounded corners
                     ),
                     child: TextField(
-                      decoration: InputDecoration(
-                        hintText: 'Enter Your Mobile Number',
-                        hintStyle: TextStyle(
-                            color: const Color.fromARGB(255, 82, 78, 78)),
+                      keyboardType: TextInputType.number,
+                      controller: _mobileNumberController,
+                      decoration: const InputDecoration(
+                        hintText: 'Your Mobile Number',
+                        hintStyle:
+                            TextStyle(color: Color.fromARGB(255, 82, 78, 78)),
                         prefixIcon:
                             Icon(Icons.phone_android, color: Colors.black),
                         border: InputBorder.none, // Remove default underline
@@ -198,10 +302,14 @@ class _Doctor_Signup_PageState extends State<Doctor_Signup_Page> {
                           BorderRadius.circular(20.0.r), // Rounded corners
                     ),
                     child: TextField(
-                      decoration: InputDecoration(
+                      controller: _cityController,
+                      inputFormatters: [
+                        FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
+                      ],
+                      decoration: const InputDecoration(
                         hintText: 'Enter Your City',
-                        hintStyle: TextStyle(
-                            color: const Color.fromARGB(255, 82, 78, 78)),
+                        hintStyle:
+                            TextStyle(color: Color.fromARGB(255, 82, 78, 78)),
                         prefixIcon:
                             Icon(Icons.location_city, color: Colors.black),
                         border: InputBorder.none, // Remove default underline
@@ -251,12 +359,37 @@ class _Doctor_Signup_PageState extends State<Doctor_Signup_Page> {
                 children: [
                   InkWell(
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => OTP_Entering_Page()));
+                      if (_firstNameController.text == "") {
+                        showToastMessage('Please Enter all the Fields ');
+                      } else if (_lastNameController.text == "") {
+                        showToastMessage('Please Enter all the Fields ');
+                      } else if (_cityController.text == "") {
+                        showToastMessage('Please Enter all the Fields ');
+                      } else if (_mobileNumberController.text.length != 10) {
+                        showToastMessage('Please Enter valid Mobile Number ');
+                      } else if (isSelected == false) {
+                        showToastMessage('Accept Terms and Conditions');
+                      } else if (_mobileNumberController.text != "" &&
+                          _cityController.text != "" &&
+                          _firstNameController.text != "" &&
+                          _lastNameController.text != "" &&
+                          isSelected == true) {
+                        _registerUser();
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => OTP_Entering_Page(
+                              city: _cityController.text,
+                              firstName: _firstNameController.text,
+                              lastName: _lastNameController.text,
+                              mobileNumber: _mobileNumberController.text,
+                            ),
+                          ),
+                        );
+                      }
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 25, 67, 157),
+                          color: const Color.fromARGB(255, 25, 67, 157),
                           borderRadius: BorderRadius.circular(10.r)),
                       // height: 40,
                       // width: 230,
@@ -305,7 +438,7 @@ class _Doctor_Signup_PageState extends State<Doctor_Signup_Page> {
                     InkWell(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => Doctor_Login_Page()));
+                            builder: (context) => const Login_Page()));
                       },
                       child: Text(
                         ' Log in',
@@ -328,7 +461,7 @@ class _Doctor_Signup_PageState extends State<Doctor_Signup_Page> {
                   children: [
                     Container(
                       height: 1.5.h,
-                      width: 150.w,
+                      width: 130.w,
                       color: Colors.white,
                     ),
                     SizedBox(
@@ -345,8 +478,9 @@ class _Doctor_Signup_PageState extends State<Doctor_Signup_Page> {
                       width: 12.w,
                     ),
                     Container(
+                      // margin: EdgeInsets.only(right: 10),
                       height: 1.5.h,
-                      width: 150.w,
+                      width: 130.w,
                       color: Colors.white,
                     ),
                   ],
@@ -369,10 +503,10 @@ class _Doctor_Signup_PageState extends State<Doctor_Signup_Page> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Image.network(
+                          Image.asset(
                             height: 24.h,
                             width: 30.w,
-                            'https://s3-alpha-sig.figma.com/img/ee6b/3f48/b89ad3b69027b4448422cdfd225c0901?Expires=1699228800&Signature=figvoE9HfxYgq8ZV4WeXdw8yYThj2vFISwHnUm3ygv7pCOrcNgG3qQxi41jf7duyAjKpQ4qmqTXbw7gRy674qLf1kleOWiCZ7Ci8TVHqd0-yHto80ZKgof6snUOJRYvwO1GHemfSkco7Z7be-deVKazxUJlgfGmg0FK9Eu1puQfaIIuaCWNBXHopU4-dmglnLn04hLr17dLmIDRqpeo2lP9XEo1W39-WM9IxrguCHnFBR9XeF-7URLTLFqVYfZhZSArtvbaIjo8ay2e1J4shUqTRv8YzFZs~ZtHrY4IxZ2YYh8PVx0Ng5RYK7ig9IsDqLmUTjo-yTmA-XVj~ft6b~Q__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                            'assets/Icons/Facebook Logo.png',
                           ),
                           Text(
                             'Login with facebook',
@@ -404,13 +538,13 @@ class _Doctor_Signup_PageState extends State<Doctor_Signup_Page> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Image.network(
+                          Image.asset(
                             height: 24.h,
                             width: 30.w,
-                            'https://s3-alpha-sig.figma.com/img/0e8c/5336/ec40b19b6983a179020e0e933a042d6b?Expires=1699228800&Signature=B~1zFkzXaDodVf0zzDC9r2IBjoOsAIBd6WGx06wXjuS-Pl6OQXBNFSW12rrN8EEK6xuTfS6sb7xhPwItWTjdIIbg9yfZE9G2MuON6H9vRwj8JPUV9U81e24Fo4AL6fm2OH3NlK-CGOukuYygMQQXXHefm5yAnlyC~u-Ol72v~LCVmVcjzHaMVLBifqYd70RLq-Z3Hwm~4-GjfPKZRrQGcrO6PcHvCTn9QthNlBI7pqSPCrQ6sjb3COAhZrIr5FONCdZNpFoh50W~q~EYxY4sJJJqqex7RfYLQbmALHRQrfBRMlqN7mFxrKPcBkvY-Rq0QMIekVJshaFBHhFLOguN3w__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                            'assets/Icons/Google Logo.png',
                           ),
                           Text(
-                            'Login with Google',
+                            'Signup with Google',
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20.sp,
@@ -419,10 +553,7 @@ class _Doctor_Signup_PageState extends State<Doctor_Signup_Page> {
                         ],
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
+                  )
                 ],
               ),
             ]),
@@ -432,13 +563,67 @@ class _Doctor_Signup_PageState extends State<Doctor_Signup_Page> {
 }
 
 class OTPInput extends StatefulWidget {
+  final String mobileNumber;
+  final String firstName;
+  final String lastName;
+  final String city;
+
+  const OTPInput(
+      {super.key,
+      required this.mobileNumber,
+      required this.firstName,
+      required this.lastName,
+      required this.city});
   @override
   _OTPInputState createState() => _OTPInputState();
 }
 
 class _OTPInputState extends State<OTPInput> {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  Future<void> _saveUserData(String uid) async {
+    try {
+      String formattedMobileNumber = '+91${widget.mobileNumber}';
+      await _firestore.collection('Dentist').doc(uid).set({
+        'Bookings': {
+          'dummy_date': {'dummy_slot': 'dummyId'}
+        },
+        'mobileNumber': formattedMobileNumber,
+        'address': ' ',
+        'city': widget.city,
+        'email': "drnk@gmail.com",
+        'experience': "0",
+        'name': "${widget.firstName} ${widget.lastName}",
+        'pin_code': "846001",
+        'rating': "4.8",
+        'reg_fee': "500",
+        'sitting_days': [' ', ' '],
+        'specialization': "Speacialist Surgeon"
+      });
+      await _firestore.collection('doctors').doc(uid).set({
+        'Bookings': {
+          'dummy_date': {'dummy_slot': 'dummyId'}
+        },
+        'mobileNumber': formattedMobileNumber,
+        'address': ' ',
+        'city': widget.city,
+        'email': "drnk@gmail.com",
+        'experience': "0",
+        'name': "${widget.firstName} ${widget.lastName}",
+        'pin_code': "846001",
+        'rating': "4.8",
+        'reg_fee': "500",
+        'sitting_days': [' ', ' '],
+        'specialization': "Speacialist Surgeon"
+      });
+      print('User data saved successfully');
+    } catch (e) {
+      print('Error saving user data: $e');
+    }
+  }
+
   List<TextEditingController> controllers =
       List.generate(6, (index) => TextEditingController());
+  List<bool> isDigitEntered = List.generate(6, (index) => false);
 
   @override
   Widget build(BuildContext context) {
@@ -449,6 +634,9 @@ class _OTPInputState extends State<OTPInput> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
             color: Colors.white,
+            border: Border.all(
+              color: isDigitEntered[index] ? Colors.green : Colors.grey,
+            ),
           ),
           width: 35.0.w,
           height: 40.h,
@@ -457,11 +645,9 @@ class _OTPInputState extends State<OTPInput> {
             controller: controllers[index],
             textAlign: TextAlign.center,
             keyboardType: TextInputType.number,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               fillColor: Colors.white,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0.r),
-              ),
+              border: InputBorder.none,
             ),
             onChanged: (value) {
               if (value.length == 1) {
@@ -472,8 +658,16 @@ class _OTPInputState extends State<OTPInput> {
                   String otp =
                       controllers.map((controller) => controller.text).join();
                   print("Entered OTP: $otp");
+                  verifyOTPAndSignIn(otp);
                   // You can add your logic for OTP verification here.
                 }
+                setState(() {
+                  isDigitEntered[index] = true;
+                });
+              } else {
+                setState(() {
+                  isDigitEntered[index] = false;
+                });
               }
             },
           ),
@@ -481,24 +675,66 @@ class _OTPInputState extends State<OTPInput> {
       }),
     );
   }
+
+  Future<void> verifyOTPAndSignIn(String code) async {
+    try {
+      PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: Doctor_Signup_Page.verify,
+        smsCode: code,
+      );
+
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      User? user = userCredential.user;
+
+      await _saveUserData(user!.uid);
+
+      // Now, you have access to the authenticated user
+
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => Doctor_Home_Page(
+            user: user,
+          ),
+        ),
+      );
+    } catch (e) {
+      // Handle OTP verification errors here
+      print('Error verifying OTP: $e');
+    }
+  }
 }
 
 class OTP_Entering_Page extends StatefulWidget {
-  const OTP_Entering_Page({super.key});
+  // final String verificationId;
+  final String mobileNumber;
+  final String firstName;
+  final String lastName;
+  final String city;
+
+  OTP_Entering_Page(
+      {required this.mobileNumber,
+      required this.firstName,
+      required this.lastName,
+      required this.city});
 
   @override
   State<OTP_Entering_Page> createState() => _OTP_Entering_PageState();
 }
 
 class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
+  final TextEditingController _otpController = TextEditingController();
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  var code = '';
+
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<User_Provider>(context);
     return SafeArea(
         child: Scaffold(
+      backgroundColor: const Color(0xFF1A6A83),
       body: Container(
-          decoration: BoxDecoration(
-            color: const Color(0xFF155467),
-          ),
+          decoration: const BoxDecoration(color: const Color(0xFF1A6A83)),
           child: Padding(
             padding: EdgeInsets.all(8.0.w),
             child: ListView(children: [
@@ -514,7 +750,7 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
                     onTap: () {
                       Navigator.pop(context);
                     },
-                    child: Icon(Icons.arrow_back_ios_new,
+                    child: const Icon(Icons.arrow_back_ios_new,
                         color: Colors.white, size: 26),
                   ),
                   SizedBox(
@@ -533,10 +769,7 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
                 ],
               ),
               SizedBox(
-                height: 30.h,
-              ),
-              SizedBox(
-                height: 15.h,
+                height: 45.h,
               ),
               Row(
                 children: [
@@ -571,7 +804,11 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
               SizedBox(
                 height: 25.h,
               ),
-              OTPInput(),
+              OTPInput(
+                  city: widget.city,
+                  firstName: widget.firstName,
+                  lastName: widget.lastName,
+                  mobileNumber: widget.mobileNumber),
               SizedBox(
                 height: 19.h,
               ),
@@ -603,13 +840,31 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   InkWell(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => Doctor_Home_Page()));
+                    onTap: () async {
+                      try {
+                        PhoneAuthCredential credential =
+                            PhoneAuthProvider.credential(
+                          verificationId: Doctor_Signup_Page
+                              .verify, // Use the stored verification ID
+                          smsCode: code, // Use the OTP entered by the user
+                        );
+                        print('waiting for auth');
+                        await auth.signInWithCredential(credential);
+
+                        // OTP verification succeeded, navigate to the home page
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const Doctor_Home_Page(),
+                          ),
+                        );
+                      } catch (e) {
+                        // Handle OTP verification errors here
+                        print('Error verifying OTP: $e');
+                      }
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 25, 67, 157),
+                          color: const Color.fromARGB(255, 25, 67, 157),
                           borderRadius: BorderRadius.circular(10.r)),
                       // height: 40,
                       // width: 230,

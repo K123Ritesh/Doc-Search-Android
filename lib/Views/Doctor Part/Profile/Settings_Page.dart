@@ -1,7 +1,10 @@
 import 'package:doc_search/Doctor_bottomBar.dart';
 import 'package:doc_search/Views/Doctor%20Part/Profile/Change_Password.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Privacy_Policy_Page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import '../Authentication/Login_Page.dart';
 
 class Doctors_Setting_Page extends StatefulWidget {
   const Doctors_Setting_Page({super.key});
@@ -133,26 +136,37 @@ class _Doctors_Setting_PageState extends State<Doctors_Setting_Page> {
                 SizedBox(
                   height: 220,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          color: Colors.black,
-                          borderRadius: BorderRadius.circular(10)),
-                      height: 40,
-                      width: 230,
-                      child: Center(
-                        child: Text(
-                          'Log Out',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 22,
-                              fontWeight: FontWeight.w400),
+                InkWell(
+                  onTap: () async {
+                    FirebaseAuth _auth = FirebaseAuth.instance;
+                    await _auth.signOut();
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Doctor_Login_Page()),
+                    );
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(10)),
+                        height: 40,
+                        width: 230,
+                        child: Center(
+                          child: Text(
+                            'Log Out',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 22,
+                                fontWeight: FontWeight.w400),
+                          ),
                         ),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 )
               ],
             ),

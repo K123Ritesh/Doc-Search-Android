@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:doc_search/Models/Doctor.dart';
-import 'package:doc_search/Models/User_Model.dart';
+import 'package:doc_search/Models/Models_For_Patient_Part/Doctor.dart';
+import 'package:doc_search/Models/Models_For_Patient_Part/User_Model.dart';
 import 'package:doc_search/Providers/User_Part_Provider/Doctor_Provider.dart';
 import 'package:doc_search/Providers/User_Part_Provider/Medicine_Shop_Provider.dart';
 import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
+import 'package:doc_search/Views/Doctor%20Part/Authentication/Login_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Authentication/Login_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Home_Page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'Providers/Doctor_Part_Provider/Patient_And_Appointment_Provider.dart';
 import 'firebase_options.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -21,6 +23,8 @@ void main() async {
   );
   runApp(MultiProvider(
     providers: [
+      ChangeNotifierProvider<Patient_And_Appointment_Provider>(
+          create: (_) => Patient_And_Appointment_Provider()),
       ChangeNotifierProvider<Medicine_Shop_Provider>(
           create: (_) => Medicine_Shop_Provider()),
       ChangeNotifierProvider<User_Provider>(create: (_) => User_Provider()),

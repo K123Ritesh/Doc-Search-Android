@@ -1,11 +1,11 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:doc_search/Models/User_Model.dart';
+import 'package:doc_search/Models/Models_For_Patient_Part/User_Model.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'dart:core';
 
-import '../../Models/Appointment_Model.dart';
+import '../../Models/Models_For_Patient_Part/Appointment_Model.dart';
 
 class UserServices {
   Future<PatientUser?> UserAllDetails(String uid) async {

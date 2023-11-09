@@ -1,4 +1,4 @@
-import 'package:doc_search/Models/Appointment_Model.dart';
+import 'package:doc_search/Models/Models_For_Patient_Part/Appointment_Model.dart';
 import 'package:doc_search/Providers/User_Part_Provider/Doctor_Provider.dart';
 import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
 import 'package:doc_search/Views/Patient%20Part/Doctors/Appointment_Done_Page.dart';
@@ -8,7 +8,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import '../../../Bottom_Bar.dart';
 
-import '../../../Models/Doctor.dart';
+import '../../../Models/Models_For_Patient_Part/Doctor.dart';
 
 class Doctor_Category_Wise_Final extends StatefulWidget {
   const Doctor_Category_Wise_Final(

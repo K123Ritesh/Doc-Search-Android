@@ -1,17 +1,21 @@
-import 'package:doc_search/Views/Doctor%20Part/Profile/Community.dart';
-import 'package:doc_search/Views/Doctor%20Part/Profile/Doctor_MedicalRecords.dart';
+import 'package:doc_search/Providers/Doctor_Part_Provider/Patient_And_Appointment_Provider.dart';
+import 'package:doc_search/Views/Doctor%20Part/Authentication/Login_Page.dart';
+import 'package:doc_search/Views/Doctor%20Part/Profile/Edit_Doctor_Profile.dart';
 import 'package:doc_search/Views/Doctor%20Part/Profile/Online_Consultations_Page.dart';
 import 'package:doc_search/Views/Doctor%20Part/Profile/Settings_Page.dart';
 import 'package:doc_search/Views/Doctor%20Part/Profile/payment.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Refer_And_Earn_Page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import '../../../Doctor_bottomBar.dart';
 import 'Appointments.dart';
 
 class Doctor_Profile_Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final myDetails = Provider.of<Patient_And_Appointment_Provider>(context);
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: const Color(0xFF155467),
     ));
@@ -78,14 +82,14 @@ class Doctor_Profile_Page extends StatelessWidget {
                         height: 10,
                       ),
                       Text(
-                        "Dr. Ritesh Kumar",
+                        "${myDetails.myDetails!.name}",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 23,
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        "ritkumar@gmail.com | +91 9905411917",
+                        "${myDetails.myDetails!.city}| +91 9905411917",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
@@ -155,9 +159,8 @@ class Doctor_Profile_Page extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                         Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  Payment())); 
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => Payment()));
                         },
                         child: ListTile(
                           title: Text(
@@ -255,26 +258,37 @@ class Doctor_Profile_Page extends StatelessWidget {
                     ],
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          color: Colors.black,
-                          borderRadius: BorderRadius.circular(10)),
-                      height: 40,
-                      width: 230,
-                      child: Center(
-                        child: Text(
-                          'Log Out',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 22,
-                              fontWeight: FontWeight.w400),
+                InkWell(
+                  onTap: () async {
+                    FirebaseAuth _auth = FirebaseAuth.instance;
+                    await _auth.signOut();
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Doctor_Login_Page()),
+                    );
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(10)),
+                        height: 40,
+                        width: 230,
+                        child: Center(
+                          child: Text(
+                            'Log Out',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 22,
+                                fontWeight: FontWeight.w400),
+                          ),
                         ),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 )
               ],
             ),

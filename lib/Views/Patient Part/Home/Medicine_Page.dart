@@ -1,4 +1,4 @@
-import 'package:doc_search/Models/Medicine_Shop.dart';
+import 'package:doc_search/Models/Models_For_Patient_Part/Medicine_Shop.dart';
 import 'package:doc_search/Providers/User_Part_Provider/Medicine_Shop_Provider.dart';
 import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Prescription_Upload_Page.dart';

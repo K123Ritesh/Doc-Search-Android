@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:doc_search/Models/Medicine_Shop.dart';
+import 'package:doc_search/Models/Models_For_Patient_Part/Medicine_Shop.dart';
 import 'package:doc_search/Services/User_Part_Services/Medicine_Shop_Services.dart';
 import 'package:flutter/material.dart';
 

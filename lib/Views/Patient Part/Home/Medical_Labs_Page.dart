@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../Bottom_Bar.dart';
-import '../../../Models/MedicalLabs.dart';
+import '../../../Models/Models_For_Patient_Part/MedicalLabs.dart';
 
 class Medical_Labs_Page extends StatefulWidget {
   const Medical_Labs_Page({super.key});

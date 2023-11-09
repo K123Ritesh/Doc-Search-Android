@@ -111,11 +111,7 @@ class _EditUserProfileState extends State<EditUserProfile>
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => Profile_Page_Doc_Search()),
-            );
+            Navigator.pop(context);
           },
         ),
         title: Container(

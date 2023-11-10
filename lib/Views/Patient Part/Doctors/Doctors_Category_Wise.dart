@@ -2,6 +2,7 @@ import 'package:doc_search/Bottom_Bar.dart';
 import 'package:doc_search/Config/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Providers/User_Part_Provider/Doctor_Provider.dart';
@@ -137,8 +138,22 @@ class _Doctors_Category_WiseState extends State<Doctors_Category_Wise> {
                                           ),
                                           CircleAvatar(
                                             backgroundColor: Colors.blue,
-                                            // You can add the image here
-                                            // backgroundImage: NetworkImage('URL'),
+                                            child: DoctorProvider
+                                                        .acc_to_search![index]
+                                                        .profile_pic ==
+                                                    ' '
+                                                ? Icon(Icons.person)
+                                                : ClipOval(
+                                                    child: Image.network(
+                                                      DoctorProvider
+                                                          .acc_to_search![index]
+                                                          .profile_pic,
+                                                      width: 60.0.w,
+                                                      height: 60.0.h,
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                  ),
+                                            // maxRadius: 30.r,
                                           ),
                                           SizedBox(
                                             width: 10.fw,

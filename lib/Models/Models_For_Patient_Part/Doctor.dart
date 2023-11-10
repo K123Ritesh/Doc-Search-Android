@@ -10,9 +10,11 @@ class Doctor {
   final String email;
   final String uid;
   final List<dynamic> sitting_days;
+  final String profile_pic;
 
   Doctor(
-      {required this.uid,
+      {required this.profile_pic,
+      required this.uid,
       required this.specialization,
       required this.rating,
       required this.reg_fee,

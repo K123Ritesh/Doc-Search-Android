@@ -4,6 +4,7 @@ import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
 import 'package:doc_search/Views/Patient%20Part/Doctors/Appointment_Done_Page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import '../../../Bottom_Bar.dart';
@@ -99,8 +100,17 @@ class _Doctor_Category_Wise_FinalState
                     height: 65,
                     width: 65,
                     child: CircleAvatar(
-                        // backgroundImage: NetworkImage(''),
-                        ),
+                      child: widget.doctor.profile_pic == ' '
+                          ? Icon(Icons.person)
+                          : ClipOval(
+                              child: Image.network(
+                                widget.doctor.profile_pic,
+                                width: 60.0.w,
+                                height: 60.0.h,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                    ),
                   ),
                   title: Text(
                     widget.doctor.name,
@@ -520,8 +530,8 @@ class _Doctor_Category_Wise_FinalState
                       });
                     },
                   ),
-                  Image.network(
-                    'https://s3-alpha-sig.figma.com/img/fc39/822d/4f0d87c00046b984c9fbfc08eb3be9b6?Expires=1699228800&Signature=a5hFvuDmOq52eWJALNBvy5cOT1rvYru3UZOHBUN0eigKKHIn4vIzuQz2RNwFu0YP~~nbAZq4DCQ0~Py3YEZYvwVPbltMiNTyakxFAiljinBika5UT3cId~U8iOLuqmgVJvY9fUWfRnOoL50cFVg53HodXAJPE6qBnOh3v4v-Jp9n5sfIL-exD~UGmBdeyAlm5MCZ~uoPD9J79zwqsmiF5Tr33JQvQ4sH7J3B7vtKOXcfuq1tyI5avCs2V9n0FxD3cTWFKxVa-AvmNp6dLIYhJyjhpBN6kKdDkoYsfZcAWQlsN~gR3AAqV0cDYlGdXxUgyW0OGtGO5FmZEiM~1naJ4w__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                  Image.asset(
+                    'assets/Icons/image 57.png',
                     height: 24,
                     width: 24,
                     fit: BoxFit.fill,

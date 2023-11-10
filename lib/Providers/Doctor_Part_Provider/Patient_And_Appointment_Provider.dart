@@ -12,36 +12,36 @@ class Patient_And_Appointment_Provider with ChangeNotifier {
   List<String> allAppoitmentList = [];
   FirebaseAuth _auth = FirebaseAuth.instance;
 
-  getAllAppointment(context, String docId, String doc_category) async {
-    allAppoitmentList =
-        await service.getAllTimeSlotsForDates(context, doc_category, docId);
+  getAllAppointment(context, String doc_category) async {
+    allAppoitmentList = await service.getAllTimeSlotsForDates(
+        context, doc_category, _auth.currentUser!.uid);
     notifyListeners();
   }
 
-  String acc_to_search = '';
+  int acc_to_search = -1;
 
   getAcctoSearch(context, String input) {
     for (int i = 0; i < allAppoitmentList.length; i++) {
       if (input == allAppoitmentList[i]) {
-        acc_to_search = input;
+        acc_to_search = i;
       }
     }
     notifyListeners();
   }
 
-  PatientUser? appointmentedUser;
-  Appointment_Model? appointmentDetails;
-  getDetailsOfAppointment(context, String search) async {
-    appointmentDetails = await service.AppointmentDetail(context, search);
-    print('user uid --> ${appointmentDetails!.userId}');
-    appointmentedUser = appointmentedUser =
-        await service.UserAllDetails(appointmentDetails!.userId);
-    notifyListeners();
-  }
-
-  getUserDetailsforAppointment(context) async {
-    appointmentedUser =
-        await service.UserAllDetails(appointmentDetails!.userId);
+  List<PatientUser>? appointmentedUsers;
+  List<Appointment_Model>? appointmentDetails;
+  getDetailsOfAppointment(context) async {
+    appointmentDetails =
+        await service.AppointmentDetail(context, allAppoitmentList);
+    ;
+    //  print('user uid --> ${appointmentDetails![acc_to_search]!.userId}');
+    List<String> uids = [];
+    for (int i = 0; i < appointmentDetails!.length; i++) {
+      uids.add(appointmentDetails![i].userId);
+      print(uids[i]);
+    }
+    appointmentedUsers = await service.UserAllDetails(context, uids);
     notifyListeners();
   }
 

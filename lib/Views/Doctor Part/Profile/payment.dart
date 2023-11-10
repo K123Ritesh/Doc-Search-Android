@@ -1,5 +1,7 @@
+import 'package:doc_search/Providers/Doctor_Part_Provider/Patient_And_Appointment_Provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 import '../Home/Appointment_Patient_Details_Page.dart';
 
@@ -16,7 +18,7 @@ class _PaymentState extends State<Payment> {
   @override
   void initState() {
     super.initState();
-    selectedButtonIndex = 0; 
+    selectedButtonIndex = 0;
   }
 
   void onButtonTapped(int index) {
@@ -27,6 +29,7 @@ class _PaymentState extends State<Payment> {
 
   @override
   Widget build(BuildContext context) {
+    final details = Provider.of<Patient_And_Appointment_Provider>(context);
     return Scaffold(
       backgroundColor: const Color(0xFF1B6A85),
       appBar: AppBar(
@@ -183,21 +186,18 @@ class _PaymentState extends State<Payment> {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: 5,
+              itemCount: details.appointmentDetails!.length,
               itemBuilder: (context, index) {
                 // Replace with your appointment data
-                final appointment = {
-                  'name': 'John Doe',
-                  'Amount': '₹500',
-                  'Accept/Reject': 'Paid',
-                  'status': 'Pending',
-                };
 
                 return InkWell(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) =>
-                                      Appointment_Patient_Details_Page()));
+                        builder: (context) => Appointment_Patient_Details_Page(
+                              appointment_model:
+                                  details.appointmentDetails![index],
+                              user: details.appointmentedUsers![index],
+                            )));
                   },
                   child: Container(
                     height: 63,
@@ -207,27 +207,29 @@ class _PaymentState extends State<Payment> {
                     child: Row(
                       children: [
                         Text(
-                          appointment['name']!,
+                          details.appointmentDetails![index].name,
                           style: TextStyle(
                               fontSize: 13,
                               color: Colors.white,
                               fontWeight: FontWeight.w500),
                         ),
                         SizedBox(
-                          width: 50,
+                          width: 30,
                         ),
                         Text(
-                          appointment['Amount']!,
+                          details.myDetails!.reg_fee,
                           style: TextStyle(
                               fontSize: 13,
                               color: Colors.white,
                               fontWeight: FontWeight.w500),
                         ),
                         SizedBox(
-                          width: 90,
+                          width: 60,
                         ),
                         Text(
-                          appointment['Accept/Reject']!,
+                          details.appointmentDetails![index].paid == true
+                              ? 'Yes'
+                              : 'No',
                           style: TextStyle(
                               fontSize: 13,
                               color: Colors.white,
@@ -239,16 +241,14 @@ class _PaymentState extends State<Payment> {
                         Row(
                           children: [
                             Text(
-                              appointment['status']!,
+                              'Confirmed',
                               style: TextStyle(
                                   fontSize: 13,
                                   color: Colors.white,
                                   fontWeight: FontWeight.w500),
                             ),
                             InkWell(
-                              onTap: () {
-                                
-                              },
+                              onTap: () {},
                               child: Icon(
                                 Icons.delete,
                                 size: 20,

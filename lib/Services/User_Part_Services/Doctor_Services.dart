@@ -19,6 +19,7 @@ class Doctor_Services {
         accToSearch.assignAll(
           querySnapshot.docs
               .map((doctor) => Doctor(
+                  profile_pic: doctor['profile_pic'],
                   uid: doctor['uid'],
                   specialization: doctor['specialization'],
                   email: doctor['email'],

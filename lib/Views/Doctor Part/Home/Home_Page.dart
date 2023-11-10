@@ -26,6 +26,10 @@ class _Doctor_Home_PageState extends State<Doctor_Home_Page> {
     super.initState();
     Provider.of<Patient_And_Appointment_Provider>(context, listen: false)
         .getMyDetails(context, widget.docCategory);
+    Provider.of<Patient_And_Appointment_Provider>(context, listen: false)
+        .getAllAppointment(context, widget.docCategory);
+    Provider.of<Patient_And_Appointment_Provider>(context, listen: false)
+        .getDetailsOfAppointment(context);
   }
 
   final TextEditingController idController =
@@ -405,12 +409,12 @@ class _Doctor_Home_PageState extends State<Doctor_Home_Page> {
               child: TextField(
                 controller: idController,
                 onChanged: (value) {
-                  myDetails.getDetailsOfAppointment(context, value);
-                  myDetails.getUserDetailsforAppointment(context);
+                  // myDetails.getDetailsOfAppointment(context, value);
+                  // myDetails.getUserDetailsforAppointment(context);
                 },
                 onSubmitted: (value) {
-                  myDetails.getDetailsOfAppointment(context, value);
-                  myDetails.getUserDetailsforAppointment(context);
+                  // myDetails.getDetailsOfAppointment(context, value);
+                  // myDetails.getUserDetailsforAppointment(context);
                 },
                 decoration: InputDecoration(
                   border: InputBorder.none, // Remove the default border
@@ -441,131 +445,137 @@ class AppointmentId_Searched extends StatelessWidget {
   Widget build(BuildContext context) {
     final myDetails = Provider.of<Patient_And_Appointment_Provider>(context);
 
-    return myDetails.appointmentedUser == null
-        ? Text('Wrong Id')
-        : Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: InkWell(
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Appointment_Patient_Details_Page()));
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                    color: const Color(0xFF1B6A85),
-                    borderRadius: BorderRadius.circular(15.r)),
-                child: Row(
-                  children: [
-                    Center(
-                      child: Padding(
-                        padding: EdgeInsets.all(14.0.w),
-                        child: CircleAvatar(
-                            backgroundColor: Colors.white,
-                            maxRadius: 50.r,
-                            child: Icon(
-                              Icons.person,
-                              color: Colors.red,
-                              size: 70,
-                            )),
+    // return
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: InkWell(
+        child: Container(
+          // width: 100,
+          decoration: BoxDecoration(
+              color: const Color(0xFF1B6A85),
+              borderRadius: BorderRadius.circular(15.r)),
+          child: Row(
+            children: [
+              Center(
+                child: Padding(
+                  padding: EdgeInsets.all(14.0.w),
+                  child: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      maxRadius: 50.r,
+                      child: Icon(
+                        Icons.person,
+                        color: Colors.red,
+                        size: 70,
+                      )
+                      // : ClipOval(
+                      //     child: Image.network(
+                      //       widget.user.profilePicUrl,
+                      //       width: 90.0.w,
+                      //       height: 90.0.h,
+                      //       fit: BoxFit.cover,
+                      //     ),
+                      // ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 10.w,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(8.0.w),
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.vertical,
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Id Number - ',
-                                  style: TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 18.sp,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  '583694             ',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 18.sp,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  child: Text(
-                                    'Name - ',
-                                    style: TextStyle(
-                                        color: Colors.grey,
-                                        fontSize: 18.sp,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Container(
-                                  child: Text(
-                                    '${myDetails.appointmentedUser!.firstName}      ',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18.sp,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Age - ',
-                                  style: TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 18.sp,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  '28                                  ',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 18.sp,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Address - ',
-                                  style: TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 18.sp,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  'Katihar ,Bihar      ',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 18.sp,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                    )
-                  ],
                 ),
               ),
-            ),
-          );
+              SizedBox(
+                width: 10.w,
+              ),
+              Container(
+                child: Padding(
+                  padding: EdgeInsets.all(8.0.w),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Id Number - ',
+                            style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            '583694',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            child: Text(
+                              'Name - ',
+                              style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Container(
+                            child: Text(
+                              'Ritesh Kumar',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Age - ',
+                            style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            '18',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Address - ',
+                            style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            'Patna',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

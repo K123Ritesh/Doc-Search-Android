@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doc_search/Bottom_Bar.dart';
 import 'package:doc_search/Models/Models_For_Patient_Part/Medicine_Shop.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Order_Done_Page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:file_picker/file_picker.dart';
@@ -262,9 +263,10 @@ class _Prescription_Upload_PageState extends State<Prescription_Upload_Page> {
                           ),
                           InkWell(
                             onTap: () {
+                              FirebaseAuth _auth = FirebaseAuth.instance;
                               if (selectedFile != null) {
-                                MedicineShopProvider.uploadPrescription(
-                                    context, selectedFile, "userId");
+                                MedicineShopProvider.uploadPrescription(context,
+                                    selectedFile, _auth.currentUser!.uid);
                                 String? downloadURL =
                                     MedicineShopProvider.downloadURL;
                                 if (downloadURL != null) {
@@ -273,9 +275,15 @@ class _Prescription_Upload_PageState extends State<Prescription_Upload_Page> {
                                   print(
                                       'File uploaded. Download URL: $downloadURL');
                                   MedicineShopProvider.createOrderDocument(
-                                      context, 'userId', 'shopId', downloadURL);
+                                      context,
+                                      _auth.currentUser!.uid,
+                                      'shopId',
+                                      downloadURL);
                                   MedicineShopProvider.addToMedicineShop(
-                                      context, "shopId", downloadURL, "userId");
+                                      context,
+                                      "shopId",
+                                      downloadURL,
+                                      _auth.currentUser!.uid);
                                   files_list.clear();
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (context) =>

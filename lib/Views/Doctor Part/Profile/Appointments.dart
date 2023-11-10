@@ -1,10 +1,14 @@
+import 'package:doc_search/Doctor_bottomBar.dart';
+import 'package:doc_search/Providers/Doctor_Part_Provider/Patient_And_Appointment_Provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 import '../Home/Appointment_Patient_Details_Page.dart';
 
 class Doctor_appointments extends StatefulWidget {
-  const Doctor_appointments({super.key});
+  Doctor_appointments({super.key, required this.docCategory});
+  final String docCategory;
 
   @override
   State<Doctor_appointments> createState() => _Doctor_appointmentsState();
@@ -27,7 +31,10 @@ class _Doctor_appointmentsState extends State<Doctor_appointments> {
 
   @override
   Widget build(BuildContext context) {
+    final details = Provider.of<Patient_And_Appointment_Provider>(context);
     return Scaffold(
+      bottomNavigationBar:
+          DoctorBottombar(SelectedIndex: 1, docCategory: widget.docCategory),
       backgroundColor: const Color(0xFF1B6A85),
       appBar: AppBar(
         backgroundColor: const Color(0xFF1B6A85),
@@ -183,21 +190,23 @@ class _Doctor_appointmentsState extends State<Doctor_appointments> {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: 5,
+              itemCount: details.appointmentDetails!.length,
               itemBuilder: (context, index) {
-                // Replace with your appointment data
-                final appointment = {
-                  'time': '10:00 AM',
-                  'name': 'John Doe',
-                  'Accept/Reject': 'Reject',
-                  'status': 'Pending',
-                };
+                // final appointment = {
+                //   'time': '10:00 AM',
+                //   'name': 'John Doe',
+                //   'Accept/Reject': 'Reject',
+                //   'status': 'Pending',
+                // };
 
                 return InkWell(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) =>
-                                      Appointment_Patient_Details_Page()));
+                        builder: (context) => Appointment_Patient_Details_Page(
+                              appointment_model:
+                                  details.appointmentDetails![index],
+                              user: details.appointmentedUsers![index],
+                            )));
                   },
                   child: Container(
                     height: 63,
@@ -207,7 +216,7 @@ class _Doctor_appointmentsState extends State<Doctor_appointments> {
                     child: Row(
                       children: [
                         Text(
-                          appointment['time']!,
+                          details.appointmentDetails![index].slot,
                           style: TextStyle(
                               fontSize: 13,
                               color: Colors.white,
@@ -217,38 +226,36 @@ class _Doctor_appointmentsState extends State<Doctor_appointments> {
                           width: 30,
                         ),
                         Text(
-                          appointment['name']!,
+                          '${details.appointmentDetails![index].name}',
                           style: TextStyle(
                               fontSize: 13,
                               color: Colors.white,
                               fontWeight: FontWeight.w500),
                         ),
                         SizedBox(
-                          width: 70,
+                          width: 40,
                         ),
                         Text(
-                          appointment['Accept/Reject']!,
+                          'Accept',
                           style: TextStyle(
                               fontSize: 13,
                               color: Colors.white,
                               fontWeight: FontWeight.w500),
                         ),
                         SizedBox(
-                          width: 70,
+                          width: 50,
                         ),
                         Row(
                           children: [
                             Text(
-                              appointment['status']!,
+                              'Confirm',
                               style: TextStyle(
                                   fontSize: 13,
                                   color: Colors.white,
                                   fontWeight: FontWeight.w500),
                             ),
                             InkWell(
-                              onTap: () {
-                                
-                              },
+                              onTap: () {},
                               child: Icon(
                                 Icons.delete,
                                 size: 20,

@@ -1,3 +1,4 @@
+import 'package:doc_search/Views/Doctor%20Part/Profile/Appointments.dart';
 import 'package:doc_search/Views/Not_Build_Page.dart';
 import 'package:flutter/material.dart';
 import 'Views/Doctor Part/Home/Home_Page.dart';
@@ -34,10 +35,13 @@ class _DoctorBottombarState extends State<DoctorBottombar> {
           );
           break;
         case 1:
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(builder: (context) => PastAppointment()),
-          // );
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => Doctor_appointments(
+                      docCategory: widget.docCategory,
+                    )),
+          );
           break;
         case 2:
           // Navigator.push(

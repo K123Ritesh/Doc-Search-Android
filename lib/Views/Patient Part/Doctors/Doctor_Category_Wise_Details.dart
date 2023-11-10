@@ -3,6 +3,7 @@ import 'package:doc_search/Models/Models_For_Patient_Part/Doctor.dart';
 
 import 'package:doc_search/Views/Patient%20Part/Doctors/Doctor_Category_Wise_Final.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:intl/intl.dart';
 
@@ -111,9 +112,19 @@ class _Doctors_Category_WiseDetailsState
             leading: Container(
               height: 65,
               width: 65,
-              child: const CircleAvatar(
-                  // backgroundImage: NetworkImage(''),
-                  ),
+              child: CircleAvatar(
+                // backgroundImage: NetworkImage(''),
+                child: widget.doctor.profile_pic == ' '
+                    ? Icon(Icons.person)
+                    : ClipOval(
+                        child: Image.network(
+                          widget.doctor.profile_pic,
+                          width: 60.0.w,
+                          height: 60.0.h,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+              ),
             ),
             title: Text(
               widget.doctor.name,

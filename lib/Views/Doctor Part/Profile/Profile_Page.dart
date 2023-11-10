@@ -56,9 +56,9 @@ class Doctor_Profile_Page extends StatelessWidget {
                     children: [
                       InkWell(
                           onTap: () {
-                            Navigator.pop(context);
-                            //   Navigator.of(context).push(MaterialPageRoute(
-                            //       builder: (context) => EditUserProfile()));
+                            // Navigator.pop(context);
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => EditDoctorProfile()));
                           },
                           child: Stack(
                             children: <Widget>[
@@ -121,7 +121,9 @@ class Doctor_Profile_Page extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => Doctor_appointments()));
+                              builder: (context) => Doctor_appointments(
+                                    docCategory: docCategory,
+                                  )));
                         },
                         child: ListTile(
                           title: Text(
@@ -134,7 +136,9 @@ class Doctor_Profile_Page extends StatelessWidget {
                           trailing: InkWell(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => Doctor_appointments()));
+                                  builder: (context) => Doctor_appointments(
+                                        docCategory: docCategory,
+                                      )));
                             },
                             child: Icon(Icons.arrow_forward_ios,
                                 size: 20, color: Colors.white),

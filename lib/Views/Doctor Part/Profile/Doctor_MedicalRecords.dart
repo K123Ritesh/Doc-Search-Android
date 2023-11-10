@@ -1,10 +1,9 @@
 import 'package:doc_search/Config/sizeConfig.dart';
-import 'package:doc_search/Views/Doctor%20Part/Home/Appointment_Patient_Details_Page.dart';
-import 'package:doc_search/Views/Doctor%20Part/Home/Appointment_Prescription.dart';
-import 'package:doc_search/Views/Patient%20Part/Profile/Medical_report_details.dart';
+import 'package:doc_search/Providers/Doctor_Part_Provider/Patient_And_Appointment_Provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'Medical_report_Prescription.dart';
-import 'Profile_Page.dart';
 
 class Doctor_MedicalRecord extends StatefulWidget {
   const Doctor_MedicalRecord({super.key});
@@ -16,6 +15,7 @@ class Doctor_MedicalRecord extends StatefulWidget {
 class _Doctor_MedicalRecordState extends State<Doctor_MedicalRecord> {
   @override
   Widget build(BuildContext context) {
+    final details = Provider.of<Patient_And_Appointment_Provider>(context);
     SizeConfig().init(context);
     return Scaffold(
       backgroundColor: const Color(0xFF1A6A83),
@@ -36,7 +36,7 @@ class _Doctor_MedicalRecordState extends State<Doctor_MedicalRecord> {
             )),
       ),
       body: ListView.builder(
-        itemCount: 3,
+        itemCount: details.appointmentDetails!.length,
         itemBuilder: (context, index) {
           return Container(
             height: 89.fh,
@@ -56,15 +56,30 @@ class _Doctor_MedicalRecordState extends State<Doctor_MedicalRecord> {
                       width: 65.fw,
                       child: CircleAvatar(
                         backgroundColor: Colors.blue,
-                        // You can add the image here
-                        // backgroundImage: NetworkImage('URL'),
+                        child:
+                            details.appointmentedUsers![index].profilePicUrl ==
+                                    " "
+                                ? Icon(
+                                    Icons.person,
+                                    color: Colors.red,
+                                    size: 70,
+                                  )
+                                : ClipOval(
+                                    child: Image.network(
+                                      details.appointmentedUsers![index]
+                                          .profilePicUrl,
+                                      width: 90.0.w,
+                                      height: 90.0.h,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
                       ),
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Dr.Vikas Sharma',
+                          details.appointmentedUsers![index].firstName,
                           style: TextStyle(
                               fontSize: 15.fh, fontWeight: FontWeight.w500),
                         ),
@@ -72,7 +87,7 @@ class _Doctor_MedicalRecordState extends State<Doctor_MedicalRecord> {
                           height: 5.fh,
                         ),
                         Text(
-                          '35 years',
+                          '${details.appointmentedUsers![index].age} Years',
                           style: TextStyle(
                               fontSize: 14.fh, fontWeight: FontWeight.w500),
                         ),
@@ -80,7 +95,7 @@ class _Doctor_MedicalRecordState extends State<Doctor_MedicalRecord> {
                           height: 5.fh,
                         ),
                         Text(
-                          '+91 8796383738',
+                          details.appointmentedUsers![index].mobileNo,
                           style: TextStyle(
                               fontSize: 12.fh, fontWeight: FontWeight.w500),
                         ),
@@ -94,7 +109,10 @@ class _Doctor_MedicalRecordState extends State<Doctor_MedicalRecord> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      const MedicalRecord_Prescription()),
+                                      MedicalRecord_Prescription(
+                                        patient:
+                                            details.appointmentedUsers![index],
+                                      )),
                             );
                           },
                           style: ElevatedButton.styleFrom(

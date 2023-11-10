@@ -15,13 +15,13 @@ class _Not_Build_PageState extends State<Not_Build_Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: Bottombar(
-          SelectedIndex: widget.selectedIndex,
-        ),
+        // bottomNavigationBar: Bottombar(
+        //   SelectedIndex: widget.selectedIndex,
+        // ),
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [Lottie.asset('assets/lottie/UnderConstruction.json')],
-        ));
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [Lottie.asset('assets/lottie/UnderConstruction.json')],
+    ));
   }
 }

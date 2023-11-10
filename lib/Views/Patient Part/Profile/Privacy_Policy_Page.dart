@@ -14,7 +14,7 @@ class _Privacy_Policy_PageState extends State<Privacy_Policy_Page> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        bottomNavigationBar: Bottombar(SelectedIndex: 3),
+        // bottomNavigationBar: Bottombar(SelectedIndex: 3),
         body: Container(
             decoration: BoxDecoration(
               color: const Color(0xFF155467),

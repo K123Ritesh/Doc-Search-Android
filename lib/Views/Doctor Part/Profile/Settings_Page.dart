@@ -1,8 +1,11 @@
 import 'package:doc_search/Doctor_bottomBar.dart';
+import 'package:doc_search/Providers/Doctor_Part_Provider/Patient_And_Appointment_Provider.dart';
 import 'package:doc_search/Views/Doctor%20Part/Profile/Change_Password.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Privacy_Policy_Page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 import '../Authentication/Login_Page.dart';
 
@@ -17,6 +20,7 @@ class Doctors_Setting_Page extends StatefulWidget {
 class _Doctors_Setting_PageState extends State<Doctors_Setting_Page> {
   @override
   Widget build(BuildContext context) {
+    final details = Provider.of<Patient_And_Appointment_Provider>(context);
     return Scaffold(
       bottomNavigationBar:
           DoctorBottombar(docCategory: widget.docCategory, SelectedIndex: 3),
@@ -53,7 +57,16 @@ class _Doctors_Setting_PageState extends State<Doctors_Setting_Page> {
                   Column(
                     children: [
                       CircleAvatar(
-                        child: Icon(Icons.person, size: 90),
+                        child: details.myDetails!.profile_pic == ' '
+                            ? Icon(Icons.person, size: 90)
+                            : ClipOval(
+                                child: Image.network(
+                                  details.myDetails!.profile_pic,
+                                  width: 100.0.w,
+                                  height: 100.0.h,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                         maxRadius: 50,
                         backgroundColor: Colors.white,
                       ),
@@ -61,14 +74,14 @@ class _Doctors_Setting_PageState extends State<Doctors_Setting_Page> {
                         height: 10,
                       ),
                       Text(
-                        "Ritesh Kumar",
+                        details.myDetails!.name,
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 23,
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        "ritkumar@gmail.com | +91 9905411917",
+                        "${details.myDetails!.city} | ${details.myDetails!.mobileNumber}",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,

@@ -1,17 +1,20 @@
 import 'package:doc_search/Config/sizeConfig.dart';
+import 'package:doc_search/Models/Models_For_Patient_Part/User_Model.dart';
 import 'package:doc_search/Views/Doctor%20Part/Profile/Download_Records.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MedicalRecord_Prescription extends StatefulWidget {
-  const MedicalRecord_Prescription({super.key});
+  MedicalRecord_Prescription({super.key, required this.patient});
+  final PatientUser patient;
 
   @override
   State<MedicalRecord_Prescription> createState() =>
       _MedicalRecord_PrescriptionState();
 }
 
-class _MedicalRecord_PrescriptionState extends State<MedicalRecord_Prescription> {
+class _MedicalRecord_PrescriptionState
+    extends State<MedicalRecord_Prescription> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -50,15 +53,27 @@ class _MedicalRecord_PrescriptionState extends State<MedicalRecord_Prescription>
                 width: 65.fw,
                 child: CircleAvatar(
                   backgroundColor: Colors.blue,
-                  // You can add the image here
-                  // backgroundImage: NetworkImage('URL'),
+                  child: widget.patient.profilePicUrl == " "
+                      ? Icon(
+                          Icons.person,
+                          color: Colors.red,
+                          size: 70,
+                        )
+                      : ClipOval(
+                          child: Image.network(
+                            widget.patient.profilePicUrl,
+                            width: 90.0.w,
+                            height: 90.0.h,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                 ),
               ),
               SizedBox(
                 height: 5.fh,
               ),
               Text(
-                'Vivek Sharma',
+                widget.patient.firstName,
                 style: TextStyle(
                     fontSize: 14.fh,
                     fontWeight: FontWeight.w500,
@@ -68,7 +83,7 @@ class _MedicalRecord_PrescriptionState extends State<MedicalRecord_Prescription>
                 height: 5,
               ),
               Text(
-                '27 Years',
+                '${widget.patient.age} Years',
                 style: TextStyle(
                     fontSize: 14.fh,
                     fontWeight: FontWeight.w500,
@@ -78,7 +93,7 @@ class _MedicalRecord_PrescriptionState extends State<MedicalRecord_Prescription>
                 height: 5,
               ),
               Text(
-                'B-9 Vasnat Kunj New Delhi',
+                widget.patient.address,
                 style: TextStyle(
                     fontSize: 14.fh,
                     fontWeight: FontWeight.w500,
@@ -88,7 +103,7 @@ class _MedicalRecord_PrescriptionState extends State<MedicalRecord_Prescription>
                 height: 5.fh,
               ),
               Text(
-                '+91 9876543210',
+                widget.patient.mobileNo,
                 style: TextStyle(
                     fontSize: 14.fh,
                     fontWeight: FontWeight.w500,
@@ -293,8 +308,16 @@ class _MedicalRecord_PrescriptionState extends State<MedicalRecord_Prescription>
                   )
                 ],
               ),
-              SizedBox(height: 20,),
-              Text('Drug Prescription',style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.w500),),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                'Drug Prescription',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500),
+              ),
               Container(
                 margin: EdgeInsets.only(top: 20),
                 child: Table(
@@ -366,7 +389,7 @@ class _MedicalRecord_PrescriptionState extends State<MedicalRecord_Prescription>
                           width: 80,
                           decoration: BoxDecoration(
                             color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
+                            borderRadius: BorderRadius.circular(5),
                           ),
                         ),
                         SizedBox(
@@ -382,55 +405,7 @@ class _MedicalRecord_PrescriptionState extends State<MedicalRecord_Prescription>
                           width: 80,
                           decoration: BoxDecoration(
                             color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ]),Column(children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          height: 17,
-                          width: 80,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ]),Column(children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          height: 17,
-                          width: 80,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ]),
-                    ]),
-                    TableRow(children: [
-                      Column(children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          height: 17,
-                          width: 80,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
+                            borderRadius: BorderRadius.circular(5),
                           ),
                         ),
                         SizedBox(
@@ -446,7 +421,7 @@ class _MedicalRecord_PrescriptionState extends State<MedicalRecord_Prescription>
                           width: 80,
                           decoration: BoxDecoration(
                             color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
+                            borderRadius: BorderRadius.circular(5),
                           ),
                         ),
                         SizedBox(
@@ -462,23 +437,7 @@ class _MedicalRecord_PrescriptionState extends State<MedicalRecord_Prescription>
                           width: 80,
                           decoration: BoxDecoration(
                             color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ]),
-                      Column(children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          height: 17,
-                          width: 80,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
+                            borderRadius: BorderRadius.circular(5),
                           ),
                         ),
                         SizedBox(
@@ -496,7 +455,7 @@ class _MedicalRecord_PrescriptionState extends State<MedicalRecord_Prescription>
                           width: 80,
                           decoration: BoxDecoration(
                             color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
+                            borderRadius: BorderRadius.circular(5),
                           ),
                         ),
                         SizedBox(
@@ -512,7 +471,7 @@ class _MedicalRecord_PrescriptionState extends State<MedicalRecord_Prescription>
                           width: 80,
                           decoration: BoxDecoration(
                             color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
+                            borderRadius: BorderRadius.circular(5),
                           ),
                         ),
                         SizedBox(
@@ -528,7 +487,7 @@ class _MedicalRecord_PrescriptionState extends State<MedicalRecord_Prescription>
                           width: 80,
                           decoration: BoxDecoration(
                             color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
+                            borderRadius: BorderRadius.circular(5),
                           ),
                         ),
                         SizedBox(
@@ -544,7 +503,73 @@ class _MedicalRecord_PrescriptionState extends State<MedicalRecord_Prescription>
                           width: 80,
                           decoration: BoxDecoration(
                             color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                      ]),
+                    ]),
+                    TableRow(children: [
+                      Column(children: [
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          height: 17,
+                          width: 80,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                      ]),
+                      Column(children: [
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          height: 17,
+                          width: 80,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                      ]),
+                      Column(children: [
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          height: 17,
+                          width: 80,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                      ]),
+                      Column(children: [
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          height: 17,
+                          width: 80,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
                           ),
                         ),
                         SizedBox(
@@ -555,69 +580,69 @@ class _MedicalRecord_PrescriptionState extends State<MedicalRecord_Prescription>
                   ],
                 ),
               ),
-            SizedBox(height: 50,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                InkWell(
-                onTap: () {
-                  
-                },
-                child: Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10)),
-                        height: 48,
-                        width: 145,
-                        child: Center(
-                          child: Text(
-                            'Cancel',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+              SizedBox(
+                height: 50,
               ),
-              InkWell(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => Download_Records()));
-                },
-                child: Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Color(0XFF005473),
-                            borderRadius: BorderRadius.circular(10)),
-                        height: 48,
-                        width: 145,
-                        child: Center(
-                          child: Text(
-                            'Save',
-                            style: TextStyle(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    onTap: () {},
+                    child: Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
                                 color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400),
-                          ),
-                        ),
-                      )
-                    ],
+                                borderRadius: BorderRadius.circular(10)),
+                            height: 48,
+                            width: 145,
+                            child: Center(
+                              child: Text(
+                                'Cancel',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              ],
-            )
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => Download_Records()));
+                    },
+                    child: Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                color: Color(0XFF005473),
+                                borderRadius: BorderRadius.circular(10)),
+                            height: 48,
+                            width: 145,
+                            child: Center(
+                              child: Text(
+                                'Save',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              )
             ],
           ),
         ),

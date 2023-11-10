@@ -2,9 +2,9 @@ import 'package:doc_search/Providers/Doctor_Part_Provider/Patient_And_Appointmen
 import 'package:doc_search/Views/Doctor%20Part/Authentication/Login_Page.dart';
 import 'package:doc_search/Views/Doctor%20Part/Profile/Edit_Doctor_Profile.dart';
 import 'package:doc_search/Views/Doctor%20Part/Profile/Online_Consultations_Page.dart';
+import 'package:doc_search/Views/Doctor%20Part/Profile/Refer_And%20Earn_Page.dart';
 import 'package:doc_search/Views/Doctor%20Part/Profile/Settings_Page.dart';
 import 'package:doc_search/Views/Doctor%20Part/Profile/payment.dart';
-import 'package:doc_search/Views/Patient%20Part/Profile/Refer_And_Earn_Page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -215,7 +215,7 @@ class Doctor_Profile_Page extends StatelessWidget {
                         },
                         child: ListTile(
                           title: Text(
-                            "Medical Order",
+                            "Medical Records",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,

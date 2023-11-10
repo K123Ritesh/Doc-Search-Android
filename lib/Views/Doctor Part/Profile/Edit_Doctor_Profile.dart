@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:doc_search/Config/sizeConfig.dart';
-import 'package:doc_search/Doctor_bottomBar.dart';
 import 'package:doc_search/Providers/Doctor_Part_Provider/Patient_And_Appointment_Provider.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';

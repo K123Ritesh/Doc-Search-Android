@@ -7,7 +7,6 @@ import 'package:doc_search/Views/Patient%20Part/Home/Hospitals_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Medical_Labs_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Medicine_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Search_Tapped_Page.dart';
-import 'package:doc_search/Views/Patient%20Part/Home/Wallet_Page.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

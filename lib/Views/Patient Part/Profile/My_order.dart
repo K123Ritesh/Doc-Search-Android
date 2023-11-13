@@ -8,9 +8,8 @@ class My_Order extends StatefulWidget {
 }
 
 class _My_OrderState extends State<My_Order> {
-
   List<bool> _selectedStatus = [true, false, false, false];
-List<bool> _selectedTime = [true, false, false, false];
+  List<bool> _selectedTime = [true, false, false, false];
 
   void _showFilterDialog(BuildContext context) {
     showDialog(
@@ -30,9 +29,15 @@ List<bool> _selectedTime = [true, false, false, false];
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildFilterOption('Status', ['All', 'Pending', 'Completed', 'Cancelled'], _selectedStatus),
+                _buildFilterOption(
+                    'Status',
+                    ['All', 'Pending', 'Completed', 'Cancelled'],
+                    _selectedStatus),
                 SizedBox(height: 10),
-                _buildFilterOption('Time', ['Any Time', 'Today', 'This Week', 'This Month'], _selectedTime),
+                _buildFilterOption(
+                    'Time',
+                    ['Any Time', 'Today', 'This Week', 'This Month'],
+                    _selectedTime),
               ],
             ),
           ),
@@ -41,42 +46,41 @@ List<bool> _selectedTime = [true, false, false, false];
     );
   }
 
-  Widget _buildFilterOption(String title, List<String> options, List<bool> selectedOptions) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text(title),
-      Column(
-        children: options
-            .asMap()
-            .entries
-            .map(
-              (entry) => Row(
-                children: [
-                  Checkbox(
-                    value: selectedOptions[entry.key],
-                    onChanged: (bool? value) {
-                      setState(() {
-                        if (entry.key == 0) {
-                          for (int i = 0; i < selectedOptions.length; i++) {
-                            selectedOptions[i] = false;
+  Widget _buildFilterOption(
+      String title, List<String> options, List<bool> selectedOptions) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(title),
+        Column(
+          children: options
+              .asMap()
+              .entries
+              .map(
+                (entry) => Row(
+                  children: [
+                    Checkbox(
+                      value: selectedOptions[entry.key],
+                      onChanged: (bool? value) {
+                        setState(() {
+                          if (entry.key == 0) {
+                            for (int i = 0; i < selectedOptions.length; i++) {
+                              selectedOptions[i] = false;
+                            }
                           }
-                        }
-                        selectedOptions[entry.key] = value ?? false;
-                      });
-                    },
-                  ),
-                  Text(entry.value),
-                ],
-              ),
-            )
-            .toList(),
-      ),
-    ],
-  );
-}
-
-
+                          selectedOptions[entry.key] = value ?? false;
+                        });
+                      },
+                    ),
+                    Text(entry.value),
+                  ],
+                ),
+              )
+              .toList(),
+        ),
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

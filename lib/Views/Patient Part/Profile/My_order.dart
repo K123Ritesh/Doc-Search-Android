@@ -1,4 +1,6 @@
+import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class My_Order extends StatefulWidget {
   const My_Order({super.key});
@@ -84,6 +86,7 @@ class _My_OrderState extends State<My_Order> {
 
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<User_Provider>(context);
     return Scaffold(
       backgroundColor: const Color(0xFF155467),
       appBar: AppBar(
@@ -154,7 +157,7 @@ class _My_OrderState extends State<My_Order> {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: 3,
+              itemCount: userProvider.ans.length,
               itemBuilder: (context, index) {
                 return Container(
                   height: 115,
@@ -185,7 +188,7 @@ class _My_OrderState extends State<My_Order> {
                                   width: 20,
                                 ),
                                 Text(
-                                  'X Medical',
+                                  userProvider.ans[index]!.shopName,
                                   style: TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.bold,
@@ -218,7 +221,7 @@ class _My_OrderState extends State<My_Order> {
                                 Icon(Icons.circle,
                                     size: 10, color: Colors.green),
                                 Text(
-                                  'Delivery Expected in 15 min',
+                                  userProvider.ans[index]!.Status,
                                   style: TextStyle(
                                     fontSize: 11,
                                     color: Color(0xFF155467),
@@ -227,7 +230,7 @@ class _My_OrderState extends State<My_Order> {
                               ],
                             ),
                             Text(
-                              'Out for Delivery',
+                              'Order Done',
                               style: TextStyle(
                                 fontSize: 11,
                                 color: Color(0xFF155467),
@@ -250,7 +253,7 @@ class _My_OrderState extends State<My_Order> {
                               ),
                               child: Container(
                                 height: 24,
-                                width: 99,
+                                // width: 99,
                                 child: Center(
                                   child: Text(
                                     'Reorder Now',

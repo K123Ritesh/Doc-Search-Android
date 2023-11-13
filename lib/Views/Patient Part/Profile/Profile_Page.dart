@@ -17,7 +17,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Bottom_Bar.dart';
-import '../Home/Home_Page.dart';
 import 'Edit_User_Profile.dart';
 import 'MedicalOrder.dart';
 
@@ -229,22 +228,20 @@ class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
                       ),
                       InkWell(
                         onTap: () {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //       builder: (context) => Not_Build_Page(
-                          //             selectedIndex: 3,
-                          //           )),
-                          // );
                           userProvider.getOrderDetails(context);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => My_Order()),
+                          );
                         },
                         child: InkWell(
                           onTap: () {
+                            userProvider.getOrderDetails(context);
                             Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => My_Order()),
-                          );
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => My_Order()),
+                            );
                           },
                           child: ListTile(
                             title: Text(

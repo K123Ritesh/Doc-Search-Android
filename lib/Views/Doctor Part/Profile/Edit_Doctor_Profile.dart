@@ -97,6 +97,7 @@ class _EditDoctorProfileState extends State<EditDoctorProfile>
         Provider.of<Patient_And_Appointment_Provider>(context);
     SizeConfig().init(context);
     return Scaffold(
+      // bottomNavigationBar: DoctorBottombar(SelectedIndex: 3,docCategory: widget.d),
       backgroundColor: const Color(0xFF1A6A83),
       appBar: AppBar(
         backgroundColor: const Color(0xFF1A6A83),

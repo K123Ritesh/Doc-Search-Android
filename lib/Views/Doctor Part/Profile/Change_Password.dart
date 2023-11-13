@@ -1,4 +1,4 @@
-import 'package:doc_search/Bottom_Bar.dart';
+// import 'package:doc_search/Bottom_Bar.dart';
 import 'package:flutter/material.dart';
 
 class Change_Password_Page extends StatefulWidget {
@@ -13,9 +13,9 @@ class _Change_Password_PageState extends State<Change_Password_Page> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      bottomNavigationBar: Bottombar(
-        SelectedIndex: 3,
-      ),
+      // bottomNavigationBar: Bottombar(
+      //   SelectedIndex: 3,
+      // ),
       body: Container(
           decoration: BoxDecoration(
             color: const Color(0xFF155467),

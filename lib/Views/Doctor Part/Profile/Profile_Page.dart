@@ -2,10 +2,9 @@ import 'package:doc_search/Providers/Doctor_Part_Provider/Patient_And_Appointmen
 import 'package:doc_search/Views/Doctor%20Part/Authentication/Login_Page.dart';
 import 'package:doc_search/Views/Doctor%20Part/Profile/Edit_Doctor_Profile.dart';
 import 'package:doc_search/Views/Doctor%20Part/Profile/Online_Consultations_Page.dart';
-import 'package:doc_search/Views/Doctor%20Part/Profile/Set_Time.dart';
+import 'package:doc_search/Views/Doctor%20Part/Profile/Refer_And%20Earn_Page.dart';
 import 'package:doc_search/Views/Doctor%20Part/Profile/Settings_Page.dart';
 import 'package:doc_search/Views/Doctor%20Part/Profile/payment.dart';
-import 'package:doc_search/Views/Patient%20Part/Profile/Refer_And_Earn_Page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,6 +15,7 @@ import '../../Patient Part/Profile/Edit_User_Profile.dart';
 import 'Appointments.dart';
 import 'Community.dart';
 import 'Doctor_MedicalRecords.dart';
+import 'Set_Time.dart';
 
 class Doctor_Profile_Page extends StatelessWidget {
   Doctor_Profile_Page({required this.docCategory});
@@ -59,8 +59,8 @@ class Doctor_Profile_Page extends StatelessWidget {
                       InkWell(
                           onTap: () {
                             // Navigator.pop(context);
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => EditUserProfile()));
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => EditDoctorProfile()));
                           },
                           child: Stack(
                             children: <Widget>[
@@ -123,7 +123,9 @@ class Doctor_Profile_Page extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => Doctor_appointments()));
+                              builder: (context) => Doctor_appointments(
+                                    docCategory: docCategory,
+                                  )));
                         },
                         child: ListTile(
                           title: Text(
@@ -136,7 +138,9 @@ class Doctor_Profile_Page extends StatelessWidget {
                           trailing: InkWell(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => Doctor_appointments()));
+                                  builder: (context) => Doctor_appointments(
+                                        docCategory: docCategory,
+                                      )));
                             },
                             child: Icon(Icons.arrow_forward_ios,
                                 size: 20, color: Colors.white),
@@ -220,7 +224,7 @@ class Doctor_Profile_Page extends StatelessWidget {
                         },
                         child: ListTile(
                           title: Text(
-                            "Medical Order",
+                            "Medical Records",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,
@@ -256,7 +260,9 @@ class Doctor_Profile_Page extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => Doctors_Setting_Page(docCategory:docCategory,)));
+                              builder: (context) => Doctors_Setting_Page(
+                                    docCategory: docCategory,
+                                  )));
                         },
                         child: ListTile(
                           title: Text(

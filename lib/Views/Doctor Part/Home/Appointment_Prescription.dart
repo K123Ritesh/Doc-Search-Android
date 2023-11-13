@@ -1,10 +1,13 @@
 import 'package:doc_search/Config/sizeConfig.dart';
+import 'package:doc_search/Models/Models_For_Patient_Part/User_Model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'Prescription_Done.dart';
 
 class Appointment_Prescription extends StatefulWidget {
-  const Appointment_Prescription({super.key});
+  Appointment_Prescription({super.key, required this.user});
+  final PatientUser user;
 
   @override
   State<Appointment_Prescription> createState() =>
@@ -52,13 +55,27 @@ class _Appointment_PrescriptionState extends State<Appointment_Prescription> {
                   backgroundColor: Colors.blue,
                   // You can add the image here
                   // backgroundImage: NetworkImage('URL'),
+                  child: widget.user.profilePicUrl == " "
+                      ? Icon(
+                          Icons.person,
+                          color: Colors.red,
+                          size: 70,
+                        )
+                      : ClipOval(
+                          child: Image.network(
+                            widget.user.profilePicUrl,
+                            width: 90.0.w,
+                            height: 90.0.h,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                 ),
               ),
               SizedBox(
                 height: 5.fh,
               ),
               Text(
-                'Vivek Sharma',
+                widget.user.firstName,
                 style: TextStyle(
                     fontSize: 14.fh,
                     fontWeight: FontWeight.w500,
@@ -68,7 +85,7 @@ class _Appointment_PrescriptionState extends State<Appointment_Prescription> {
                 height: 5,
               ),
               Text(
-                '27 Years',
+                '${widget.user.age} Years',
                 style: TextStyle(
                     fontSize: 14.fh,
                     fontWeight: FontWeight.w500,
@@ -78,7 +95,7 @@ class _Appointment_PrescriptionState extends State<Appointment_Prescription> {
                 height: 5,
               ),
               Text(
-                'B-9 Vasnat Kunj New Delhi',
+                widget.user.address,
                 style: TextStyle(
                     fontSize: 14.fh,
                     fontWeight: FontWeight.w500,
@@ -88,7 +105,7 @@ class _Appointment_PrescriptionState extends State<Appointment_Prescription> {
                 height: 5.fh,
               ),
               Text(
-                '+91 9876543210',
+                widget.user.mobileNo,
                 style: TextStyle(
                     fontSize: 14.fh,
                     fontWeight: FontWeight.w500,
@@ -293,8 +310,16 @@ class _Appointment_PrescriptionState extends State<Appointment_Prescription> {
                   )
                 ],
               ),
-              SizedBox(height: 20,),
-              Text('Drug Prescription',style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.w500),),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                'Drug Prescription',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500),
+              ),
               Container(
                 margin: EdgeInsets.only(top: 20),
                 child: Table(
@@ -362,11 +387,45 @@ class _Appointment_PrescriptionState extends State<Appointment_Prescription> {
                           height: 5,
                         ),
                         Container(
+                            height: 17,
+                            width: 80,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: TextField()),
+                        SizedBox(
+                          height: 5,
+                        ),
+                      ]),
+                      Column(children: [
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          child: TextField(),
                           height: 17,
                           width: 80,
                           decoration: BoxDecoration(
                             color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                      ]),
+                      Column(children: [
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          child: TextField(),
+                          height: 17,
+                          width: 80,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
                           ),
                         ),
                         SizedBox(
@@ -382,103 +441,7 @@ class _Appointment_PrescriptionState extends State<Appointment_Prescription> {
                           width: 80,
                           decoration: BoxDecoration(
                             color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ]),Column(children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          height: 17,
-                          width: 80,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ]),Column(children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          height: 17,
-                          width: 80,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ]),
-                    ]),
-                    TableRow(children: [
-                      Column(children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          height: 17,
-                          width: 80,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ]),
-                      Column(children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          height: 17,
-                          width: 80,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ]),
-                      Column(children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          height: 17,
-                          width: 80,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ]),
-                      Column(children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          height: 17,
-                          width: 80,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
+                            borderRadius: BorderRadius.circular(5),
                           ),
                         ),
                         SizedBox(
@@ -496,7 +459,7 @@ class _Appointment_PrescriptionState extends State<Appointment_Prescription> {
                           width: 80,
                           decoration: BoxDecoration(
                             color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
+                            borderRadius: BorderRadius.circular(5),
                           ),
                         ),
                         SizedBox(
@@ -512,7 +475,7 @@ class _Appointment_PrescriptionState extends State<Appointment_Prescription> {
                           width: 80,
                           decoration: BoxDecoration(
                             color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
+                            borderRadius: BorderRadius.circular(5),
                           ),
                         ),
                         SizedBox(
@@ -528,7 +491,7 @@ class _Appointment_PrescriptionState extends State<Appointment_Prescription> {
                           width: 80,
                           decoration: BoxDecoration(
                             color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
+                            borderRadius: BorderRadius.circular(5),
                           ),
                         ),
                         SizedBox(
@@ -544,7 +507,73 @@ class _Appointment_PrescriptionState extends State<Appointment_Prescription> {
                           width: 80,
                           decoration: BoxDecoration(
                             color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                      ]),
+                    ]),
+                    TableRow(children: [
+                      Column(children: [
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          height: 17,
+                          width: 80,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                      ]),
+                      Column(children: [
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          height: 17,
+                          width: 80,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                      ]),
+                      Column(children: [
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          height: 17,
+                          width: 80,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                      ]),
+                      Column(children: [
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          height: 17,
+                          width: 80,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
                           ),
                         ),
                         SizedBox(
@@ -555,69 +584,69 @@ class _Appointment_PrescriptionState extends State<Appointment_Prescription> {
                   ],
                 ),
               ),
-            SizedBox(height: 50,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                InkWell(
-                onTap: () {
-                  
-                },
-                child: Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10)),
-                        height: 48,
-                        width: 145,
-                        child: Center(
-                          child: Text(
-                            'Cancel',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+              SizedBox(
+                height: 50,
               ),
-              InkWell(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => Prescription_Done()));
-                },
-                child: Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Color(0XFF005473),
-                            borderRadius: BorderRadius.circular(10)),
-                        height: 48,
-                        width: 145,
-                        child: Center(
-                          child: Text(
-                            'Save',
-                            style: TextStyle(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    onTap: () {},
+                    child: Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
                                 color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400),
-                          ),
-                        ),
-                      )
-                    ],
+                                borderRadius: BorderRadius.circular(10)),
+                            height: 48,
+                            width: 145,
+                            child: Center(
+                              child: Text(
+                                'Cancel',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              ],
-            )
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => Prescription_Done()));
+                    },
+                    child: Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                color: Color(0XFF005473),
+                                borderRadius: BorderRadius.circular(10)),
+                            height: 48,
+                            width: 145,
+                            child: Center(
+                              child: Text(
+                                'Save',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              )
             ],
           ),
         ),

@@ -2,16 +2,19 @@ import 'dart:io';
 
 import 'package:doc_search/Models/Models_For_Patient_Part/Appointment_Model.dart';
 import 'package:doc_search/Models/Models_For_Patient_Part/User_Model.dart';
+import 'package:doc_search/Models/Models_For_Patient_Part/Order_Model.dart';
 import 'package:doc_search/Services/User_Part_Services/User_Services.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class User_Provider with ChangeNotifier {
   UserServices userServices = UserServices();
-
+  FirebaseAuth _auth = FirebaseAuth.instance;
   List<String> todayAppointmentId = [];
   List<String> pastAppointmentId = [];
   List<String> upcomingAppointmentId = [];
   PatientUser user = PatientUser(
+      orders: [],
       email: '',
       firstName: 'firstName',
       lastName: 'lastName',
@@ -105,6 +108,21 @@ class User_Provider with ChangeNotifier {
   updateProfile(
       context, String userId, Map<String, dynamic> updatedData) async {
     await userServices.createOrUpdateFields(context, userId, updatedData);
+    notifyListeners();
+  }
+
+  List<Order_Model?> ans = [];
+  getOrderDetails(context) async {
+    List<Order_Model?> ans1 = [];
+    for (int i = 0; i < user.orders!.length; i++) {
+      print(user.orders![i]);
+      Order_Model? to_add =
+          await userServices.OrderDetails(context, user.orders![i]);
+      ans1.add(to_add);
+    }
+    ans = ans1;
+    print(ans);
+    print('Done');
     notifyListeners();
   }
 }

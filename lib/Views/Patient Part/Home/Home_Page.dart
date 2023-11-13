@@ -7,7 +7,6 @@ import 'package:doc_search/Views/Patient%20Part/Home/Hospitals_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Medical_Labs_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Medicine_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Search_Tapped_Page.dart';
-import 'package:doc_search/Views/Patient%20Part/Home/Wallet_Page.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -141,8 +140,13 @@ class _HomePageState extends State<HomePage> {
                         padding: EdgeInsets.all(2.fh),
                         child: Row(
                           children: [
-                            Lottie.asset('assets/lottie/Notification.json',
-                                height: 50.h, width: 50.w, fit: BoxFit.fill),
+                            // Lottie.asset('assets/lottie/Notification.json',
+                            //     height: 50.h, width: 50.w, fit: BoxFit.fill),
+                            Icon(
+                              Icons.notifications,
+                              size: 35,
+                              color: Colors.red,
+                            )
                             // SizedBox(width: 5.fw),
                             // Text(
                             //   '100',

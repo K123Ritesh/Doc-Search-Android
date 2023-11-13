@@ -1,15 +1,9 @@
 import 'package:doc_search/Bottom_Bar.dart';
-import 'package:doc_search/Providers/User_Part_Provider/Doctor_Provider.dart';
 import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
 import 'package:doc_search/Views/Patient%20Part/Doctors/Doctors_Category_Wise.dart';
-import 'package:doc_search/Views/Patient%20Part/Profile/Edit_Profile_LifeStyle.dart';
-import 'package:doc_search/Views/Patient%20Part/Profile/Edit_User_Profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-
-import '../Profile/Profile_Page.dart';
-import 'doctor1.dart';
 
 class Appointment1 extends StatefulWidget {
   const Appointment1({super.key});
@@ -20,16 +14,13 @@ class Appointment1 extends StatefulWidget {
 
 class _Appointment1State extends State<Appointment1> {
   TextEditingController specialization = TextEditingController(text: 'Dentist');
+  TextEditingController city = TextEditingController(text: 'New Delhi');
   int selectedOption = -1;
 
   List<String> options = ['Morning', 'Evening', 'Night'];
   @override
   Widget build(BuildContext context) {
-    final UserProvider = Provider.of<User_Provider>(context);
-    TextEditingController city =
-        TextEditingController(text: UserProvider.user.city);
     final userProvider = Provider.of<User_Provider>(context);
-    final DoctorProvider = Provider.of<Doctor_Provider>(context);
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Color(0xFF1A6A83),
     ));
@@ -83,8 +74,9 @@ class _Appointment1State extends State<Appointment1> {
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(50)),
-                child: TextField(
+                child: TextFormField(
                   controller: city,
+                  // initialValue: userProvider.user.city,
                   decoration: const InputDecoration(
                     border: InputBorder.none,
                     prefixIcon: Icon(

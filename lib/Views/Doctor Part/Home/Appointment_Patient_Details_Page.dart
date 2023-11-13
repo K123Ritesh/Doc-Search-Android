@@ -1,3 +1,5 @@
+import 'package:doc_search/Models/Models_For_Patient_Part/Appointment_Model.dart';
+import 'package:doc_search/Models/Models_For_Patient_Part/User_Model.dart';
 import 'package:doc_search/Views/Doctor%20Part/Home/Appointment_Prescription.dart';
 import 'package:doc_search/Views/Doctor%20Part/Home/Home_Page.dart';
 import 'package:flutter/foundation.dart';
@@ -7,7 +9,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../Bottom_Bar.dart';
 
 class Appointment_Patient_Details_Page extends StatefulWidget {
-  const Appointment_Patient_Details_Page({super.key});
+  Appointment_Patient_Details_Page(
+      {super.key, required this.appointment_model, required this.user});
+  final Appointment_Model appointment_model;
+  final PatientUser user;
 
   @override
   State<Appointment_Patient_Details_Page> createState() =>
@@ -60,7 +65,142 @@ class _Appointment_Patient_Details_PageState
               SizedBox(
                 height: 10.h,
               ),
-              AppointmentId_Searched(),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: InkWell(
+                  child: Container(
+                    // width: 100,
+                    decoration: BoxDecoration(
+                        color: const Color(0xFF1B6A85),
+                        borderRadius: BorderRadius.circular(15.r)),
+                    child: Row(
+                      children: [
+                        Center(
+                          child: Padding(
+                            padding: EdgeInsets.all(14.0.w),
+                            child: CircleAvatar(
+                              backgroundColor: Colors.white,
+                              maxRadius: 50.r,
+                              child: widget.user.profilePicUrl == " "
+                                  ? Icon(
+                                      Icons.person,
+                                      color: Colors.red,
+                                      size: 70,
+                                    )
+                                  : ClipOval(
+                                      child: Image.network(
+                                        widget.user.profilePicUrl,
+                                        width: 90.0.w,
+                                        height: 90.0.h,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        Container(
+                          child: Padding(
+                            padding: EdgeInsets.all(8.0.w),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Id Number - ',
+                                      style: TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 18.sp,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      '583694',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18.sp,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      child: Text(
+                                        'Name - ',
+                                        style: TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 18.sp,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    Container(
+                                      child: Text(
+                                        '${widget.user.firstName}',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 18.sp,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Age - ',
+                                      style: TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 18.sp,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      '${widget.user.age}',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18.sp,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Address - ',
+                                      style: TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 18.sp,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      widget.user.city,
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18.sp,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
               Padding(
                 padding: EdgeInsets.all(8.0.w),
                 child: Container(
@@ -268,7 +408,7 @@ class _Appointment_Patient_Details_PageState
                                 style: TextStyle(fontSize: 20.sp),
                               ),
                               Text(
-                                'Farmer',
+                                widget.user.profession,
                                 style: TextStyle(fontSize: 20.sp),
                               )
                             ],
@@ -290,7 +430,9 @@ class _Appointment_Patient_Details_PageState
               InkWell(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => Appointment_Prescription()));
+                      builder: (context) => Appointment_Prescription(
+                            user: widget.user,
+                          )));
                 },
                 child: Container(
                   margin: EdgeInsets.only(right: 10),

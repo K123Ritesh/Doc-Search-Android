@@ -1,4 +1,4 @@
-import 'package:doc_search/Bottom_Bar.dart';
+// import 'package:doc_search/Bottom_Bar.dart';
 import 'package:flutter/material.dart';
 
 class Online_Consultations_Page extends StatefulWidget {
@@ -14,9 +14,9 @@ class _Online_Consultations_PageState extends State<Online_Consultations_Page> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        bottomNavigationBar: Bottombar(
-          SelectedIndex: 3,
-        ),
+        // bottomNavigationBar: Bottombar(
+        //   SelectedIndex: 3,
+        // ),
         body: Container(
             decoration: BoxDecoration(
               color: const Color(0xFF155467),

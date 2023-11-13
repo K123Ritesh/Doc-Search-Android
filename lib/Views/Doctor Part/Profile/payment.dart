@@ -1,5 +1,6 @@
+import 'package:doc_search/Providers/Doctor_Part_Provider/Patient_And_Appointment_Provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 import '../Home/Appointment_Patient_Details_Page.dart';
 
@@ -16,7 +17,7 @@ class _PaymentState extends State<Payment> {
   @override
   void initState() {
     super.initState();
-    selectedButtonIndex = 0; 
+    selectedButtonIndex = 0;
   }
 
   void onButtonTapped(int index) {
@@ -25,8 +26,26 @@ class _PaymentState extends State<Payment> {
     });
   }
 
+  DateTime selectedDate = DateTime.now();
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime.now(), // Disable past dates
+      lastDate: DateTime(2101), // Set a reasonable upper limit for the future
+    );
+
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final details = Provider.of<Patient_And_Appointment_Provider>(context);
     return Scaffold(
       backgroundColor: const Color(0xFF1B6A85),
       appBar: AppBar(
@@ -94,45 +113,50 @@ class _PaymentState extends State<Payment> {
                       ),
                     ),
                   ),
-                Container(
-                    width: 73,
-                    height: 28,
-                    decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Icon(
-                              Icons.calendar_month_outlined,
-                              size: 14,
-                              color: Colors.white,
-                            ),
-                            SizedBox(
-                              width: 2,
-                            ),
-                            Text(
-                              'Date',
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white),
-                            )
-                          ],
-                        ),
-                        Icon(
-                          Icons.keyboard_arrow_down_rounded,
-                          size: 20,
-                          color: Colors.white,
-                        )
-                      ],
-                    )),
+                InkWell(
+                  onTap: () {
+                    _selectDate(context);
+                  },
+                  child: Container(
+                      width: 73,
+                      height: 28,
+                      decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(8)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Icon(
+                                Icons.calendar_month_outlined,
+                                size: 14,
+                                color: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 2,
+                              ),
+                              Text(
+                                'Date',
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white),
+                              )
+                            ],
+                          ),
+                          Icon(
+                            Icons.keyboard_arrow_down_rounded,
+                            size: 20,
+                            color: Colors.white,
+                          )
+                        ],
+                      )),
+                ),
               ],
             ),
           ),
@@ -183,21 +207,16 @@ class _PaymentState extends State<Payment> {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: 5,
+              itemCount: details.appointmentDetails!.length,
               itemBuilder: (context, index) {
-                // Replace with your appointment data
-                final appointment = {
-                  'name': 'John Doe',
-                  'Amount': '₹500',
-                  'Accept/Reject': 'Paid',
-                  'status': 'Pending',
-                };
-
                 return InkWell(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) =>
-                                      Appointment_Patient_Details_Page()));
+                        builder: (context) => Appointment_Patient_Details_Page(
+                              appointment_model:
+                                  details.appointmentDetails![index],
+                              user: details.appointmentedUsers![index],
+                            )));
                   },
                   child: Container(
                     height: 63,
@@ -205,50 +224,51 @@ class _PaymentState extends State<Payment> {
                         BoxDecoration(border: Border.all(color: Colors.white)),
                     padding: EdgeInsets.all(10),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          appointment['name']!,
+                          details.appointmentDetails![index].name,
                           style: TextStyle(
                               fontSize: 13,
                               color: Colors.white,
                               fontWeight: FontWeight.w500),
                         ),
-                        SizedBox(
-                          width: 50,
-                        ),
+                        // SizedBox(
+                        //   width: 30,
+                        // ),
                         Text(
-                          appointment['Amount']!,
+                          details.myDetails!.reg_fee,
                           style: TextStyle(
                               fontSize: 13,
                               color: Colors.white,
                               fontWeight: FontWeight.w500),
                         ),
-                        SizedBox(
-                          width: 90,
-                        ),
+                        // SizedBox(
+                        //   width: 60,
+                        // ),
                         Text(
-                          appointment['Accept/Reject']!,
+                          details.appointmentDetails![index].paid == true
+                              ? 'Yes'
+                              : 'No',
                           style: TextStyle(
                               fontSize: 13,
                               color: Colors.white,
                               fontWeight: FontWeight.w500),
                         ),
-                        SizedBox(
-                          width: 70,
-                        ),
+                        // SizedBox(
+                        //   width: 70,
+                        // ),
                         Row(
                           children: [
                             Text(
-                              appointment['status']!,
+                              'Confirmed',
                               style: TextStyle(
                                   fontSize: 13,
                                   color: Colors.white,
                                   fontWeight: FontWeight.w500),
                             ),
                             InkWell(
-                              onTap: () {
-                                
-                              },
+                              onTap: () {},
                               child: Icon(
                                 Icons.delete,
                                 size: 20,

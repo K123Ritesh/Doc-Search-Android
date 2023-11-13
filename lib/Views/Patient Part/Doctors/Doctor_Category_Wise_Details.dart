@@ -3,6 +3,7 @@ import 'package:doc_search/Models/Models_For_Patient_Part/Doctor.dart';
 
 import 'package:doc_search/Views/Patient%20Part/Doctors/Doctor_Category_Wise_Final.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:intl/intl.dart';
 
@@ -78,6 +79,22 @@ class _Doctors_Category_WiseDetailsState
     '05:40 PM',
     '05.50 PM'
   ];
+  DateTime selectedDate = DateTime.now();
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime.now(), // Disable past dates
+      lastDate: DateTime(2101), // Set a reasonable upper limit for the future
+    );
+
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -111,9 +128,19 @@ class _Doctors_Category_WiseDetailsState
             leading: Container(
               height: 65,
               width: 65,
-              child: const CircleAvatar(
-                  // backgroundImage: NetworkImage(''),
-                  ),
+              child: CircleAvatar(
+                // backgroundImage: NetworkImage(''),
+                child: widget.doctor.profile_pic == ' '
+                    ? Icon(Icons.person)
+                    : ClipOval(
+                        child: Image.network(
+                          widget.doctor.profile_pic,
+                          width: 60.0.w,
+                          height: 60.0.h,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+              ),
             ),
             title: Text(
               widget.doctor.name,
@@ -266,34 +293,39 @@ class _Doctors_Category_WiseDetailsState
                   ),
                 )),
               ),
-              Container(
-                height: 26,
-                width: 87,
-                margin: const EdgeInsets.only(top: 15, right: 20),
-                decoration: BoxDecoration(
-                  color: const Color(0xFF1A6A83),
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Icon(
-                      Icons.calendar_month,
-                      size: 16,
-                      color: Colors.white,
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Center(
-                        child: Text(
-                      'Calender',
-                      style: TextStyle(
-                        fontSize: 14,
+              InkWell(
+                onTap: () {
+                  _selectDate(context);
+                },
+                child: Container(
+                  height: 26,
+                  width: 87,
+                  margin: const EdgeInsets.only(top: 15, right: 20),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF1A6A83),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Icon(
+                        Icons.calendar_month,
+                        size: 16,
                         color: Colors.white,
                       ),
-                    )),
-                  ],
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Center(
+                          child: Text(
+                        'Calender',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.white,
+                        ),
+                      )),
+                    ],
+                  ),
                 ),
               ),
             ],

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doc_search/Models/Models_For_Patient_Part/User_Model.dart';
+import 'package:doc_search/Models/Models_For_Patient_Part/Order_Model.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'dart:core';
 
@@ -17,6 +18,7 @@ class UserServices {
         Map<dynamic, dynamic> data =
             documentSnapshot.data() as Map<String, dynamic>;
         PatientUser user = PatientUser(
+            orders: data['orders'],
             email: data['email'],
             firstName: data['firstName'],
             lastName: data['lastName'],
@@ -48,6 +50,7 @@ class UserServices {
         print(user.mobileNo);
         print('${user.firstName} ${user.lastName}');
         print(user.profilePicUrl);
+        print(user.orders);
 
         return user;
       } else {
@@ -212,6 +215,32 @@ class UserServices {
     } catch (e) {
       print('Error uploading file and saving to Firestore: $e');
       throw e;
+    }
+  }
+
+  Future<Order_Model?> OrderDetails(context, String orderId) async {
+    try {
+      DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
+          .collection("Orders")
+          .doc(orderId)
+          .get();
+
+      if (documentSnapshot.exists) {
+        Map<dynamic, dynamic> data =
+            documentSnapshot.data() as Map<String, dynamic>;
+        print(data['deliveryStatus']);
+        print(data['prescription_url']);
+        print(data['shopName']);
+        return Order_Model(
+            Status: data['deliveryStatus'],
+            presciptionUrl: data['prescription_url'],
+            shopName: data['shopName']);
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print('Error in this: $e');
+      return null;
     }
   }
 }

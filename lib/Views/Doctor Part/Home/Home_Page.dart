@@ -1,9 +1,12 @@
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:doc_search/Config/sizeConfig.dart';
 import 'package:doc_search/Providers/Doctor_Part_Provider/Patient_And_Appointment_Provider.dart';
-import 'package:doc_search/Views/Doctor%20Part/Home/Appointment_Patient_Details_Page.dart';
+import 'package:doc_search/Views/Doctor%20Part/Home/Doctor_Wallet_Page.dart';
+import 'package:doc_search/Views/Doctor%20Part/Profile/Appointments.dart';
+import 'package:doc_search/Views/Doctor%20Part/Profile/Community.dart';
 import 'package:doc_search/Views/Doctor%20Part/Profile/Online_Consultations_Page.dart';
 import 'package:doc_search/Views/Doctor%20Part/Profile/Profile_Page.dart';
-import 'package:doc_search/Views/Not_Build_Page.dart';
-import 'package:doc_search/Views/Patient%20Part/Home/Wallet_Page.dart';
+import 'package:doc_search/Views/Doctor%20Part/Profile/payment.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -26,10 +29,15 @@ class _Doctor_Home_PageState extends State<Doctor_Home_Page> {
     super.initState();
     Provider.of<Patient_And_Appointment_Provider>(context, listen: false)
         .getMyDetails(context, widget.docCategory);
+    Provider.of<Patient_And_Appointment_Provider>(context, listen: false)
+        .getAllAppointment(context, widget.docCategory);
+    Provider.of<Patient_And_Appointment_Provider>(context, listen: false)
+        .getDetailsOfAppointment(context);
   }
 
   final TextEditingController idController =
       TextEditingController(text: '583694');
+  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     final myDetails = Provider.of<Patient_And_Appointment_Provider>(context);
@@ -85,7 +93,8 @@ class _Doctor_Home_PageState extends State<Doctor_Home_Page> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Wallet()),
+                    MaterialPageRoute(
+                        builder: (context) => Doctor_Wallet_Page()),
                   );
                 },
                 child: Container(
@@ -151,9 +160,8 @@ class _Doctor_Home_PageState extends State<Doctor_Home_Page> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => Not_Build_Page(
-                                selectedIndex: 0,
-                              )),
+                          builder: (context) => Doctor_appointments(
+                              docCategory: widget.docCategory)),
                     );
                   },
                   child: Column(
@@ -206,10 +214,7 @@ class _Doctor_Home_PageState extends State<Doctor_Home_Page> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => Not_Build_Page(
-                                    selectedIndex: 0,
-                                  )),
+                          MaterialPageRoute(builder: (context) => Payment()),
                         );
                       },
                       child: Container(
@@ -234,10 +239,7 @@ class _Doctor_Home_PageState extends State<Doctor_Home_Page> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => Not_Build_Page(
-                                    selectedIndex: 0,
-                                  )),
+                          MaterialPageRoute(builder: (context) => Community()),
                         );
                       },
                       child: Container(
@@ -262,116 +264,34 @@ class _Doctor_Home_PageState extends State<Doctor_Home_Page> {
           SizedBox(
             height: 20.h,
           ),
-          Container(
-            height: 148.h,
-            decoration: BoxDecoration(
-              color: const Color(0xFFECFAFC),
-              borderRadius: BorderRadius.circular(5.r),
-              // border: Border.all(color: Color(0xFF5793A8)),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: CarouselSlider(
+              items: [
+                Banner(color: const Color(0xFFECFAFC), isfirst: true),
+                Banner(
+                  color: Color.fromRGBO(30, 94, 118, 1),
+                  isfirst: false,
+                )
+              ],
+              options: CarouselOptions(
+                height: 160.0.h, // Adjust the height as needed
+                // aspectRatio: 1, // Adjust the aspect ratio as needed
+                viewportFraction:
+                    1, // Adjust the visible portion of each widget
+                initialPage: selectedIndex,
+                enableInfiniteScroll: true,
+                reverse: false,
+                autoPlay: true, // Disable auto-play
+                enlargeCenterPage: false,
+                scrollDirection: Axis.horizontal,
+                onPageChanged: (index, reason) {
+                  setState(() {
+                    selectedIndex = index; // Store the current active index
+                  });
+                },
+              ),
             ),
-            child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-              Column(
-                children: [
-                  Container(
-                      margin: EdgeInsets.only(left: 20.w, top: 20.h),
-                      child: RichText(
-                        text: TextSpan(
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: 'We are ',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            TextSpan(
-                              text: 'providing',
-                              style: TextStyle(
-                                  color: Colors.yellow,
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            TextSpan(
-                              text: ' the ',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            TextSpan(
-                              text: '\nbest ',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            TextSpan(
-                              text: 'health',
-                              style: TextStyle(
-                                  color: Color(0xFF5793A8),
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            TextSpan(
-                              text: ' services',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      )),
-                  Container(
-                      margin: EdgeInsets.only(left: 20.w, top: 10.h),
-                      child: Text(
-                        'Always caring about your health, \nFind your doctors and make an \nappointment',
-                        style: TextStyle(
-                            fontSize: 10.sp,
-                            fontWeight: FontWeight.w400,
-                            color: Color(0xFF1B3033)),
-                      )),
-                  Container(
-                    height: 23.h,
-                    width: 68.w,
-                    margin: EdgeInsets.only(top: 10.h, right: 60.w),
-                    child: Material(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(50.r),
-                      child: Ink(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(50.r),
-                          border:
-                              Border.all(color: Color(0xFF005473), width: 2),
-                        ),
-                        child: InkWell(
-                          onTap: () {
-                            // Your button click logic here
-                          },
-                          child: Center(
-                            child: Text(
-                              'Register Now',
-                              style: TextStyle(
-                                fontSize: 8.sp,
-                                color: Color(0xFF005473),
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              Container(
-                margin: EdgeInsets.only(left: 30.w, top: 20.h),
-                height: 118.h,
-                width: 167.w,
-                child: Image.asset('assets/image 34.png'),
-              ),
-            ]),
           ),
           SizedBox(
             height: 20.h,
@@ -405,12 +325,12 @@ class _Doctor_Home_PageState extends State<Doctor_Home_Page> {
               child: TextField(
                 controller: idController,
                 onChanged: (value) {
-                  myDetails.getDetailsOfAppointment(context, value);
-                  myDetails.getUserDetailsforAppointment(context);
+                  // myDetails.getDetailsOfAppointment(context, value);
+                  // myDetails.getUserDetailsforAppointment(context);
                 },
                 onSubmitted: (value) {
-                  myDetails.getDetailsOfAppointment(context, value);
-                  myDetails.getUserDetailsforAppointment(context);
+                  // myDetails.getDetailsOfAppointment(context, value);
+                  // myDetails.getUserDetailsforAppointment(context);
                 },
                 decoration: InputDecoration(
                   border: InputBorder.none, // Remove the default border
@@ -441,131 +361,280 @@ class AppointmentId_Searched extends StatelessWidget {
   Widget build(BuildContext context) {
     final myDetails = Provider.of<Patient_And_Appointment_Provider>(context);
 
-    return myDetails.appointmentedUser == null
-        ? Text('Wrong Id')
-        : Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: InkWell(
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Appointment_Patient_Details_Page()));
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                    color: const Color(0xFF1B6A85),
-                    borderRadius: BorderRadius.circular(15.r)),
-                child: Row(
-                  children: [
-                    Center(
-                      child: Padding(
-                        padding: EdgeInsets.all(14.0.w),
-                        child: CircleAvatar(
-                            backgroundColor: Colors.white,
-                            maxRadius: 50.r,
-                            child: Icon(
-                              Icons.person,
-                              color: Colors.red,
-                              size: 70,
-                            )),
+    // return
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: InkWell(
+        child: Container(
+          // width: 100,
+          decoration: BoxDecoration(
+              color: const Color(0xFF1B6A85),
+              borderRadius: BorderRadius.circular(15.r)),
+          child: Row(
+            children: [
+              Center(
+                child: Padding(
+                  padding: EdgeInsets.all(14.0.w),
+                  child: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      maxRadius: 50.r,
+                      child: Icon(
+                        Icons.person,
+                        color: Colors.red,
+                        size: 70,
+                      )
+                      // : ClipOval(
+                      //     child: Image.network(
+                      //       widget.user.profilePicUrl,
+                      //       width: 90.0.w,
+                      //       height: 90.0.h,
+                      //       fit: BoxFit.cover,
+                      //     ),
+                      // ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 10.w,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(8.0.w),
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.vertical,
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Id Number - ',
-                                  style: TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 18.sp,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  '583694             ',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 18.sp,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  child: Text(
-                                    'Name - ',
-                                    style: TextStyle(
-                                        color: Colors.grey,
-                                        fontSize: 18.sp,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Container(
-                                  child: Text(
-                                    '${myDetails.appointmentedUser!.firstName}      ',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18.sp,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Age - ',
-                                  style: TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 18.sp,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  '28                                  ',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 18.sp,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Address - ',
-                                  style: TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 18.sp,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  'Katihar ,Bihar      ',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 18.sp,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                    )
-                  ],
                 ),
               ),
+              SizedBox(
+                width: 10.w,
+              ),
+              Container(
+                child: Padding(
+                  padding: EdgeInsets.all(8.0.w),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Id Number - ',
+                            style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            '583694',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            child: Text(
+                              'Name - ',
+                              style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Container(
+                            child: Text(
+                              'Ritesh Kumar',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Age - ',
+                            style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            '18',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Address - ',
+                            style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            'Patna',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Banner extends StatelessWidget {
+  Banner({super.key, required this.color, required this.isfirst});
+
+  final Color color;
+  final bool isfirst;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(left: 10.w),
+      child: Container(
+        height: 130.h,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(16),
+          // border: Border.all(color: Color(0xFF5793A8)),
+        ),
+        child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+          Column(
+            children: [
+              Container(
+                  margin: EdgeInsets.only(top: 15.h),
+                  child: RichText(
+                    text: TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: 'We are ',
+                          style: TextStyle(
+                              color:
+                                  isfirst == true ? Colors.black : Colors.white,
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        TextSpan(
+                          text: 'providing',
+                          style: TextStyle(
+                              color: Colors.yellow,
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        TextSpan(
+                          text: ' the ',
+                          style: TextStyle(
+                              color:
+                                  isfirst == true ? Colors.black : Colors.white,
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        TextSpan(
+                          text: '\nbest ',
+                          style: TextStyle(
+                              color:
+                                  isfirst == true ? Colors.black : Colors.white,
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        TextSpan(
+                          text: 'health',
+                          style: TextStyle(
+                              color: Color(0xFF5793A8),
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        TextSpan(
+                          text: ' services',
+                          style: TextStyle(
+                              color:
+                                  isfirst == true ? Colors.black : Colors.white,
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  )),
+              Container(
+                  margin: EdgeInsets.only(
+                    left: 20.w,
+                    top: 10.h,
+                  ),
+                  child: Text(
+                    'Always caring about your health, \nFind your doctors and make an \nappointment',
+                    style: TextStyle(
+                      fontSize: 9.sp,
+                      fontWeight: FontWeight.w400,
+                      color: isfirst == true ? Colors.black : Colors.white,
+                    ),
+                  )),
+              Container(
+                height: 23.h,
+                width: 68.w,
+                margin: EdgeInsets.only(top: 10.h, right: 60.w),
+                child: Material(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(50),
+                  child: Ink(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(50),
+                      border: Border.all(
+                          color: isfirst == true
+                              ? Color(0xFF005473)
+                              : Colors.black,
+                          width: 2),
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //       builder: (context) => Appointment1()),
+                        // );
+                      },
+                      child: Center(
+                        child: Text(
+                          'Register Now',
+                          style: TextStyle(
+                            fontSize: 8.sp,
+                            color: Color(0xFF005473),
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+          Spacer(),
+          Container(
+            margin: EdgeInsets.only(top: 30.h),
+            height: 118.h,
+            // width: 158.fw,
+            child: Image.asset(
+              'assets/image 34.png',
             ),
-          );
+          ),
+        ]),
+      ),
+    );
   }
 }

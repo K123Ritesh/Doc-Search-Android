@@ -135,96 +135,108 @@ class Patient_And_Appointment_Services {
     }
   }
 
-  Future<Appointment_Model?> AppointmentDetail(
-      context, String appointmentId) async {
+  Future<List<Appointment_Model>?> AppointmentDetail(
+      context, List<String> appointmentId) async {
     try {
+      List<Appointment_Model>? ans = [];
       final firestore = FirebaseFirestore.instance;
-      final AppointmentRef =
-          firestore.collection("Appointments").doc(appointmentId);
-      final AppointmentData = await AppointmentRef.get();
+      for (int i = 0; i < appointmentId.length; i++) {
+        final AppointmentRef =
+            firestore.collection("Appointments").doc(appointmentId[i]);
+        final AppointmentData = await AppointmentRef.get();
 
-      if (AppointmentData.exists) {
-        //Testing
-        print('Appointment Detaills');
-        print(AppointmentData['doctor_name']);
-        print(AppointmentData['doctor_address']);
-        print(AppointmentData['doctor_qualification']);
-        print(AppointmentData['date_for_booking']);
-        print(AppointmentData['mode_of_payment']);
-        print(AppointmentData['self']);
-        print(AppointmentData['fee']);
-        print(AppointmentData['paid']);
-        print(AppointmentData['doctorId']);
-        print(AppointmentData['slot']);
-        print(AppointmentData['userId']);
-        return Appointment_Model(
-            name: AppointmentData['bookedFor'],
-            doctor_name: AppointmentData['doctor_name'],
-            doctor_address: AppointmentData['doctor_address'],
-            doctor_qualification: AppointmentData['doctor_qualification'],
-            date_for_booking: AppointmentData['date_for_booking'],
-            mode_of_payment: AppointmentData['mode_of_payment'],
-            self: AppointmentData['self'],
-            reg_fee: AppointmentData['fee'],
-            paid: AppointmentData['paid'],
-            doctorId: AppointmentData['doctorId'],
-            slot: AppointmentData['slot'],
-            userId: AppointmentData['userId']);
-      } else {
-        print('AppointmentId  not found.');
+        if (AppointmentData.exists) {
+          //Testing
+          print(' ${i + 1} Appointment Details');
+          print(AppointmentData['doctor_name']);
+          print(AppointmentData['doctor_address']);
+          print(AppointmentData['doctor_qualification']);
+          print(AppointmentData['date_for_booking']);
+          print(AppointmentData['mode_of_payment']);
+          print(AppointmentData['self']);
+          print(AppointmentData['fee']);
+          print(AppointmentData['paid']);
+          print(AppointmentData['doctorId']);
+          print(AppointmentData['slot']);
+          print(AppointmentData['userId']);
+          ans.add(Appointment_Model(
+              name: AppointmentData['bookedFor'],
+              doctor_name: AppointmentData['doctor_name'],
+              doctor_address: AppointmentData['doctor_address'],
+              doctor_qualification: AppointmentData['doctor_qualification'],
+              date_for_booking: AppointmentData['date_for_booking'],
+              mode_of_payment: AppointmentData['mode_of_payment'],
+              self: AppointmentData['self'],
+              reg_fee: AppointmentData['fee'],
+              paid: AppointmentData['paid'],
+              doctorId: AppointmentData['doctorId'],
+              slot: AppointmentData['slot'],
+              userId: AppointmentData['userId']));
+        } else {
+          // ans.add(null);
+          print('AppointmentId  not found.');
+        }
       }
+      return ans;
     } catch (e) {
       print('Error in Getting Appointment Details: $e');
     }
     return null;
   }
 
-  Future<PatientUser?> UserAllDetails(String uid) async {
+  Future<List<PatientUser>?> UserAllDetails(context, List<String> uid) async {
     try {
-      DocumentSnapshot documentSnapshot =
-          await FirebaseFirestore.instance.collection("Users").doc(uid).get();
+      List<PatientUser>? ans = [];
+      for (int i = 0; i < uid.length; i++) {
+        DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
+            .collection("Users")
+            .doc(uid[i])
+            .get();
 
-      if (documentSnapshot.exists) {
-        Map<dynamic, dynamic> data =
-            documentSnapshot.data() as Map<String, dynamic>;
-        PatientUser user = PatientUser(
-            email: data['email'],
-            firstName: data['firstName'],
-            lastName: data['lastName'],
-            mobileNo: data['mobileNumber'],
-            city: data['city'],
-            appointments: data['apointments'],
-            profilePicUrl: data['profile_pic'],
-            address: data['address'],
-            age: data['age'],
-            bloodGrp: data['bloodGroup'],
-            landmark: data['landmark'],
-            pincode: data['pincode'],
-            profession: data['profession'],
-            gender: data['gender'],
-            activity_level: data['activity_level'],
-            alcohol_consumption: data['alcohol_consumption'],
-            allergies: data['allergies'],
-            chronic_diseases: data['chronic_diseases'],
-            current_medictaion: data['current_medication'],
-            food_prefrencce: data['food_prefrence'],
-            injuries: data['injuries'],
-            past_medication: data['past_medication'],
-            smoking_habits: data['smoking_habits'],
-            surgeries: data['surgeries']);
+        if (documentSnapshot.exists) {
+          Map<dynamic, dynamic> data =
+              documentSnapshot.data() as Map<String, dynamic>;
+          PatientUser user = PatientUser(
+              orders: data['orders'],
+              email: data['email'],
+              firstName: data['firstName'],
+              lastName: data['lastName'],
+              mobileNo: data['mobileNumber'],
+              city: data['city'],
+              appointments: data['apointments'],
+              profilePicUrl: data['profile_pic'],
+              address: data['address'],
+              age: data['age'],
+              bloodGrp: data['bloodGroup'],
+              landmark: data['landmark'],
+              pincode: data['pincode'],
+              profession: data['profession'],
+              gender: data['gender'],
+              activity_level: data['activity_level'],
+              alcohol_consumption: data['alcohol_consumption'],
+              allergies: data['allergies'],
+              chronic_diseases: data['chronic_diseases'],
+              current_medictaion: data['current_medication'],
+              food_prefrencce: data['food_prefrence'],
+              injuries: data['injuries'],
+              past_medication: data['past_medication'],
+              smoking_habits: data['smoking_habits'],
+              surgeries: data['surgeries']);
+          print(' ${i + 1} Appointmented User Detaills');
+          print(user.appointments);
+          print(user.city);
+          print(user.email);
+          print(user.mobileNo);
+          print('${user.firstName} ${user.lastName}');
+          print(user.profilePicUrl);
 
-        print(user.appointments);
-        print(user.city);
-        print(user.email);
-        print(user.mobileNo);
-        print('${user.firstName} ${user.lastName}');
-        print(user.profilePicUrl);
-
-        return user;
-      } else {
-        // Handle the case where the document with the given mobile number doesn't exist.
-        return null;
+          ans.add(user);
+        } else {
+          // Handle the case where the document with the given mobile number doesn't exist.
+          // ans.add(null);
+        }
       }
+      return ans;
     } catch (e) {
       print('Error in this: $e');
       return null;

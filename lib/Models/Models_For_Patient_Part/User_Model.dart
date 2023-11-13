@@ -24,10 +24,12 @@ class PatientUser {
   final String? activity_level;
   final String? food_prefrencce;
   final String? surgeries;
+  List<dynamic>? orders;
 
   Map<String, dynamic> appointments;
 
   PatientUser({
+    required this.orders,
     required this.surgeries,
     required this.allergies,
     required this.current_medictaion,

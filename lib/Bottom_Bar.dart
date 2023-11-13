@@ -1,6 +1,5 @@
 import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
-import 'package:doc_search/Views/Final_Home_Page.dart';
-import 'package:doc_search/Views/Not_Build_Page.dart';
+
 import 'package:doc_search/Views/Patient%20Part/Home/Home_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Wallet_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Profile_Page.dart';
@@ -63,13 +62,8 @@ class _BottombarState extends State<Bottombar> {
           );
           break;
         case 1:
-          Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (context) =>
-                  (userProvider.todayAppointmentModel.length == 0 &&
-                          userProvider.todayAppointmentModel.length == 0 &&
-                          userProvider.todayAppointmentModel.length == 0)
-                      ? Appointments_Page()
-                      : PastAppointment()));
+          Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => PastAppointment()));
           break;
         case 2:
           Navigator.pushReplacement(

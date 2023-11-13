@@ -1,4 +1,6 @@
+import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class My_Order extends StatefulWidget {
   const My_Order({super.key});
@@ -8,9 +10,8 @@ class My_Order extends StatefulWidget {
 }
 
 class _My_OrderState extends State<My_Order> {
-
   List<bool> _selectedStatus = [true, false, false, false];
-List<bool> _selectedTime = [true, false, false, false];
+  List<bool> _selectedTime = [true, false, false, false];
 
   void _showFilterDialog(BuildContext context) {
     showDialog(
@@ -30,9 +31,15 @@ List<bool> _selectedTime = [true, false, false, false];
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildFilterOption('Status', ['All', 'Pending', 'Completed', 'Cancelled'], _selectedStatus),
+                _buildFilterOption(
+                    'Status',
+                    ['All', 'Pending', 'Completed', 'Cancelled'],
+                    _selectedStatus),
                 SizedBox(height: 10),
-                _buildFilterOption('Time', ['Any Time', 'Today', 'This Week', 'This Month'], _selectedTime),
+                _buildFilterOption(
+                    'Time',
+                    ['Any Time', 'Today', 'This Week', 'This Month'],
+                    _selectedTime),
               ],
             ),
           ),
@@ -41,45 +48,45 @@ List<bool> _selectedTime = [true, false, false, false];
     );
   }
 
-  Widget _buildFilterOption(String title, List<String> options, List<bool> selectedOptions) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text(title),
-      Column(
-        children: options
-            .asMap()
-            .entries
-            .map(
-              (entry) => Row(
-                children: [
-                  Checkbox(
-                    value: selectedOptions[entry.key],
-                    onChanged: (bool? value) {
-                      setState(() {
-                        if (entry.key == 0) {
-                          for (int i = 0; i < selectedOptions.length; i++) {
-                            selectedOptions[i] = false;
+  Widget _buildFilterOption(
+      String title, List<String> options, List<bool> selectedOptions) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(title),
+        Column(
+          children: options
+              .asMap()
+              .entries
+              .map(
+                (entry) => Row(
+                  children: [
+                    Checkbox(
+                      value: selectedOptions[entry.key],
+                      onChanged: (bool? value) {
+                        setState(() {
+                          if (entry.key == 0) {
+                            for (int i = 0; i < selectedOptions.length; i++) {
+                              selectedOptions[i] = false;
+                            }
                           }
-                        }
-                        selectedOptions[entry.key] = value ?? false;
-                      });
-                    },
-                  ),
-                  Text(entry.value),
-                ],
-              ),
-            )
-            .toList(),
-      ),
-    ],
-  );
-}
-
-
+                          selectedOptions[entry.key] = value ?? false;
+                        });
+                      },
+                    ),
+                    Text(entry.value),
+                  ],
+                ),
+              )
+              .toList(),
+        ),
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<User_Provider>(context);
     return Scaffold(
       backgroundColor: const Color(0xFF155467),
       appBar: AppBar(
@@ -150,7 +157,7 @@ List<bool> _selectedTime = [true, false, false, false];
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: 3,
+              itemCount: userProvider.ans.length,
               itemBuilder: (context, index) {
                 return Container(
                   height: 115,
@@ -181,7 +188,7 @@ List<bool> _selectedTime = [true, false, false, false];
                                   width: 20,
                                 ),
                                 Text(
-                                  'X Medical',
+                                  userProvider.ans[index]!.shopName,
                                   style: TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.bold,
@@ -214,7 +221,7 @@ List<bool> _selectedTime = [true, false, false, false];
                                 Icon(Icons.circle,
                                     size: 10, color: Colors.green),
                                 Text(
-                                  'Delivery Expected in 15 min',
+                                  userProvider.ans[index]!.Status,
                                   style: TextStyle(
                                     fontSize: 11,
                                     color: Color(0xFF155467),
@@ -223,7 +230,7 @@ List<bool> _selectedTime = [true, false, false, false];
                               ],
                             ),
                             Text(
-                              'Out for Delivery',
+                              'Order Done',
                               style: TextStyle(
                                 fontSize: 11,
                                 color: Color(0xFF155467),
@@ -246,7 +253,7 @@ List<bool> _selectedTime = [true, false, false, false];
                               ),
                               child: Container(
                                 height: 24,
-                                width: 99,
+                                // width: 99,
                                 child: Center(
                                   child: Text(
                                     'Reorder Now',

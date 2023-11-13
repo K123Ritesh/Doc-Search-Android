@@ -62,13 +62,8 @@ class _BottombarState extends State<Bottombar> {
           );
           break;
         case 1:
-          Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (context) =>
-                  (userProvider.todayAppointmentModel.length == 0 &&
-                          userProvider.todayAppointmentModel.length == 0 &&
-                          userProvider.todayAppointmentModel.length == 0)
-                      ? Appointments_Page()
-                      : PastAppointment()));
+          Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => PastAppointment()));
           break;
         case 2:
           Navigator.pushReplacement(

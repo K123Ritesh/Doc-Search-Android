@@ -387,6 +387,23 @@ class _Appointment_PrescriptionState extends State<Appointment_Prescription> {
                           height: 5,
                         ),
                         Container(
+                            height: 17,
+                            width: 80,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: TextField()),
+                        SizedBox(
+                          height: 5,
+                        ),
+                      ]),
+                      Column(children: [
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          child: TextField(),
                           height: 17,
                           width: 80,
                           decoration: BoxDecoration(
@@ -403,22 +420,7 @@ class _Appointment_PrescriptionState extends State<Appointment_Prescription> {
                           height: 5,
                         ),
                         Container(
-                          height: 17,
-                          width: 80,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ]),
-                      Column(children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
+                          child: TextField(),
                           height: 17,
                           width: 80,
                           decoration: BoxDecoration(

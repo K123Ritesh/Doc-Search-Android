@@ -213,6 +213,7 @@ class _Doctor_appointmentsState extends State<Doctor_appointments> {
                         BoxDecoration(border: Border.all(color: Colors.white)),
                     padding: EdgeInsets.all(10),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           details.appointmentDetails![index].slot,
@@ -221,9 +222,6 @@ class _Doctor_appointmentsState extends State<Doctor_appointments> {
                               color: Colors.white,
                               fontWeight: FontWeight.w500),
                         ),
-                        SizedBox(
-                          width: 30,
-                        ),
                         Text(
                           '${details.appointmentDetails![index].name}',
                           style: TextStyle(
@@ -231,18 +229,12 @@ class _Doctor_appointmentsState extends State<Doctor_appointments> {
                               color: Colors.white,
                               fontWeight: FontWeight.w500),
                         ),
-                        SizedBox(
-                          width: 40,
-                        ),
                         Text(
                           'Accept',
                           style: TextStyle(
                               fontSize: 13,
                               color: Colors.white,
                               fontWeight: FontWeight.w500),
-                        ),
-                        SizedBox(
-                          width: 50,
                         ),
                         Row(
                           children: [

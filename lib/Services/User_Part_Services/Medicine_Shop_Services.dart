@@ -108,8 +108,10 @@ class Medicine_Shop_Services {
         'shop_id': shopId,
         'user_id': userId,
         'timestamp': FieldValue.serverTimestamp(),
+        'shopName': 'XYZ Medical Store',
+        'deliveryStatus': 'Order Done'
       });
-
+      await addToUserOrders(context, userId, orderRef.id);
       print('Order document created successfully.');
     } catch (e) {
       print('Error creating order document: $e');
@@ -137,6 +139,29 @@ class Medicine_Shop_Services {
       }
     } catch (e) {
       print('Error adding prescription URL to Medicine Shop: $e');
+    }
+  }
+
+  Future<void> addToUserOrders(context, String userId, String OrderId) async {
+    try {
+      final firestore = FirebaseFirestore.instance;
+      final shopRef = firestore.collection('Users').doc(userId);
+
+      final shopData = await shopRef.get();
+
+      if (shopData.exists) {
+        final currentPrescriptions =
+            List<String>.from(shopData.data()!['orders'] ?? []);
+        currentPrescriptions.add(OrderId);
+
+        await shopRef.update({'orders': currentPrescriptions});
+
+        print('Order Id added to User Orders successfully.');
+      } else {
+        print('User document does not exist.');
+      }
+    } catch (e) {
+      print('Error adding OrderId to User Orders: $e');
     }
   }
 }

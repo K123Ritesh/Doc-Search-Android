@@ -228,13 +228,14 @@ class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
                       ),
                       InkWell(
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Not_Build_Page(
-                                      selectedIndex: 3,
-                                    )),
-                          );
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //       builder: (context) => Not_Build_Page(
+                          //             selectedIndex: 3,
+                          //           )),
+                          // );
+                          userProvider.getOrderDetails(context);
                         },
                         child: ListTile(
                           title: Text(
@@ -308,28 +309,28 @@ class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
                           ),
                         ),
                       ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Not_Build_Page(
-                                      selectedIndex: 3,
-                                    )),
-                          );
-                        },
-                        child: ListTile(
-                          title: Text(
-                            "Transactions",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.w400),
-                          ),
-                          trailing: Icon(Icons.arrow_forward_ios,
-                              size: 20, color: Colors.white),
-                        ),
-                      ),
+                      // InkWell(
+                      //   onTap: () {
+                      //     Navigator.push(
+                      //       context,
+                      //       MaterialPageRoute(
+                      //           builder: (context) => Not_Build_Page(
+                      //                 selectedIndex: 3,
+                      //               )),
+                      //     );
+                      //   },
+                      //   child: ListTile(
+                      //     title: Text(
+                      //       "Transactions",
+                      //       style: TextStyle(
+                      //           color: Colors.white,
+                      //           fontSize: 20.sp,
+                      //           fontWeight: FontWeight.w400),
+                      //     ),
+                      //     trailing: Icon(Icons.arrow_forward_ios,
+                      //         size: 20, color: Colors.white),
+                      //   ),
+                      // ),
                       InkWell(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(

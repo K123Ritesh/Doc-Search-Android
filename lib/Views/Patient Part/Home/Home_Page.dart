@@ -140,8 +140,13 @@ class _HomePageState extends State<HomePage> {
                         padding: EdgeInsets.all(2.fh),
                         child: Row(
                           children: [
-                            Lottie.asset('assets/lottie/Notification.json',
-                                height: 50.h, width: 50.w, fit: BoxFit.fill),
+                            // Lottie.asset('assets/lottie/Notification.json',
+                            //     height: 50.h, width: 50.w, fit: BoxFit.fill),
+                            Icon(
+                              Icons.notifications,
+                              size: 35,
+                              color: Colors.red,
+                            )
                             // SizedBox(width: 5.fw),
                             // Text(
                             //   '100',

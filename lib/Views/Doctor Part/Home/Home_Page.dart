@@ -507,7 +507,7 @@ class Banner extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(left: 10.w),
       child: Container(
-        height: 130.fh,
+        height: 130.h,
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(16),
@@ -517,7 +517,7 @@ class Banner extends StatelessWidget {
           Column(
             children: [
               Container(
-                  margin: EdgeInsets.only(top: 15.fh),
+                  margin: EdgeInsets.only(top: 15.h),
                   child: RichText(
                     text: TextSpan(
                       children: <TextSpan>[
@@ -526,14 +526,14 @@ class Banner extends StatelessWidget {
                           style: TextStyle(
                               color:
                                   isfirst == true ? Colors.black : Colors.white,
-                              fontSize: 12.fh,
+                              fontSize: 12.sp,
                               fontWeight: FontWeight.bold),
                         ),
                         TextSpan(
                           text: 'providing',
                           style: TextStyle(
                               color: Colors.yellow,
-                              fontSize: 12.fh,
+                              fontSize: 12.sp,
                               fontWeight: FontWeight.bold),
                         ),
                         TextSpan(
@@ -541,7 +541,7 @@ class Banner extends StatelessWidget {
                           style: TextStyle(
                               color:
                                   isfirst == true ? Colors.black : Colors.white,
-                              fontSize: 12.fh,
+                              fontSize: 12.sp,
                               fontWeight: FontWeight.bold),
                         ),
                         TextSpan(
@@ -549,14 +549,14 @@ class Banner extends StatelessWidget {
                           style: TextStyle(
                               color:
                                   isfirst == true ? Colors.black : Colors.white,
-                              fontSize: 12.fh,
+                              fontSize: 12.sp,
                               fontWeight: FontWeight.bold),
                         ),
                         TextSpan(
                           text: 'health',
                           style: TextStyle(
                               color: Color(0xFF5793A8),
-                              fontSize: 12.fh,
+                              fontSize: 12.sp,
                               fontWeight: FontWeight.bold),
                         ),
                         TextSpan(
@@ -564,7 +564,7 @@ class Banner extends StatelessWidget {
                           style: TextStyle(
                               color:
                                   isfirst == true ? Colors.black : Colors.white,
-                              fontSize: 12.fh,
+                              fontSize: 12.sp,
                               fontWeight: FontWeight.bold),
                         ),
                       ],
@@ -572,21 +572,21 @@ class Banner extends StatelessWidget {
                   )),
               Container(
                   margin: EdgeInsets.only(
-                    left: 20.fw,
-                    top: 10.fh,
+                    left: 20.w,
+                    top: 10.h,
                   ),
                   child: Text(
                     'Always caring about your health, \nFind your doctors and make an \nappointment',
                     style: TextStyle(
-                      fontSize: 9.fh,
+                      fontSize: 9.sp,
                       fontWeight: FontWeight.w400,
                       color: isfirst == true ? Colors.black : Colors.white,
                     ),
                   )),
               Container(
-                height: 23.fh,
-                width: 68.fw,
-                margin: EdgeInsets.only(top: 10.fh, right: 60.fw),
+                height: 23.h,
+                width: 68.w,
+                margin: EdgeInsets.only(top: 10.h, right: 60.w),
                 child: Material(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(50),
@@ -612,7 +612,7 @@ class Banner extends StatelessWidget {
                         child: Text(
                           'Register Now',
                           style: TextStyle(
-                            fontSize: 8.fh,
+                            fontSize: 8.sp,
                             color: Color(0xFF005473),
                             fontWeight: FontWeight.w500,
                           ),
@@ -626,8 +626,8 @@ class Banner extends StatelessWidget {
           ),
           Spacer(),
           Container(
-            margin: EdgeInsets.only(top: 30.fh),
-            height: 118.fh,
+            margin: EdgeInsets.only(top: 30.h),
+            height: 118.h,
             // width: 158.fw,
             child: Image.asset(
               'assets/image 34.png',

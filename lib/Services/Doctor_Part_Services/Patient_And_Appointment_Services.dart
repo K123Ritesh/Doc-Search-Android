@@ -197,6 +197,7 @@ class Patient_And_Appointment_Services {
           Map<dynamic, dynamic> data =
               documentSnapshot.data() as Map<String, dynamic>;
           PatientUser user = PatientUser(
+              orders: data['orders'],
               email: data['email'],
               firstName: data['firstName'],
               lastName: data['lastName'],

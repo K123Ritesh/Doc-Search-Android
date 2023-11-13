@@ -26,6 +26,23 @@ class _PaymentState extends State<Payment> {
     });
   }
 
+  DateTime selectedDate = DateTime.now();
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime.now(), // Disable past dates
+      lastDate: DateTime(2101), // Set a reasonable upper limit for the future
+    );
+
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final details = Provider.of<Patient_And_Appointment_Provider>(context);
@@ -96,45 +113,50 @@ class _PaymentState extends State<Payment> {
                       ),
                     ),
                   ),
-                Container(
-                    width: 73,
-                    height: 28,
-                    decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Icon(
-                              Icons.calendar_month_outlined,
-                              size: 14,
-                              color: Colors.white,
-                            ),
-                            SizedBox(
-                              width: 2,
-                            ),
-                            Text(
-                              'Date',
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white),
-                            )
-                          ],
-                        ),
-                        Icon(
-                          Icons.keyboard_arrow_down_rounded,
-                          size: 20,
-                          color: Colors.white,
-                        )
-                      ],
-                    )),
+                InkWell(
+                  onTap: () {
+                    _selectDate(context);
+                  },
+                  child: Container(
+                      width: 73,
+                      height: 28,
+                      decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(8)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Icon(
+                                Icons.calendar_month_outlined,
+                                size: 14,
+                                color: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 2,
+                              ),
+                              Text(
+                                'Date',
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white),
+                              )
+                            ],
+                          ),
+                          Icon(
+                            Icons.keyboard_arrow_down_rounded,
+                            size: 20,
+                            color: Colors.white,
+                          )
+                        ],
+                      )),
+                ),
               ],
             ),
           ),
@@ -187,8 +209,6 @@ class _PaymentState extends State<Payment> {
             child: ListView.builder(
               itemCount: details.appointmentDetails!.length,
               itemBuilder: (context, index) {
-                // Replace with your appointment data
-
                 return InkWell(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
@@ -204,6 +224,7 @@ class _PaymentState extends State<Payment> {
                         BoxDecoration(border: Border.all(color: Colors.white)),
                     padding: EdgeInsets.all(10),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           details.appointmentDetails![index].name,
@@ -212,9 +233,9 @@ class _PaymentState extends State<Payment> {
                               color: Colors.white,
                               fontWeight: FontWeight.w500),
                         ),
-                        SizedBox(
-                          width: 30,
-                        ),
+                        // SizedBox(
+                        //   width: 30,
+                        // ),
                         Text(
                           details.myDetails!.reg_fee,
                           style: TextStyle(
@@ -222,9 +243,9 @@ class _PaymentState extends State<Payment> {
                               color: Colors.white,
                               fontWeight: FontWeight.w500),
                         ),
-                        SizedBox(
-                          width: 60,
-                        ),
+                        // SizedBox(
+                        //   width: 60,
+                        // ),
                         Text(
                           details.appointmentDetails![index].paid == true
                               ? 'Yes'
@@ -234,9 +255,9 @@ class _PaymentState extends State<Payment> {
                               color: Colors.white,
                               fontWeight: FontWeight.w500),
                         ),
-                        SizedBox(
-                          width: 70,
-                        ),
+                        // SizedBox(
+                        //   width: 70,
+                        // ),
                         Row(
                           children: [
                             Text(

@@ -198,12 +198,12 @@ class _Doctor_Signup_PageState extends State<Doctor_Signup_Page> {
                             fontWeight: FontWeight.w400),
                       ),
                       InkWell(
-                        // onTap: () {
-                        //   Navigator.of(context).pushReplacement(
-                        //       MaterialPageRoute(
-                        //           builder: (context) =>
-                        //               Doctor_Doctor_Signup_Page()));
-                        // },
+                        onTap: () {
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      Login_Page()));
+                        },
                         child: Text(
                           'Register here ',
                           style: TextStyle(

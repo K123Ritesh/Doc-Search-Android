@@ -1,27 +1,22 @@
 import 'package:doc_search/Views/Patient%20Part/Profile/Edit_User_Profile.dart';
-import 'package:doc_search/Views/Patient%20Part/Profile/Profile_Page.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class Allergies extends StatefulWidget {
-  const Allergies({super.key});
+  const Allergies({Key? key}) : super(key: key);
 
   @override
   State<Allergies> createState() => _AllergiesState();
 }
 
 class _AllergiesState extends State<Allergies> {
-  bool isBlueNo = false;
-  bool isBlueAddAllergy = false;
+  bool isNoSelected = false;
+  bool isAddAllergySelected = false;
 
-  void toggleColorNo() {
+  void toggleSelection(bool isNo) {
     setState(() {
-      isBlueNo = !isBlueNo;
-    });
-  }
-
-  void toggleColorAddAllergy() {
-    setState(() {
-      isBlueAddAllergy = !isBlueAddAllergy;
+      isNoSelected = isNo;
+      isAddAllergySelected = !isNo;
     });
   }
 
@@ -37,134 +32,120 @@ class _AllergiesState extends State<Allergies> {
             color: Colors.black,
           ),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => EditUserProfile()),
-            );
+            Navigator.pop(context);
           },
         ),
         title: Container(
-            margin: EdgeInsets.only(left: 80),
-            child: Text(
-              'Allergies',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600),
-            )),
+          margin: EdgeInsets.only(left: 80),
+          child: Text(
+            'Allergies',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-              margin: EdgeInsets.only(left: 48),
-              child: Text(
-                'Are you allergic to anything?',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-              )),
+            margin: EdgeInsets.only(left: 48),
+            child: Text(
+              'Are you allergic to anything?',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+            ),
+          ),
           Center(
             child: Column(
               children: [
-                Container(
-                  margin: const EdgeInsets.only(top: 20),
-                  height: 50,
-                  width: 320,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: const Color(0xFF1A6A83),
-                  ),
+                GestureDetector(
+                  onTap: () => toggleSelection(true),
                   child: Container(
-                    margin: const EdgeInsets.only(left: 20, right: 20),
+                    margin: const EdgeInsets.only(top: 20),
+                    height: 50,
+                    width: 320,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: isNoSelected
+                          ? const Color(0xFF0059C8)
+                          : const Color(0xFF1A6A83),
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
-                          'No',
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white),
-                        ),
-                        InkWell(
-                          onTap: toggleColorNo,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              gradient: isBlueNo
-                                  ? LinearGradient(
-                                      colors: [
-                                        Color(0xFF0059C8),
-                                        Color(0xFF0059C8)
-                                      ],
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                    )
-                                  : LinearGradient(
-                                      colors: [
-                                        Color(0xFFFFFFFF),
-                                        Color(0xFFFFFFFF)
-                                      ],
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                    ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                            ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: Text(
+                            'No',
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.white),
                           ),
-                        )
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(right: 20),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.white,
+                          ),
+                          child: isNoSelected
+                              ? Icon(
+                                  Icons.check,
+                                  color: const Color(0xFF0059C8),
+                                )
+                              : Container(
+                                  width: 24,
+                                  height: 24,
+                                ),
+                        ),
                       ],
                     ),
                   ),
                 ),
-                Container(
-                  margin: const EdgeInsets.only(top: 20),
-                  height: 50,
-                  width: 320,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: const Color(0xFF1A6A83),
-                  ),
+                GestureDetector(
+                  onTap: () => toggleSelection(false),
                   child: Container(
-                    margin: const EdgeInsets.only(left: 20, right: 20),
+                    margin: const EdgeInsets.only(top: 20),
+                    height: 50,
+                    width: 320,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: isAddAllergySelected
+                          ? const Color(0xFF0059C8)
+                          : const Color(0xFF1A6A83),
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
-                          'Add an allergy',
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white),
-                        ),
-                        InkWell(
-                          onTap: toggleColorAddAllergy,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              gradient: isBlueAddAllergy
-                                  ? LinearGradient(
-                                      colors: [
-                                        Color(0xFF0059C8),
-                                        Color(0xFF0059C8)
-                                      ],
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                    )
-                                  : LinearGradient(
-                                      colors: [
-                                        Color(0xFFFFFFFF),
-                                        Color(0xFFFFFFFF)
-                                      ],
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                    ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                            ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: Text(
+                            'Add an allergy',
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.white),
                           ),
-                        )
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(right: 20),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.white,
+                          ),
+                          child: isAddAllergySelected
+                              ? Icon(
+                                  Icons.check,
+                                  color: const Color(0xFF0059C8),
+                                )
+                              : Container(
+                                  width: 24,
+                                  height: 24,
+                                ),
+                        ),
                       ],
                     ),
                   ),

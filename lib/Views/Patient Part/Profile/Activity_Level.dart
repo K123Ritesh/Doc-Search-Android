@@ -1,43 +1,26 @@
-import 'package:doc_search/Views/Patient%20Part/Profile/Edit_User_Profile.dart';
-import 'package:doc_search/Views/Patient%20Part/Profile/Profile_Page.dart';
 import 'package:flutter/material.dart';
 
 class Activity_Level extends StatefulWidget {
-  const Activity_Level({super.key});
+  const Activity_Level({Key? key}) : super(key: key);
 
   @override
   State<Activity_Level> createState() => _Activity_LevelState();
 }
 
 class _Activity_LevelState extends State<Activity_Level> {
-  bool isBlueNo = false;
-  bool AddAllergy = false;
-  bool AddSocial = false;
-  bool AddRegular = false;
+  bool isLowSelected = false;
+  bool isNormalSelected = false;
+  bool isHighSelected = false;
+  bool isVeryHighSelected = false;
 
-  void toggleColorNo() {
+  void toggleSelection(String option) {
     setState(() {
-      isBlueNo = !isBlueNo;
+      isLowSelected = option == 'Low';
+      isNormalSelected = option == 'Normal';
+      isHighSelected = option == 'High';
+      isVeryHighSelected = option == 'Very High';
     });
   }
-
-  void toggleColorAddAllergy() {
-    setState(() {
-      AddAllergy = !AddAllergy;
-    });
-  }
-  void toggleColorAddSocial() {
-    setState(() {
-      AddSocial = !AddSocial;
-    });
-  }
-  void toggleColorAddRegular() {
-    setState(() {
-      AddRegular = !AddRegular;
-    });
-  }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -55,242 +38,115 @@ class _Activity_LevelState extends State<Activity_Level> {
           },
         ),
         title: Container(
-            margin: EdgeInsets.only(left: 80),
-            child: Text(
-              'Activity Level',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600),
-            )),
+          margin: EdgeInsets.only(left: 80),
+          child: Text(
+            'Activity Level',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Container(
-          //     margin: EdgeInsets.only(left: 48),
-          //     child: Text(
-          //       'Are you allergic to anything?',
-          //       style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-          //     )),
           Center(
             child: Column(
               children: [
-                Container(
-                  margin: const EdgeInsets.only(top: 20),
-                  height: 50,
-                  width: 320,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: const Color(0xFF1A6A83),
-                  ),
-                  child: Container(
-                    margin: const EdgeInsets.only(left: 20, right: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'Low',
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white),
-                        ),
-                        InkWell(
-                          onTap: toggleColorNo,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              gradient: isBlueNo
-                                  ? LinearGradient(
-                                      colors: [
-                                        Color(0xFF0059C8),
-                                        Color(0xFF0059C8)
-                                      ],
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                    )
-                                  : LinearGradient(
-                                      colors: [
-                                        Color(0xFFFFFFFF),
-                                        Color(0xFFFFFFFF)
-                                      ],
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                    ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(top: 20),
-                  height: 50,
-                  width: 320,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: const Color(0xFF1A6A83),
-                  ),
-                  child: Container(
-                    margin: const EdgeInsets.only(left: 20, right: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'Normal',
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white),
-                        ),
-                        InkWell(
-                          onTap: toggleColorAddAllergy,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              gradient: AddAllergy
-                                  ? LinearGradient(
-                                      colors: [
-                                        Color(0xFF0059C8),
-                                        Color(0xFF0059C8)
-                                      ],
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                    )
-                                  : LinearGradient(
-                                      colors: [
-                                        Color(0xFFFFFFFF),
-                                        Color(0xFFFFFFFF)
-                                      ],
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                    ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(top: 20),
-                  height: 50,
-                  width: 320,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: const Color(0xFF1A6A83),
-                  ),
-                  child: Container(
-                    margin: const EdgeInsets.only(left: 20, right: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'High',
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white),
-                        ),
-                        InkWell(
-                          onTap: toggleColorAddSocial,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              gradient: AddSocial
-                                  ? LinearGradient(
-                                      colors: [
-                                        Color(0xFF0059C8),
-                                        Color(0xFF0059C8)
-                                      ],
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                    )
-                                  : LinearGradient(
-                                      colors: [
-                                        Color(0xFFFFFFFF),
-                                        Color(0xFFFFFFFF)
-                                      ],
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                    ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(top: 20),
-                  height: 50,
-                  width: 320,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: const Color(0xFF1A6A83),
-                  ),
-                  child: Container(
-                    margin: const EdgeInsets.only(left: 20, right: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'Very High',
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white),
-                        ),
-                        InkWell(
-                          onTap: toggleColorAddRegular,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              gradient: AddRegular
-                                  ? LinearGradient(
-                                      colors: [
-                                        Color(0xFF0059C8),
-                                        Color(0xFF0059C8)
-                                      ],
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                    )
-                                  : LinearGradient(
-                                      colors: [
-                                        Color(0xFFFFFFFF),
-                                        Color(0xFFFFFFFF)
-                                      ],
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                    ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-
-                
+                buildToggleButton('Low'),
+                buildToggleButton('Normal'),
+                buildToggleButton('High'),
+                buildToggleButton('Very High'),
               ],
             ),
           ),
         ],
       ),
     );
+  }
+
+  Widget buildToggleButton(String option) {
+    return GestureDetector(
+      onTap: () => toggleSelection(option),
+      child: Container(
+        margin: const EdgeInsets.only(top: 20),
+        height: 50,
+        width: 320,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: getButtonColor(option),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: Text(
+                option,
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(right: 20),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.white,
+              ),
+              child: getCheckIcon(option),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Color getButtonColor(String option) {
+    switch (option) {
+      case 'Low':
+        return isLowSelected ? const Color(0xFF0059C8) : const Color(0xFF1A6A83);
+      case 'Normal':
+        return isNormalSelected ? const Color(0xFF0059C8) : const Color(0xFF1A6A83);
+      case 'High':
+        return isHighSelected ? const Color(0xFF0059C8) : const Color(0xFF1A6A83);
+      case 'Very High':
+        return isVeryHighSelected ? const Color(0xFF0059C8) : const Color(0xFF1A6A83);
+      default:
+        return const Color(0xFF1A6A83);
+    }
+  }
+
+  Widget getCheckIcon(String option) {
+    if (getOptionSelected(option)) {
+      return Icon(
+        Icons.check,
+        color: const Color(0xFF0059C8),
+      );
+    } else {
+      return Container(
+        width: 24,
+        height: 24,
+      );
+    }
+  }
+
+  bool getOptionSelected(String option) {
+    switch (option) {
+      case 'Low':
+        return isLowSelected;
+      case 'Normal':
+        return isNormalSelected;
+      case 'High':
+        return isHighSelected;
+      case 'Very High':
+        return isVeryHighSelected;
+      default:
+        return false;
+    }
   }
 }

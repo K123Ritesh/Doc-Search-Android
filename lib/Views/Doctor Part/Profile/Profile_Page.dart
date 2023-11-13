@@ -2,6 +2,7 @@ import 'package:doc_search/Providers/Doctor_Part_Provider/Patient_And_Appointmen
 import 'package:doc_search/Views/Doctor%20Part/Authentication/Login_Page.dart';
 import 'package:doc_search/Views/Doctor%20Part/Profile/Edit_Doctor_Profile.dart';
 import 'package:doc_search/Views/Doctor%20Part/Profile/Online_Consultations_Page.dart';
+import 'package:doc_search/Views/Doctor%20Part/Profile/Set_Time.dart';
 import 'package:doc_search/Views/Doctor%20Part/Profile/Settings_Page.dart';
 import 'package:doc_search/Views/Doctor%20Part/Profile/payment.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Refer_And_Earn_Page.dart';
@@ -11,6 +12,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import '../../../Doctor_bottomBar.dart';
+import '../../Patient Part/Profile/Edit_User_Profile.dart';
 import 'Appointments.dart';
 import 'Community.dart';
 import 'Doctor_MedicalRecords.dart';
@@ -56,9 +58,9 @@ class Doctor_Profile_Page extends StatelessWidget {
                     children: [
                       InkWell(
                           onTap: () {
-                            Navigator.pop(context);
-                            //   Navigator.of(context).push(MaterialPageRoute(
-                            //       builder: (context) => EditUserProfile()));
+                            // Navigator.pop(context);
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => EditUserProfile()));
                           },
                           child: Stack(
                             children: <Widget>[
@@ -159,16 +161,23 @@ class Doctor_Profile_Page extends StatelessWidget {
                               size: 20, color: Colors.white),
                         ),
                       ),
-                      ListTile(
-                        title: Text(
-                          "Set Time & Day",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w400),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  Set_Time_Date()));
+                        },
+                        child: ListTile(
+                          title: Text(
+                            "Set Time & Day",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w400),
+                          ),
+                          trailing: Icon(Icons.arrow_forward_ios,
+                              size: 20, color: Colors.white),
                         ),
-                        trailing: Icon(Icons.arrow_forward_ios,
-                            size: 20, color: Colors.white),
                       ),
                       InkWell(
                         onTap: () {
@@ -247,7 +256,7 @@ class Doctor_Profile_Page extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => Doctors_Setting_Page()));
+                              builder: (context) => Doctors_Setting_Page(docCategory:docCategory,)));
                         },
                         child: ListTile(
                           title: Text(

@@ -1,42 +1,24 @@
 import 'package:flutter/material.dart';
 
-import 'Edit_User_Profile.dart';
-import 'Profile_Page.dart';
-
 class SmokingHabbit extends StatefulWidget {
-  const SmokingHabbit({super.key});
+  const SmokingHabbit({Key? key}) : super(key: key);
 
   @override
-  State<SmokingHabbit> createState() => _SmokingHabbitState();
+  _SmokingHabbitState createState() => _SmokingHabbitState();
 }
 
 class _SmokingHabbitState extends State<SmokingHabbit> {
-  bool isBlueNo = false;
-  bool isBlueUsedToQuit = false;
-  bool isBlue5LessPerDay = false;
-  bool isBlue5MorePerDay = false;
+  bool isNoSelected = false;
+  bool isUsedToQuitSelected = false;
+  bool is5LessPerDaySelected = false;
+  bool is5MorePerDaySelected = false;
 
-  void toggleColorNo() {
+  void toggleSelection(String option) {
     setState(() {
-      isBlueNo = !isBlueNo;
-    });
-  }
-
-  void toggleColorUsedToQuit() {
-    setState(() {
-      isBlueUsedToQuit = !isBlueUsedToQuit;
-    });
-  }
-
-  void toggleColor5LessPerDay() {
-    setState(() {
-      isBlue5LessPerDay = !isBlue5LessPerDay;
-    });
-  }
-
-  void toggleColor5MorePerDay() {
-    setState(() {
-      isBlue5MorePerDay = !isBlue5MorePerDay;
+      isNoSelected = option == 'I don’t smoke';
+      isUsedToQuitSelected = option == 'I used to, but I’ve quit';
+      is5LessPerDaySelected = option == '5 < day';
+      is5MorePerDaySelected = option == '5 > day';
     });
   }
 
@@ -56,240 +38,128 @@ class _SmokingHabbitState extends State<SmokingHabbit> {
           },
         ),
         title: Container(
-            margin: EdgeInsets.only(left: 80),
-            child: Text(
-              'Smoking Habits',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600),
-            )),
+          margin: EdgeInsets.only(left: 80),
+          child: Text(
+            'Smoking Habits',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-              margin: EdgeInsets.only(left: 48),
-              child: Text(
-                'Do you smoke?',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-              )),
+            margin: EdgeInsets.only(left: 48),
+            child: Text(
+              'Do you smoke?',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+            ),
+          ),
           Center(
             child: Column(
               children: [
-                Container(
-                  margin: const EdgeInsets.only(top: 20),
-                  height: 50,
-                  width: 320,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: const Color(0xFF1A6A83),
-                  ),
-                  child: Container(
-                    margin: const EdgeInsets.only(left: 20, right: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'No',
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white),
-                        ),
-                        InkWell(
-                          onTap: toggleColorNo,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              gradient: isBlueNo
-                                  ? LinearGradient(
-                                      colors: [
-                                        Color(0xFF0059C8),
-                                        Color(0xFF0059C8)
-                                      ],
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                    )
-                                  : LinearGradient(
-                                      colors: [
-                                        Color(0xFFFFFFFF),
-                                        Color(0xFFFFFFFF)
-                                      ],
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                    ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(top: 20),
-                  height: 50,
-                  width: 320,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: const Color(0xFF1A6A83),
-                  ),
-                  child: Container(
-                    margin: const EdgeInsets.only(left: 20, right: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'I used to, but I’ve quit',
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white),
-                        ),
-                        InkWell(
-                          onTap: toggleColorUsedToQuit,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              gradient: isBlueUsedToQuit
-                                  ? LinearGradient(
-                                      colors: [
-                                        Color(0xFF0059C8),
-                                        Color(0xFF0059C8)
-                                      ],
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                    )
-                                  : LinearGradient(
-                                      colors: [
-                                        Color(0xFFFFFFFF),
-                                        Color(0xFFFFFFFF)
-                                      ],
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                    ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(top: 20),
-                  height: 50,
-                  width: 320,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: const Color(0xFF1A6A83),
-                  ),
-                  child: Container(
-                    margin: const EdgeInsets.only(left: 20, right: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          '5 < day',
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white),
-                        ),
-                        InkWell(
-                          onTap: toggleColor5LessPerDay,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              gradient: isBlue5LessPerDay
-                                  ? LinearGradient(
-                                      colors: [
-                                        Color(0xFF0059C8),
-                                        Color(0xFF0059C8)
-                                      ],
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                    )
-                                  : LinearGradient(
-                                      colors: [
-                                        Color(0xFFFFFFFF),
-                                        Color(0xFFFFFFFF)
-                                      ],
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                    ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(top: 20),
-                  height: 50,
-                  width: 320,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: const Color(0xFF1A6A83),
-                  ),
-                  child: Container(
-                    margin: const EdgeInsets.only(left: 20, right: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          '5 > day',
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white),
-                        ),
-                        InkWell(
-                          onTap: toggleColor5MorePerDay,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              gradient: isBlue5MorePerDay
-                                  ? LinearGradient(
-                                      colors: [
-                                        Color(0xFF0059C8),
-                                        Color(0xFF0059C8)
-                                      ],
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                    )
-                                  : LinearGradient(
-                                      colors: [
-                                        Color(0xFFFFFFFF),
-                                        Color(0xFFFFFFFF)
-                                      ],
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                    ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
+                buildToggleButton('I don’t smoke'),
+                buildToggleButton('I used to, but I’ve quit'),
+                buildToggleButton('5 < day'),
+                buildToggleButton('5 > day'),
               ],
             ),
           ),
         ],
       ),
     );
+  }
+
+  Widget buildToggleButton(String option) {
+    return GestureDetector(
+      onTap: () => toggleSelection(option),
+      child: Container(
+        margin: const EdgeInsets.only(top: 20),
+        height: 50,
+        width: 320,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: getButtonColor(option),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: Text(
+                option,
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(right: 20),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.white,
+              ),
+              child: getCheckIcon(option),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Color getButtonColor(String option) {
+    switch (option) {
+      case 'I don’t smoke':
+        return isNoSelected ? const Color(0xFF0059C8) : const Color(0xFF1A6A83);
+      case 'I used to, but I’ve quit':
+        return isUsedToQuitSelected
+            ? const Color(0xFF0059C8)
+            : const Color(0xFF1A6A83);
+      case '5 < day':
+        return is5LessPerDaySelected
+            ? const Color(0xFF0059C8)
+            : const Color(0xFF1A6A83);
+      case '5 > day':
+        return is5MorePerDaySelected
+            ? const Color(0xFF0059C8)
+            : const Color(0xFF1A6A83);
+      default:
+        return const Color(0xFF1A6A83);
+    }
+  }
+
+  Widget getCheckIcon(String option) {
+    if (option == 'I don’t smoke' && isNoSelected) {
+      return Icon(
+        Icons.check,
+        color: const Color(0xFF0059C8),
+      );
+    } else if (option == 'I used to, but I’ve quit' && isUsedToQuitSelected) {
+      return Icon(
+        Icons.check,
+        color: const Color(0xFF0059C8),
+      );
+    } else if (option == '5 < day' && is5LessPerDaySelected) {
+      return Icon(
+        Icons.check,
+        color: const Color(0xFF0059C8),
+      );
+    } else if (option == '5 > day' && is5MorePerDaySelected) {
+      return Icon(
+        Icons.check,
+        color: const Color(0xFF0059C8),
+      );
+    } else {
+      return Container(
+        width: 24,
+        height: 24,
+      );
+    }
   }
 }

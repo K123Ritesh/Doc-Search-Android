@@ -7,6 +7,7 @@ import 'package:doc_search/Views/Patient%20Part/Doctors/Doctors_Category_Wise.da
 import 'package:doc_search/Views/Patient%20Part/Profile/Appointments_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Family_Tree_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Health_Care_Plan.dart';
+import 'package:doc_search/Views/Patient%20Part/Profile/My_order.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Refer_And_Earn_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Settings_Page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -236,16 +237,25 @@ class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
                                     )),
                           );
                         },
-                        child: ListTile(
-                          title: Text(
-                            "Order History",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.w400),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => My_Order()),
+                          );
+                          },
+                          child: ListTile(
+                            title: Text(
+                              "Order History",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20.sp,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                            trailing: Icon(Icons.arrow_forward_ios,
+                                size: 20, color: Colors.white),
                           ),
-                          trailing: Icon(Icons.arrow_forward_ios,
-                              size: 20, color: Colors.white),
                         ),
                       ),
                       InkWell(

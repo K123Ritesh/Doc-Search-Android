@@ -125,4 +125,10 @@ class User_Provider with ChangeNotifier {
     print('Done');
     notifyListeners();
   }
+
+  List<Map<String, dynamic>> medicineLists = [];
+  getMedicineLists(context, String appointmentId) async {
+    medicineLists = await userServices.getMedicineList(context, appointmentId);
+    notifyListeners();
+  }
 }

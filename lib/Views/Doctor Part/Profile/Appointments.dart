@@ -202,6 +202,7 @@ class _Doctor_appointmentsState extends State<Doctor_appointments> {
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => Appointment_Patient_Details_Page(
+                              appointmentId: details.allAppoitmentList[index],
                               appointment_model:
                                   details.appointmentDetails![index],
                               user: details.appointmentedUsers![index],

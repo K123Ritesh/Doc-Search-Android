@@ -243,4 +243,26 @@ class UserServices {
       return null;
     }
   }
+
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  // Function to retrieve the MedicineList from Firestore
+  Future<List<Map<String, dynamic>>> getMedicineList(
+      context, String docId) async {
+    CollectionReference appointments = _firestore.collection('Appointments');
+
+    // Get the document snapshot using the specified docId
+    DocumentSnapshot<Map<String, dynamic>> snapshot = await appointments
+        .doc(docId)
+        .get() as DocumentSnapshot<Map<String, dynamic>>;
+
+    // If the document exists, retrieve the MedicineList from the snapshot
+    if (snapshot.exists) {
+      List<Map<String, dynamic>> medicineList =
+          List<Map<String, dynamic>>.from(snapshot.data()!['MedicineList']);
+      return medicineList;
+    } else {
+      // Document does not exist
+      return [];
+    }
+  }
 }

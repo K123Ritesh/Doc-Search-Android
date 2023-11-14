@@ -1,13 +1,15 @@
 import 'package:doc_search/Config/sizeConfig.dart';
 import 'package:doc_search/Models/Models_For_Patient_Part/User_Model.dart';
+import 'package:doc_search/Providers/Doctor_Part_Provider/Patient_And_Appointment_Provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'Prescription_Done.dart';
+import 'package:provider/provider.dart';
 
 class Appointment_Prescription extends StatefulWidget {
-  Appointment_Prescription({super.key, required this.user});
+  Appointment_Prescription(
+      {super.key, required this.appointmentId, required this.user});
   final PatientUser user;
+  final String appointmentId;
 
   @override
   State<Appointment_Prescription> createState() =>
@@ -15,8 +17,11 @@ class Appointment_Prescription extends StatefulWidget {
 }
 
 class _Appointment_PrescriptionState extends State<Appointment_Prescription> {
+  int n = 1;
+  List<Map<String, dynamic>> MedicineList = [{}];
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<Patient_And_Appointment_Provider>(context);
     SizeConfig().init(context);
     return Scaffold(
       backgroundColor: const Color(0xFF1B6A85),
@@ -320,270 +325,284 @@ class _Appointment_PrescriptionState extends State<Appointment_Prescription> {
                     fontSize: 20,
                     fontWeight: FontWeight.w500),
               ),
-              Container(
-                margin: EdgeInsets.only(top: 20),
-                child: Table(
-                  defaultColumnWidth: FixedColumnWidth(92.0),
-                  border: TableBorder.all(
-                      color: Colors.white, style: BorderStyle.solid, width: 2),
-                  children: [
-                    TableRow(children: [
-                      Column(children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text('Medicine',
-                            style: TextStyle(
-                                fontSize: 12.0,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold)),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ]),
-                      Column(children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text('Strength',
-                            style: TextStyle(
-                                fontSize: 12.0,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold)),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ]),
-                      Column(children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text('Dose',
-                            style: TextStyle(
-                                fontSize: 12.0,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold)),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ]),
-                      Column(children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text('Duration',
-                            style: TextStyle(
-                                fontSize: 12.0,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold)),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ]),
-                    ]),
-                    TableRow(children: [
-                      Column(children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                            height: 17,
-                            width: 80,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: TextField()),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ]),
-                      Column(children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          child: TextField(),
-                          height: 17,
-                          width: 80,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ]),
-                      Column(children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          child: TextField(),
-                          height: 17,
-                          width: 80,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ]),
-                      Column(children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          height: 17,
-                          width: 80,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ]),
-                    ]),
-                    TableRow(children: [
-                      Column(children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          height: 17,
-                          width: 80,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ]),
-                      Column(children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          height: 17,
-                          width: 80,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ]),
-                      Column(children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          height: 17,
-                          width: 80,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ]),
-                      Column(children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          height: 17,
-                          width: 80,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ]),
-                    ]),
-                    TableRow(children: [
-                      Column(children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          height: 17,
-                          width: 80,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ]),
-                      Column(children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          height: 17,
-                          width: 80,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ]),
-                      Column(children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          height: 17,
-                          width: 80,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ]),
-                      Column(children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          height: 17,
-                          width: 80,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ]),
-                    ]),
-                  ],
+              // Container(
+              //   margin: EdgeInsets.only(top: 20),
+              //   child: Table(
+              //     defaultColumnWidth: FixedColumnWidth(92.0),
+              //     border: TableBorder.all(
+              //         color: Colors.white, style: BorderStyle.solid, width: 2),
+              //     children: [
+              //       TableRow(children: [
+              //         Column(children: [
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //           Text('Medicine',
+              //               style: TextStyle(
+              //                   fontSize: 12.0,
+              //                   color: Colors.white,
+              //                   fontWeight: FontWeight.bold)),
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //         ]),
+              //         Column(children: [
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //           Text('Strength',
+              //               style: TextStyle(
+              //                   fontSize: 12.0,
+              //                   color: Colors.white,
+              //                   fontWeight: FontWeight.bold)),
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //         ]),
+              //         Column(children: [
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //           Text('Dose',
+              //               style: TextStyle(
+              //                   fontSize: 12.0,
+              //                   color: Colors.white,
+              //                   fontWeight: FontWeight.bold)),
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //         ]),
+              //         Column(children: [
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //           Text('Duration',
+              //               style: TextStyle(
+              //                   fontSize: 12.0,
+              //                   color: Colors.white,
+              //                   fontWeight: FontWeight.bold)),
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //         ]),
+              //       ]),
+              //       TableRow(children: [
+              //         Column(children: [
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //           Container(
+              //               height: 17,
+              //               width: 80,
+              //               decoration: BoxDecoration(
+              //                 color: Colors.white,
+              //                 borderRadius: BorderRadius.circular(5),
+              //               ),
+              //               child: TextField()),
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //         ]),
+              //         Column(children: [
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //           Container(
+              //             child: TextField(),
+              //             height: 17,
+              //             width: 80,
+              //             decoration: BoxDecoration(
+              //               color: Colors.white,
+              //               borderRadius: BorderRadius.circular(5),
+              //             ),
+              //           ),
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //         ]),
+              //         Column(children: [
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //           Container(
+              //             child: TextField(),
+              //             height: 17,
+              //             width: 80,
+              //             decoration: BoxDecoration(
+              //               color: Colors.white,
+              //               borderRadius: BorderRadius.circular(5),
+              //             ),
+              //           ),
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //         ]),
+              //         Column(children: [
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //           Container(
+              //             height: 17,
+              //             width: 80,
+              //             decoration: BoxDecoration(
+              //               color: Colors.white,
+              //               borderRadius: BorderRadius.circular(5),
+              //             ),
+              //           ),
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //         ]),
+              //       ]),
+              //       TableRow(children: [
+              //         Column(children: [
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //           Container(
+              //             height: 17,
+              //             width: 80,
+              //             decoration: BoxDecoration(
+              //               color: Colors.white,
+              //               borderRadius: BorderRadius.circular(5),
+              //             ),
+              //           ),
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //         ]),
+              //         Column(children: [
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //           Container(
+              //             height: 17,
+              //             width: 80,
+              //             decoration: BoxDecoration(
+              //               color: Colors.white,
+              //               borderRadius: BorderRadius.circular(5),
+              //             ),
+              //           ),
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //         ]),
+              //         Column(children: [
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //           Container(
+              //             height: 17,
+              //             width: 80,
+              //             decoration: BoxDecoration(
+              //               color: Colors.white,
+              //               borderRadius: BorderRadius.circular(5),
+              //             ),
+              //           ),
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //         ]),
+              //         Column(children: [
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //           Container(
+              //             height: 17,
+              //             width: 80,
+              //             decoration: BoxDecoration(
+              //               color: Colors.white,
+              //               borderRadius: BorderRadius.circular(5),
+              //             ),
+              //           ),
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //         ]),
+              //       ]),
+              //       TableRow(children: [
+              //         Column(children: [
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //           Container(
+              //             height: 17,
+              //             width: 80,
+              //             decoration: BoxDecoration(
+              //               color: Colors.white,
+              //               borderRadius: BorderRadius.circular(5),
+              //             ),
+              //           ),
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //         ]),
+              //         Column(children: [
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //           Container(
+              //             height: 17,
+              //             width: 80,
+              //             decoration: BoxDecoration(
+              //               color: Colors.white,
+              //               borderRadius: BorderRadius.circular(5),
+              //             ),
+              //           ),
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //         ]),
+              //         Column(children: [
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //           Container(
+              //             height: 17,
+              //             width: 80,
+              //             decoration: BoxDecoration(
+              //               color: Colors.white,
+              //               borderRadius: BorderRadius.circular(5),
+              //             ),
+              //           ),
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //         ]),
+              //         Column(children: [
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //           Container(
+              //             height: 17,
+              //             width: 80,
+              //             decoration: BoxDecoration(
+              //               color: Colors.white,
+              //               borderRadius: BorderRadius.circular(5),
+              //             ),
+              //           ),
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //         ]),
+              //       ]),
+              //     ],
+              //   ),
+              // ),
+              for (int i = 0; i < n; i++)
+                Medicine_Details(
+                  n: i,
+                  onUserDataChanged: (data) {
+                    Map<String, dynamic> map = data;
+                    if (map.length == 4) {
+                      MedicineList.add(map);
+                    } else {
+                      print('Not filled all the fields');
+                    }
+                    print(data);
+                  },
                 ),
-              ),
+
               SizedBox(
                 height: 50,
               ),
@@ -591,7 +610,15 @@ class _Appointment_PrescriptionState extends State<Appointment_Prescription> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      setState(() {
+                        if (MedicineList[n].length != 4) {
+                          print('Not filled all the fields');
+                        } else {
+                          n++;
+                        }
+                      });
+                    },
                     child: Container(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -604,7 +631,7 @@ class _Appointment_PrescriptionState extends State<Appointment_Prescription> {
                             width: 145,
                             child: Center(
                               child: Text(
-                                'Cancel',
+                                'Add More',
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 16,
@@ -618,8 +645,16 @@ class _Appointment_PrescriptionState extends State<Appointment_Prescription> {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => Prescription_Done()));
+                      print(MedicineList);
+                      if (MedicineList.length == 1) {
+                        print('add medicine first to save');
+                      } else {
+                        provider.uploadMedicineLists(
+                            context, widget.appointmentId, MedicineList);
+                        print('Uploaded Successfully');
+                      }
+                      // Navigator.of(context).push(MaterialPageRoute(
+                      //     builder: (context) => Prescription_Done()));
                     },
                     child: Container(
                       child: Row(
@@ -633,7 +668,7 @@ class _Appointment_PrescriptionState extends State<Appointment_Prescription> {
                             width: 145,
                             child: Center(
                               child: Text(
-                                'Save',
+                                'Save ',
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 16,
@@ -649,6 +684,240 @@ class _Appointment_PrescriptionState extends State<Appointment_Prescription> {
               )
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class RoundedTextField extends StatefulWidget {
+  final String hintText;
+  final Function(Map<String, dynamic>) onValueChanged;
+
+  RoundedTextField({
+    required this.hintText,
+    required this.onValueChanged,
+  });
+
+  @override
+  _RoundedTextFieldState createState() => _RoundedTextFieldState();
+}
+
+class _RoundedTextFieldState extends State<RoundedTextField> {
+  TextEditingController textController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 350,
+      height: 50, // Adjust the width as needed
+      padding: EdgeInsets.only(left: 8.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      child: TextField(
+        controller: textController,
+        onChanged: (value) {
+          widget.onValueChanged({widget.hintText: value});
+        },
+        decoration: InputDecoration(
+          hintText: widget.hintText,
+          border: InputBorder.none,
+        ),
+      ),
+    );
+  }
+}
+
+class Medicine_Details extends StatefulWidget {
+  Medicine_Details({Key? key, required this.n, required this.onUserDataChanged})
+      : super(key: key);
+
+  final int n;
+  final Function(Map<String, dynamic>) onUserDataChanged;
+  List<String> suffix = ['st', 'nd', 'rd', 'th', 'th', 'th'];
+
+  @override
+  _Medicine_DetailsState createState() => _Medicine_DetailsState();
+}
+
+class _Medicine_DetailsState extends State<Medicine_Details> {
+  Map<String, dynamic> userData = {};
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(
+          height: 10,
+        ),
+        Text(
+          '${widget.n + 1}${widget.suffix[widget.n]} Medicine',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 21,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(
+          height: 15,
+        ),
+        RoundedTextField(
+          hintText: 'Medicine Name',
+          onValueChanged: (value) {
+            userData.addAll(value);
+            widget.onUserDataChanged(userData);
+          },
+        ),
+        SizedBox(
+          height: 15,
+        ),
+        RoundedTextField(
+          hintText: 'Strength',
+          onValueChanged: (value) {
+            userData.addAll(value);
+            widget.onUserDataChanged(userData);
+          },
+        ),
+        SizedBox(
+          height: 15,
+        ),
+        RoundedDropdownField(
+          labelText: 'Dose',
+          items: ['1 per day', '2 per day', '3 per day'],
+          onValueChanged: (value) {
+            userData.addAll(value);
+            widget.onUserDataChanged(userData);
+          },
+        ),
+        SizedBox(
+          height: 15,
+        ),
+        RoundedDropdownField(
+          labelText: 'Duration',
+          items: [
+            '5 days',
+            '10 days',
+            '15 days',
+            '20 days',
+            '25 days',
+            '30 days',
+          ],
+          onValueChanged: (value) {
+            userData.addAll(value);
+            widget.onUserDataChanged(userData);
+          },
+        ),
+      ],
+    );
+  }
+}
+
+class RoundedDropdownField extends StatefulWidget {
+  final String labelText;
+  final List<String> items;
+  final Function(Map<String, dynamic>) onValueChanged;
+
+  RoundedDropdownField({
+    required this.labelText,
+    required this.items,
+    required this.onValueChanged,
+  });
+
+  @override
+  _RoundedDropdownFieldState createState() => _RoundedDropdownFieldState();
+}
+
+class _RoundedDropdownFieldState extends State<RoundedDropdownField> {
+  String? _selectedItem;
+  TextEditingController text = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 350,
+      height: 50, // Adjust the width as needed
+      padding: EdgeInsets.only(left: 8.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      child: TextField(
+        readOnly: true,
+        onTap: () {
+          showModalBottomSheet(
+            context: context,
+            builder: (context) {
+              return ListView(
+                children: widget.items.map((item) {
+                  return ListTile(
+                    title: Text(item),
+                    onTap: () {
+                      setState(() {
+                        _selectedItem = item;
+                        text.text = item;
+                      });
+
+                      widget.onValueChanged({widget.labelText: _selectedItem});
+                      Navigator.pop(context);
+                    },
+                  );
+                }).toList(),
+              );
+            },
+          );
+        },
+        controller: text,
+        decoration: InputDecoration(
+          suffixIcon: IconButton(
+              onPressed: () {
+                showModalBottomSheet(
+                  context: context,
+                  builder: (context) {
+                    return ListView(
+                      children: widget.items.map((item) {
+                        return ListTile(
+                          title: Text(item),
+                          onTap: () {
+                            setState(() {
+                              _selectedItem = item;
+                              text.text = item;
+                            });
+
+                            widget.onValueChanged(
+                                {widget.labelText: _selectedItem});
+                            Navigator.pop(context);
+                          },
+                        );
+                      }).toList(),
+                    );
+                  },
+                );
+              },
+              icon: Icon(Icons.arrow_drop_down)),
+          hintText: widget.labelText,
+          border: InputBorder.none,
+        ),
+      ),
+    );
+  }
+}
+
+class Home_Page extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Home Page'),
+      ),
+      body: Center(
+        child: Medicine_Details(
+          n: 0,
+          onUserDataChanged: (userData) {
+            // Access the user data map here
+            print(userData);
+          },
         ),
       ),
     );

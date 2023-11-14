@@ -62,4 +62,10 @@ class Patient_And_Appointment_Provider with ChangeNotifier {
     await service.createOrUpdateFields(context, category, userId, updatedData);
     notifyListeners();
   }
+
+  uploadMedicineLists(context, String appointmentId,
+      List<Map<String, dynamic>> medicineList) async {
+    await service.storeMedicineList(context, appointmentId, medicineList);
+    notifyListeners();
+  }
 }

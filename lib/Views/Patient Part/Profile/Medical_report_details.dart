@@ -1,9 +1,17 @@
 import 'package:doc_search/Config/sizeConfig.dart';
+import 'package:doc_search/Models/Models_For_Patient_Part/Appointment_Model.dart';
+import 'package:doc_search/Models/Models_For_Patient_Part/User_Model.dart';
+import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/MedicalOrder.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MedicalReportDetails extends StatefulWidget {
-  const MedicalReportDetails({super.key});
+  MedicalReportDetails(
+      {super.key, required this.user, required this.appointment_model});
+
+  final PatientUser user;
+  final Appointment_Model appointment_model;
 
   @override
   State<MedicalReportDetails> createState() => _MedicalReportDetailsState();
@@ -12,6 +20,7 @@ class MedicalReportDetails extends StatefulWidget {
 class _MedicalReportDetailsState extends State<MedicalReportDetails> {
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<User_Provider>(context);
     SizeConfig().init(context);
     return Scaffold(
       backgroundColor: const Color(0xFF1A6A83),
@@ -29,30 +38,37 @@ class _MedicalReportDetailsState extends State<MedicalReportDetails> {
         ),
         title: Container(
             margin: EdgeInsets.only(left: 60.fw),
-            child:  Text(
+            child: Text(
               'Medical Records',
               style: TextStyle(fontSize: 18.fh, fontWeight: FontWeight.w600),
             )),
       ),
-      body: Center(
-        child: Container(
-          margin: EdgeInsets.only(left:20.fw,right: 20.fw,bottom: 20.fh),
+      body: Container(
+        margin: EdgeInsets.only(
+          left: 20.fw,
+          right: 20.fw,
+        ),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
                 height: 65.fh,
                 width: 65.fw,
                 child: CircleAvatar(
                   backgroundColor: Colors.blue,
-                  // You can add the image here
-                  // backgroundImage: NetworkImage('URL'),
+                  child: Icon(
+                    Icons.person,
+                    size: 55,
+                  ),
                 ),
               ),
               SizedBox(
                 height: 5.fh,
               ),
               Text(
-                'Vivek Sharma',
+                widget.appointment_model.name,
                 style: TextStyle(
                     fontSize: 14.fh,
                     fontWeight: FontWeight.w500,
@@ -62,7 +78,7 @@ class _MedicalReportDetailsState extends State<MedicalReportDetails> {
                 height: 5,
               ),
               Text(
-                '27 Years',
+                '${widget.user.age} Years',
                 style: TextStyle(
                     fontSize: 14.fh,
                     fontWeight: FontWeight.w500,
@@ -72,7 +88,7 @@ class _MedicalReportDetailsState extends State<MedicalReportDetails> {
                 height: 5,
               ),
               Text(
-                'B-9 Vasnat Kunj New Delhi',
+                widget.user.address,
                 style: TextStyle(
                     fontSize: 14.fh,
                     fontWeight: FontWeight.w500,
@@ -82,7 +98,7 @@ class _MedicalReportDetailsState extends State<MedicalReportDetails> {
                 height: 5.fh,
               ),
               Text(
-                '+91 9876543210',
+                widget.user.mobileNo,
                 style: TextStyle(
                     fontSize: 14.fh,
                     fontWeight: FontWeight.w500,
@@ -93,7 +109,9 @@ class _MedicalReportDetailsState extends State<MedicalReportDetails> {
               ),
               Row(
                 children: [
-                  SizedBox(width: 10.fw,),
+                  SizedBox(
+                    width: 10.fw,
+                  ),
                   Text(
                     'Disease:',
                     style: TextStyle(
@@ -145,7 +163,6 @@ class _MedicalReportDetailsState extends State<MedicalReportDetails> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  
                   Text(
                     '6 Ways To Treat Eyes At Home',
                     style: TextStyle(
@@ -173,7 +190,8 @@ class _MedicalReportDetailsState extends State<MedicalReportDetails> {
                         width: 5.fw,
                       ),
                       Text('Warm or cold compress',
-                          style: TextStyle(fontSize: 13.fh, color: Colors.white)),
+                          style:
+                              TextStyle(fontSize: 13.fh, color: Colors.white)),
                     ],
                   ),
                   SizedBox(
@@ -192,7 +210,8 @@ class _MedicalReportDetailsState extends State<MedicalReportDetails> {
                         width: 5.fw,
                       ),
                       Text('Artificial tears',
-                          style: TextStyle(fontSize: 13.fh, color: Colors.white)),
+                          style:
+                              TextStyle(fontSize: 13.fh, color: Colors.white)),
                     ],
                   )
                 ],
@@ -215,7 +234,8 @@ class _MedicalReportDetailsState extends State<MedicalReportDetails> {
                         width: 5.fw,
                       ),
                       Text('Wear sunglasses',
-                          style: TextStyle(fontSize: 13.fh, color: Colors.white)),
+                          style:
+                              TextStyle(fontSize: 13.fh, color: Colors.white)),
                     ],
                   ),
                   SizedBox(
@@ -234,7 +254,8 @@ class _MedicalReportDetailsState extends State<MedicalReportDetails> {
                         width: 5.fw,
                       ),
                       Text('Clean your eye area',
-                          style: TextStyle(fontSize: 13.fh, color: Colors.white)),
+                          style:
+                              TextStyle(fontSize: 13.fh, color: Colors.white)),
                     ],
                   )
                 ],
@@ -257,7 +278,8 @@ class _MedicalReportDetailsState extends State<MedicalReportDetails> {
                         width: 5.fw,
                       ),
                       Text('Use a Humidifier',
-                          style: TextStyle(fontSize: 13.fh, color: Colors.white)),
+                          style:
+                              TextStyle(fontSize: 13.fh, color: Colors.white)),
                     ],
                   ),
                   SizedBox(
@@ -276,12 +298,157 @@ class _MedicalReportDetailsState extends State<MedicalReportDetails> {
                         width: 5.fw,
                       ),
                       Text('Stay hydrated',
-                          style: TextStyle(fontSize: 13.fh, color: Colors.white)),
+                          style:
+                              TextStyle(fontSize: 13.fh, color: Colors.white)),
                     ],
                   )
                 ],
               ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                'Drug Prescription',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              for (int i = 1; i < provider.medicineLists.length; i++)
+                Medicine_Card(
+                  doses: provider.medicineLists[i]['Dose'],
+                  duration: provider.medicineLists[i]['Duration'],
+                  medicineName: provider.medicineLists[i]['Medicine Name'],
+                  strength: provider.medicineLists[i]['Strength'],
+                ),
+              provider.medicineLists.length == 1
+                  ? Text('Noting to show')
+                  : SizedBox(
+                      height: 30,
+                    )
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Medicine_Card extends StatelessWidget {
+  Medicine_Card(
+      {super.key,
+      required this.medicineName,
+      required this.doses,
+      required this.duration,
+      required this.strength});
+
+  final String medicineName;
+  final String doses;
+  final String duration;
+  final String strength;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Container(
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
+        child: Card(
+          // color: Colors.white,
+          elevation: 50,
+          shadowColor: Color(0xFF1A6A83),
+          child: Container(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(children: [
+                Row(
+                  children: [
+                    Text(
+                      medicineName,
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF1A6A83)),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'Strength:-',
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF1A6A83)),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      strength,
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xFF1A6A83)),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'Doses:-',
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF1A6A83)),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      doses,
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xFF1A6A83)),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'Duration:-',
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF1A6A83)),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      duration,
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xFF1A6A83)),
+                    )
+                  ],
+                )
+              ]),
+            ),
           ),
         ),
       ),

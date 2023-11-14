@@ -113,12 +113,15 @@ class _MedicalRecordState extends State<MedicalRecord> {
                             provider.getMedicineLists(
                                 context, provider.pastAppointmentId[index]);
                             print(provider.medicineLists);
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) =>
-                            //           const MedicalReportDetails()),
-                            // );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => MedicalReportDetails(
+                                        user: provider.user,
+                                        appointment_model: provider
+                                            .pastAppointmentModel[index],
+                                      )),
+                            );
                           },
                           style: ElevatedButton.styleFrom(
                             primary: Color(0xFF1A6A83),

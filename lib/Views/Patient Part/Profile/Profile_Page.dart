@@ -246,7 +246,7 @@ class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
                           },
                           child: ListTile(
                             title: Text(
-                              "Order History",
+                              "My Order",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 20.sp,
@@ -339,6 +339,9 @@ class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
                       //         size: 20, color: Colors.white),
                       //   ),
                       // ),
+                      SizedBox(
+                        height: 30,
+                      ),
                       InkWell(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(

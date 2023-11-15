@@ -68,4 +68,10 @@ class Patient_And_Appointment_Provider with ChangeNotifier {
     await service.storeMedicineList(context, appointmentId, medicineList);
     notifyListeners();
   }
+
+  List<Map<String, dynamic>> medicineLists = [];
+  getMedicineLists(context, String appointmentId) async {
+    medicineLists = await service.getMedicineList(context, appointmentId);
+    notifyListeners();
+  }
 }

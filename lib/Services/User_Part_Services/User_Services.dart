@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doc_search/Models/Models_For_Patient_Part/User_Model.dart';
 import 'package:doc_search/Models/Models_For_Patient_Part/Order_Model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'dart:core';
 
@@ -260,6 +261,42 @@ class UserServices {
       List<Map<String, dynamic>> medicineList =
           List<Map<String, dynamic>>.from(snapshot.data()!['MedicineList']);
       return medicineList;
+    } else {
+      // Document does not exist
+      return [];
+    }
+  }
+
+  FirebaseAuth _auth = FirebaseAuth.instance;
+  Future<void> addFamilyMembers(
+      context, List<Map<String, dynamic>> medicineList) async {
+    CollectionReference appointments = _firestore.collection('Users');
+
+    // Convert the List<Map<String, dynamic>> to List<Map<String, dynamic>> using toJson()
+    List<Map<String, dynamic>> serializedList =
+        medicineList.map((e) => e).toList();
+
+    // Add or set the document with the specified docId
+    await appointments
+        .doc(_auth.currentUser!.uid)
+        .set({'FamilyMemberList': serializedList}, SetOptions(merge: true));
+  }
+
+  Future<List<Map<String, dynamic>>> getFamilyMembersList(
+    context,
+  ) async {
+    CollectionReference appointments = _firestore.collection('Users');
+
+    // Get the document snapshot using the specified docId
+    DocumentSnapshot<Map<String, dynamic>> snapshot = await appointments
+        .doc(_auth.currentUser!.uid)
+        .get() as DocumentSnapshot<Map<String, dynamic>>;
+
+    // If the document exists, retrieve the MedicineList from the snapshot
+    if (snapshot.exists) {
+      List<Map<String, dynamic>> familymemberList =
+          List<Map<String, dynamic>>.from(snapshot.data()!['FamilyMemberList']);
+      return familymemberList;
     } else {
       // Document does not exist
       return [];

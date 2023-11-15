@@ -103,7 +103,8 @@ class _Signup_PageState extends State<Signup_Page> {
         'injuries': '',
         'past_medication': '',
         'smoking_habits': '',
-        'surgeries': ''
+        'surgeries': '',
+        'FamilyMemberList': [{}]
       });
       print('User data saved successfully');
     } catch (e) {
@@ -623,7 +624,8 @@ class _OTPInputState extends State<OTPInput> {
         'injuries': ' ',
         'past_medication': ' ',
         'smoking_habits': ' ',
-        'surgeries': ' '
+        'surgeries': ' ',
+        'FamilyMemberList': [{}]
       });
       print('User data saved successfully');
     } catch (e) {

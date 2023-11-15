@@ -1,6 +1,7 @@
 import 'package:doc_search/Bottom_Bar.dart';
 import 'package:doc_search/Config/sizeConfig.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Feedback_Page extends StatefulWidget {
   const Feedback_Page({super.key});
@@ -119,7 +120,7 @@ class Doctors_Feedback extends StatelessWidget {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 119, 245, 124),
+                        color: Color.fromARGB(255, 164, 226, 166),
                         borderRadius: BorderRadius.circular(10)),
                     child: Padding(
                       padding: const EdgeInsets.all(4.0),
@@ -127,7 +128,7 @@ class Doctors_Feedback extends StatelessWidget {
                         'Surgical Oncology',
                         style: TextStyle(
                             fontSize: 15,
-                            color: Color.fromARGB(255, 7, 83, 18),
+                            color: Colors.black,
                             fontWeight: FontWeight.w300),
                       ),
                     ),
@@ -151,13 +152,11 @@ class Doctors_Feedback extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
-                height: 5,
-              ),
+              SizedBox(height: 10),
               Row(
                 children: [
                   SizedBox(
-                    width: 80,
+                    width: 100.w,
                   ),
                   InkWell(
                     onTap: () {
@@ -166,16 +165,17 @@ class Doctors_Feedback extends StatelessWidget {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 13, 59, 139),
+                          color: const Color(0xFF155467),
                           borderRadius: BorderRadius.circular(10)),
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10.0, vertical: 5.0),
                         child: Text(
                           'Give Feedback',
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w300),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400),
                         ),
                       ),
                     ),
@@ -296,14 +296,14 @@ class _Give_Feedback_PageState extends State<Give_Feedback_Page> {
                             updateSrc(0);
                           },
                           child: arr[0] == false
-                              ? Image.network(
-                                  'https://s3-alpha-sig.figma.com/img/1801/e0fd/a69c1db59a265b5513950ed25a9c141e?Expires=1699228800&Signature=ghk7XtQegxm0vfZhpsl2~gPVN4~ObRJbn2~UWlYGbinT7E~ZAXqFMqWAlk~Zdbw9k9xHWEAs7kP7SDto6fOSFMbRgf8rVLl626eJowEu8wvzREjoqzlfbUaDCRX9Am5q7WkLRf2u05XWSTcesOfl2xVTuMJc3YI-0Bo-V5X3g944skl~OWFcXRfRppsKj5loWixZWT~1HMt3yJcu~RSBzWGpcgvbN7o-feomS~XZi1IWREWcTmbC2QVmLMdkium9NEULuSMGHVeLAuDlPQqE-9R2uy41w8DWYb56R-hAwm8eW3H7~2zWn0JKXgCC6TK4ZBjiVzi7zT9ddtCuT4eRPA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                              ? Image.asset(
+                                  'assets/Icons/Star1.png',
                                   height: 33,
                                   width: 33,
                                   fit: BoxFit.fill,
                                 )
-                              : Image.network(
-                                  'https://s3-alpha-sig.figma.com/img/248a/245d/3b6828d7c17ba94630309cd9cc7a83e9?Expires=1699228800&Signature=MZYAMKvX3OjHahVaHnOx5bORF~rE~oo26y5dfKVq~MzO4HQjoeZ4PN2JqATwdvCISiorDaI8B7ZXxECJgf8IHGqVvNbT-EzmGo0YzgMhAOY6BlF76JvgWKfCNSvYyAuw0syxMbOtal~gr-nTOtBCNYiRqIhDIgxRheybdL~~6gvlq7UA72wgcN4ZXVdzoyhsX91-S5OeQgsxIuKo7fVarkLZwNmu0R7ueixwMPve7Whn2tBo1Cgsp1IfKcDtbhbReUP7AIxD92LTops9KTT6jprl1kJ2~T4wAwb2ALDmIPjCqHw0zOOL578x6An~Id1ErSsPJv4NjvRDvwmGzuPPGA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                              : Image.asset(
+                                  'assets/Icons/star.png',
                                   height: 33,
                                   width: 33,
                                   fit: BoxFit.fill,
@@ -316,14 +316,14 @@ class _Give_Feedback_PageState extends State<Give_Feedback_Page> {
                             updateSrc(1);
                           },
                           child: arr[1] == false
-                              ? Image.network(
-                                  'https://s3-alpha-sig.figma.com/img/1801/e0fd/a69c1db59a265b5513950ed25a9c141e?Expires=1699228800&Signature=ghk7XtQegxm0vfZhpsl2~gPVN4~ObRJbn2~UWlYGbinT7E~ZAXqFMqWAlk~Zdbw9k9xHWEAs7kP7SDto6fOSFMbRgf8rVLl626eJowEu8wvzREjoqzlfbUaDCRX9Am5q7WkLRf2u05XWSTcesOfl2xVTuMJc3YI-0Bo-V5X3g944skl~OWFcXRfRppsKj5loWixZWT~1HMt3yJcu~RSBzWGpcgvbN7o-feomS~XZi1IWREWcTmbC2QVmLMdkium9NEULuSMGHVeLAuDlPQqE-9R2uy41w8DWYb56R-hAwm8eW3H7~2zWn0JKXgCC6TK4ZBjiVzi7zT9ddtCuT4eRPA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                              ? Image.asset(
+                                  'assets/Icons/Star1.png',
                                   height: 33,
                                   width: 33,
                                   fit: BoxFit.fill,
                                 )
-                              : Image.network(
-                                  'https://s3-alpha-sig.figma.com/img/248a/245d/3b6828d7c17ba94630309cd9cc7a83e9?Expires=1699228800&Signature=MZYAMKvX3OjHahVaHnOx5bORF~rE~oo26y5dfKVq~MzO4HQjoeZ4PN2JqATwdvCISiorDaI8B7ZXxECJgf8IHGqVvNbT-EzmGo0YzgMhAOY6BlF76JvgWKfCNSvYyAuw0syxMbOtal~gr-nTOtBCNYiRqIhDIgxRheybdL~~6gvlq7UA72wgcN4ZXVdzoyhsX91-S5OeQgsxIuKo7fVarkLZwNmu0R7ueixwMPve7Whn2tBo1Cgsp1IfKcDtbhbReUP7AIxD92LTops9KTT6jprl1kJ2~T4wAwb2ALDmIPjCqHw0zOOL578x6An~Id1ErSsPJv4NjvRDvwmGzuPPGA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                              : Image.asset(
+                                  'assets/Icons/star.png',
                                   height: 33,
                                   width: 33,
                                   fit: BoxFit.fill,
@@ -336,14 +336,14 @@ class _Give_Feedback_PageState extends State<Give_Feedback_Page> {
                             updateSrc(2);
                           },
                           child: arr[2] == false
-                              ? Image.network(
-                                  'https://s3-alpha-sig.figma.com/img/1801/e0fd/a69c1db59a265b5513950ed25a9c141e?Expires=1699228800&Signature=ghk7XtQegxm0vfZhpsl2~gPVN4~ObRJbn2~UWlYGbinT7E~ZAXqFMqWAlk~Zdbw9k9xHWEAs7kP7SDto6fOSFMbRgf8rVLl626eJowEu8wvzREjoqzlfbUaDCRX9Am5q7WkLRf2u05XWSTcesOfl2xVTuMJc3YI-0Bo-V5X3g944skl~OWFcXRfRppsKj5loWixZWT~1HMt3yJcu~RSBzWGpcgvbN7o-feomS~XZi1IWREWcTmbC2QVmLMdkium9NEULuSMGHVeLAuDlPQqE-9R2uy41w8DWYb56R-hAwm8eW3H7~2zWn0JKXgCC6TK4ZBjiVzi7zT9ddtCuT4eRPA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                              ? Image.asset(
+                                  'assets/Icons/Star1.png',
                                   height: 33,
                                   width: 33,
                                   fit: BoxFit.fill,
                                 )
-                              : Image.network(
-                                  'https://s3-alpha-sig.figma.com/img/248a/245d/3b6828d7c17ba94630309cd9cc7a83e9?Expires=1699228800&Signature=MZYAMKvX3OjHahVaHnOx5bORF~rE~oo26y5dfKVq~MzO4HQjoeZ4PN2JqATwdvCISiorDaI8B7ZXxECJgf8IHGqVvNbT-EzmGo0YzgMhAOY6BlF76JvgWKfCNSvYyAuw0syxMbOtal~gr-nTOtBCNYiRqIhDIgxRheybdL~~6gvlq7UA72wgcN4ZXVdzoyhsX91-S5OeQgsxIuKo7fVarkLZwNmu0R7ueixwMPve7Whn2tBo1Cgsp1IfKcDtbhbReUP7AIxD92LTops9KTT6jprl1kJ2~T4wAwb2ALDmIPjCqHw0zOOL578x6An~Id1ErSsPJv4NjvRDvwmGzuPPGA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                              : Image.asset(
+                                  'assets/Icons/star.png',
                                   height: 33,
                                   width: 33,
                                   fit: BoxFit.fill,
@@ -356,14 +356,14 @@ class _Give_Feedback_PageState extends State<Give_Feedback_Page> {
                             updateSrc(3);
                           },
                           child: arr[3] == false
-                              ? Image.network(
-                                  'https://s3-alpha-sig.figma.com/img/1801/e0fd/a69c1db59a265b5513950ed25a9c141e?Expires=1699228800&Signature=ghk7XtQegxm0vfZhpsl2~gPVN4~ObRJbn2~UWlYGbinT7E~ZAXqFMqWAlk~Zdbw9k9xHWEAs7kP7SDto6fOSFMbRgf8rVLl626eJowEu8wvzREjoqzlfbUaDCRX9Am5q7WkLRf2u05XWSTcesOfl2xVTuMJc3YI-0Bo-V5X3g944skl~OWFcXRfRppsKj5loWixZWT~1HMt3yJcu~RSBzWGpcgvbN7o-feomS~XZi1IWREWcTmbC2QVmLMdkium9NEULuSMGHVeLAuDlPQqE-9R2uy41w8DWYb56R-hAwm8eW3H7~2zWn0JKXgCC6TK4ZBjiVzi7zT9ddtCuT4eRPA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                              ? Image.asset(
+                                  'assets/Icons/Star1.png',
                                   height: 33,
                                   width: 33,
                                   fit: BoxFit.fill,
                                 )
-                              : Image.network(
-                                  'https://s3-alpha-sig.figma.com/img/248a/245d/3b6828d7c17ba94630309cd9cc7a83e9?Expires=1699228800&Signature=MZYAMKvX3OjHahVaHnOx5bORF~rE~oo26y5dfKVq~MzO4HQjoeZ4PN2JqATwdvCISiorDaI8B7ZXxECJgf8IHGqVvNbT-EzmGo0YzgMhAOY6BlF76JvgWKfCNSvYyAuw0syxMbOtal~gr-nTOtBCNYiRqIhDIgxRheybdL~~6gvlq7UA72wgcN4ZXVdzoyhsX91-S5OeQgsxIuKo7fVarkLZwNmu0R7ueixwMPve7Whn2tBo1Cgsp1IfKcDtbhbReUP7AIxD92LTops9KTT6jprl1kJ2~T4wAwb2ALDmIPjCqHw0zOOL578x6An~Id1ErSsPJv4NjvRDvwmGzuPPGA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                              : Image.asset(
+                                  'assets/Icons/star.png',
                                   height: 33,
                                   width: 33,
                                   fit: BoxFit.fill,
@@ -376,14 +376,14 @@ class _Give_Feedback_PageState extends State<Give_Feedback_Page> {
                             updateSrc(4);
                           },
                           child: arr[4] == false
-                              ? Image.network(
-                                  'https://s3-alpha-sig.figma.com/img/1801/e0fd/a69c1db59a265b5513950ed25a9c141e?Expires=1699228800&Signature=ghk7XtQegxm0vfZhpsl2~gPVN4~ObRJbn2~UWlYGbinT7E~ZAXqFMqWAlk~Zdbw9k9xHWEAs7kP7SDto6fOSFMbRgf8rVLl626eJowEu8wvzREjoqzlfbUaDCRX9Am5q7WkLRf2u05XWSTcesOfl2xVTuMJc3YI-0Bo-V5X3g944skl~OWFcXRfRppsKj5loWixZWT~1HMt3yJcu~RSBzWGpcgvbN7o-feomS~XZi1IWREWcTmbC2QVmLMdkium9NEULuSMGHVeLAuDlPQqE-9R2uy41w8DWYb56R-hAwm8eW3H7~2zWn0JKXgCC6TK4ZBjiVzi7zT9ddtCuT4eRPA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                              ? Image.asset(
+                                  'assets/Icons/Star1.png',
                                   height: 33,
                                   width: 33,
                                   fit: BoxFit.fill,
                                 )
-                              : Image.network(
-                                  'https://s3-alpha-sig.figma.com/img/248a/245d/3b6828d7c17ba94630309cd9cc7a83e9?Expires=1699228800&Signature=MZYAMKvX3OjHahVaHnOx5bORF~rE~oo26y5dfKVq~MzO4HQjoeZ4PN2JqATwdvCISiorDaI8B7ZXxECJgf8IHGqVvNbT-EzmGo0YzgMhAOY6BlF76JvgWKfCNSvYyAuw0syxMbOtal~gr-nTOtBCNYiRqIhDIgxRheybdL~~6gvlq7UA72wgcN4ZXVdzoyhsX91-S5OeQgsxIuKo7fVarkLZwNmu0R7ueixwMPve7Whn2tBo1Cgsp1IfKcDtbhbReUP7AIxD92LTops9KTT6jprl1kJ2~T4wAwb2ALDmIPjCqHw0zOOL578x6An~Id1ErSsPJv4NjvRDvwmGzuPPGA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                              : Image.asset(
+                                  'assets/Icons/star.png',
                                   height: 33,
                                   width: 33,
                                   fit: BoxFit.fill,

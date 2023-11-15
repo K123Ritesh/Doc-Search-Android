@@ -1,7 +1,6 @@
 import 'package:doc_search/Providers/User_Part_Provider/Doctor_Provider.dart';
 import 'package:doc_search/Providers/User_Part_Provider/Medicine_Shop_Provider.dart';
 import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
-import 'package:doc_search/Views/Doctor%20Part/Authentication/Login_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Authentication/Login_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Home_Page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -32,7 +31,7 @@ void main() async {
       builder: (_, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: Doctor_Login_Page(),
+          home: SplashScreen(),
         );
       },
     ),

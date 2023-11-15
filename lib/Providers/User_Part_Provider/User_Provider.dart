@@ -131,4 +131,15 @@ class User_Provider with ChangeNotifier {
     medicineLists = await userServices.getMedicineList(context, appointmentId);
     notifyListeners();
   }
+
+  List<Map<String, dynamic>> familymemberList = [{}];
+  getFamilyMembersList(context) async {
+    familymemberList = await userServices.getFamilyMembersList(context);
+    notifyListeners();
+  }
+
+  addFamilyMembers(context, List<Map<String, dynamic>> familyMembers) async {
+    await userServices.addFamilyMembers(context, familyMembers);
+    notifyListeners();
+  }
 }

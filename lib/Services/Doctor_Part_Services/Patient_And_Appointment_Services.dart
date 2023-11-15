@@ -242,4 +242,21 @@ class Patient_And_Appointment_Services {
       return null;
     }
   }
+
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  // Function to store the MedicineList in Firestore
+  Future<void> storeMedicineList(
+      context, String docId, List<Map<String, dynamic>> medicineList) async {
+    CollectionReference appointments = _firestore.collection('Appointments');
+
+    // Convert the List<Map<String, dynamic>> to List<Map<String, dynamic>> using toJson()
+    List<Map<String, dynamic>> serializedList =
+        medicineList.map((e) => e).toList();
+
+    // Add or set the document with the specified docId
+    await appointments
+        .doc(docId)
+        .set({'MedicineList': serializedList}, SetOptions(merge: true));
+  }
 }

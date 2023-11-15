@@ -145,7 +145,7 @@ class _HomePageState extends State<HomePage> {
                             Icon(
                               Icons.notifications,
                               size: 35,
-                              color: Color(0XFF005473),
+                              color: Color(0xFF1A6A83),
                             )
                             // SizedBox(width: 5.fw),
                             // Text(

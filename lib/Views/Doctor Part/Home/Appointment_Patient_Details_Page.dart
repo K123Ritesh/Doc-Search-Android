@@ -1,8 +1,7 @@
 import 'package:doc_search/Models/Models_For_Patient_Part/Appointment_Model.dart';
 import 'package:doc_search/Models/Models_For_Patient_Part/User_Model.dart';
 import 'package:doc_search/Views/Doctor%20Part/Home/Appointment_Prescription.dart';
-import 'package:doc_search/Views/Doctor%20Part/Home/Home_Page.dart';
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -10,9 +9,13 @@ import '../../../Bottom_Bar.dart';
 
 class Appointment_Patient_Details_Page extends StatefulWidget {
   Appointment_Patient_Details_Page(
-      {super.key, required this.appointment_model, required this.user});
+      {super.key,
+      required this.appointmentId,
+      required this.appointment_model,
+      required this.user});
   final Appointment_Model appointment_model;
   final PatientUser user;
+  final String appointmentId;
 
   @override
   State<Appointment_Patient_Details_Page> createState() =>
@@ -431,6 +434,7 @@ class _Appointment_Patient_Details_PageState
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => Appointment_Prescription(
+                            appointmentId: widget.appointmentId,
                             user: widget.user,
                           )));
                 },

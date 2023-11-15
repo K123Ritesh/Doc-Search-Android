@@ -1,6 +1,8 @@
 import 'package:doc_search/Config/sizeConfig.dart';
+import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Medical_report_details.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'Profile_Page.dart';
 
@@ -14,6 +16,7 @@ class MedicalRecord extends StatefulWidget {
 class _MedicalRecordState extends State<MedicalRecord> {
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<User_Provider>(context);
     SizeConfig().init(context);
     return Scaffold(
       backgroundColor: const Color(0xFF1A6A83),
@@ -31,14 +34,14 @@ class _MedicalRecordState extends State<MedicalRecord> {
           },
         ),
         title: Container(
-            margin:  EdgeInsets.only(left: 60.fw),
-            child:  Text(
+            margin: EdgeInsets.only(left: 60.fw),
+            child: Text(
               'Medical Records',
               style: TextStyle(fontSize: 18.fh, fontWeight: FontWeight.w600),
             )),
       ),
       body: ListView.builder(
-        itemCount: 3,
+        itemCount: provider.pastAppointmentModel.length,
         itemBuilder: (context, index) {
           return Container(
             height: 89.fh,
@@ -66,7 +69,7 @@ class _MedicalRecordState extends State<MedicalRecord> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Dr.Vikas Sharma',
+                          provider.pastAppointmentModel[index].name,
                           style: TextStyle(
                               fontSize: 15.fh, fontWeight: FontWeight.w500),
                         ),
@@ -99,18 +102,25 @@ class _MedicalRecordState extends State<MedicalRecord> {
                           child: Center(
                               child: Text("Dentist",
                                   style: TextStyle(
-                                      color: Color(0XFF00B05B), fontSize: 11.fh))),
+                                      color: Color(0XFF00B05B),
+                                      fontSize: 11.fh))),
                         ),
                         SizedBox(
                           height: 5.fh,
                         ),
                         ElevatedButton(
                           onPressed: () {
+                            provider.getMedicineLists(
+                                context, provider.pastAppointmentId[index]);
+                            print(provider.medicineLists);
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      const MedicalReportDetails()),
+                                  builder: (context) => MedicalReportDetails(
+                                        user: provider.user,
+                                        appointment_model: provider
+                                            .pastAppointmentModel[index],
+                                      )),
                             );
                           },
                           style: ElevatedButton.styleFrom(

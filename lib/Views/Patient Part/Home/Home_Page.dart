@@ -12,7 +12,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lottie/lottie.dart';
+
 import 'package:provider/provider.dart';
 
 import '../../../Providers/User_Part_Provider/User_Provider.dart';
@@ -57,6 +57,8 @@ class _HomePageState extends State<HomePage> {
         .getTodayAppointmentModels(context);
     Provider.of<User_Provider>(context, listen: false)
         .getUpcomingAppointmentModels(context);
+    Provider.of<User_Provider>(context, listen: false)
+        .getFamilyMembersList(context);
     super.initState();
   }
 

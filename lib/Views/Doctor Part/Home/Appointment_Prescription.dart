@@ -3,6 +3,7 @@ import 'package:doc_search/Models/Models_For_Patient_Part/User_Model.dart';
 import 'package:doc_search/Providers/Doctor_Part_Provider/Patient_And_Appointment_Provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 class Appointment_Prescription extends StatefulWidget {
@@ -19,6 +20,19 @@ class Appointment_Prescription extends StatefulWidget {
 class _Appointment_PrescriptionState extends State<Appointment_Prescription> {
   int n = 1;
   List<Map<String, dynamic>> MedicineList = [{}];
+
+  void showToastMessage(String message) {
+    Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.black87,
+      textColor: Colors.white,
+      fontSize: 16.0,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<Patient_And_Appointment_Provider>(context);
@@ -589,6 +603,7 @@ class _Appointment_PrescriptionState extends State<Appointment_Prescription> {
               //     ],
               //   ),
               // ),
+
               for (int i = 0; i < n; i++)
                 Medicine_Details(
                   n: i,
@@ -613,7 +628,7 @@ class _Appointment_PrescriptionState extends State<Appointment_Prescription> {
                     onTap: () {
                       setState(() {
                         if (MedicineList[n].length != 4) {
-                          print('Not filled all the fields');
+                          showToastMessage('Enter all the fields');
                         } else {
                           n++;
                         }
@@ -647,11 +662,12 @@ class _Appointment_PrescriptionState extends State<Appointment_Prescription> {
                     onTap: () {
                       print(MedicineList);
                       if (MedicineList.length == 1) {
-                        print('add medicine first to save');
+                        showToastMessage('Enter Medicine Details to Save');
                       } else {
                         provider.uploadMedicineLists(
                             context, widget.appointmentId, MedicineList);
-                        print('Uploaded Successfully');
+                        showToastMessage('Uploaded Successfully');
+                        Navigator.pop(context);
                       }
                       // Navigator.of(context).push(MaterialPageRoute(
                       //     builder: (context) => Prescription_Done()));
@@ -898,26 +914,6 @@ class _RoundedDropdownFieldState extends State<RoundedDropdownField> {
               icon: Icon(Icons.arrow_drop_down)),
           hintText: widget.labelText,
           border: InputBorder.none,
-        ),
-      ),
-    );
-  }
-}
-
-class Home_Page extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Home Page'),
-      ),
-      body: Center(
-        child: Medicine_Details(
-          n: 0,
-          onUserDataChanged: (userData) {
-            // Access the user data map here
-            print(userData);
-          },
         ),
       ),
     );

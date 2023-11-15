@@ -1,8 +1,6 @@
 import 'dart:io';
-
 import 'package:doc_search/Config/sizeConfig.dart';
 import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
-import 'package:doc_search/Views/Patient%20Part/Profile/Profile_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Surgeries.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/current_medication.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/past_medication.dart';
@@ -12,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-
 import 'Activity_Level.dart';
 import 'Alcohol_Consumption.dart';
 import 'Allergies.dart';
@@ -24,7 +21,9 @@ import 'Smoking.dart';
 import 'package:path/path.dart' as path;
 
 class EditUserProfile extends StatefulWidget {
-  const EditUserProfile({super.key});
+  const EditUserProfile({super.key, required this.gender});
+
+  final String gender;
 
   @override
   State<EditUserProfile> createState() => _EditUserProfileState();
@@ -33,10 +32,13 @@ class EditUserProfile extends StatefulWidget {
 class _EditUserProfileState extends State<EditUserProfile>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-
+  String gender = 'zero';
   @override
   void initState() {
     super.initState();
+    setState(() {
+      gender = widget.gender;
+    });
     _tabController = TabController(length: 3, vsync: this);
     _tabController.index = 0;
     _tabController.addListener(() {
@@ -92,7 +94,7 @@ class _EditUserProfileState extends State<EditUserProfile>
   String email = '';
   String profession = '';
   String age = '';
-  String gender = 'zero';
+
   String bloodGrp = '';
   String address = '';
   String landmark = '';
@@ -102,6 +104,7 @@ class _EditUserProfileState extends State<EditUserProfile>
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<User_Provider>(context);
+
     SizeConfig().init(context);
     return Scaffold(
       backgroundColor: const Color(0xFF1A6A83),
@@ -359,7 +362,7 @@ class _EditUserProfileState extends State<EditUserProfile>
                                     ),
                                     DropdownMenuItem<String>(
                                       value: 'Two',
-                                      child: Text('FeMale'),
+                                      child: Text('Female'),
                                     ),
                                     DropdownMenuItem<String>(
                                       value: 'Three',

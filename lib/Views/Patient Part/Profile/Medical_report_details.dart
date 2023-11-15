@@ -4,6 +4,7 @@ import 'package:doc_search/Models/Models_For_Patient_Part/User_Model.dart';
 import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/MedicalOrder.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class MedicalReportDetails extends StatefulWidget {
@@ -324,11 +325,36 @@ class _MedicalReportDetailsState extends State<MedicalReportDetails> {
                   medicineName: provider.medicineLists[i]['Medicine Name'],
                   strength: provider.medicineLists[i]['Strength'],
                 ),
+              SizedBox(
+                height: 30,
+              ),
               provider.medicineLists.length == 1
                   ? Text('Noting to show')
-                  : SizedBox(
-                      height: 30,
-                    )
+                  : InkWell(
+                      onTap: () {},
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 15, 79, 131),
+                            border: Border.all(color: Colors.black),
+                            borderRadius: BorderRadius.circular(10.r)),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 33.w,
+                            vertical: 8.h,
+                          ),
+                          child: Text(
+                            'View Documents',
+                            style: TextStyle(
+                                fontSize: 20.sp,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ),
+                      ),
+                    ),
+              SizedBox(
+                height: 30,
+              )
             ],
           ),
         ),

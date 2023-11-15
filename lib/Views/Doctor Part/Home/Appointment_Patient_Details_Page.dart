@@ -1,9 +1,11 @@
 import 'package:doc_search/Models/Models_For_Patient_Part/Appointment_Model.dart';
 import 'package:doc_search/Models/Models_For_Patient_Part/User_Model.dart';
+import 'package:doc_search/Providers/Doctor_Part_Provider/Patient_And_Appointment_Provider.dart';
 import 'package:doc_search/Views/Doctor%20Part/Home/Appointment_Prescription.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 import '../../../Bottom_Bar.dart';
 
@@ -26,6 +28,7 @@ class _Appointment_Patient_Details_PageState
     extends State<Appointment_Patient_Details_Page> {
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<Patient_And_Appointment_Provider>(context);
     return SafeArea(
         child: Scaffold(
       bottomNavigationBar: Bottombar(
@@ -432,6 +435,7 @@ class _Appointment_Patient_Details_PageState
               ),
               InkWell(
                 onTap: () {
+                  provider.getMedicineLists(context, widget.appointmentId);
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => Appointment_Prescription(
                             appointmentId: widget.appointmentId,

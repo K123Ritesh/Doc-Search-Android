@@ -1,3 +1,4 @@
+// import 'package:doc_search/Providers/Doctor_Part_Provider/Patient_And_Appointment_Provider.dart';
 import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,6 +12,7 @@ class Family_Tree_Page extends StatefulWidget {
 }
 
 class _Family_Tree_PageState extends State<Family_Tree_Page> {
+  List<Map<String, dynamic>> familyList = [{}];
   int n = 1;
   @override
   Widget build(BuildContext context) {
@@ -105,6 +107,14 @@ class _Family_Tree_PageState extends State<Family_Tree_Page> {
             SizedBox(
               height: 20.h,
             ),
+            for (int i = 1; i < userProvider.familymemberList.length; i++)
+              Members_card(
+                  i: i,
+                  name: userProvider.familymemberList[i]['Full Name'],
+                  relation: userProvider.familymemberList[i]['Relation']),
+            SizedBox(
+              height: 20.h,
+            ),
             Row(
               children: [
                 SizedBox(
@@ -137,7 +147,20 @@ class _Family_Tree_PageState extends State<Family_Tree_Page> {
             SizedBox(
               height: 10.h,
             ),
-            for (int i = 0; i < n; i++) Person_Details(n: i),
+            for (int i = 0; i < n; i++)
+              Familymember_Details(
+                n: i,
+                onUserDataChanged: (data) {
+                  Map<String, dynamic> map = data;
+                  if (map.length == 3) {
+                    familyList.add(map);
+                    // userProvider.familymemberList.add(map);
+                  } else {
+                    print('Not filled all the fields');
+                  }
+                  print(data);
+                },
+              ),
             SizedBox(
               height: 10.h,
             ),
@@ -147,8 +170,10 @@ class _Family_Tree_PageState extends State<Family_Tree_Page> {
                 InkWell(
                   onTap: () {
                     setState(() {
-                      if (n <= 5) {
+                      if (familyList[n].length == 3) {
                         n++;
+                      } else {
+                        print('Not Filled all the fields');
                       }
                     });
                   },
@@ -174,7 +199,9 @@ class _Family_Tree_PageState extends State<Family_Tree_Page> {
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.pop(context);
+                    userProvider.addFamilyMembers(context, familyList);
+                    userProvider.getFamilyMembersList(context);
+                    // Navigator.pop(context);
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -208,59 +235,39 @@ class _Family_Tree_PageState extends State<Family_Tree_Page> {
   }
 }
 
-class Person_Details extends StatelessWidget {
-  Person_Details({super.key, required this.n});
-  final int n;
-  List<String> suffix = ['st', 'nd', 'rd', 'th', 'th', 'th'];
+class RoundedTextField extends StatefulWidget {
+  final String hintText;
+  final Function(Map<String, dynamic>) onValueChanged;
+
+  RoundedTextField({
+    required this.hintText,
+    required this.onValueChanged,
+  });
+
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          '${n + 1}${suffix[n]} Person',
-          style: TextStyle(
-              color: Colors.white,
-              fontSize: 21.sp,
-              fontWeight: FontWeight.bold),
-        ),
-        SizedBox(
-          height: 15.h,
-        ),
-        RoundedTextField(hintText: 'Full Name'),
-        SizedBox(
-          height: 15.h,
-        ),
-        RoundedTextField(hintText: 'Aadhar Number'),
-        SizedBox(
-          height: 15.h,
-        ),
-        RoundedDropdownField(
-            labelText: 'Relation',
-            items: ['Mother', 'Father', 'Wife', 'Brother', 'Sister', 'Child']),
-        SizedBox(),
-      ],
-    );
-  }
+  _RoundedTextFieldState createState() => _RoundedTextFieldState();
 }
 
-class RoundedTextField extends StatelessWidget {
-  final String hintText;
-
-  RoundedTextField({required this.hintText});
+class _RoundedTextFieldState extends State<RoundedTextField> {
+  TextEditingController textController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 350.w,
-      height: 50.h, // Adjust the width as needed
-      padding: EdgeInsets.only(left: 8.0.w),
+      width: 350,
+      height: 50,
+      padding: EdgeInsets.only(left: 8.0),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(10.0.r),
+        borderRadius: BorderRadius.circular(10.0),
       ),
       child: TextField(
+        controller: textController,
+        onChanged: (value) {
+          widget.onValueChanged({widget.hintText: value});
+        },
         decoration: InputDecoration(
-          hintText: hintText,
+          hintText: widget.hintText,
           border: InputBorder.none,
         ),
       ),
@@ -268,11 +275,74 @@ class RoundedTextField extends StatelessWidget {
   }
 }
 
+class Familymember_Details extends StatefulWidget {
+  Familymember_Details(
+      {Key? key, required this.n, required this.onUserDataChanged})
+      : super(key: key);
+
+  final int n;
+  final Function(Map<String, dynamic>) onUserDataChanged;
+
+  @override
+  _Familymember_DetailsState createState() => _Familymember_DetailsState();
+}
+
+class _Familymember_DetailsState extends State<Familymember_Details> {
+  Map<String, dynamic> userData = {};
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(
+          height: 15,
+        ),
+        RoundedTextField(
+          hintText: 'Full Name',
+          onValueChanged: (value) {
+            userData.addAll(value);
+            widget.onUserDataChanged(userData);
+          },
+        ),
+        SizedBox(
+          height: 15,
+        ),
+        RoundedTextField(
+          hintText: 'Mobile Number',
+          onValueChanged: (value) {
+            userData.addAll(value);
+            widget.onUserDataChanged(userData);
+          },
+        ),
+        SizedBox(
+          height: 15,
+        ),
+        RoundedDropdownField(
+          labelText: 'Relation',
+          items: ['Father', 'Mother', 'Sister', 'Brother', 'Wife'],
+          onValueChanged: (value) {
+            userData.addAll(value);
+            widget.onUserDataChanged(userData);
+          },
+        ),
+        SizedBox(
+          height: 5,
+        ),
+      ],
+    );
+  }
+}
+
 class RoundedDropdownField extends StatefulWidget {
   final String labelText;
   final List<String> items;
+  final Function(Map<String, dynamic>) onValueChanged;
 
-  RoundedDropdownField({required this.labelText, required this.items});
+  RoundedDropdownField({
+    required this.labelText,
+    required this.items,
+    required this.onValueChanged,
+  });
 
   @override
   _RoundedDropdownFieldState createState() => _RoundedDropdownFieldState();
@@ -281,15 +351,16 @@ class RoundedDropdownField extends StatefulWidget {
 class _RoundedDropdownFieldState extends State<RoundedDropdownField> {
   String? _selectedItem;
   TextEditingController text = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 350.w,
-      height: 50.h, // Adjust the width as needed
-      padding: EdgeInsets.only(left: 8.0.w),
+      width: 350,
+      height: 50, // Adjust the width as needed
+      padding: EdgeInsets.only(left: 8.0),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(10.0.r),
+        borderRadius: BorderRadius.circular(10.0),
       ),
       child: TextField(
         readOnly: true,
@@ -306,6 +377,8 @@ class _RoundedDropdownFieldState extends State<RoundedDropdownField> {
                         _selectedItem = item;
                         text.text = item;
                       });
+
+                      widget.onValueChanged({widget.labelText: _selectedItem});
                       Navigator.pop(context);
                     },
                   );
@@ -330,6 +403,9 @@ class _RoundedDropdownFieldState extends State<RoundedDropdownField> {
                               _selectedItem = item;
                               text.text = item;
                             });
+
+                            widget.onValueChanged(
+                                {widget.labelText: _selectedItem});
                             Navigator.pop(context);
                           },
                         );
@@ -341,6 +417,68 @@ class _RoundedDropdownFieldState extends State<RoundedDropdownField> {
               icon: Icon(Icons.arrow_drop_down)),
           hintText: widget.labelText,
           border: InputBorder.none,
+        ),
+      ),
+    );
+  }
+}
+
+class Members_card extends StatelessWidget {
+  Members_card(
+      {super.key, required this.name, required this.relation, required this.i});
+  final String name;
+  final String relation;
+  final int i;
+
+  @override
+  Widget build(BuildContext context) {
+    final userProvider = Provider.of<User_Provider>(context);
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 3.0),
+      child: Container(
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+        child: Card(
+          elevation: 30,
+          shadowColor: Color.fromARGB(255, 205, 226, 225),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      name,
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        userProvider.familymemberList.removeAt(i);
+                        userProvider.addFamilyMembers(
+                            context, userProvider.familymemberList);
+                        userProvider.getFamilyMembersList(context);
+                      },
+                      child: Icon(
+                        Icons.delete,
+                        color: Colors.red,
+                        size: 30,
+                      ),
+                    )
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Adult | $relation ',
+                      style:
+                          TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );

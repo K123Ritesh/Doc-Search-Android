@@ -1,13 +1,14 @@
 import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
-import 'package:doc_search/Views/Doctor%20Part/Profile/Online_Consultations_Page.dart';
+// import 'package:doc_search/Views/Doctor%20Part/Profile/Online_Consultations_Page.dart';
 import 'package:doc_search/Views/Not_Build_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Appointment/PastApointment.dart';
 import 'package:doc_search/Views/Patient%20Part/Authentication/Login_Page.dart';
-import 'package:doc_search/Views/Patient%20Part/Doctors/Doctors_Category_Wise.dart';
-import 'package:doc_search/Views/Patient%20Part/Profile/Appointments_Page.dart';
+// import 'package:doc_search/Views/Patient%20Part/Doctors/Doctors_Category_Wise.dart';
+// import 'package:doc_search/Views/Patient%20Part/Profile/Appointments_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Family_Tree_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Health_Care_Plan.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/My_order.dart';
+import 'package:doc_search/Views/Patient%20Part/Profile/Online_Consultations_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Refer_And_Earn_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Settings_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Test.dart';
@@ -60,7 +61,9 @@ class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
                     InkWell(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => EditUserProfile()));
+                              builder: (context) => EditUserProfile(
+                                    gender: userProvider.user.gender,
+                                  )));
                         },
                         child: Stack(
                           children: <Widget>[
@@ -139,18 +142,7 @@ class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
                         onTap: () {
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                  builder: (context) => (userProvider
-                                                  .todayAppointmentModel
-                                                  .length ==
-                                              0 &&
-                                          userProvider.todayAppointmentModel
-                                                  .length ==
-                                              0 &&
-                                          userProvider.todayAppointmentModel
-                                                  .length ==
-                                              0)
-                                      ? Appointments_Page()
-                                      : PastAppointment()));
+                                  builder: (context) => PastAppointment()));
                         },
                         child: ListTile(
                           title: Text(

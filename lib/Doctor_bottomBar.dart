@@ -66,15 +66,22 @@ class _DoctorBottombarState extends State<DoctorBottombar> {
     return Container(
       height: 68,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(33.0),
-          topRight: Radius.circular(33.0),
-        ),
-        boxShadow: const [
+        // borderRadius: BorderRadius.only(
+        //   topLeft: Radius.circular(33.0),
+        //   topRight: Radius.circular(33.0),
+        // ),
+        // boxShadow: const [
+        //   BoxShadow(
+        //     color: Color.fromARGB(255, 234, 165, 165),
+        //     blurRadius: 10.0,
+        //     offset: Offset(0, -3),
+        //   ),
+        // ],
+        boxShadow: [
           BoxShadow(
-            color: Color.fromARGB(255, 234, 165, 165),
-            blurRadius: 10.0,
-            offset: Offset(0, -3),
+            color: Color(0XFF005473),
+            blurRadius: 5.0,
+            offset: Offset(-1,-1),
           ),
         ],
       ),
@@ -102,8 +109,8 @@ class _DoctorBottombarState extends State<DoctorBottombar> {
         currentIndex: currentIndex,
         onTap: onTabTapped,
         unselectedItemColor: Colors.black,
-        selectedItemColor: Colors.blue,
-        selectedLabelStyle: TextStyle(color: Colors.blue),
+        selectedItemColor: Color(0XFF005473),
+        selectedLabelStyle: TextStyle(color: Color(0XFF005473)),
       ),
     );
   }

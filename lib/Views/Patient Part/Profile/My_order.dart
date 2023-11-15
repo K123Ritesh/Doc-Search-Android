@@ -1,4 +1,5 @@
 import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
+import 'package:doc_search/Views/Patient%20Part/Home/Prescription_Upload_Page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -238,12 +239,12 @@ class _My_OrderState extends State<My_Order> {
                             ),
                             ElevatedButton(
                               onPressed: () {
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //       builder: (context) =>
-                                //           const MedicalReportDetails()),
-                                // );
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const Prescription_Upload_Page(shopId: 'rit11@gmail.com',)),
+                                );
                               },
                               style: ElevatedButton.styleFrom(
                                 primary: Color(0xFF1A6A83),

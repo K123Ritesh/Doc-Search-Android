@@ -10,6 +10,7 @@ import 'package:doc_search/Views/Patient%20Part/Profile/Health_Care_Plan.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/My_order.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Refer_And_Earn_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Settings_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Profile/Test.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -194,16 +195,24 @@ class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
                                     )),
                           );
                         },
-                        child: ListTile(
-                          title: Text(
-                            "My Test",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.w400),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Test()),
+                            );
+                          },
+                          child: ListTile(
+                            title: Text(
+                              "My Test",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20.sp,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                            trailing: Icon(Icons.arrow_forward_ios,
+                                size: 20, color: Colors.white),
                           ),
-                          trailing: Icon(Icons.arrow_forward_ios,
-                              size: 20, color: Colors.white),
                         ),
                       ),
                       InkWell(

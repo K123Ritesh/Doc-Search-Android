@@ -123,7 +123,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   SizedBox(
-                    width: 215.fw,
+                    width: 230.fw,
                   ),
                   InkWell(
                     onTap: () {
@@ -145,7 +145,7 @@ class _HomePageState extends State<HomePage> {
                             Icon(
                               Icons.notifications,
                               size: 35,
-                              color: Colors.red,
+                              color: Color(0XFF005473),
                             )
                             // SizedBox(width: 5.fw),
                             // Text(

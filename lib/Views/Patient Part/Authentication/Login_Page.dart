@@ -163,6 +163,7 @@ class _Login_PageState extends State<Login_Page> {
                       fontWeight: FontWeight.bold),
                 ),
               ),
+            
               Container(
                 margin: EdgeInsets.only(left: 20.w, right: 20.w),
                 height: 55.h,
@@ -270,106 +271,8 @@ class _Login_PageState extends State<Login_Page> {
               SizedBox(
                 height: 28.h,
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.0.w),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      height: 1.5.h,
-                      width: 130.w,
-                      color: Colors.white,
-                    ),
-                    SizedBox(
-                      width: 12.w,
-                    ),
-                    Text(
-                      'or',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.w400),
-                    ),
-                    SizedBox(
-                      width: 12.w,
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(right: 10.w),
-                      height: 1.5.h,
-                      width: 130.w,
-                      color: Colors.white,
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(10.r)),
-                    height: 44.h,
-                    width: 300.w,
-                    child: Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Image.asset(
-                            height: 24.h,
-                            width: 30.w,
-                            'assets/Icons/Facebook Logo.png',
-                          ),
-                          Text(
-                            'Login with facebook',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.w400),
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(10.r)),
-                    height: 44.h,
-                    width: 300.w,
-                    child: Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Image.asset(
-                            height: 24.h,
-                            width: 30.w,
-                            'assets/Icons/Google Logo.png',
-                          ),
-                          Text(
-                            'Login with Google',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.w400),
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
+              
+              
             ],
           ),
         ),

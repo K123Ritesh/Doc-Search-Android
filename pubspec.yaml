@@ -90,6 +90,9 @@ flutter:
     - assets/DocSearch Android (1)/
     - assets/lottie/
     - assets/Icons/
+    - assets/Group 312.png
+    - assets/Group 3119.png
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

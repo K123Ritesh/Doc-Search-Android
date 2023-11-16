@@ -78,9 +78,10 @@ class _Health_Care_PlanState extends State<Health_Care_Plan> {
                 ],
               ),
               SizedBox(
-                height: 20.h,
+                height: 10.h,
               ),
               Container(
+                height: 129.h,
                 width: MediaQuery.of(context).size.width,
                 color: const Color(0xFF155467),
                 child: Row(children: [
@@ -91,7 +92,7 @@ class _Health_Care_PlanState extends State<Health_Care_Plan> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(left: 5.0.w),
+                          padding: EdgeInsets.only(top:10.0.h,left: 10.w),
                           child: Container(
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20.r),
@@ -102,43 +103,43 @@ class _Health_Care_PlanState extends State<Health_Care_Plan> {
                               child: Text(
                                 'Doc Search Plans',
                                 style: TextStyle(
-                                    fontSize: 17.sp,
+                                    fontSize: 10.sp,
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
                           ),
                         ),
                         SizedBox(
-                          height: 10.h,
+                          height: 5.h,
                         ),
                         Padding(
-                          padding: EdgeInsets.only(left: 5.0.w),
+                          padding: EdgeInsets.only(left: 10.0.w),
                           child: Text(
                             'Become a DOC search members and \nReduce your medical Expenses',
                             style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 13.sp,
                                 color: const Color.fromARGB(255, 255, 231, 14)),
                           ),
                         ),
                         SizedBox(
-                          height: 10.h,
+                          height: 5.h,
                         ),
                         Padding(
-                          padding: EdgeInsets.only(left: 5.0.w),
+                          padding: EdgeInsets.only(left: 10.0.w),
                           child: Text(
                             'Save the things that makes you happy',
                             style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15.sp,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 11.sp,
                                 color: Colors.white),
                           ),
                         ),
                         SizedBox(
-                          height: 10.h,
+                          height: 5.h,
                         ),
                         Padding(
-                          padding: EdgeInsets.only(left: 8.0.w),
+                          padding: EdgeInsets.only(left: 10.0.w),
                           child: Container(
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20.r),
@@ -150,7 +151,7 @@ class _Health_Care_PlanState extends State<Health_Care_Plan> {
                                 'Explore',
                                 style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 17.sp,
+                                    fontSize: 10.sp,
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
@@ -161,16 +162,16 @@ class _Health_Care_PlanState extends State<Health_Care_Plan> {
                   ),
                   Container(
                     width: MediaQuery.of(context).size.width * 0.40,
-                    child: Image.network(
+                    child: Image.asset(
                         width: MediaQuery.of(context).size.width * 0.5,
                         height: 180.h,
                         fit: BoxFit.fill,
-                        'https://s3-alpha-sig.figma.com/img/4d9e/cabd/c149c67687cf1082c190a6b63deade16?Expires=1699833600&Signature=W3eKZjtVByt~TpLcc9K6oO5IAd2OkkMeSPbKUoFG3fKLd8fU0P1pLRtt88P6UQoR6aK3mn1MU10eKIwPZfud4etKZaCT24tL3fXmOzmvORlGus6mSKrQen03kdeP6FhlGV1P7F2S-Zw3M5IboIWYsQfr52iqsJS0IooW9u8jIkCVOkUL1dsSxMbd0dyQ7LowFTs2pT~4U7dDTedbDHCVtqfdkFhLWh1H18Q4tS1uCU~7mhnX3qOJO~LLmnlWKfBi7EvkwL8nh6DxTaGVJqMU~o5MXN9kOworNfnhqrZqEEudaHMiwW7GkDZNTtL-cvvbpyehSbIwFKUyeHHzl9S-2w__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4'),
+                        'assets/image 67.png'),
                   )
                 ]),
               ),
               SizedBox(
-                height: 20.h,
+                height: 10.h,
               ),
               CarouselSlider(
                 items: [
@@ -200,7 +201,7 @@ class _Health_Care_PlanState extends State<Health_Care_Plan> {
                   ),
                 ],
                 options: CarouselOptions(
-                  // height: 200.0, // Adjust the height as needed
+                  // height: 500.0, // Adjust the height as needed
                   aspectRatio: 7 / 9, // Adjust the aspect ratio as needed
                   viewportFraction:
                       0.8, // Adjust the visible portion of each widget
@@ -334,110 +335,109 @@ class Container_for_Premium extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return isSelected == true
-        ? Padding(
-            padding: EdgeInsets.symmetric(vertical: 13.0.h),
-            child: Container(
-              decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black, width: 3),
-                  borderRadius: BorderRadius.circular(15.r)),
-              child: Card(
-                elevation: 30,
-                shadowColor: Colors.black,
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  decoration: BoxDecoration(
-                      color: const Color(0xFF155467),
-                      borderRadius: BorderRadius.circular(15)),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: 3.0.w, vertical: 8.0.h),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 10.w,
-                        ),
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: 20.w,
-                            ),
-                            Text(
-                              type,
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 23.sp,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: 20.w,
-                            ),
-                            Text(
-                              '($person_type',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20.sp,
-                              ),
-                            ),
-                            Text(
-                              '*',
-                              style: TextStyle(
-                                color: Colors.red,
-                                fontSize: 20.sp,
-                              ),
-                            ),
-                            Text(
-                              ' )',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20.sp,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 15.h,
-                        ),
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: 20.w,
-                            ),
-                            Text(
-                              'Benifits',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 21.sp,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10.h,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 20),
-                          child: Text(
-                            details,
-                            style: TextStyle(
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.white),
+        ? Container(
+          decoration: BoxDecoration(
+              border: Border.all(color: Colors.black, width: 3),
+              borderRadius: BorderRadius.circular(15.r)),
+          child: Container(
+            child: Card(
+              elevation: 30,
+              shadowColor: Colors.black,
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.9,
+                decoration: BoxDecoration(
+                    color: const Color(0xFF155467),
+                    borderRadius: BorderRadius.circular(15)),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: 3.0.w, vertical: 8.0.h),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 10.w,
+                      ),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 20.w,
                           ),
+                          Text(
+                            type,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 23.sp,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 20.w,
+                          ),
+                          Text(
+                            '($person_type',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.sp,
+                            ),
+                          ),
+                          Text(
+                            '*',
+                            style: TextStyle(
+                              color: Colors.red,
+                              fontSize: 20.sp,
+                            ),
+                          ),
+                          Text(
+                            ' )',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.sp,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 15.h,
+                      ),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 20.w,
+                          ),
+                          Text(
+                            'Benifits',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 21.sp,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 20),
+                        child: Text(
+                          details,
+                          style: TextStyle(
+                              fontSize: 20.sp,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white),
                         ),
-                        SizedBox(
-                          height: 20.h,
-                        )
-                      ],
-                    ),
+                      ),
+                      SizedBox(
+                        height: 20.h,
+                      )
+                    ],
                   ),
                 ),
               ),
             ),
-          )
+          ),
+        )
         : Padding(
             padding: EdgeInsets.all(1.w),
             child: Container(
@@ -518,7 +518,7 @@ class Container_for_Premium extends StatelessWidget {
                       padding: EdgeInsets.only(left: 20.w),
                       child: Text(
                           style: TextStyle(
-                              fontSize: 20.sp,
+                              fontSize: 14.sp,
                               fontWeight: FontWeight.w400,
                               color: Colors.white),
                           details),

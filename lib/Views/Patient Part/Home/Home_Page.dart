@@ -7,16 +7,14 @@ import 'package:doc_search/Views/Patient%20Part/Home/Hospitals_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Medical_Labs_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Medicine_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Search_Tapped_Page.dart';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:provider/provider.dart';
-
 import '../../../Providers/User_Part_Provider/User_Provider.dart';
 import '../Doctors/Doctors_Category_Wise.dart';
+import '../Profile/Health_Care_Plan.dart';
 import '../Profile/Profile_Page.dart';
 
 class HomePage extends StatefulWidget {
@@ -338,26 +336,174 @@ class _HomePageState extends State<HomePage> {
               ),
               CarouselSlider(
                 items: [
-                  Banner(color: const Color(0xFFECFAFC), isfirst: true),
-                  Banner(
-                    color: Color.fromRGBO(30, 94, 118, 1),
-                    isfirst: false,
-                  )
+                  Container(
+                    height: 130.fh,
+                    decoration: BoxDecoration(
+                      color: Color(0XFFECFAFC),
+                      borderRadius: BorderRadius.circular(16),
+                      // border: Border.all(color: Color(0xFF5793A8)),
+                    ),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Column(
+                            children: [
+                              Container(
+                                  margin: EdgeInsets.only(top: 15.fh),
+                                  child: RichText(
+                                    text: TextSpan(
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                          text: 'We are ',
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 12.fh,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        TextSpan(
+                                          text: 'providing',
+                                          style: TextStyle(
+                                              color: const Color.fromARGB(
+                                                  255, 240, 223, 68),
+                                              fontSize: 12.fh,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        TextSpan(
+                                          text: ' the ',
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 12.fh,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        // TextSpan(
+                                        //   text: '\nbest ',
+                                        //   style: TextStyle(
+                                        //       color:
+                                        //           isfirst == true ? Colors.black : Colors.white,
+                                        //       fontSize: 12.fh,
+                                        //       fontWeight: FontWeight.bold),
+                                        // ),
+                                        TextSpan(
+                                          text: '\nhealth',
+                                          style: TextStyle(
+                                              color: Color(0xFF5793A8),
+                                              fontSize: 12.fh,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        TextSpan(
+                                          text: ' services',
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 12.fh,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  )),
+                              Container(
+                                  margin: EdgeInsets.only(
+                                    left: 20.fw,
+                                    top: 10.fh,
+                                  ),
+                                  child: Text(
+                                    'Always caring about your health, \nFind your doctors and make an \nappointment',
+                                    style: TextStyle(
+                                        fontSize: 9.fh,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.black),
+                                  )),
+                              Container(
+                                height: 23.fh,
+                                width: 68.fw,
+                                margin:
+                                    EdgeInsets.only(top: 10.fh, right: 60.fw),
+                                child: Material(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(50),
+                                  child: Ink(
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(50),
+                                      border: Border.all(
+                                          color: Color(0xFF005473), width: 2),
+                                    ),
+                                    child: InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  Appointment1()),
+                                        );
+                                      },
+                                      child: Center(
+                                        child: Text(
+                                          'Register Now',
+                                          style: TextStyle(
+                                            fontSize: 8.fh,
+                                            color: Color(0xFF005473),
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                          Spacer(),
+                          Container(
+                            margin: EdgeInsets.only(top: 40.fh),
+                            height: 108.fh,
+                            // width: 158.fw,
+                            child: Image.asset(
+                              'assets/image 34.png',
+                            ),
+                          ),
+                        ]),
+                  ),
+                  GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Medicine_Page()),
+                        );
+                      },
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(16.0),
+                        child: Image.asset('assets/Group 312.png',
+                            fit: BoxFit.fill),
+                      )),
+                  GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Health_Care_Plan()),
+                        );
+                      },
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(16.0),
+                        child: Image.asset(
+                          'assets/Group 3119.png',
+                          fit: BoxFit.fill,
+                        ),
+                      )),
                 ],
                 options: CarouselOptions(
-                  height: 160.0.h, // Adjust the height as needed
-                  // aspectRatio: 1, // Adjust the aspect ratio as needed
-                  viewportFraction:
-                      1, // Adjust the visible portion of each widget
+                  height: 160.0,
+                  viewportFraction: 1,
                   initialPage: selectedIndex,
                   enableInfiniteScroll: true,
                   reverse: false,
-                  autoPlay: true, // Disable auto-play
+                  autoPlay: true,
                   enlargeCenterPage: false,
                   scrollDirection: Axis.horizontal,
                   onPageChanged: (index, reason) {
                     setState(() {
-                      selectedIndex = index; // Store the current active index
+                      selectedIndex = index;
                     });
                   },
                 ),
@@ -365,11 +511,11 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(
                 height: 20,
               ),
-              const Center(
+              Center(
                 child: Text(
                   'Consult online doctors for any health concern',
                   style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 14.fh,
                       color: Color(0xFF005473),
                       fontWeight: FontWeight.bold),
                 ),
@@ -787,149 +933,6 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       bottomNavigationBar: Bottombar(SelectedIndex: 0),
-    );
-  }
-}
-
-class Banner extends StatelessWidget {
-  Banner({super.key, required this.color, required this.isfirst});
-
-  final Color color;
-  final bool isfirst;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(left: 10.w),
-      child: Container(
-        height: 130.fh,
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(16),
-          // border: Border.all(color: Color(0xFF5793A8)),
-        ),
-        child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-          Column(
-            children: [
-              Container(
-                  margin: EdgeInsets.only(top: 15.fh),
-                  child: RichText(
-                    text: TextSpan(
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: 'We are ',
-                          style: TextStyle(
-                              color:
-                                  isfirst == true ? Colors.black : Colors.white,
-                              fontSize: 12.fh,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        TextSpan(
-                          text: 'providing',
-                          style: TextStyle(
-                              color: Colors.yellow,
-                              fontSize: 12.fh,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        TextSpan(
-                          text: ' the ',
-                          style: TextStyle(
-                              color:
-                                  isfirst == true ? Colors.black : Colors.white,
-                              fontSize: 12.fh,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        TextSpan(
-                          text: '\nbest ',
-                          style: TextStyle(
-                              color:
-                                  isfirst == true ? Colors.black : Colors.white,
-                              fontSize: 12.fh,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        TextSpan(
-                          text: 'health',
-                          style: TextStyle(
-                              color: Color(0xFF5793A8),
-                              fontSize: 12.fh,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        TextSpan(
-                          text: ' services',
-                          style: TextStyle(
-                              color:
-                                  isfirst == true ? Colors.black : Colors.white,
-                              fontSize: 12.fh,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                  )),
-              Container(
-                  margin: EdgeInsets.only(
-                    left: 20.fw,
-                    top: 10.fh,
-                  ),
-                  child: Text(
-                    'Always caring about your health, \nFind your doctors and make an \nappointment',
-                    style: TextStyle(
-                      fontSize: 9.fh,
-                      fontWeight: FontWeight.w400,
-                      color: isfirst == true ? Colors.black : Colors.white,
-                    ),
-                  )),
-              Container(
-                height: 23.fh,
-                width: 68.fw,
-                margin: EdgeInsets.only(top: 10.fh, right: 60.fw),
-                child: Material(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(50),
-                  child: Ink(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(50),
-                      border: Border.all(
-                          color: isfirst == true
-                              ? Color(0xFF005473)
-                              : Colors.black,
-                          width: 2),
-                    ),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Appointment1()),
-                        );
-                      },
-                      child: Center(
-                        child: Text(
-                          'Register Now',
-                          style: TextStyle(
-                            fontSize: 8.fh,
-                            color: Color(0xFF005473),
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ),
-          Spacer(),
-          Container(
-            margin: EdgeInsets.only(top: 30.fh),
-            height: 118.fh,
-            // width: 158.fw,
-            child: Image.asset(
-              'assets/image 34.png',
-            ),
-          ),
-        ]),
-      ),
     );
   }
 }

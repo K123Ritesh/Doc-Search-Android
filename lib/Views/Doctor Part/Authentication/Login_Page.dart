@@ -316,74 +316,7 @@ class _Doctor_Login_PageState extends State<Doctor_Login_Page> {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(10.r)),
-                    height: 44.h,
-                    width: 300.w,
-                    child: Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Image.asset(
-                            height: 24.h,
-                            width: 30.w,
-                            'assets/Icons/Facebook Logo.png',
-                          ),
-                          Text(
-                            'Login with facebook',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.w400),
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(10.r)),
-                    height: 44.h,
-                    width: 300.w,
-                    child: Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Image.asset(
-                            height: 24.h,
-                            width: 30.w,
-                            'assets/Icons/Google Logo.png',
-                          ),
-                          Text(
-                            'Login with Google',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.w400),
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
+             
             ],
           ),
         ),

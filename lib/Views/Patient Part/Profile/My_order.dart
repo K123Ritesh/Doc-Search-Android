@@ -1,3 +1,4 @@
+import 'package:doc_search/Config/sizeConfig.dart';
 import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Prescription_Upload_Page.dart';
 import 'package:flutter/material.dart';
@@ -88,6 +89,7 @@ class _My_OrderState extends State<My_Order> {
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<User_Provider>(context);
+    SizeConfig().init(context);
     return Scaffold(
       backgroundColor: const Color(0xFF155467),
       appBar: AppBar(
@@ -161,114 +163,126 @@ class _My_OrderState extends State<My_Order> {
               itemCount: userProvider.ans.length,
               itemBuilder: (context, index) {
                 return Container(
-                  height: 115,
-                  margin: EdgeInsets.only(left: 20, top: 20, right: 20),
+                  height: 114.fh,
+                  margin: EdgeInsets.only(left: 20, top: 20.fh, right: 20.fw),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     color: Colors.white,
                   ),
                   child: Container(
-                    margin: EdgeInsets.all(10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    margin: EdgeInsets.all(10.fw),
+                    child: Column(
                       children: [
-                        Column(
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            Column(
                               children: [
-                                Container(
-                                  width: 53,
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFF1A6A83),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      width: 53.fw,
+                                      height: 50.fh,
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFF1A6A83),
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 10.fw,
+                                    ),
+                                    Text(
+                                      userProvider.ans[index]!.shopName,
+                                      style: TextStyle(
+                                        fontSize: 11.fh,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xFF155467),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 10.fh,
+                                    ),
+                                    Text(
+                                      'Rs 310',
+                                      style: TextStyle(
+                                        fontSize: 11.fh,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xFF155467),
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                            Column(
+                              children: [
                                 SizedBox(
-                                  width: 20,
+                                  height: 20.fh,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Icon(Icons.circle,
+                                        size: 9.fh, color: Colors.green),
+                                    Text(
+                                      userProvider.ans[index]!.Status,
+                                      style: TextStyle(
+                                        fontSize: 10.fh,
+                                        color: Color(0xFF155467),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                                 Text(
-                                  userProvider.ans[index]!.shopName,
+                                  'Order Done',
                                   style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
+                                    fontSize: 10.fh,
                                     color: Color(0xFF155467),
                                   ),
                                 ),
-                                SizedBox(
-                                  width: 20,
-                                ),
-                                Text(
-                                  'Rs 310',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFF155467),
-                                  ),
-                                ),
+                                
                               ],
                             )
                           ],
                         ),
-                        Column(
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Icon(Icons.circle,
-                                    size: 10, color: Colors.green),
-                                Text(
-                                  userProvider.ans[index]!.Status,
-                                  style: TextStyle(
-                                    fontSize: 11,
-                                    color: Color(0xFF155467),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Text(
-                              'Order Done',
-                              style: TextStyle(
-                                fontSize: 11,
-                                color: Color(0xFF155467),
-                              ),
-                            ),
                             ElevatedButton(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const Prescription_Upload_Page(shopId: 'rit11@gmail.com',)),
-                                );
-                              },
-                              style: ElevatedButton.styleFrom(
-                                primary: Color(0xFF1A6A83),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                              ),
-                              child: Container(
-                                height: 24,
-                                // width: 99,
-                                child: Center(
-                                  child: Text(
-                                    'Reorder Now',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.w500,
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const Prescription_Upload_Page(
+                                                shopId: 'rit11@gmail.com',
+                                              )),
+                                    );
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Color(0xFF1A6A83),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                  ),
+                                  child: Container(
+                                    height: 24,
+                                    // width: 99,
+                                    child: Center(
+                                      child: Text(
+                                        'Reorder Now',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ),
                           ],
-                        )
+                        ),
                       ],
                     ),
                   ),

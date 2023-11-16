@@ -339,9 +339,7 @@ class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
                       //         size: 20, color: Colors.white),
                       //   ),
                       // ),
-                      SizedBox(
-                        height: 30,
-                      ),
+
                       InkWell(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
@@ -367,6 +365,9 @@ class _Profile_Page_Doc_SearchState extends State<Profile_Page_Doc_Search> {
                       )
                     ],
                   ),
+                ),
+                SizedBox(
+                  height: 30,
                 ),
                 InkWell(
                   onTap: () async {

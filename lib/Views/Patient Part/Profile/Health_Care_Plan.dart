@@ -444,7 +444,7 @@ class Container_for_Premium extends StatelessWidget {
               width: MediaQuery.of(context).size.width * 0.9,
               decoration: BoxDecoration(
                   color: const Color(0xFF155467),
-                  borderRadius: BorderRadius.circular(15)),
+                  borderRadius: BorderRadius.circular(15.r)),
               child: Padding(
                 padding: EdgeInsets.all(8.0.w),
                 child: Column(

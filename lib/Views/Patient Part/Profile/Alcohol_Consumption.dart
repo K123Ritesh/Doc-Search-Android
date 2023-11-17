@@ -1,4 +1,7 @@
+import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Alcohol_Consumption extends StatefulWidget {
   const Alcohol_Consumption({Key? key}) : super(key: key);
@@ -24,20 +27,57 @@ class _Alcohol_ConsumptionState extends State<Alcohol_Consumption> {
     });
   }
 
+  String to_Store = '';
+  void selectedOption() {
+    if (isHeavySelected == true) {
+      setState(() {
+        to_Store = 'Heavy';
+      });
+    }
+    if (isRareSelected == true) {
+      setState(() {
+        to_Store = 'Rare';
+      });
+    }
+    if (isNoSelected == true) {
+      setState(() {
+        to_Store = 'Non-Drinker';
+      });
+    }
+    if (isSocialSelected == true) {
+      setState(() {
+        to_Store = 'Social';
+      });
+    }
+    if (isRegularSelected == true) {
+      setState(() {
+        to_Store = 'Regular';
+      });
+    }
+  }
+
+  FirebaseAuth _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<User_Provider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios_new,
-            color: Colors.black,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+        leading: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            IconButton(
+              icon: Icon(
+                Icons.arrow_back_ios_new,
+                color: Colors.black,
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
         ),
         title: Container(
           margin: EdgeInsets.only(left: 80),
@@ -52,7 +92,7 @@ class _Alcohol_ConsumptionState extends State<Alcohol_Consumption> {
         ),
       ),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Center(
             child: Column(
@@ -65,6 +105,21 @@ class _Alcohol_ConsumptionState extends State<Alcohol_Consumption> {
               ],
             ),
           ),
+          SizedBox(
+            height: 30,
+          ),
+          ElevatedButton(
+              onPressed: () {
+                selectedOption();
+                userProvider.updateProfile(context, _auth.currentUser!.uid,
+                    {'alcohol_consumption': '$to_Store'});
+                userProvider.getUserDetails(context, _auth.currentUser!.uid);
+                Navigator.pop(context);
+              },
+              child: Text(
+                'Done',
+                style: TextStyle(fontSize: 18, color: Colors.black),
+              ))
         ],
       ),
     );
@@ -114,13 +169,21 @@ class _Alcohol_ConsumptionState extends State<Alcohol_Consumption> {
       case 'Non-Drinker':
         return isNoSelected ? const Color(0xFF0059C8) : const Color(0xFF1A6A83);
       case 'Rare':
-        return isRareSelected ? const Color(0xFF0059C8) : const Color(0xFF1A6A83);
+        return isRareSelected
+            ? const Color(0xFF0059C8)
+            : const Color(0xFF1A6A83);
       case 'Social':
-        return isSocialSelected ? const Color(0xFF0059C8) : const Color(0xFF1A6A83);
+        return isSocialSelected
+            ? const Color(0xFF0059C8)
+            : const Color(0xFF1A6A83);
       case 'Regular':
-        return isRegularSelected ? const Color(0xFF0059C8) : const Color(0xFF1A6A83);
+        return isRegularSelected
+            ? const Color(0xFF0059C8)
+            : const Color(0xFF1A6A83);
       case 'Heavy':
-        return isHeavySelected ? const Color(0xFF0059C8) : const Color(0xFF1A6A83);
+        return isHeavySelected
+            ? const Color(0xFF0059C8)
+            : const Color(0xFF1A6A83);
       default:
         return const Color(0xFF1A6A83);
     }

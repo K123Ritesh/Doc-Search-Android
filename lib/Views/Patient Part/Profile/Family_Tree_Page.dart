@@ -13,6 +13,14 @@ class Family_Tree_Page extends StatefulWidget {
 
 class _Family_Tree_PageState extends State<Family_Tree_Page> {
   List<Map<String, dynamic>> familyList = [{}];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    familyList =
+        Provider.of<User_Provider>(context, listen: false).familymemberList;
+  }
+
   int n = 1;
   @override
   Widget build(BuildContext context) {
@@ -154,7 +162,7 @@ class _Family_Tree_PageState extends State<Family_Tree_Page> {
                   Map<String, dynamic> map = data;
                   if (map.length == 3) {
                     familyList.add(map);
-                    // userProvider.familymemberList.add(map);
+                    userProvider.familymemberList.add(map);
                   } else {
                     print('Not filled all the fields');
                   }
@@ -199,7 +207,8 @@ class _Family_Tree_PageState extends State<Family_Tree_Page> {
                 ),
                 InkWell(
                   onTap: () {
-                    userProvider.addFamilyMembers(context, familyList);
+                    userProvider.addFamilyMembers(
+                        context, userProvider.familymemberList);
                     userProvider.getFamilyMembersList(context);
                     // Navigator.pop(context);
                   },

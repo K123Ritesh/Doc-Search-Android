@@ -1,6 +1,7 @@
 import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class Alcohol_Consumption extends StatefulWidget {
@@ -108,18 +109,34 @@ class _Alcohol_ConsumptionState extends State<Alcohol_Consumption> {
           SizedBox(
             height: 30,
           ),
-          ElevatedButton(
-              onPressed: () {
-                selectedOption();
-                userProvider.updateProfile(context, _auth.currentUser!.uid,
-                    {'alcohol_consumption': '$to_Store'});
-                userProvider.getUserDetails(context, _auth.currentUser!.uid);
-                Navigator.pop(context);
-              },
-              child: Text(
-                'Done',
-                style: TextStyle(fontSize: 18, color: Colors.black),
-              ))
+          InkWell(
+            onTap: () {
+              selectedOption();
+              userProvider.updateProfile(context, _auth.currentUser!.uid,
+                  {'alcohol_consumption': '$to_Store'});
+              userProvider.getUserDetails(context, _auth.currentUser!.uid);
+              Navigator.pop(context);
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 15, 79, 131),
+                  border: Border.all(color: Colors.black),
+                  borderRadius: BorderRadius.circular(10.r)),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 33.w,
+                  vertical: 8.h,
+                ),
+                child: Text(
+                  'update',
+                  style: TextStyle(
+                      fontSize: 20.sp,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400),
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );

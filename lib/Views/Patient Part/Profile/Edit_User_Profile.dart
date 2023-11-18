@@ -545,6 +545,7 @@ class _EditUserProfileState extends State<EditUserProfile>
                                   child: Text(
                                     'Cancel',
                                     style: TextStyle(
+                                        color: Colors.white,
                                         fontSize: 20.sp,
                                         fontWeight: FontWeight.w400),
                                   ),
@@ -614,7 +615,7 @@ class _EditUserProfileState extends State<EditUserProfile>
                                     vertical: 8.h,
                                   ),
                                   child: Text(
-                                    'update',
+                                    'Update',
                                     style: TextStyle(
                                         fontSize: 20.sp,
                                         color: Colors.white,

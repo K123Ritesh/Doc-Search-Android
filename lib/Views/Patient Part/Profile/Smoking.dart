@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SmokingHabbit extends StatefulWidget {
   const SmokingHabbit({Key? key}) : super(key: key);
@@ -50,13 +51,18 @@ class _SmokingHabbitState extends State<SmokingHabbit> {
         ),
       ),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
             margin: EdgeInsets.only(left: 48),
-            child: Text(
-              'Do you smoke?',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  'Do you smoke?',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                ),
+              ],
             ),
           ),
           Center(
@@ -67,6 +73,33 @@ class _SmokingHabbitState extends State<SmokingHabbit> {
                 buildToggleButton('5 < day'),
                 buildToggleButton('5 > day'),
               ],
+            ),
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          InkWell(
+            onTap: () {
+              if (isNoSelected) {}
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 15, 79, 131),
+                  border: Border.all(color: Colors.black),
+                  borderRadius: BorderRadius.circular(10.r)),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 33.w,
+                  vertical: 8.h,
+                ),
+                child: Text(
+                  'update',
+                  style: TextStyle(
+                      fontSize: 20.sp,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400),
+                ),
+              ),
             ),
           ),
         ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Food_Preference extends StatefulWidget {
   const Food_Preference({Key? key});
@@ -50,7 +51,7 @@ class _Food_PreferenceState extends State<Food_Preference> {
         ),
       ),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Center(
             child: Column(
@@ -60,6 +61,31 @@ class _Food_PreferenceState extends State<Food_Preference> {
                 buildToggleButton('Eggetarian'),
                 buildToggleButton('Vegan'),
               ],
+            ),
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          InkWell(
+            onTap: () {},
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 15, 79, 131),
+                  border: Border.all(color: Colors.black),
+                  borderRadius: BorderRadius.circular(10.r)),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 33.w,
+                  vertical: 8.h,
+                ),
+                child: Text(
+                  'update',
+                  style: TextStyle(
+                      fontSize: 20.sp,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400),
+                ),
+              ),
             ),
           ),
         ],
@@ -109,13 +135,21 @@ class _Food_PreferenceState extends State<Food_Preference> {
   Color getButtonColor(String option) {
     switch (option) {
       case 'Vegetarian':
-        return isVegetarianSelected ? const Color(0xFF0059C8) : const Color(0xFF1A6A83);
+        return isVegetarianSelected
+            ? const Color(0xFF0059C8)
+            : const Color(0xFF1A6A83);
       case 'Non-Vegetarian':
-        return isNonVegetarianSelected ? const Color(0xFF0059C8) : const Color(0xFF1A6A83);
+        return isNonVegetarianSelected
+            ? const Color(0xFF0059C8)
+            : const Color(0xFF1A6A83);
       case 'Eggetarian':
-        return isEggetarianSelected ? const Color(0xFF0059C8) : const Color(0xFF1A6A83);
+        return isEggetarianSelected
+            ? const Color(0xFF0059C8)
+            : const Color(0xFF1A6A83);
       case 'Vegan':
-        return isVeganSelected ? const Color(0xFF0059C8) : const Color(0xFF1A6A83);
+        return isVeganSelected
+            ? const Color(0xFF0059C8)
+            : const Color(0xFF1A6A83);
       default:
         return const Color(0xFF1A6A83);
     }

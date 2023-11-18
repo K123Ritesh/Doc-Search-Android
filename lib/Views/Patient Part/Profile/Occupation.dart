@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Occupation extends StatefulWidget {
   const Occupation({Key? key});
@@ -52,7 +53,7 @@ class _OccupationState extends State<Occupation> {
         ),
       ),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Center(
             child: Column(
@@ -63,6 +64,49 @@ class _OccupationState extends State<Occupation> {
                 buildToggleButton('Student'),
                 buildToggleButton('Other'),
               ],
+            ),
+          ),
+          isOtherSelected == true
+              ? Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: 40.0.w, vertical: 15.0.h),
+                  child: Container(
+                    child: TextField(
+                      decoration: InputDecoration(
+                          hintText: 'Enter the occupation',
+                          disabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20))),
+                    ),
+                  ),
+                )
+              : SizedBox(
+                  height: 20,
+                ),
+          SizedBox(
+            height: 30,
+          ),
+          InkWell(
+            onTap: () {},
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 15, 79, 131),
+                  border: Border.all(color: Colors.black),
+                  borderRadius: BorderRadius.circular(10.r)),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 33.w,
+                  vertical: 8.h,
+                ),
+                child: Text(
+                  'update',
+                  style: TextStyle(
+                      fontSize: 20.sp,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400),
+                ),
+              ),
             ),
           ),
         ],
@@ -112,15 +156,25 @@ class _OccupationState extends State<Occupation> {
   Color getButtonColor(String option) {
     switch (option) {
       case 'IT-Professional':
-        return isITProfessionalSelected ? const Color(0xFF0059C8) : const Color(0xFF1A6A83);
+        return isITProfessionalSelected
+            ? const Color(0xFF0059C8)
+            : const Color(0xFF1A6A83);
       case 'Medical-Professional':
-        return isMedicalProfessionalSelected ? const Color(0xFF0059C8) : const Color(0xFF1A6A83);
+        return isMedicalProfessionalSelected
+            ? const Color(0xFF0059C8)
+            : const Color(0xFF1A6A83);
       case 'Banking-Professional':
-        return isBankingProfessionalSelected ? const Color(0xFF0059C8) : const Color(0xFF1A6A83);
+        return isBankingProfessionalSelected
+            ? const Color(0xFF0059C8)
+            : const Color(0xFF1A6A83);
       case 'Student':
-        return isStudentSelected ? const Color(0xFF0059C8) : const Color(0xFF1A6A83);
+        return isStudentSelected
+            ? const Color(0xFF0059C8)
+            : const Color(0xFF1A6A83);
       case 'Other':
-        return isOtherSelected ? const Color(0xFF0059C8) : const Color(0xFF1A6A83);
+        return isOtherSelected
+            ? const Color(0xFF0059C8)
+            : const Color(0xFF1A6A83);
       default:
         return const Color(0xFF1A6A83);
     }

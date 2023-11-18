@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Injuries extends StatefulWidget {
   const Injuries({Key? key}) : super(key: key);
@@ -8,7 +9,7 @@ class Injuries extends StatefulWidget {
 }
 
 class _InjuriesState extends State<Injuries> {
-  bool isNoSelected = false;
+  bool isNoSelected = true;
   bool isAddInjurySelected = false;
 
   void toggleSelection(bool isNo) {
@@ -147,6 +148,51 @@ class _InjuriesState extends State<Injuries> {
                                 ),
                         ),
                       ],
+                    ),
+                  ),
+                ),
+                isAddInjurySelected == true
+                    ? Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 40.0.w, vertical: 15.0.h),
+                        child: Container(
+                          child: TextField(
+                            decoration: InputDecoration(
+                                hintText: 'Enter the Injury',
+                                disabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20)),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20))),
+                          ),
+                        ),
+                      )
+                    : SizedBox(
+                        height: 20,
+                      ),
+                SizedBox(
+                  height: 30,
+                ),
+                InkWell(
+                  onTap: () {
+                    if (isNoSelected) {}
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 15, 79, 131),
+                        border: Border.all(color: Colors.black),
+                        borderRadius: BorderRadius.circular(10.r)),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 33.w,
+                        vertical: 8.h,
+                      ),
+                      child: Text(
+                        'update',
+                        style: TextStyle(
+                            fontSize: 20.sp,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w400),
+                      ),
                     ),
                   ),
                 ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Activity_Level extends StatefulWidget {
   const Activity_Level({Key? key}) : super(key: key);
@@ -50,7 +51,7 @@ class _Activity_LevelState extends State<Activity_Level> {
         ),
       ),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Center(
             child: Column(
@@ -60,6 +61,31 @@ class _Activity_LevelState extends State<Activity_Level> {
                 buildToggleButton('High'),
                 buildToggleButton('Very High'),
               ],
+            ),
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          InkWell(
+            onTap: () {},
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 15, 79, 131),
+                  border: Border.all(color: Colors.black),
+                  borderRadius: BorderRadius.circular(10.r)),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 33.w,
+                  vertical: 8.h,
+                ),
+                child: Text(
+                  'update',
+                  style: TextStyle(
+                      fontSize: 20.sp,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400),
+                ),
+              ),
             ),
           ),
         ],
@@ -109,13 +135,21 @@ class _Activity_LevelState extends State<Activity_Level> {
   Color getButtonColor(String option) {
     switch (option) {
       case 'Low':
-        return isLowSelected ? const Color(0xFF0059C8) : const Color(0xFF1A6A83);
+        return isLowSelected
+            ? const Color(0xFF0059C8)
+            : const Color(0xFF1A6A83);
       case 'Normal':
-        return isNormalSelected ? const Color(0xFF0059C8) : const Color(0xFF1A6A83);
+        return isNormalSelected
+            ? const Color(0xFF0059C8)
+            : const Color(0xFF1A6A83);
       case 'High':
-        return isHighSelected ? const Color(0xFF0059C8) : const Color(0xFF1A6A83);
+        return isHighSelected
+            ? const Color(0xFF0059C8)
+            : const Color(0xFF1A6A83);
       case 'Very High':
-        return isVeryHighSelected ? const Color(0xFF0059C8) : const Color(0xFF1A6A83);
+        return isVeryHighSelected
+            ? const Color(0xFF0059C8)
+            : const Color(0xFF1A6A83);
       default:
         return const Color(0xFF1A6A83);
     }

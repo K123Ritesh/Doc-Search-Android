@@ -1,5 +1,6 @@
 import 'package:doc_search/Views/Patient%20Part/Profile/Edit_User_Profile.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class Allergies extends StatefulWidget {
@@ -10,7 +11,7 @@ class Allergies extends StatefulWidget {
 }
 
 class _AllergiesState extends State<Allergies> {
-  bool isNoSelected = false;
+  bool isNoSelected = true;
   bool isAddAllergySelected = false;
 
   void toggleSelection(bool isNo) {
@@ -147,6 +148,51 @@ class _AllergiesState extends State<Allergies> {
                                 ),
                         ),
                       ],
+                    ),
+                  ),
+                ),
+                isAddAllergySelected == true
+                    ? Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 40.0.w, vertical: 15.0.h),
+                        child: Container(
+                          child: TextField(
+                            decoration: InputDecoration(
+                                hintText: 'Enter the Allergy',
+                                disabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20)),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20))),
+                          ),
+                        ),
+                      )
+                    : SizedBox(
+                        height: 20,
+                      ),
+                SizedBox(
+                  height: 30,
+                ),
+                InkWell(
+                  onTap: () {
+                    if (isNoSelected) {}
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 15, 79, 131),
+                        border: Border.all(color: Colors.black),
+                        borderRadius: BorderRadius.circular(10.r)),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 33.w,
+                        vertical: 8.h,
+                      ),
+                      child: Text(
+                        'update',
+                        style: TextStyle(
+                            fontSize: 20.sp,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w400),
+                      ),
                     ),
                   ),
                 ),

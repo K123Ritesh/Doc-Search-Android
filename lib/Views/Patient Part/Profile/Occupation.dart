@@ -1,5 +1,8 @@
+import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class Occupation extends StatefulWidget {
   const Occupation({Key? key});
@@ -14,6 +17,7 @@ class _OccupationState extends State<Occupation> {
   bool isBankingProfessionalSelected = false;
   bool isStudentSelected = false;
   bool isOtherSelected = false;
+  TextEditingController other = TextEditingController();
 
   void toggleSelection(String option) {
     setState(() {
@@ -25,8 +29,39 @@ class _OccupationState extends State<Occupation> {
     });
   }
 
+  String to_Store = '';
+  void selectedOption() {
+    if (isITProfessionalSelected == true) {
+      setState(() {
+        to_Store = 'IT-Professional';
+      });
+    }
+    if (isMedicalProfessionalSelected == true) {
+      setState(() {
+        to_Store = 'Medical-Professional';
+      });
+    }
+    if (isBankingProfessionalSelected == true) {
+      setState(() {
+        to_Store = 'Banking-Professional';
+      });
+    }
+    if (isStudentSelected == true) {
+      setState(() {
+        to_Store = 'Student';
+      });
+    }
+    if (isOtherSelected == true) {
+      setState(() {
+        to_Store = other.text;
+      });
+    }
+  }
+
+  FirebaseAuth _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<User_Provider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -88,7 +123,13 @@ class _OccupationState extends State<Occupation> {
             height: 30,
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              selectedOption();
+              userProvider.updateProfile(
+                  context, _auth.currentUser!.uid, {'profession': to_Store});
+              userProvider.getUserDetails(context, _auth.currentUser!.uid);
+              Navigator.pop(context);
+            },
             child: Container(
               decoration: BoxDecoration(
                   color: Color.fromARGB(255, 15, 79, 131),
@@ -100,7 +141,7 @@ class _OccupationState extends State<Occupation> {
                   vertical: 8.h,
                 ),
                 child: Text(
-                  'update',
+                  'Update',
                   style: TextStyle(
                       fontSize: 20.sp,
                       color: Colors.white,

@@ -1,5 +1,8 @@
+import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class Activity_Level extends StatefulWidget {
   const Activity_Level({Key? key}) : super(key: key);
@@ -23,8 +26,34 @@ class _Activity_LevelState extends State<Activity_Level> {
     });
   }
 
+  String to_Store = '';
+  void selectedOption() {
+    if (isLowSelected == true) {
+      setState(() {
+        to_Store = 'Low';
+      });
+    }
+    if (isNormalSelected == true) {
+      setState(() {
+        to_Store = 'Normal';
+      });
+    }
+    if (isHighSelected == true) {
+      setState(() {
+        to_Store = 'High';
+      });
+    }
+    if (isVeryHighSelected == true) {
+      setState(() {
+        to_Store = 'Very High';
+      });
+    }
+  }
+
+  FirebaseAuth _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<User_Provider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -67,7 +96,13 @@ class _Activity_LevelState extends State<Activity_Level> {
             height: 30,
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              selectedOption();
+              userProvider.updateProfile(context, _auth.currentUser!.uid,
+                  {'activity_level': to_Store});
+              userProvider.getUserDetails(context, _auth.currentUser!.uid);
+              Navigator.pop(context);
+            },
             child: Container(
               decoration: BoxDecoration(
                   color: Color.fromARGB(255, 15, 79, 131),
@@ -79,7 +114,7 @@ class _Activity_LevelState extends State<Activity_Level> {
                   vertical: 8.h,
                 ),
                 child: Text(
-                  'update',
+                  'Update',
                   style: TextStyle(
                       fontSize: 20.sp,
                       color: Colors.white,

@@ -1,5 +1,8 @@
+import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class Food_Preference extends StatefulWidget {
   const Food_Preference({Key? key});
@@ -23,8 +26,34 @@ class _Food_PreferenceState extends State<Food_Preference> {
     });
   }
 
+  String to_Store = '';
+  void selectedOption() {
+    if (isVegetarianSelected == true) {
+      setState(() {
+        to_Store = 'Vegetarian';
+      });
+    }
+    if (isNonVegetarianSelected == true) {
+      setState(() {
+        to_Store = 'Non-Vegetarian';
+      });
+    }
+    if (isEggetarianSelected == true) {
+      setState(() {
+        to_Store = 'Eggetarian';
+      });
+    }
+    if (isVeganSelected == true) {
+      setState(() {
+        to_Store = 'Vegan';
+      });
+    }
+  }
+
+  FirebaseAuth _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<User_Provider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -67,7 +96,13 @@ class _Food_PreferenceState extends State<Food_Preference> {
             height: 30,
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              selectedOption();
+              userProvider.updateProfile(context, _auth.currentUser!.uid,
+                  {'food_prefrencce': to_Store});
+              userProvider.getUserDetails(context, _auth.currentUser!.uid);
+              Navigator.pop(context);
+            },
             child: Container(
               decoration: BoxDecoration(
                   color: Color.fromARGB(255, 15, 79, 131),

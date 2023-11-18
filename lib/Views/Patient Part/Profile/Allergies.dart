@@ -1,7 +1,10 @@
+import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
 import 'package:doc_search/Views/Patient%20Part/Profile/Edit_User_Profile.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class Allergies extends StatefulWidget {
   const Allergies({Key? key}) : super(key: key);
@@ -13,6 +16,7 @@ class Allergies extends StatefulWidget {
 class _AllergiesState extends State<Allergies> {
   bool isNoSelected = true;
   bool isAddAllergySelected = false;
+  TextEditingController allergy = TextEditingController();
 
   void toggleSelection(bool isNo) {
     setState(() {
@@ -21,8 +25,11 @@ class _AllergiesState extends State<Allergies> {
     });
   }
 
+  FirebaseAuth _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<User_Provider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -157,6 +164,7 @@ class _AllergiesState extends State<Allergies> {
                             horizontal: 40.0.w, vertical: 15.0.h),
                         child: Container(
                           child: TextField(
+                            controller: allergy,
                             decoration: InputDecoration(
                                 hintText: 'Enter the Allergy',
                                 disabledBorder: OutlineInputBorder(
@@ -174,7 +182,20 @@ class _AllergiesState extends State<Allergies> {
                 ),
                 InkWell(
                   onTap: () {
-                    if (isNoSelected) {}
+                    if (isNoSelected) {
+                      userProvider.updateProfile(
+                          context, _auth.currentUser!.uid, {'allergies': 'No'});
+                      userProvider.getUserDetails(
+                          context, _auth.currentUser!.uid);
+                      Navigator.pop(context);
+                    }
+                    if (allergy.text.length >= 3) {
+                      userProvider.updateProfile(context,
+                          _auth.currentUser!.uid, {'allergies': allergy.text});
+                      userProvider.getUserDetails(
+                          context, _auth.currentUser!.uid);
+                      Navigator.pop(context);
+                    }
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -187,7 +208,7 @@ class _AllergiesState extends State<Allergies> {
                         vertical: 8.h,
                       ),
                       child: Text(
-                        'update',
+                        'Update',
                         style: TextStyle(
                             fontSize: 20.sp,
                             color: Colors.white,

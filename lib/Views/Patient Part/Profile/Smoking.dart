@@ -1,5 +1,8 @@
+import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class SmokingHabbit extends StatefulWidget {
   const SmokingHabbit({Key? key}) : super(key: key);
@@ -23,8 +26,34 @@ class _SmokingHabbitState extends State<SmokingHabbit> {
     });
   }
 
+  String to_Store = '';
+  void selectedOption() {
+    if (isNoSelected == true) {
+      setState(() {
+        to_Store = 'I don’t smoke';
+      });
+    }
+    if (isUsedToQuitSelected == true) {
+      setState(() {
+        to_Store = 'I used to, but I’ve quit';
+      });
+    }
+    if (is5LessPerDaySelected == true) {
+      setState(() {
+        to_Store = '5 < day';
+      });
+    }
+    if (is5MorePerDaySelected == true) {
+      setState(() {
+        to_Store = '5 > day';
+      });
+    }
+  }
+
+  FirebaseAuth _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<User_Provider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -80,7 +109,11 @@ class _SmokingHabbitState extends State<SmokingHabbit> {
           ),
           InkWell(
             onTap: () {
-              if (isNoSelected) {}
+              selectedOption();
+              userProvider.updateProfile(context, _auth.currentUser!.uid,
+                  {'smoking_habits': to_Store});
+              userProvider.getUserDetails(context, _auth.currentUser!.uid);
+              Navigator.pop(context);
             },
             child: Container(
               decoration: BoxDecoration(
@@ -93,7 +126,7 @@ class _SmokingHabbitState extends State<SmokingHabbit> {
                   vertical: 8.h,
                 ),
                 child: Text(
-                  'update',
+                  'Update',
                   style: TextStyle(
                       fontSize: 20.sp,
                       color: Colors.white,

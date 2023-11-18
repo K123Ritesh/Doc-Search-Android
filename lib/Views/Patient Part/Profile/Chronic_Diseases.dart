@@ -1,5 +1,8 @@
+import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class Chronic_Diseases extends StatefulWidget {
   const Chronic_Diseases({Key? key}) : super(key: key);
@@ -11,6 +14,7 @@ class Chronic_Diseases extends StatefulWidget {
 class _Chronic_DiseasesState extends State<Chronic_Diseases> {
   bool isNoSelected = true;
   bool isAddIllnessSelected = false;
+  TextEditingController illness = TextEditingController();
 
   void toggleSelection(bool isNo) {
     setState(() {
@@ -19,8 +23,10 @@ class _Chronic_DiseasesState extends State<Chronic_Diseases> {
     });
   }
 
+  FirebaseAuth _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<User_Provider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -157,6 +163,7 @@ class _Chronic_DiseasesState extends State<Chronic_Diseases> {
                             horizontal: 40.0.w, vertical: 15.0.h),
                         child: Container(
                           child: TextField(
+                            controller: illness,
                             decoration: InputDecoration(
                                 hintText: 'Enter the illness',
                                 disabledBorder: OutlineInputBorder(
@@ -174,7 +181,22 @@ class _Chronic_DiseasesState extends State<Chronic_Diseases> {
                 ),
                 InkWell(
                   onTap: () {
-                    if (isNoSelected) {}
+                    if (isNoSelected) {
+                      userProvider.updateProfile(context,
+                          _auth.currentUser!.uid, {'chronic_diseases': 'No'});
+                      userProvider.getUserDetails(
+                          context, _auth.currentUser!.uid);
+                      Navigator.pop(context);
+                    }
+                    if (illness.text.length >= 3) {
+                      userProvider.updateProfile(
+                          context,
+                          _auth.currentUser!.uid,
+                          {'chronic_diseases': illness.text});
+                      userProvider.getUserDetails(
+                          context, _auth.currentUser!.uid);
+                      Navigator.pop(context);
+                    }
                   },
                   child: Container(
                     decoration: BoxDecoration(

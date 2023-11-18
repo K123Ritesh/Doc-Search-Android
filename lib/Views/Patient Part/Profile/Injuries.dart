@@ -1,5 +1,8 @@
+import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class Injuries extends StatefulWidget {
   const Injuries({Key? key}) : super(key: key);
@@ -11,7 +14,7 @@ class Injuries extends StatefulWidget {
 class _InjuriesState extends State<Injuries> {
   bool isNoSelected = true;
   bool isAddInjurySelected = false;
-
+  TextEditingController injuries = TextEditingController();
   void toggleSelection(bool isNo) {
     setState(() {
       isNoSelected = isNo;
@@ -19,8 +22,10 @@ class _InjuriesState extends State<Injuries> {
     });
   }
 
+  FirebaseAuth _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<User_Provider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -157,6 +162,7 @@ class _InjuriesState extends State<Injuries> {
                             horizontal: 40.0.w, vertical: 15.0.h),
                         child: Container(
                           child: TextField(
+                            controller: injuries,
                             decoration: InputDecoration(
                                 hintText: 'Enter the Injury',
                                 disabledBorder: OutlineInputBorder(
@@ -174,7 +180,20 @@ class _InjuriesState extends State<Injuries> {
                 ),
                 InkWell(
                   onTap: () {
-                    if (isNoSelected) {}
+                    if (isNoSelected) {
+                      userProvider.updateProfile(
+                          context, _auth.currentUser!.uid, {'injuries': 'No'});
+                      userProvider.getUserDetails(
+                          context, _auth.currentUser!.uid);
+                      Navigator.pop(context);
+                    }
+                    if (injuries.text.length >= 3) {
+                      userProvider.updateProfile(context,
+                          _auth.currentUser!.uid, {'injuries': injuries.text});
+                      userProvider.getUserDetails(
+                          context, _auth.currentUser!.uid);
+                      Navigator.pop(context);
+                    }
                   },
                   child: Container(
                     decoration: BoxDecoration(

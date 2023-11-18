@@ -1,5 +1,8 @@
+import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class Pass_Medication extends StatefulWidget {
   const Pass_Medication({Key? key}) : super(key: key);
@@ -11,6 +14,7 @@ class Pass_Medication extends StatefulWidget {
 class _Pass_MedicationState extends State<Pass_Medication> {
   bool isNoSelected = true;
   bool isAddMedicationSelected = false;
+  TextEditingController past_medication = TextEditingController();
 
   void toggleSelection(bool isNo) {
     setState(() {
@@ -19,8 +23,10 @@ class _Pass_MedicationState extends State<Pass_Medication> {
     });
   }
 
+  FirebaseAuth _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<User_Provider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -157,6 +163,7 @@ class _Pass_MedicationState extends State<Pass_Medication> {
                             horizontal: 40.0.w, vertical: 15.0.h),
                         child: Container(
                           child: TextField(
+                            controller: past_medication,
                             decoration: InputDecoration(
                                 hintText: 'Enter the Past Medications',
                                 disabledBorder: OutlineInputBorder(
@@ -174,7 +181,22 @@ class _Pass_MedicationState extends State<Pass_Medication> {
                 ),
                 InkWell(
                   onTap: () {
-                    if (isNoSelected) {}
+                    if (isNoSelected) {
+                      userProvider.updateProfile(context,
+                          _auth.currentUser!.uid, {'past_medication': 'No'});
+                      userProvider.getUserDetails(
+                          context, _auth.currentUser!.uid);
+                      Navigator.pop(context);
+                    }
+                    if (past_medication.text.length >= 3) {
+                      userProvider.updateProfile(
+                          context,
+                          _auth.currentUser!.uid,
+                          {'past_medication': past_medication.text});
+                      userProvider.getUserDetails(
+                          context, _auth.currentUser!.uid);
+                      Navigator.pop(context);
+                    }
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -187,7 +209,7 @@ class _Pass_MedicationState extends State<Pass_Medication> {
                         vertical: 8.h,
                       ),
                       child: Text(
-                        'update',
+                        'Update',
                         style: TextStyle(
                             fontSize: 20.sp,
                             color: Colors.white,

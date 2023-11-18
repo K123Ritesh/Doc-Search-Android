@@ -1,5 +1,8 @@
+import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class Surgeries extends StatefulWidget {
   const Surgeries({Key? key}) : super(key: key);
@@ -12,6 +15,8 @@ class _SurgeriesState extends State<Surgeries> {
   bool isNoSelected = true;
   bool isAddSurgerySelected = false;
 
+  TextEditingController surgeries = TextEditingController();
+
   void toggleSelection(bool isNo) {
     setState(() {
       isNoSelected = isNo;
@@ -19,8 +24,11 @@ class _SurgeriesState extends State<Surgeries> {
     });
   }
 
+  FirebaseAuth _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<User_Provider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -157,6 +165,7 @@ class _SurgeriesState extends State<Surgeries> {
                             horizontal: 40.0.w, vertical: 15.0.h),
                         child: Container(
                           child: TextField(
+                            controller: surgeries,
                             decoration: InputDecoration(
                                 hintText: 'Enter the Surgery',
                                 disabledBorder: OutlineInputBorder(
@@ -174,7 +183,22 @@ class _SurgeriesState extends State<Surgeries> {
                 ),
                 InkWell(
                   onTap: () {
-                    if (isNoSelected) {}
+                    if (isNoSelected) {
+                      userProvider.updateProfile(
+                          context, _auth.currentUser!.uid, {'surgeries': 'No'});
+                      userProvider.getUserDetails(
+                          context, _auth.currentUser!.uid);
+                      Navigator.pop(context);
+                    }
+                    if (surgeries.text.length >= 3) {
+                      userProvider.updateProfile(
+                          context,
+                          _auth.currentUser!.uid,
+                          {'surgeries': surgeries.text});
+                      userProvider.getUserDetails(
+                          context, _auth.currentUser!.uid);
+                      Navigator.pop(context);
+                    }
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -187,7 +211,7 @@ class _SurgeriesState extends State<Surgeries> {
                         vertical: 8.h,
                       ),
                       child: Text(
-                        'update',
+                        'Update',
                         style: TextStyle(
                             fontSize: 20.sp,
                             color: Colors.white,

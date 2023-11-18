@@ -12,7 +12,7 @@ class Alcohol_Consumption extends StatefulWidget {
 }
 
 class _Alcohol_ConsumptionState extends State<Alcohol_Consumption> {
-  bool isNoSelected = false;
+  bool isNoSelected = true;
   bool isRareSelected = false;
   bool isSocialSelected = false;
   bool isRegularSelected = false;
@@ -128,7 +128,7 @@ class _Alcohol_ConsumptionState extends State<Alcohol_Consumption> {
                   vertical: 8.h,
                 ),
                 child: Text(
-                  'update',
+                  'Update',
                   style: TextStyle(
                       fontSize: 20.sp,
                       color: Colors.white,

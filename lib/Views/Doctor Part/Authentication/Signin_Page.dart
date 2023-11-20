@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
-import 'package:doc_search/Views/Patient%20Part/Authentication/Login_Page.dart';
+import 'package:doc_search/Views/Doctor%20Part/Authentication/Login_Page.dart';
+// import 'package:doc_search/Views/Patient%20Part/Authentication/Login_Page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
+import '../../Patient Part/Authentication/Login_Page.dart';
 import '../Home/Home_Page.dart';
 
 class Doctor_Signup_Page extends StatefulWidget {
@@ -201,8 +203,7 @@ class _Doctor_Signup_PageState extends State<Doctor_Signup_Page> {
                         onTap: () {
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      Login_Page()));
+                                  builder: (context) => Login_Page()));
                         },
                         child: Text(
                           'Register here ',
@@ -499,7 +500,7 @@ class _Doctor_Signup_PageState extends State<Doctor_Signup_Page> {
                     InkWell(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const Login_Page()));
+                            builder: (context) => const Doctor_Login_Page()));
                       },
                       child: Text(
                         ' Log in',
@@ -515,7 +516,6 @@ class _Doctor_Signup_PageState extends State<Doctor_Signup_Page> {
               SizedBox(
                 height: 28.h,
               ),
-              
             ]),
           )),
     ));

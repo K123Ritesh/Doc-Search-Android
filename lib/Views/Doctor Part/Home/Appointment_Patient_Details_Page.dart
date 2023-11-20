@@ -239,7 +239,7 @@ class _Appointment_Patient_Details_PageState
                                 style: TextStyle(fontSize: 20.sp),
                               ),
                               Text(
-                                'No',
+                                widget.user.current_medictaion ?? 'N/A',
                                 style: TextStyle(fontSize: 20.sp),
                               )
                             ],
@@ -257,7 +257,7 @@ class _Appointment_Patient_Details_PageState
                                     fontWeight: FontWeight.w400),
                               ),
                               Text(
-                                'No',
+                                widget.user.past_medication ?? 'N/A',
                                 style: TextStyle(fontSize: 20.sp),
                               )
                             ],
@@ -275,7 +275,7 @@ class _Appointment_Patient_Details_PageState
                                     fontWeight: FontWeight.w400),
                               ),
                               Text(
-                                'Diabties',
+                                widget.user.chronic_diseases ?? 'N/A',
                                 style: TextStyle(fontSize: 20.sp),
                               )
                             ],
@@ -293,7 +293,7 @@ class _Appointment_Patient_Details_PageState
                                     fontWeight: FontWeight.w400),
                               ),
                               Text(
-                                'No',
+                                widget.user.injuries ?? 'N/A',
                                 style: TextStyle(fontSize: 20.sp),
                               )
                             ],
@@ -309,7 +309,7 @@ class _Appointment_Patient_Details_PageState
                                 style: TextStyle(fontSize: 20.sp),
                               ),
                               Text(
-                                'No',
+                                widget.user.surgeries ?? 'N/A',
                                 style: TextStyle(fontSize: 20.sp),
                               )
                             ],
@@ -344,7 +344,7 @@ class _Appointment_Patient_Details_PageState
                                 style: TextStyle(fontSize: 20.sp),
                               ),
                               Text(
-                                'Yes',
+                                widget.user.smoking_habits ?? 'N/A',
                                 style: TextStyle(fontSize: 20.sp),
                               )
                             ],
@@ -362,7 +362,7 @@ class _Appointment_Patient_Details_PageState
                                     fontWeight: FontWeight.w400),
                               ),
                               Text(
-                                'No',
+                                widget.user.alcohol_consumption ?? 'N/A',
                                 style: TextStyle(fontSize: 20.sp),
                               )
                             ],
@@ -380,7 +380,7 @@ class _Appointment_Patient_Details_PageState
                                     fontWeight: FontWeight.w400),
                               ),
                               Text(
-                                'Moderate',
+                                widget.user.activity_level ?? 'N/A',
                                 style: TextStyle(fontSize: 20.sp),
                               )
                             ],
@@ -398,7 +398,7 @@ class _Appointment_Patient_Details_PageState
                                     fontWeight: FontWeight.w400),
                               ),
                               Text(
-                                'Non-veg',
+                                widget.user.food_prefrencce ?? 'N/A',
                                 style: TextStyle(fontSize: 20.sp),
                               )
                             ],

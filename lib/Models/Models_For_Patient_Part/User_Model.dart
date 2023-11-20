@@ -1,5 +1,3 @@
-import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
-
 class PatientUser {
   final String firstName;
   final String lastName;

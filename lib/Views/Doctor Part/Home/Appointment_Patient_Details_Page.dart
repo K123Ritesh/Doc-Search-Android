@@ -223,7 +223,7 @@ class _Appointment_Patient_Details_PageState
                                 style: TextStyle(fontSize: 20.sp),
                               ),
                               Text(
-                                'No',
+                                widget.user.allergies ?? 'No',
                                 style: TextStyle(fontSize: 20.sp),
                               )
                             ],

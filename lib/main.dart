@@ -32,7 +32,7 @@ void main() async {
       builder: (_, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: Doctor_Login_Page(),
+          home: SplashScreen(),
         );
       },
     ),

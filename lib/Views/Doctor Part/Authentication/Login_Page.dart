@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:pinput/pinput.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Doctor_Login_Page extends StatefulWidget {
   const Doctor_Login_Page({Key? key}) : super(key: key);
@@ -316,7 +317,6 @@ class _Doctor_Login_PageState extends State<Doctor_Login_Page> {
                   ],
                 ),
               ),
-             
             ],
           ),
         ),
@@ -486,6 +486,9 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
                                   builder: (context) => Doctor_Home_Page(
                                         docCategory: widget.docCategory,
                                       )));
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          prefs.setBool('isDoctor', true);
                         } catch (e) {
                           print('wrong OTP');
                         }

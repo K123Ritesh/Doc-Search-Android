@@ -1,6 +1,7 @@
 import 'package:doc_search/Providers/User_Part_Provider/Doctor_Provider.dart';
 import 'package:doc_search/Providers/User_Part_Provider/Medicine_Shop_Provider.dart';
 import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
+import 'package:doc_search/Views/Doctor%20Part/Home/Home_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Authentication/Login_Page.dart';
 import 'package:doc_search/Views/Patient%20Part/Home/Home_Page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'Providers/Doctor_Part_Provider/Patient_And_Appointment_Provider.dart';
 import 'firebase_options.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -62,12 +64,21 @@ class _SplashScreenState extends State<SplashScreen> {
   // Function to check login status and navigate accordingly
   void checkLoginStatus() async {
     bool isLoggedIn = await isUserLoggedIn();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool? isDoctor = await prefs.getBool('isDoctor');
+    bool isdoc = isDoctor == null ? false : isDoctor;
 
     // Delayed navigation based on login status
     Future.delayed(Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => isLoggedIn ? HomePage() : Login_Page(),
+          builder: (context) => (isLoggedIn && isdoc)
+              ? Doctor_Home_Page(
+                  docCategory: 'Dentist',
+                )
+              : (isLoggedIn && !isdoc)
+                  ? HomePage()
+                  : Login_Page(),
         ),
       );
     });

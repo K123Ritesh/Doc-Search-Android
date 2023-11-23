@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../Doctor Part/Authentication/Signin_Page.dart';
 
 class Signup_Page extends StatefulWidget {
@@ -466,8 +467,6 @@ class _Signup_PageState extends State<Signup_Page> {
                   ],
                 ),
               ),
-              
-              
             ]),
           )),
     ));
@@ -605,6 +604,8 @@ class _OTPInputState extends State<OTPInput> {
           builder: (context) => HomePage(user: user),
         ),
       );
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setBool('isDoctor', false);
     } catch (e) {
       // Handle OTP verification errors here
       print('Error verifying OTP: $e');
@@ -666,7 +667,7 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
                   InkWell(
                     onTap: () {},
                     child: Text(
-                      'Login',
+                      'Sign Up',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 23.sp,
@@ -764,6 +765,9 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
                             builder: (context) => const HomePage(),
                           ),
                         );
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        prefs.setBool('isDoctor', false);
                       } catch (e) {
                         // Handle OTP verification errors here
                         print('Error verifying OTP: $e');

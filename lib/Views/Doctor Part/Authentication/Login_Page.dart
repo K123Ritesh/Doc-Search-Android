@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:pinput/pinput.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Doctor_Login_Page extends StatefulWidget {
   const Doctor_Login_Page({Key? key}) : super(key: key);
@@ -281,8 +282,41 @@ class _Doctor_Login_PageState extends State<Doctor_Login_Page> {
                   ],
                 ),
               ),
-              
-             
+              SizedBox(
+                height: 28.h,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0.w),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: 1.5.h,
+                      width: 130.w,
+                      color: Colors.white,
+                    ),
+                    SizedBox(
+                      width: 12.w,
+                    ),
+                    Text(
+                      'or',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.w400),
+                    ),
+                    SizedBox(
+                      width: 12.w,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(right: 10.w),
+                      height: 1.5.h,
+                      width: 130.w,
+                      color: Colors.white,
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
@@ -452,6 +486,9 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
                                   builder: (context) => Doctor_Home_Page(
                                         docCategory: widget.docCategory,
                                       )));
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          prefs.setBool('isDoctor', true);
                         } catch (e) {
                           print('wrong OTP');
                         }

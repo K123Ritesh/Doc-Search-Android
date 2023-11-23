@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Signup_Page.dart';
 
@@ -163,7 +164,6 @@ class _Login_PageState extends State<Login_Page> {
                       fontWeight: FontWeight.bold),
                 ),
               ),
-            
               Container(
                 margin: EdgeInsets.only(left: 20.w, right: 20.w),
                 height: 55.h,
@@ -271,8 +271,6 @@ class _Login_PageState extends State<Login_Page> {
               SizedBox(
                 height: 28.h,
               ),
-              
-              
             ],
           ),
         ),
@@ -432,7 +430,9 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
                                   smsCode: code);
 
                           await auth.signInWithCredential(credential);
-
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          prefs.setBool('isDoctor', false);
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
                                   builder: (context) => HomePage()));

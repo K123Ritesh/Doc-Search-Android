@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../Patient Part/Authentication/Login_Page.dart';
 import '../Home/Home_Page.dart';
@@ -682,6 +683,8 @@ class _OTPInputState extends State<OTPInput> {
           ),
         ),
       );
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setBool('isDoctor', true);
     } catch (e) {
       // Handle OTP verification errors here
       print('Error verifying OTP: $e');
@@ -846,6 +849,9 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
                                 docCategory: widget.docCategory),
                           ),
                         );
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        prefs.setBool('isDoctor', true);
                       } catch (e) {
                         // Handle OTP verification errors here
                         print('Error verifying OTP: $e');

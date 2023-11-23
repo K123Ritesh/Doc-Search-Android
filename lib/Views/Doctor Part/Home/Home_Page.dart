@@ -99,7 +99,7 @@ class _Doctor_Home_PageState extends State<Doctor_Home_Page> {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 83, 130, 211),
+                      color: Color(0XFFECFAFC),
                       borderRadius: BorderRadius.circular(15)),
                   child: Padding(
                     padding: const EdgeInsets.all(3.0),
@@ -107,7 +107,7 @@ class _Doctor_Home_PageState extends State<Doctor_Home_Page> {
                       children: [
                         Icon(
                           Icons.account_balance_wallet,
-                          color: Colors.white,
+                          color: Color(0xFF005473),
                           size: 30,
                         ),
                         SizedBox(width: 8.w),
@@ -199,8 +199,8 @@ class _Doctor_Home_PageState extends State<Doctor_Home_Page> {
                             border: Border.all(color: Color(0xFF5793A8)),
                             borderRadius: BorderRadius.circular(3.r),
                           ),
-                          child: Image.network(
-                              'https://s3-alpha-sig.figma.com/img/ca83/f517/a1711ef1079e65044e1ca81a91dda52a?Expires=1699833600&Signature=nBKMa~60NKVEAdvpLtk3hG-Jt43LQy2QvN1vUr6JEkr8ao26GGNjxCQxKftYUQq9BJntb2qmoAOTYMJgnQ3pMFUU6hmaOQ5xJeo1VpYlNfun~-97BpFmeIWJYt0r-a6R8o6ruuxLNV7wiafhgXTYzhI0TWW9Lcu9~lKhz16VFx-qujYoDT9n23JAimEdfj~hoUJzr9jM0YMFzXa0hyVD4-zbml36~WiL4NDpPG~89olo7sORHuChRp1VBFiz2GcZ7oD6c~WghdtrRzQEOqiAnsjkUkYq8eExUI07jvg4ACbU2huKwgdZ9dMJnMq3FfnhBVEEuwj5pUHMTRJQOzW1SA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4')),
+                          child: Image.asset(
+                              'assets/Video Camera.png')),
                       SizedBox(
                         height: 12.h,
                       ),
@@ -224,8 +224,8 @@ class _Doctor_Home_PageState extends State<Doctor_Home_Page> {
                             border: Border.all(color: Color(0xFF5793A8)),
                             borderRadius: BorderRadius.circular(3.r),
                           ),
-                          child: Image.network(
-                              'https://s3-alpha-sig.figma.com/img/05ae/91cf/1f2bd01eb766e1b6be420ea42b641cfa?Expires=1699833600&Signature=JxvfmZVmnPIdYxfl2Xg7RyGFUcIi-jeuMkkKZpGOvWzVaKZFGh~uro2TsBlD6jSITXjoobPTexaPrAZpRLJPl~NJnUENsfYYpDPfjDgfhFUFA2HTvSNIor5bptqkG-TReNP-Du3ABFUgFS0TdODWM9UutMGn96ADci0vttdNeuZ-YRAnlrGWcN3KGJ3f88vsKdLbPfR4qHv6kiv2nJX9frNtQbnoWT0vYIvIoqdTpzDWoanr8QJeomUqwRU3E0CVxLMzWC11OXCCz4UmJ~JDmrJZV3G20x0Du8FRFBN7uFety6f5ocE2CYlzVsNZrEDMFkLZfzkYozKPi2Ffbnwh0Q__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4')),
+                          child: Image.asset(
+                              'assets/Money Bag.png')),
                     ),
                     SizedBox(
                       height: 12.h,
@@ -249,8 +249,8 @@ class _Doctor_Home_PageState extends State<Doctor_Home_Page> {
                             border: Border.all(color: Color(0xFF5793A8)),
                             borderRadius: BorderRadius.circular(3.r),
                           ),
-                          child: Image.network(
-                              'https://s3-alpha-sig.figma.com/img/ebf2/b8a0/5f5fe4a5447db00a8af20947840e8d10?Expires=1699833600&Signature=eYFPvshWH4Dsk9FnfKQtDiT2lMkBzGlAFIgMScltEytkExyU07PuXg8Y8wRSOmkQjTG~yyTmDWi98JyC1aHSr-W4H1kLc2GjtuEHMste1e7NiGNZ3TQIol71qgCe6IFyFKkP5k6bTiEFR6Swn~DRCibSgc2YJojzzvwjUHn9Cu0g1hI3n56f8wbQayuJVFaptDdkltuCJ0f66EA~RdmIUNl7n9ZFvNnoFSYMRcOimxh-LnfHjy2jMySfONQod5AkNmlIxo3FQnY7z-buWVipLfykQQ5tU9JoYO-FIgxiDJBaycObfMsUUGa8Am6xUfuMhOeEhR2koV8262e~M-viBA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4')),
+                          child: Image.asset(
+                              'assets/People.png')),
                     ),
                     SizedBox(
                       height: 12.h,
@@ -544,16 +544,9 @@ class Banner extends StatelessWidget {
                               fontSize: 12.sp,
                               fontWeight: FontWeight.bold),
                         ),
+                        
                         TextSpan(
-                          text: '\nbest ',
-                          style: TextStyle(
-                              color:
-                                  isfirst == true ? Colors.black : Colors.white,
-                              fontSize: 12.sp,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        TextSpan(
-                          text: 'health',
+                          text: '\nhealth',
                           style: TextStyle(
                               color: Color(0xFF5793A8),
                               fontSize: 12.sp,

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "531097828971-fkbmd4vo74tblkob2m595chp5mgpgbmd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.boss.doc_search",
+            "certificate_hash": "834114a6f5d73a1e5493949f5a364537f94df1e5"
+          }
+        },
+        {
           "client_id": "531097828971-gejkr8krdu1pplc3cjlb6dgooftcvkr0.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -254,6 +262,42 @@
             "certificate_hash": "9137d2dd8b0973e3a34561655051a9b125a74765"
           }
         },
+        {
+          "client_id": "531097828971-gejkr8krdu1pplc3cjlb6dgooftcvkr0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQGYerO5IAHh_dx76SA9EvhCX7F1Iy5b8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "531097828971-gejkr8krdu1pplc3cjlb6dgooftcvkr0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "531097828971-6d12o07ltmblajmbqbefgqr0u3efgfjr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.docSearchForDoctor.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:531097828971:android:734c9f7a4557c96a0a3b2e",
+        "android_client_info": {
+          "package_name": "com.terbaser.doc_search"
+        }
+      },
+      "oauth_client": [
         {
           "client_id": "531097828971-gejkr8krdu1pplc3cjlb6dgooftcvkr0.apps.googleusercontent.com",
           "client_type": 3

@@ -281,41 +281,7 @@ class _Doctor_Login_PageState extends State<Doctor_Login_Page> {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 28.h,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.0.w),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      height: 1.5.h,
-                      width: 130.w,
-                      color: Colors.white,
-                    ),
-                    SizedBox(
-                      width: 12.w,
-                    ),
-                    Text(
-                      'or',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.w400),
-                    ),
-                    SizedBox(
-                      width: 12.w,
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(right: 10.w),
-                      height: 1.5.h,
-                      width: 130.w,
-                      color: Colors.white,
-                    ),
-                  ],
-                ),
-              ),
+              
              
             ],
           ),

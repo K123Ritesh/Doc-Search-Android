@@ -1,3 +1,4 @@
+import 'package:doc_search/Config/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -35,8 +36,8 @@ class _RowDataState extends State<RowData> {
         Row(
           children: [
             Container(
-              width: 114,
-              height: 24,
+              width: 114.fw,
+              height: 24.fh,
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.white),
                 borderRadius: BorderRadius.circular(10),
@@ -63,7 +64,7 @@ class _RowDataState extends State<RowData> {
                           DateFormat('hh:mm a').format(DateTime(0, 1, 1, hour)),
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 16,
+                            fontSize: 16.fh,
                             color: selectedTime1 ==
                                     DateFormat('HH:mm')
                                         .format(DateTime(0, 1, 1, hour))
@@ -78,18 +79,18 @@ class _RowDataState extends State<RowData> {
               ),
             ),
             SizedBox(
-              width: 40,
+              width: 20.fw,
             ),
             Text(
               'to',
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 18.fh,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
             ),
             SizedBox(
-              width: 30,
+              width: 20.fh,
             ),
           ],
         ),
@@ -97,8 +98,8 @@ class _RowDataState extends State<RowData> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              width: 114,
-              height: 24,
+              width: 114.fw,
+              height: 24.fh,
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.white),
                 borderRadius: BorderRadius.circular(10),
@@ -127,7 +128,7 @@ class _RowDataState extends State<RowData> {
                           ),
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 16,
+                            fontSize: 16.fh,
                             color: selectedTime2 ==
                                     DateFormat('HH:mm')
                                         .format(DateTime(0, 1, 1, hour))
@@ -142,13 +143,13 @@ class _RowDataState extends State<RowData> {
               ),
             ),
             SizedBox(
-              width: 30,
+              width: 10.fw,
             ),
             GestureDetector(
               onTap: widget.onDelete,
               child: Icon(
                 Icons.delete,
-                size: 25,
+                size: 25.fh,
                 color: Colors.white,
               ),
             ),
@@ -187,14 +188,13 @@ class _Set_Time_DateState extends State<Set_Time_Date> {
   String currentDay = '';
 
   void updateCurrentDay() {
-  if (selectedOptions.isNotEmpty) {
-    currentDay = DateFormat('EEEE').format(DateTime.now());
-  } else if (selectedOption >= 0 && selectedOption < options.length) {
-    final day = int.parse(options[selectedOption]);
-    currentDay = getDayOfWeek(day);
+    if (selectedOptions.isNotEmpty) {
+      currentDay = DateFormat('EEEE').format(DateTime.now());
+    } else if (selectedOption >= 0 && selectedOption < options.length) {
+      final day = int.parse(options[selectedOption]);
+      currentDay = getDayOfWeek(day);
+    }
   }
-}
-
 
   List<RowData> rowsData = [];
 
@@ -227,6 +227,7 @@ class _Set_Time_DateState extends State<Set_Time_Date> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       backgroundColor: const Color(0xFF1B6A85),
       appBar: AppBar(
@@ -346,7 +347,7 @@ class _Set_Time_DateState extends State<Set_Time_Date> {
                     onTap: () {
                       setState(() {
                         selectedOption = index;
-                        updateCurrentDay(); 
+                        updateCurrentDay();
                       });
                     },
                     child: Container(
@@ -411,8 +412,8 @@ class _Set_Time_DateState extends State<Set_Time_Date> {
                 Row(
                   children: [
                     Container(
-                      width: 114,
-                      height: 24,
+                      width: 114.fw,
+                      height: 24.fh,
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.white),
                         borderRadius: BorderRadius.circular(10),
@@ -440,7 +441,7 @@ class _Set_Time_DateState extends State<Set_Time_Date> {
                                       .format(DateTime(0, 1, 1, hour)),
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 16,
+                                    fontSize: 16.fh,
                                     color: selectedTime1 ==
                                             DateFormat('HH:mm')
                                                 .format(DateTime(0, 1, 1, hour))
@@ -455,18 +456,18 @@ class _Set_Time_DateState extends State<Set_Time_Date> {
                       ),
                     ),
                     SizedBox(
-                      width: 40,
+                      width: 20.fw,
                     ),
                     Text(
                       'to',
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 18.fh,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
                     ),
                     SizedBox(
-                      width: 30,
+                      width: 20.fh,
                     ),
                   ],
                 ),
@@ -474,8 +475,8 @@ class _Set_Time_DateState extends State<Set_Time_Date> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      width: 114,
-                      height: 24,
+                      width: 114.fw,
+                      height: 24.fh,
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.white),
                         borderRadius: BorderRadius.circular(10),
@@ -504,7 +505,7 @@ class _Set_Time_DateState extends State<Set_Time_Date> {
                                   ),
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 16,
+                                    fontSize: 16.fh,
                                     color: selectedTime2 ==
                                             DateFormat('HH:mm')
                                                 .format(DateTime(0, 1, 1, hour))
@@ -519,13 +520,13 @@ class _Set_Time_DateState extends State<Set_Time_Date> {
                       ),
                     ),
                     SizedBox(
-                      width: 30,
+                      width: 10.fw,
                     ),
                     GestureDetector(
                       onTap: () {},
                       child: Icon(
                         Icons.delete,
-                        size: 25,
+                        size: 25.fh,
                         color: Colors.white,
                       ),
                     ),
@@ -534,10 +535,10 @@ class _Set_Time_DateState extends State<Set_Time_Date> {
               ],
             ),
             SizedBox(
-              height: 20,
+              height: 20.fh,
             ),
             Container(
-              height: 100,
+              height: 100.fh,
               child: Expanded(
                 child: ListView.builder(
                   itemCount: rowsData.length,
@@ -545,7 +546,7 @@ class _Set_Time_DateState extends State<Set_Time_Date> {
                     return Column(
                       children: [
                         rowsData[index],
-                        SizedBox(height: 20),
+                        SizedBox(height: 20.fh),
                       ],
                     );
                   },
@@ -553,7 +554,7 @@ class _Set_Time_DateState extends State<Set_Time_Date> {
               ),
             ),
             SizedBox(
-              height: 20,
+              height: 20.fh,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -565,7 +566,7 @@ class _Set_Time_DateState extends State<Set_Time_Date> {
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     textStyle: TextStyle(
-                      fontSize: 16,
+                      fontSize: 16.fh,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -573,7 +574,7 @@ class _Set_Time_DateState extends State<Set_Time_Date> {
                     'Add',
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: 16,
+                      fontSize: 16.fh,
                       fontWeight: FontWeight.w600,
                     ),
                   ),

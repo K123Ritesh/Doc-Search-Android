@@ -68,6 +68,26 @@ class _Doctors_Category_WiseDetailsState
     return dayFormat.format(date);
   }
 
+  DateTime selectedDate = DateTime.now();
+  List<String> filterSlots(List<String> slots) {
+    DateTime currentTime = DateTime.now();
+    String currentFormattedTime =
+        '${currentTime.hour > 12 ? currentTime.hour - 12 : currentTime.hour}:${currentTime.minute} ${currentTime.hour < 12 ? 'AM' : 'PM'}';
+    print(currentFormattedTime);
+    return slots.where((slot) {
+      // Convert slot time to DateTime for comparison
+      String slotTime = slot.split(' ')[0];
+      String slotPeriod = slot.split(' ')[1];
+      DateTime slotDateTime = DateTime.parse('1970-01-01 $slotTime');
+      String formattedSlotTime =
+          '${slotDateTime.hour}:${slotDateTime.minute} $slotPeriod';
+
+      // Compare slot time with current time
+      return slotPeriod == currentFormattedTime.split(' ')[1] &&
+          formattedSlotTime.compareTo(currentFormattedTime) >= 0;
+    }).toList();
+  }
+
   DateTime now = DateTime.now();
   List<String> morningSlots = [
     '10:00 AM',
@@ -89,9 +109,12 @@ class _Doctors_Category_WiseDetailsState
     '05:30 PM',
     '06:00 PM',
     '06:30 PM',
-    '07:00 PM'
+    '07:00 PM',
+    '07:30 PM'
   ];
-  DateTime selectedDate = DateTime.now();
+
+  List<String> morningSlot1 = [];
+  List<String> eveningSlot1 = [];
   String dateSelected = '';
 
   Future<void> _selectDate(BuildContext context) async {
@@ -112,9 +135,52 @@ class _Doctors_Category_WiseDetailsState
     } else {
       setState(() {
         dateSelected =
-            '${selectedDate.day.toString()}/${selectedDate.month.toString()}/${selectedDate.year.toString()}';
+            '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}';
       });
     }
+
+    if (dateSelected ==
+        '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}') {
+      setState(() {
+        morningSlots = filterSlots(morningSlots);
+      });
+    } else {
+      setState(() {
+        morningSlots = morningSlot1;
+      });
+    }
+
+    if (dateSelected ==
+        '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}') {
+      setState(() {
+        eveningSlots = filterSlots(eveningSlots);
+      });
+    } else {
+      setState(() {
+        eveningSlots = eveningSlot1;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    eveningSlot1 = eveningSlots;
+    morningSlot1 = morningSlots;
+    dateSelected =
+        '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}';
+    if (dateSelected ==
+        '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}') {
+      setState(() {
+        morningSlots = filterSlots(morningSlots);
+      });
+    }
+    if (dateSelected ==
+        '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}') {
+      setState(() {
+        eveningSlots = filterSlots(eveningSlots);
+      });
+    }
+    super.initState();
   }
 
   @override
@@ -482,7 +548,10 @@ class _Doctors_Category_WiseDetailsState
                         TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600),
                   ),
                   Text(
-                    dateSelected != '' ? ' $dateSelected' : 'Today',
+                    dateSelected ==
+                            '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}'
+                        ? 'Today'
+                        : ' $dateSelected',
                     style: TextStyle(
                         fontSize: 19.sp,
                         fontWeight: FontWeight.w800,
@@ -512,8 +581,8 @@ class _Doctors_Category_WiseDetailsState
                 'Morning',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
-              const Text(
-                ' (9 Slots)',
+              Text(
+                ' (${morningSlots.length} Slots)',
                 style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w800,
@@ -561,7 +630,7 @@ class _Doctors_Category_WiseDetailsState
           ),
           Container(
             margin: const EdgeInsets.only(top: 10),
-            child: const Row(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(
@@ -571,8 +640,8 @@ class _Doctors_Category_WiseDetailsState
                   'Evening',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                 ),
-                const Text(
-                  ' (9 Slots)',
+                Text(
+                  ' (${eveningSlots.length} Slots)',
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w800,

@@ -15,7 +15,6 @@ class _Family_Tree_PageState extends State<Family_Tree_Page> {
   List<Map<String, dynamic>> familyList = [{}];
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     familyList =
         Provider.of<User_Provider>(context, listen: false).familymemberList;

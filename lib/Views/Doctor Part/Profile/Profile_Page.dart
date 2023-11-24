@@ -11,7 +11,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import '../../../Doctor_bottomBar.dart';
-import '../../Patient Part/Profile/Edit_User_Profile.dart';
 import 'Appointments.dart';
 import 'Community.dart';
 import 'Doctor_MedicalRecords.dart';
@@ -168,8 +167,7 @@ class Doctor_Profile_Page extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  Set_Time_Date()));
+                              builder: (context) => Set_Time_Date()));
                         },
                         child: ListTile(
                           title: Text(

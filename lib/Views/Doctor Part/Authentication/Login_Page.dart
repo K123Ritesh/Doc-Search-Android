@@ -22,12 +22,10 @@ class _Doctor_Login_PageState extends State<Doctor_Login_Page> {
 
   @override
   void initState() {
-    // TODO: implement initState
     countryController.text = "+91";
     super.initState();
   }
 
-  final _formKey = GlobalKey<FormState>();
   String docCategory = '';
 
   Future<bool> isPhoneNumberInUsersCollection(String phoneNumber) async {
@@ -231,7 +229,7 @@ class _Doctor_Login_PageState extends State<Doctor_Login_Page> {
                   height: 38.h,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0XFF005473),
+                      backgroundColor: Color(0XFF005473),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.r),
                       ),
@@ -354,30 +352,30 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
   var code = '';
   @override
   Widget build(BuildContext context) {
-    // final userProvider = Provider.of<User_Provider>(context);
-    final defaultPinTheme = PinTheme(
-      width: 56.w,
-      height: 56.h,
-      textStyle: TextStyle(
-          fontSize: 20.sp,
-          color: Color.fromRGBO(30, 60, 87, 1),
-          fontWeight: FontWeight.w600),
-      decoration: BoxDecoration(
-        border: Border.all(color: const Color.fromRGBO(234, 239, 243, 1)),
-        borderRadius: BorderRadius.circular(20.r),
-      ),
-    );
+    // // final userProvider = Provider.of<User_Provider>(context);
+    // final defaultPinTheme = PinTheme(
+    //   width: 56.w,
+    //   height: 56.h,
+    //   textStyle: TextStyle(
+    //       fontSize: 20.sp,
+    //       color: Color.fromRGBO(30, 60, 87, 1),
+    //       fontWeight: FontWeight.w600),
+    //   decoration: BoxDecoration(
+    //     border: Border.all(color: const Color.fromRGBO(234, 239, 243, 1)),
+    //     borderRadius: BorderRadius.circular(20.r),
+    //   ),
+    // );
 
-    final focusedPinTheme = defaultPinTheme.copyDecorationWith(
-      border: Border.all(color: const Color.fromRGBO(114, 178, 238, 1)),
-      borderRadius: BorderRadius.circular(8.r),
-    );
+    // final focusedPinTheme = defaultPinTheme.copyDecorationWith(
+    //   border: Border.all(color: const Color.fromRGBO(114, 178, 238, 1)),
+    //   borderRadius: BorderRadius.circular(8.r),
+    // );
 
-    final submittedPinTheme = defaultPinTheme.copyWith(
-      decoration: defaultPinTheme.decoration?.copyWith(
-        color: const Color.fromRGBO(234, 239, 243, 1),
-      ),
-    );
+    // final submittedPinTheme = defaultPinTheme.copyWith(
+    //   decoration: defaultPinTheme.decoration?.copyWith(
+    //     color: const Color.fromRGBO(234, 239, 243, 1),
+    //   ),
+    // );
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -469,7 +467,7 @@ class _OTP_Entering_PageState extends State<OTP_Entering_Page> {
                   height: 36.h,
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          primary: Color(0xFF005473),
+                          backgroundColor: Color(0xFF005473),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.r))),
                       onPressed: () async {

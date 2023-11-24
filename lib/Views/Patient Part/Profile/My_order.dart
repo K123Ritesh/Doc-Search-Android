@@ -179,7 +179,8 @@ class _My_OrderState extends State<My_Order> {
                             Column(
                               children: [
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Container(
                                       width: 53.fw,
@@ -221,7 +222,8 @@ class _My_OrderState extends State<My_Order> {
                                   height: 20.fh,
                                 ),
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Icon(Icons.circle,
                                         size: 9.fh, color: Colors.green),
@@ -241,7 +243,6 @@ class _My_OrderState extends State<My_Order> {
                                     color: Color(0xFF155467),
                                   ),
                                 ),
-                                
                               ],
                             )
                           ],
@@ -250,37 +251,37 @@ class _My_OrderState extends State<My_Order> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             ElevatedButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const Prescription_Upload_Page(
-                                                shopId: 'rit11@gmail.com',
-                                              )),
-                                    );
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    primary: Color(0xFF1A6A83),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5),
-                                    ),
-                                  ),
-                                  child: Container(
-                                    height: 24,
-                                    // width: 99,
-                                    child: Center(
-                                      child: Text(
-                                        'Reorder Now',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 11,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const Prescription_Upload_Page(
+                                            shopId: 'rit11@gmail.com',
+                                          )),
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Color(0xFF1A6A83),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                              ),
+                              child: Container(
+                                height: 24,
+                                // width: 99,
+                                child: Center(
+                                  child: Text(
+                                    'Reorder Now',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.w500,
                                     ),
                                   ),
                                 ),
+                              ),
+                            ),
                           ],
                         ),
                       ],

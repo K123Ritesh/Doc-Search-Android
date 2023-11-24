@@ -36,7 +36,7 @@ class _Doctors_Category_WiseDetailsState
     );
   }
 
-  int selectedOption2 = -1;
+  int selectedOption2 = 0;
   void toggleSelection(int index) {
     setState(() {
       if (selectedOption2 == index) {
@@ -69,29 +69,50 @@ class _Doctors_Category_WiseDetailsState
   }
 
   DateTime now = DateTime.now();
-  List<String> options2 = ['04:00 PM', '05:20 PM', '05:40 PM'];
-  List<String> options3 = [
-    '06:00 PM',
-    '06:20 PM',
-    '06:20 PM',
+  List<String> morningSlots = [
+    '10:00 AM',
+    '10:30 AM',
+    '11:00 AM',
+    '11:30 AM',
+    '12:00 PM',
+    '12:30 PM',
+    '01:00 PM',
+    '01:30 PM',
+    '02:00 PM'
+  ];
+  List<String> eveningSlots = [
+    '03:00 PM',
+    '03:30 PM',
     '04:00 PM',
-    '05:20 PM',
-    '05:40 PM',
-    '05.50 PM'
+    '04:30 PM',
+    '05:00 PM',
+    '05:30 PM',
+    '06:00 PM',
+    '06:30 PM',
+    '07:00 PM'
   ];
   DateTime selectedDate = DateTime.now();
+  String dateSelected = '';
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: selectedDate,
       firstDate: DateTime.now(), // Disable past dates
-      lastDate: DateTime(2101), // Set a reasonable upper limit for the future
+      lastDate: DateTime.now().add(
+          Duration(days: 30)), // Set a reasonable upper limit for the future
     );
 
     if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
+        dateSelected =
+            '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}';
+      });
+    } else {
+      setState(() {
+        dateSelected =
+            '${selectedDate.day.toString()}/${selectedDate.month.toString()}/${selectedDate.year.toString()}';
       });
     }
   }
@@ -276,148 +297,210 @@ class _Doctors_Category_WiseDetailsState
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                height: 26,
-                width: 190,
+                // height: 26,
+                // width: 190,
                 margin: const EdgeInsets.only(top: 15, left: 20),
                 decoration: BoxDecoration(
                   color: const Color(0xFF1A6A83),
                   borderRadius: BorderRadius.circular(5),
                 ),
                 child: Center(
-                    child: Text(
-                  'Clinic Appointment Fee ${widget.doctor.reg_fee}rs',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white,
+                    child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 8.0, vertical: 4.0),
+                  child: Text(
+                    'Appointment Fee - ${widget.doctor.reg_fee}₹ ',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white,
+                    ),
                   ),
                 )),
               ),
               InkWell(
-                onTap: () {
-                  _selectDate(context);
-                },
                 child: Container(
-                  height: 26,
-                  width: 87,
-                  margin: const EdgeInsets.only(top: 15, right: 20),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF1A6A83),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Icon(
-                        Icons.calendar_month,
-                        size: 16,
-                        color: Colors.white,
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Center(
-                          child: Text(
-                        'Calender',
+                    // height: 26,
+                    // width: 87,
+                    margin: const EdgeInsets.only(top: 15, right: 20),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF1A6A83),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8.0, vertical: 4.0),
+                      child: Text(
+                        'View Doctor Profile',
                         style: TextStyle(
                           fontSize: 14,
                           color: Colors.white,
                         ),
-                      )),
-                    ],
-                  ),
-                ),
+                      ),
+                    )),
               ),
             ],
           ),
           Container(
-            margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
+            margin: const EdgeInsets.only(top: 10),
             child: const Divider(
               thickness: 1.0,
               color: Colors.grey,
             ),
           ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Container(
-              margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: List.generate(options.length, (index) {
-                  final day = int.parse(options[index]);
-                  final dayOfWeek = getDayOfWeek(day);
-                  return InkWell(
-                    onTap: () {
-                      setState(() {
-                        selectedOption = index;
-                        // DoctorProvider.knowAvailableSlots(
-                        //     context,
-                        //     'khn@gmail.com',
-                        //     '${selectedOption + 1}/${now.month}/${now.year}',
-                        //     options2);
-                        // options2 = DoctorProvider.availableSlots == null
-                        //     ? options2
-                        //     : DoctorProvider.availableSlots!;
-                        // DoctorProvider.availableSlots!.clear();
-                        // DoctorProvider.knowAvailableSlots(
-                        //     context,
-                        //     'khn@gmail.com',
-                        //     '${selectedOption + 1}/${now.month}/${now.year}',
-                        //     options3);
-                        // options3 = DoctorProvider.availableSlots == null
-                        //     ? options3
-                        //     : DoctorProvider.availableSlots!;
-                      });
-                    },
-                    child: Container(
-                      width: 76,
-                      height: 61,
-                      margin: const EdgeInsets.only(right: 10),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: const Color(0xFF155467),
-                        ),
-                        color: selectedOption == index
-                            ? const Color(0xFF155467)
-                            : Colors.white,
-                      ),
-                      alignment: Alignment.center,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+          // SizedBox(
+          //   height: 20,
+          // ),
+          // SingleChildScrollView(
+          //   scrollDirection: Axis.horizontal,
+          //   child: Container(
+          //     margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
+          //     child: Row(
+          //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //       children: List.generate(options.length, (index) {
+          //         final day = int.parse(options[index]);
+          //         final dayOfWeek = getDayOfWeek(day);
+          //         return InkWell(
+          //           onTap: () {
+          //             setState(() {
+          //               selectedOption = index;
+          //               // DoctorProvider.knowAvailableSlots(
+          //               //     context,
+          //               //     'khn@gmail.com',
+          //               //     '${selectedOption + 1}/${now.month}/${now.year}',
+          //               //     morningSlots);
+          //               // morningSlots = DoctorProvider.availableSlots == null
+          //               //     ? morningSlots
+          //               //     : DoctorProvider.availableSlots!;
+          //               // DoctorProvider.availableSlots!.clear();
+          //               // DoctorProvider.knowAvailableSlots(
+          //               //     context,
+          //               //     'khn@gmail.com',
+          //               //     '${selectedOption + 1}/${now.month}/${now.year}',
+          //               //     eveningSlots);
+          //               // eveningSlots = DoctorProvider.availableSlots == null
+          //               //     ? eveningSlots
+          //               //     : DoctorProvider.availableSlots!;
+          //             });
+          //           },
+          //           child: Container(
+          //             width: 76,
+          //             height: 61,
+          //             margin: const EdgeInsets.only(right: 10),
+          //             decoration: BoxDecoration(
+          //               borderRadius: BorderRadius.circular(12),
+          //               border: Border.all(
+          //                 color: const Color(0xFF155467),
+          //               ),
+          //               color: selectedOption == index
+          //                   ? const Color(0xFF155467)
+          //                   : Colors.white,
+          //             ),
+          //             alignment: Alignment.center,
+          //             child: Column(
+          //               mainAxisAlignment: MainAxisAlignment.center,
+          //               children: [
+          //                 Text(
+          //                   dayOfWeek,
+          //                   style: TextStyle(
+          //                       color: selectedOption == index
+          //                           ? Colors.white
+          //                           : const Color(0xFF155467),
+          //                       fontWeight: FontWeight.w500,
+          //                       fontSize: 10),
+          //                 ),
+          //                 Text(
+          //                   options[index],
+          //                   style: TextStyle(
+          //                       color: selectedOption == index
+          //                           ? Colors.white
+          //                           : const Color(0xFF155467),
+          //                       fontWeight: FontWeight.w500,
+          //                       fontSize: 20),
+          //                 ),
+          //               ],
+          //             ),
+          //           ),
+          //         );
+          //       }),
+          //     ),
+          //   ),
+          // ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 18.0.w),
+            child: InkWell(
+              onTap: () {
+                _selectDate(context);
+              },
+              child: Container(
+                  child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                        color: const Color(0xFF1A6A83),
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10.0, vertical: 5.0),
+                      child: Row(
                         children: [
-                          Text(
-                            dayOfWeek,
-                            style: TextStyle(
-                                color: selectedOption == index
-                                    ? Colors.white
-                                    : const Color(0xFF155467),
-                                fontWeight: FontWeight.w500,
-                                fontSize: 10),
+                          Icon(
+                            Icons.calendar_month,
+                            color: Colors.white,
+                          ),
+                          SizedBox(
+                            width: 8,
                           ),
                           Text(
-                            options[index],
+                            'Select Date',
                             style: TextStyle(
-                                color: selectedOption == index
-                                    ? Colors.white
-                                    : const Color(0xFF155467),
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20),
+                                fontSize: 17,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.white),
                           ),
                         ],
                       ),
                     ),
-                  );
-                }),
+                  )
+                ],
+              )),
+            ),
+          ),
+
+          SizedBox(
+            height: 10.h,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 25.0),
+            child: Container(
+              child: Row(
+                children: [
+                  Text(
+                    'Available Slots for ',
+                    style:
+                        TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600),
+                  ),
+                  Text(
+                    dateSelected != '' ? ' $dateSelected' : 'Today',
+                    style: TextStyle(
+                        fontSize: 19.sp,
+                        fontWeight: FontWeight.w800,
+                        color: Colors.red),
+                  )
+                ],
               ),
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
+            // margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
             child: const Divider(
-              thickness: 1.0,
+              thickness: 0.3,
               color: Colors.grey,
             ),
+          ),
+          SizedBox(
+            height: 10,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -426,44 +509,45 @@ class _Doctors_Category_WiseDetailsState
                 width: 25,
               ),
               const Text(
-                'Afternoon',
+                'Morning',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
               const Text(
-                ' (3 Slots)',
+                ' (9 Slots)',
                 style: TextStyle(
                     fontSize: 16,
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.w800,
                     color: Color(0XFF3FA536)),
               )
             ],
           ),
           Container(
             margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: List.generate(options2.length, (index) {
+            child: Wrap(
+              spacing: 20.w,
+              runSpacing: 8.h,
+              children: List.generate(morningSlots.length, (index) {
                 return InkWell(
                   onTap: () {
                     setState(() {
                       toggleSelection(index);
+                      selectedOption3 = -1;
                     });
                   },
                   child: Container(
-                    width: 101,
+                    width:
+                        100, // Adjust the width to fit three items in one row
                     height: 36,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                        color: const Color(0xFF155467),
-                      ),
+                      border: Border.all(color: const Color(0xFF155467)),
                       color: selectedOption2 == index
                           ? const Color(0xFF155467)
                           : Colors.white,
                     ),
                     alignment: Alignment.center,
                     child: Text(
-                      options2[index],
+                      morningSlots[index],
                       style: TextStyle(
                           color: selectedOption2 == index
                               ? Colors.white
@@ -488,10 +572,10 @@ class _Doctors_Category_WiseDetailsState
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                 ),
                 const Text(
-                  ' (3 Slots)',
+                  ' (9 Slots)',
                   style: TextStyle(
                       fontSize: 16,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w800,
                       color: Color(0XFF3FA536)),
                 )
               ],
@@ -500,13 +584,14 @@ class _Doctors_Category_WiseDetailsState
           Container(
             margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
             child: Wrap(
-              spacing: 35,
-              runSpacing: 8,
-              children: List.generate(options3.length, (index) {
+              spacing: 20.w,
+              runSpacing: 8.h,
+              children: List.generate(eveningSlots.length, (index) {
                 return InkWell(
                   onTap: () {
                     setState(() {
                       toggleSelection2(index);
+                      selectedOption2 = -1;
                     });
                   },
                   child: Container(
@@ -522,7 +607,7 @@ class _Doctors_Category_WiseDetailsState
                     ),
                     alignment: Alignment.center,
                     child: Text(
-                      options3[index],
+                      eveningSlots[index],
                       style: TextStyle(
                           color: selectedOption3 == index
                               ? Colors.white
@@ -537,64 +622,65 @@ class _Doctors_Category_WiseDetailsState
           Container(
             margin: EdgeInsets.only(left: 20, right: 20, top: 20),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Container(
-                  height: 26,
-                  width: 96,
+                  // height: 26,
+                  // width: 96,
                   // margin: EdgeInsets.only(top: 8),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      if (selectedOption2 == -1 && selectedOption3 == -1) {
-                        print('Select the slot first');
+                  child: Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 10.0.w, vertical: 5.h),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (selectedOption2 == -1 && selectedOption3 == -1) {
+                          print('Select the Slot first');
 
-                        showToastMessage('Please Select the slot ');
-                      } else if (selectedOption2 != -1 &&
-                          selectedOption3 != -1) {
-                        showToastMessage(
-                            'You can select only one slot at a time');
-                        print('You can select only one slot at a time');
-                      } else if (selectedOption2 != -1) {
-                        late String day;
-                        if (selectedOption < 9) {
-                          day = '0${selectedOption + 1}';
+                          showToastMessage('Please Select the Slot ');
+                        } else if (selectedOption2 != -1 ||
+                            selectedOption3 != -1) {
+                          String Slot = selectedOption2 != -1
+                              ? '${morningSlots[selectedOption2]}'
+                              : '${eveningSlots[selectedOption3]}';
+                          print(Slot);
+                          print(dateSelected);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Doctor_Category_Wise_Final(
+                                    doctor: widget.doctor,
+                                    slot: selectedOption2 != -1
+                                        ? '${morningSlots[selectedOption2]}'
+                                        : '${eveningSlots[selectedOption3]}',
+                                    doc_Category: widget.doc_category,
+                                    date: dateSelected)),
+                          );
                         } else {
-                          day = '${selectedOption + 1}';
+                          showToastMessage('Something went Wrong');
                         }
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Doctor_Category_Wise_Final(
-                                  doctor: widget.doctor,
-                                  slot: '${options2[selectedOption2]}',
-                                  doc_Category: widget.doc_category,
-                                  date: '$day/${now.month}/${now.year}')),
-                        );
-                      } else if (selectedOption3 != -1) {
-                        late String day;
-                        if (selectedOption < 9) {
-                          day = '0${selectedOption + 1}';
-                        } else {
-                          day = '${selectedOption + 1}';
-                        }
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Doctor_Category_Wise_Final(
-                                  doctor: widget.doctor,
-                                  doc_Category: widget.doc_category,
-                                  slot: '${options2[selectedOption3]}',
-                                  date: '$day/${now.month}/${now.year}')),
-                        );
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      primary: Color(0xFF1A6A83),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFF1A6A83),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          Text(
+                            'Book now',
+                            style: TextStyle(fontSize: 18.sp),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            size: 18,
+                          )
+                        ],
                       ),
                     ),
-                    child: Text('Book now'),
                   ),
                 ),
                 Column(
@@ -604,8 +690,8 @@ class _Doctors_Category_WiseDetailsState
                         final phoneNumber = "+918809149036";
                         final url = "tel:$phoneNumber";
 
-                        if (await canLaunch(url)) {
-                          await launch(url);
+                        if (await canLaunchUrl(Uri.parse(url))) {
+                          await launchUrl(Uri.parse(url));
                         } else {
                           print("Could not launch $url");
                         }

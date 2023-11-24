@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doc_search/Providers/User_Part_Provider/User_Provider.dart';
 import 'package:doc_search/Views/Doctor%20Part/Authentication/Login_Page.dart';
+import 'package:doc_search/Views/Patient%20Part/Authentication/Signup_Page.dart';
 // import 'package:doc_search/Views/Patient%20Part/Authentication/Login_Page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -204,7 +205,7 @@ class _Doctor_Signup_PageState extends State<Doctor_Signup_Page> {
                         onTap: () {
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                  builder: (context) => Login_Page()));
+                                  builder: (context) => Signup_Page()));
                         },
                         child: Text(
                           'Register here ',

@@ -8,10 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'Views/Patient Part/Appointment/PastApointment.dart';
-import 'Views/Patient Part/Profile/Appointments_Page.dart';
 
 class Bottombar extends StatefulWidget {
-  @override
   final int SelectedIndex;
 
   const Bottombar({super.key, required this.SelectedIndex});
@@ -92,10 +90,9 @@ class _BottombarState extends State<Bottombar> {
           BoxShadow(
             color: Color(0XFF005473),
             blurRadius: 5.0,
-            offset: Offset(-1,-1),
+            offset: Offset(-1, -1),
           ),
         ],
-        
       ),
       child: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,

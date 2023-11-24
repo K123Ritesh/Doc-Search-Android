@@ -1,10 +1,6 @@
 import 'package:doc_search/Config/sizeConfig.dart';
 import 'package:flutter/material.dart';
 
-import '../../../Bottom_Bar.dart';
-import '../../../Config/sizeConfig.dart';
-import 'Home_Page.dart';
-
 class Doctor_Wallet_Page extends StatefulWidget {
   const Doctor_Wallet_Page({Key? key}) : super(key: key);
 

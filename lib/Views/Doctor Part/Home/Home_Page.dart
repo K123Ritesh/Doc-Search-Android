@@ -1,5 +1,4 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:doc_search/Config/sizeConfig.dart';
 import 'package:doc_search/Providers/Doctor_Part_Provider/Patient_And_Appointment_Provider.dart';
 import 'package:doc_search/Views/Doctor%20Part/Home/Doctor_Wallet_Page.dart';
 import 'package:doc_search/Views/Doctor%20Part/Profile/Appointments.dart';
@@ -359,7 +358,7 @@ class AppointmentId_Searched extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final myDetails = Provider.of<Patient_And_Appointment_Provider>(context);
+    //final myDetails = Provider.of<Patient_And_Appointment_Provider>(context);
 
     // return
     return Padding(

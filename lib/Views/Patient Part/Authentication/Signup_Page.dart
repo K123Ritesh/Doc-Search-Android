@@ -93,7 +93,7 @@ class _Signup_PageState extends State<Signup_Page> {
         'landmark': ' ',
         'pincode': ' ',
         'profession': ' ',
-        'gender': ' ',
+        'gender': 'zero',
         'profile_pic': ' ',
         'activity_level': '',
         'alcohol_consumption': '',
@@ -313,7 +313,8 @@ class _Signup_PageState extends State<Signup_Page> {
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 16.0.w),
                     decoration: BoxDecoration(
-                      color: Colors.grey[200], // Background color
+                      color: Colors.grey[200],
+                      // Background color
                       borderRadius:
                           BorderRadius.circular(20.0.r), // Rounded corners
                     ),
@@ -509,7 +510,7 @@ class _OTPInputState extends State<OTPInput> {
         'landmark': ' ',
         'pincode': ' ',
         'profession': ' ',
-        'gender': ' ',
+        'gender': 'zero',
         'profile_pic': ' ',
         'activity_level': ' ',
         'alcohol_consumption': ' ',

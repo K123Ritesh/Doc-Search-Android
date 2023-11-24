@@ -124,7 +124,7 @@ class _MedicalRecordState extends State<MedicalRecord> {
                             );
                           },
                           style: ElevatedButton.styleFrom(
-                            primary: Color(0xFF1A6A83),
+                            backgroundColor: Color(0xFF1A6A83),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5),
                             ),

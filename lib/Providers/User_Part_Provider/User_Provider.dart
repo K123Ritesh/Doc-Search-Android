@@ -4,12 +4,11 @@ import 'package:doc_search/Models/Models_For_Patient_Part/Appointment_Model.dart
 import 'package:doc_search/Models/Models_For_Patient_Part/User_Model.dart';
 import 'package:doc_search/Models/Models_For_Patient_Part/Order_Model.dart';
 import 'package:doc_search/Services/User_Part_Services/User_Services.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 
 class User_Provider with ChangeNotifier {
   UserServices userServices = UserServices();
-  FirebaseAuth _auth = FirebaseAuth.instance;
   List<String> todayAppointmentId = [];
   List<String> pastAppointmentId = [];
   List<String> upcomingAppointmentId = [];

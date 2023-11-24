@@ -361,7 +361,8 @@ class _Doctors_Category_WiseState extends State<Doctors_Category_Wise> {
                                                 );
                                               },
                                               style: ElevatedButton.styleFrom(
-                                                primary: Color(0xFF1A6A83),
+                                                backgroundColor:
+                                                    Color(0xFF1A6A83),
                                                 shape: RoundedRectangleBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(10),

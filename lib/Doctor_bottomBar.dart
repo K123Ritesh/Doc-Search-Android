@@ -1,12 +1,10 @@
 import 'package:doc_search/Views/Doctor%20Part/Profile/Appointments.dart';
-import 'package:doc_search/Views/Not_Build_Page.dart';
+
 import 'package:flutter/material.dart';
 import 'Views/Doctor Part/Home/Home_Page.dart';
 import 'Views/Doctor Part/Profile/Profile_Page.dart';
-import 'Views/Patient Part/Appointment/PastApointment.dart';
 
 class DoctorBottombar extends StatefulWidget {
-  @override
   final int SelectedIndex;
   final String docCategory;
 
@@ -81,7 +79,7 @@ class _DoctorBottombarState extends State<DoctorBottombar> {
           BoxShadow(
             color: Color(0XFF005473),
             blurRadius: 5.0,
-            offset: Offset(-1,-1),
+            offset: Offset(-1, -1),
           ),
         ],
       ),

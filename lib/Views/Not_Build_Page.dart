@@ -1,4 +1,3 @@
-import 'package:doc_search/Bottom_Bar.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 

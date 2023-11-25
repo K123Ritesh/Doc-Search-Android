@@ -70,21 +70,20 @@ class _Doctors_Category_WiseDetailsState
 
   DateTime selectedDate = DateTime.now();
   List<String> filterSlots(List<String> slots) {
-    DateTime currentTime = DateTime.now();
-    String currentFormattedTime =
-        '${currentTime.hour > 12 ? currentTime.hour - 12 : currentTime.hour}:${currentTime.minute} ${currentTime.hour < 12 ? 'AM' : 'PM'}';
-    print(currentFormattedTime);
+    DateTime currentTime = DateTime.now().add(Duration(hours: 9));
+    print('Current Time: $currentTime');
+
     return slots.where((slot) {
-      // Convert slot time to DateTime for comparison
       String slotTime = slot.split(' ')[0];
       String slotPeriod = slot.split(' ')[1];
-      DateTime slotDateTime = DateTime.parse('1970-01-01 $slotTime');
-      String formattedSlotTime =
-          '${slotDateTime.hour}:${slotDateTime.minute} $slotPeriod';
+      String formattedSlotTime = slotTime + ' ' + slotPeriod.toUpperCase();
 
-      // Compare slot time with current time
-      return slotPeriod == currentFormattedTime.split(' ')[1] &&
-          formattedSlotTime.compareTo(currentFormattedTime) >= 0;
+      DateFormat format = DateFormat('h:mm a');
+      DateTime slotDateTime = format.parse(formattedSlotTime);
+      DateTime currentDateTime = format.parse(format.format(currentTime));
+
+      // Compare slotDateTime with current time
+      return slotDateTime.isAfter(currentDateTime);
     }).toList();
   }
 
@@ -110,7 +109,6 @@ class _Doctors_Category_WiseDetailsState
     '06:00 PM',
     '06:30 PM',
     '07:00 PM',
-    '07:30 PM'
   ];
 
   List<String> morningSlot1 = [];
